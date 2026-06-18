@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 
-// Feature gate: set VITE_ANTHROPIC_KEY in your Vercel/GitHub env to enable AI
-const HAS_AI = Boolean(import.meta.env.VITE_ANTHROPIC_KEY);
+const API_KEY  = import.meta.env.VITE_ANTHROPIC_KEY;
+const PASSWORD = import.meta.env.VITE_PASSWORD;
+const HAS_AI   = Boolean(API_KEY);
+const HAS_PASS = Boolean(PASSWORD);
 
 // ─── Discount inference ──────────────────────────────────────────────────────
 const WEST_END   = ["lyceum","adelphi","novello","phoenix","gillian lynne","savoy","prince edward","duke of york","cambridge","palace","her majesty","apollo victoria","dominion","shaftesbury","garrick","gielgud","harold pinter","noel coward","vaudeville","wyndham"];
@@ -21,8 +24,8 @@ function inferDiscounts(venueName, minPrice, eventDate) {
 }
 
 // ─── Constants ───────────────────────────────────────────────────────────────
-const SEAT_TYPES = ["Any", "Stalls", "Circle / Dress circle", "Upper circle / Balcony", "Gallery", "Pit", "Box", "Standing / GA"];
-const CATEGORIES = ["Any", "Musical", "Drama", "Comedy", "Opera", "Dance", "Family", "Immersive"];
+const SEAT_TYPES   = ["Any", "Stalls", "Circle / Dress circle", "Upper circle / Balcony", "Gallery", "Pit", "Box", "Standing / GA"];
+const CATEGORIES   = ["Any", "Musical", "Drama", "Comedy", "Opera", "Dance", "Family", "Immersive"];
 const SORT_OPTIONS = ["Default", "Price (low–high)", "Price (high–low)", "Sightline rating", "Date (soonest)"];
 
 const SOURCES = [
@@ -49,6 +52,41 @@ const SOURCE_COLORS = {
   "timeout":  { bg: "#EAF3DE", color: "#27500A" },
 };
 
+const DEMO_SHOWS = [
+  {
+    title: "Dear England",
+    venue: "National Theatre",
+    price: "£25–£75", priceFrom: 25, originalPrice: null, saving: null,
+    date: "15 Aug 2026", rawDate: "2026-08-15", category: "Drama",
+    description: "A gripping football drama in the Olivier Theatre with strong reviews and theatrical punch.",
+    bookUrl: "https://officiallondontheatre.com/theatre-tickets", source: "olt",
+  },
+  {
+    title: "Hamilton",
+    venue: "Victoria Palace Theatre",
+    price: "£35–£120", priceFrom: 35, originalPrice: "£150", saving: "Save up to 20%",
+    date: "22 Jul 2026", rawDate: "2026-07-22", category: "Musical",
+    description: "The award-winning musical with energetic staging and a strong ensemble.",
+    bookUrl: "https://www.tkts.co.uk", source: "tkts",
+  },
+  {
+    title: "The Mousetrap",
+    venue: "St Martin's Theatre",
+    price: "£18–£48", priceFrom: 18, originalPrice: null, saving: null,
+    date: "31 Jul 2026", rawDate: "2026-07-31", category: "Drama",
+    description: "The world-famous Agatha Christie whodunit in a compact West End house.",
+    bookUrl: "https://www.todaytix.com/london/theatre", source: "todaytix",
+  },
+  {
+    title: "A Midsummer Night's Dream",
+    venue: "Donmar Warehouse",
+    price: "£22–£45", priceFrom: 22, originalPrice: null, saving: null,
+    date: "12 Jul 2026", rawDate: "2026-07-12", category: "Comedy",
+    description: "A small-scale, immersive take on Shakespeare with excellent sightlines and a lively ensemble.",
+    bookUrl: "https://www.timeout.com/london/theatre", source: "timeout",
+  },
+];
+
 // ─── Components ──────────────────────────────────────────────────────────────
 function Badge({ type, small, bg, color }) {
   const c = DISCOUNT_COLORS[type] || { bg: bg || "#F1EFE8", color: color || "#444441" };
@@ -72,29 +110,56 @@ function SightlineBar({ score }) {
   );
 }
 
-function SightlineSection({ score, notes, venue }) {
-  const validScore = typeof score === "number" && score >= 1 && score <= 5;
-  const displayScore = validScore ? score : null;
-  const label = score >= 4.5 ? "Excellent" : score >= 4.0 ? "Good" : score >= 3.5 ? "Fair" : "Poor";
+function SightlineSection({ venue, seatType }) {
+  const [expanded, setExpanded] = useState(false);
+  const data = getSightlineData(venue);
+  if (!data) {
+    return (
+      <div style={{ padding: "9px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
+        <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
+          Sightline data not available for this venue. Check SeatPlan.com for crowd-sourced reviews.
+        </p>
+      </div>
+    );
+  }
+
+  const highlightSection = getSectionForSeatType(data, seatType);
+  const label = data.overall >= 4.5 ? "Excellent" : data.overall >= 4.0 ? "Good" : data.overall >= 3.5 ? "Fair" : "Poor";
+
   return (
     <div style={{ padding: "9px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
         <span style={{ fontSize: 11, color: "var(--color-text-secondary)", fontWeight: 500 }}>
           Sightlines · {(venue || "Venue").split(" ").slice(0, 3).join(" ")}
         </span>
-        {displayScore && (
-          <span style={{ fontSize: 11, color: "var(--color-text-secondary)" }}>{label}</span>
-        )}
+        <span style={{ fontSize: 11, color: "var(--color-text-secondary)" }}>{label}</span>
       </div>
-      {displayScore ? (
-        <>
-          <SightlineBar score={displayScore} />
-          {notes && <p style={{ margin: "6px 0 0", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.6 }}>{notes}</p>}
-        </>
-      ) : (
-        <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
-          {notes || "Sightline data not available. Check SeatPlan.com for this venue."}
-        </p>
+      <SightlineBar score={data.overall} />
+      {highlightSection && (
+        <div style={{ marginTop: 8, padding: "7px 10px", background: "var(--color-background-info)", borderRadius: 6 }}>
+          <p style={{ margin: "0 0 3px", fontSize: 11, fontWeight: 600, color: "var(--color-text-info)" }}>{highlightSection}</p>
+          <SightlineBar score={data.sections[highlightSection].score} />
+          <p style={{ margin: "5px 0 0", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.6 }}>{data.sections[highlightSection].notes}</p>
+        </div>
+      )}
+      <button
+        style={{ marginTop: 8, background: "none", border: "none", padding: 0, fontSize: 12, color: "var(--color-text-secondary)", cursor: "pointer" }}
+        onClick={() => setExpanded(o => !o)}
+      >
+        {expanded ? "▲ Hide all sections" : `▼ All sections (${Object.keys(data.sections).length})`}
+      </button>
+      {expanded && (
+        <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 10 }}>
+          {Object.entries(data.sections).map(([name, sec]) => (
+            <div key={name}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+                <span style={{ fontSize: 11, fontWeight: 500, color: "var(--color-text-primary)" }}>{name}</span>
+              </div>
+              <SightlineBar score={sec.score} />
+              <p style={{ margin: "4px 0 0", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>{sec.notes}</p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -125,10 +190,9 @@ function DiscountSection({ venueName, minPrice, eventDate }) {
   );
 }
 
-function ShowCard({ show }) {
+function ShowCard({ show, seatType }) {
   const sc = SOURCE_COLORS[show.source] || { bg: "#F1EFE8", color: "#444441" };
   const sourceLabel = SOURCES.find(s => s.id === show.source)?.label || show.source;
-  const score = typeof show.sightlineScore === "number" ? show.sightlineScore : null;
   return (
     <div style={{ background: "var(--color-background-primary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", overflow: "hidden" }}>
       <div style={{ padding: "12px 14px" }}>
@@ -148,7 +212,7 @@ function ShowCard({ show }) {
         </div>
         {show.description && <p style={{ margin: "8px 0 0", fontSize: 13, color: "var(--color-text-secondary)", lineHeight: 1.6 }}>{show.description}</p>}
       </div>
-      <SightlineSection score={score} notes={show.sightlineNotes} venue={show.venue} />
+      <SightlineSection venue={show.venue} seatType={seatType} />
       <DiscountSection venueName={show.venue} minPrice={show.priceFrom} eventDate={show.rawDate} />
       {show.bookUrl && (
         <div style={{ padding: "8px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
@@ -182,38 +246,46 @@ function extractJSON(text) {
   }
 }
 
-// Handles the multi-turn tool_use flow automatically, up to 4 turns
-async function callClaudeWithSearch(messages, system) {
-  if (!HAS_AI) throw new Error("AI disabled: no VITE_ANTHROPIC_KEY configured");
-  const BASE = {
-    model: "claude-sonnet-4-6",
-    max_tokens: 4000,
-    tools: [{ type: "web_search_20250305", name: "web_search" }],
-    system,
-  };
+async function callClaude(messages, system) {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-6",
+      max_tokens: 2000,
+      tools: [{ type: "web_search_20250305", name: "web_search" }],
+      system,
+      messages,
+    }),
+  });
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  let data = await res.json();
+  // Handle up to 3 tool-use turns
   let msgs = [...messages];
-  for (let turn = 0; turn < 4; turn++) {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...BASE, messages: msgs }),
-    });
-    if (!res.ok) throw new Error(`API error ${res.status}`);
-    const data = await res.json();
-    if (data.stop_reason !== "tool_use") return data;
-    // Continue the conversation — the API server handles actual web fetch
+  for (let i = 0; i < 3 && data.stop_reason === "tool_use"; i++) {
     msgs = [...msgs, { role: "assistant", content: data.content }];
+    const res2 = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, tools: [{ type: "web_search_20250305", name: "web_search" }], system, messages: msgs }),
+    });
+    if (!res2.ok) throw new Error(`API error ${res2.status}`);
+    data = await res2.json();
   }
-  throw new Error("Too many tool turns — please try again");
+  return data;
 }
 
 // ─── Main app ─────────────────────────────────────────────────────────────────
 export default function App() {
-  const [shows, setShows]       = useState([]);
-  const [loading, setLoading]   = useState(false);
-  const [error, setError]       = useState("");
-  const [searched, setSearched] = useState(false);
-  const [loadingMsg, setLoadingMsg] = useState("");
+  const [unlocked,    setUnlocked]   = useState(!HAS_PASS);
+  const [pwInput,     setPwInput]    = useState("");
+  const [pwError,     setPwError]    = useState(false);
+
+  const [shows,       setShows]      = useState([]);
+  const [loading,     setLoading]    = useState(false);
+  const [error,       setError]      = useState("");
+  const [searched,    setSearched]   = useState(false);
+  const [loadingMsg,  setLoadingMsg] = useState("");
 
   const [source,   setSource]   = useState("all");
   const [keyword,  setKeyword]  = useState("");
@@ -231,50 +303,45 @@ export default function App() {
 
   const today = new Date().toISOString().slice(0, 10);
 
+  function tryUnlock() {
+    if (pwInput === PASSWORD) { setUnlocked(true); setPwError(false); }
+    else { setPwError(true); }
+  }
+
   async function searchShows() {
+    if (!HAS_AI) {
+      setShows(DEMO_SHOWS); setSearched(true); return;
+    }
     setLoading(true); setError(""); setShows([]); setSearched(true);
 
-    const src = SOURCES.find(s => s.id === source);
+    const src  = SOURCES.find(s => s.id === source);
     const sites = source === "all"
       ? "officiallondontheatre.com/theatre-tickets, tkts.co.uk, todaytix.com/london, timeout.com/london/theatre"
       : src.url;
 
     const filters = [
-      keyword  && `keyword: "${keyword}"`,
-      category && category !== "Any" && `category: ${category}`,
-      seatType && seatType !== "Any" && `seat type: ${seatType}`,
-      dateFrom && `from date: ${dateFrom}`,
-      dateTo   && `to date: ${dateTo}`,
-      priceMin && `min price: £${priceMin}`,
-      priceMax && `max price: £${priceMax}`,
-    ].filter(Boolean).join(", ");
+      keyword  && `keyword:"${keyword}"`,
+      category && category !== "Any" && `category:${category}`,
+      seatType && seatType !== "Any" && `seat:${seatType}`,
+      dateFrom && `from:${dateFrom}`,
+      dateTo   && `to:${dateTo}`,
+      priceMin && `min:£${priceMin}`,
+      priceMax && `max:£${priceMax}`,
+    ].filter(Boolean).join(" ");
 
     const prompt = [
       `Search ${sites} for current London theatre shows and ticket deals.`,
-      filters ? `User filters: ${filters}.` : "Return a broad selection of current shows.",
-      "",
-      "Also search reddit.com/r/londontheatre and seatplan.com for real audience sightline reviews for each venue found. Use those reviews PLUS your own architectural knowledge of each venue (seating rake, balcony overhangs, pillars, stage shape, house size) to produce a sightlineScore and sightlineNotes for each show.",
-      "",
-      "CRITICAL sightline scoring rules:",
-      "- Scores MUST vary realistically between venues. Do NOT give all venues the same score.",
-      "- Tiny studio theatres (Donmar, Almeida, Menier, Bush): 4.3–4.8",
-      "- Mid-size modern/subsidised houses (National Theatre, Barbican, Young Vic): 4.0–4.6",
-      "- Classic mid-size West End (Phoenix, Cambridge, Novello, Savoy): 3.8–4.3",
-      "- Large Victorian West End with restricted side seats (Lyceum, Palace, Her Majesty's, Gillian Lynne, Shaftesbury): 3.4–4.0",
-      "- Very large or problematic venues (Dominion, Eventim Apollo): 3.0–3.6",
-      "- sightlineNotes must be 2–3 specific sentences: name best sections/rows, worst sections, any pillars/rails/overhangs, rake quality.",
-      "",
-      "Return ONLY a raw JSON array starting with [ and ending with ]. No preamble, no markdown, no trailing text.",
-      "Each object: title, venue, price (string e.g. £25–£85), priceFrom (number|null), originalPrice (string|null), saving (string|null), date (human readable|null), rawDate (YYYY-MM-DD|null), category (string|null), description (string|null), bookUrl (string|null), source (one of: olt tkts todaytix timeout), sightlineScore (number 1.0–5.0), sightlineNotes (string).",
-      "Return up to 20 shows. If nothing found, return [].",
+      filters ? `Filters: ${filters}.` : "Return a broad selection.",
+      "Return ONLY a JSON array starting with [ and ending with ]. No markdown, no explanation.",
+      'Each object: title, venue, price (e.g."£25–£85"), priceFrom (number|null), originalPrice (string|null), saving (string|null), date (human-readable|null), rawDate (YYYY-MM-DD|null), category (string|null), description (1 sentence max|null), bookUrl (string|null), source (one of: olt tkts todaytix timeout).',
+      "Up to 15 shows. Return [] if nothing found.",
     ].join("\n");
-
-    const system = `You are a London theatre search and sightline expert. Search the web, then return ONLY a raw JSON array. The response must begin with [ and end with ]. No markdown, no explanation, no preamble.`;
 
     setLoadingMsg("Searching listings…");
     try {
-      const data = await callClaudeWithSearch([{ role: "user", content: prompt }], system);
-      setLoadingMsg("Analysing sightlines…");
+      const data = await callClaude([{ role: "user", content: prompt }],
+        "You are a London theatre search assistant. Search the web then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble.");
+      setLoadingMsg("Loading sightline data…");
 
       const allText = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
       if (!allText) throw new Error("No response received — please try again");
@@ -284,9 +351,15 @@ export default function App() {
 
       let sorted = [...results];
       if (sortBy === "Price (low–high)")  sorted.sort((a,b) => (a.priceFrom||9999)-(b.priceFrom||9999));
-      if (sortBy === "Price (high–low)")  sorted.sort((a,b) => (b.priceFrom||0)   -(a.priceFrom||0));
-      if (sortBy === "Sightline rating")  sorted.sort((a,b) => (b.sightlineScore||0)-(a.sightlineScore||0));
-      if (sortBy === "Date (soonest)")    sorted.sort((a,b) => (a.rawDate||"9999") < (b.rawDate||"9999") ? -1 : 1);
+      if (sortBy === "Price (high–low)")  sorted.sort((a,b) => (b.priceFrom||0)-(a.priceFrom||0));
+      if (sortBy === "Sightline rating") {
+        sorted.sort((a,b) => {
+          const as = getSightlineData(a.venue)?.overall || 0;
+          const bs = getSightlineData(b.venue)?.overall || 0;
+          return bs - as;
+        });
+      }
+      if (sortBy === "Date (soonest)") sorted.sort((a,b) => (a.rawDate||"9999") < (b.rawDate||"9999") ? -1 : 1);
 
       setShows(sorted);
     } catch (err) { setError(`Search failed: ${err.message}`); }
@@ -298,20 +371,20 @@ export default function App() {
     if (!aiQ.trim()) return;
     setAiLoading(true); setAiAnswer("");
     if (!HAS_AI) {
-      setAiAnswer("AI is disabled in this build. Provide VITE_ANTHROPIC_KEY to enable.");
+      setAiAnswer("AI is not available in this build.");
       setAiLoading(false);
       return;
     }
     try {
       const res = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
         body: JSON.stringify({
           model: "claude-sonnet-4-6",
-          max_tokens: 1000,
+          max_tokens: 600,
           system: `You are a London theatre expert. Practical, specific advice about seats, discounts, venues.
-Seat types: stalls (ground level, closest), dress circle (elevated front balcony), upper circle (steep, cheaper), gallery (highest, cheapest), boxes (sides, intimate), pit (very front, angled up).
-Discounts: TKTS Leicester Square up to 50% same-day (Mon–Sat 10am–6pm, Sun 11am–4:30pm), day seats at box office 10am £10–25, student standby 45 min before curtain with ID, TodayTix app, group 8+ direct to box office.
+Seat types: stalls (ground level, closest), dress circle (elevated front balcony), upper circle (steep, cheaper), gallery (highest, cheapest), boxes (sides), pit (very front).
+Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10am £10–25, student standby 45 min before curtain, TodayTix app, groups 8+ direct to box office.
 3–4 punchy bullets. Be specific about prices and procedures.`,
           messages: [{ role: "user", content: aiQ }]
         })
@@ -330,13 +403,32 @@ Discounts: TKTS Leicester Square up to 50% same-day (Mon–Sat 10am–6pm, Sun 1
     borderRadius: 0, cursor: "pointer",
   });
 
+  // ── Password gate ────────────────────────────────────────────────────────
+  if (!unlocked) {
+    return (
+      <div style={{ fontFamily: "var(--font-sans)", padding: "3rem 1.5rem", maxWidth: 400 }}>
+        <h2 style={{ margin: "0 0 6px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
+        <p style={{ margin: "0 0 24px", fontSize: 13, color: "var(--color-text-secondary)" }}>Enter the access password to search.</p>
+        <div style={{ display: "flex", gap: 8 }}>
+          <input
+            type="password" value={pwInput} onChange={e => { setPwInput(e.target.value); setPwError(false); }}
+            onKeyDown={e => e.key === "Enter" && tryUnlock()}
+            placeholder="Password" autoFocus
+            style={{ flex: 1, fontSize: 13, borderColor: pwError ? "var(--color-border-danger)" : undefined }}
+          />
+          <button onClick={tryUnlock} style={{ padding: "0 16px", fontSize: 13 }}>Enter</button>
+        </div>
+        {pwError && <p style={{ margin: "8px 0 0", fontSize: 12, color: "var(--color-text-danger)" }}>Incorrect password.</p>}
+      </div>
+    );
+  }
+
+  // ── Main UI ──────────────────────────────────────────────────────────────
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "1.25rem 0", maxWidth: 680 }}>
-      <h2 className="sr-only">London Theatre Ticket Finder — live search, dynamic sightlines, no API key needed</h2>
-
       <div style={{ marginBottom: "1.25rem" }}>
         <h2 style={{ margin: "0 0 2px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
-        <p style={{ margin: 0, fontSize: 13, color: "var(--color-text-secondary)" }}>Live web search · No API key · Seat type · Discounts · Sightlines from Reddit + venue knowledge</p>
+        <p style={{ margin: 0, fontSize: 13, color: "var(--color-text-secondary)" }}>Live web search · Seat type · Discounts · Sightlines for 40+ London venues</p>
       </div>
 
       {/* AI assistant */}
@@ -412,6 +504,11 @@ Discounts: TKTS Leicester Square up to 50% same-day (Mon–Sat 10am–6pm, Sun 1
         <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "10px 0", fontSize: 14, fontWeight: 500 }}>
           {loading ? (loadingMsg || "Searching…") : "Search shows ↗"}
         </button>
+        {!HAS_AI && (
+          <p style={{ marginTop: 10, fontSize: 12, color: "var(--color-text-secondary)" }}>
+            Showing sample results — deploy with VITE_ANTHROPIC_KEY to enable live search.
+          </p>
+        )}
       </div>
 
       {/* Error */}
@@ -426,7 +523,7 @@ Discounts: TKTS Leicester Square up to 50% same-day (Mon–Sat 10am–6pm, Sun 1
         <div style={{ background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-lg)", padding: "1.5rem", textAlign: "center" }}>
           <p style={{ margin: "0 0 6px", fontSize: 14, color: "var(--color-text-primary)" }}>{loadingMsg || "Searching live listings…"}</p>
           <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)" }}>
-            Fetching shows + Reddit sightline reviews — this takes 10–20 seconds
+            Fetching shows from the web — this takes 10–20 seconds
           </p>
         </div>
       )}
@@ -445,7 +542,7 @@ Discounts: TKTS Leicester Square up to 50% same-day (Mon–Sat 10am–6pm, Sun 1
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {shows.map((show, i) => <ShowCard key={i} show={show} />)}
+            {shows.map((show, i) => <ShowCard key={i} show={show} seatType={seatType} />)}
           </div>
         </>
       )}
