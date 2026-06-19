@@ -1,5 +1,83 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { getSightlineData, getSectionForSeatType } from "./sightlineData";
+
+// ─── Shakespearean insults background ────────────────────────────────────────
+const INSULTS = [
+  "Thou art a boil, a plague sore, an embossed carbuncle",
+  "Thou cream-faced loon",
+  "Away, you starvelling, you elf-skin",
+  "Thou art as loathsome as a toad",
+  "You Banbury cheese",
+  "Thou art unfit for any place but hell",
+  "I scorn you, scurvy companion",
+  "You are not worth the dust which the rude wind blows in your face",
+  "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave",
+  "Out of my sight! Thou dost infect mine eyes",
+  "The tartness of his face sours ripe grapes",
+  "Thou sodden-witted lord",
+  "Thou art essentially a natural coward without instinct",
+  "You are a fishmonger",
+  "Thou art like a toad — ugly and venomous",
+  "Away, you three-inch fool",
+  "Villain, I have done thy mother",
+  "Thou art a flesh-monger, a fool and a coward",
+  "Your brain is as dry as the remainder biscuit after voyage",
+  "Thou art a most notable coward, an infinite and endless liar",
+  "I do desire we may be better strangers",
+  "Thou hast no more brain than I have in mine elbows",
+  "Would thou wert clean enough to spit upon",
+  "You are a saucy boy",
+  "Methink'st thou art a general offence and every man should beat thee",
+];
+
+const FREE_PLAYS = [
+  { label: "Hamlet",           url: "https://www.gutenberg.org/ebooks/1524" },
+  { label: "Macbeth",          url: "https://www.gutenberg.org/ebooks/1533" },
+  { label: "Romeo & Juliet",   url: "https://www.gutenberg.org/ebooks/1513" },
+  { label: "A Midsummer Night's Dream", url: "https://www.gutenberg.org/ebooks/1514" },
+  { label: "Othello",          url: "https://www.gutenberg.org/ebooks/1531" },
+  { label: "King Lear",        url: "https://www.gutenberg.org/ebooks/1532" },
+  { label: "The Tempest",      url: "https://www.gutenberg.org/ebooks/1540" },
+  { label: "Twelfth Night",    url: "https://www.gutenberg.org/ebooks/1523" },
+  { label: "Much Ado About Nothing", url: "https://www.gutenberg.org/ebooks/1519" },
+  { label: "All plays (Gutenberg)", url: "https://www.gutenberg.org/ebooks/author/65" },
+];
+
+function InsultsBackground() {
+  const items = useMemo(() => {
+    // Stable pseudo-random positions seeded by index
+    return INSULTS.map((text, i) => {
+      const seed = (i * 137.508) % 1;
+      const x = (i * 43 + 7) % 90;
+      const y = (i * 61 + 13) % 92;
+      const rot = ((i * 23) % 30) - 15;
+      const size = 9 + (i % 3);
+      return { text, x, y, rot, size };
+    });
+  }, []);
+
+  return (
+    <div style={{ position: "fixed", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
+      {items.map((item, i) => (
+        <span key={i} style={{
+          position: "absolute",
+          left: `${item.x}%`,
+          top: `${item.y}%`,
+          transform: `rotate(${item.rot}deg)`,
+          fontSize: item.size,
+          color: "var(--color-text-secondary, #aaa)",
+          opacity: 0.13,
+          whiteSpace: "nowrap",
+          fontStyle: "italic",
+          fontFamily: "Arial, sans-serif",
+          userSelect: "none",
+        }}>
+          "{item.text}"
+        </span>
+      ))}
+    </div>
+  );
+}
 
 const API_KEY  = import.meta.env.VITE_ANTHROPIC_KEY;
 const PASSWORD = import.meta.env.VITE_PASSWORD;
@@ -251,28 +329,19 @@ async function callClaude(messages, system) {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
     body: JSON.stringify({
-      model: "claude-sonnet-4-6",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 2000,
-      tools: [{ type: "web_search_20250305", name: "web_search" }],
       system,
       messages,
     }),
   });
   if (!res.ok) throw new Error(`API error ${res.status}`);
-  let data = await res.json();
-  // Handle up to 3 tool-use turns
-  let msgs = [...messages];
-  for (let i = 0; i < 3 && data.stop_reason === "tool_use"; i++) {
-    msgs = [...msgs, { role: "assistant", content: data.content }];
-    const res2 = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, tools: [{ type: "web_search_20250305", name: "web_search" }], system, messages: msgs }),
-    });
-    if (!res2.ok) throw new Error(`API error ${res2.status}`);
-    data = await res2.json();
-  }
-  return data;
+  return res.json();
+}
+
+function isLottery(show) {
+  const hay = `${show.title} ${show.description} ${show.price} ${show.saving}`.toLowerCase();
+  return hay.includes("lottery") || hay.includes("ballot") || hay.includes("lucky dip");
 }
 
 // ─── Main app ─────────────────────────────────────────────────────────────────
@@ -330,17 +399,18 @@ export default function App() {
     ].filter(Boolean).join(" ");
 
     const prompt = [
-      `Search ${sites} for current London theatre shows and ticket deals.`,
-      filters ? `Filters: ${filters}.` : "Return a broad selection.",
+      `List current London theatre shows available on ${sites}.`,
+      filters ? `Filters: ${filters}.` : "Return a broad selection of what is currently running.",
+      "IMPORTANT: Do NOT include any lottery tickets, ballot entries, or seats that require winning a draw to purchase.",
       "Return ONLY a JSON array starting with [ and ending with ]. No markdown, no explanation.",
       'Each object: title, venue, price (e.g."£25–£85"), priceFrom (number|null), originalPrice (string|null), saving (string|null), date (human-readable|null), rawDate (YYYY-MM-DD|null), category (string|null), description (1 sentence max|null), bookUrl (string|null), source (one of: olt tkts todaytix timeout).',
       "Up to 15 shows. Return [] if nothing found.",
     ].join("\n");
 
-    setLoadingMsg("Searching listings…");
+    setLoadingMsg("Finding shows…");
     try {
       const data = await callClaude([{ role: "user", content: prompt }],
-        "You are a London theatre search assistant. Search the web then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble.");
+        "You are a London theatre expert. Use your knowledge of currently running London shows to return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.");
       setLoadingMsg("Loading sightline data…");
 
       const allText = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
@@ -349,7 +419,7 @@ export default function App() {
       const results = extractJSON(allText);
       if (!results || !Array.isArray(results)) throw new Error("Could not parse results — please try again");
 
-      let sorted = [...results];
+      let sorted = results.filter(s => !isLottery(s));
       if (sortBy === "Price (low–high)")  sorted.sort((a,b) => (a.priceFrom||9999)-(b.priceFrom||9999));
       if (sortBy === "Price (high–low)")  sorted.sort((a,b) => (b.priceFrom||0)-(a.priceFrom||0));
       if (sortBy === "Sightline rating") {
@@ -406,7 +476,8 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   // ── Password gate ────────────────────────────────────────────────────────
   if (!unlocked) {
     return (
-      <div style={{ fontFamily: "var(--font-sans)", padding: "3rem 1.5rem", maxWidth: 400 }}>
+      <div style={{ fontFamily: "Arial, sans-serif", padding: "3rem 0", position: "relative", zIndex: 1 }}>
+      <InsultsBackground />
         <h2 style={{ margin: "0 0 6px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
         <p style={{ margin: "0 0 24px", fontSize: 13, color: "var(--color-text-secondary)" }}>Enter the access password to search.</p>
         <div style={{ display: "flex", gap: 8 }}>
@@ -425,7 +496,8 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
 
   // ── Main UI ──────────────────────────────────────────────────────────────
   return (
-    <div style={{ fontFamily: "var(--font-sans)", padding: "1.25rem 0", maxWidth: 680 }}>
+    <div style={{ fontFamily: "Arial, sans-serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
+      <InsultsBackground />
       <div style={{ marginBottom: "1.25rem" }}>
         <h2 style={{ margin: "0 0 2px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
         <p style={{ margin: 0, fontSize: 13, color: "var(--color-text-secondary)" }}>Live web search · Seat type · Discounts · Sightlines for 40+ London venues</p>
@@ -554,17 +626,26 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
       )}
 
       {/* Footer */}
-      <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)", display: "flex", flexWrap: "wrap", gap: 12 }}>
-        {[
-          ["Official London Theatre", "https://officiallondontheatre.com/theatre-tickets/"],
-          ["TKTS", "https://www.tkts.co.uk"],
-          ["TodayTix", "https://www.todaytix.com/london"],
-          ["Time Out Theatre", "https://www.timeout.com/london/theatre"],
-          ["SeatPlan", "https://seatplan.com"],
-          ["r/londontheatre", "https://reddit.com/r/londontheatre"],
-        ].map(([l, u]) => (
-          <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "var(--color-text-info)" }}>{l} ↗</a>
-        ))}
+      <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
+        <p style={{ margin: "0 0 8px", fontSize: 11, fontWeight: 600, color: "var(--color-text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Ticket sites</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
+          {[
+            ["Official London Theatre", "https://officiallondontheatre.com/theatre-tickets/"],
+            ["TKTS", "https://www.tkts.co.uk"],
+            ["TodayTix", "https://www.todaytix.com/london"],
+            ["Time Out Theatre", "https://www.timeout.com/london/theatre"],
+            ["SeatPlan", "https://seatplan.com"],
+            ["r/londontheatre", "https://reddit.com/r/londontheatre"],
+          ].map(([l, u]) => (
+            <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "var(--color-text-info)" }}>{l} ↗</a>
+          ))}
+        </div>
+        <p style={{ margin: "0 0 8px", fontSize: 11, fontWeight: 600, color: "var(--color-text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Read the plays free</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          {FREE_PLAYS.map(({ label, url }) => (
+            <a key={label} href={url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "var(--color-text-info)" }}>{label} ↗</a>
+          ))}
+        </div>
       </div>
     </div>
   );
