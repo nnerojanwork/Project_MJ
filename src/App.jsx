@@ -1,79 +1,90 @@
 import { useState, useMemo } from "react";
 import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 
-// ─── Shakespearean insults background ────────────────────────────────────────
+// ─── Shakespearean insults — each linked to its play ─────────────────────────
 const INSULTS = [
-  "Thou art a boil, a plague sore, an embossed carbuncle",
-  "Thou cream-faced loon",
-  "Away, you starvelling, you elf-skin",
-  "Thou art as loathsome as a toad",
-  "You Banbury cheese",
-  "Thou art unfit for any place but hell",
-  "I scorn you, scurvy companion",
-  "You are not worth the dust which the rude wind blows in your face",
-  "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave",
-  "Out of my sight! Thou dost infect mine eyes",
-  "The tartness of his face sours ripe grapes",
-  "Thou sodden-witted lord",
-  "Thou art essentially a natural coward without instinct",
-  "You are a fishmonger",
-  "Thou art like a toad — ugly and venomous",
-  "Away, you three-inch fool",
-  "Villain, I have done thy mother",
-  "Thou art a flesh-monger, a fool and a coward",
-  "Your brain is as dry as the remainder biscuit after voyage",
-  "Thou art a most notable coward, an infinite and endless liar",
-  "I do desire we may be better strangers",
-  "Thou hast no more brain than I have in mine elbows",
-  "Would thou wert clean enough to spit upon",
-  "You are a saucy boy",
-  "Methink'st thou art a general offence and every man should beat thee",
+  { text: "Thou art a boil, a plague sore, an embossed carbuncle",          play: "King Lear",                   url: "https://www.gutenberg.org/ebooks/1532" },
+  { text: "Thou cream-faced loon",                                           play: "Macbeth",                     url: "https://www.gutenberg.org/ebooks/1533" },
+  { text: "Away, you starvelling, you elf-skin",                             play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
+  { text: "Thou art as loathsome as a toad",                                 play: "Richard III",                 url: "https://www.gutenberg.org/ebooks/1503" },
+  { text: "You Banbury cheese",                                              play: "Merry Wives of Windsor",      url: "https://www.gutenberg.org/ebooks/1507" },
+  { text: "Thou art unfit for any place but hell",                           play: "Richard III",                 url: "https://www.gutenberg.org/ebooks/1503" },
+  { text: "I scorn you, scurvy companion",                                   play: "Henry V",                     url: "https://www.gutenberg.org/ebooks/1521" },
+  { text: "You are not worth the dust which the rude wind blows in your face", play: "King Lear",                url: "https://www.gutenberg.org/ebooks/1532" },
+  { text: "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
+  { text: "Out of my sight! Thou dost infect mine eyes",                     play: "Richard III",                 url: "https://www.gutenberg.org/ebooks/1503" },
+  { text: "The tartness of his face sours ripe grapes",                      play: "Coriolanus",                  url: "https://www.gutenberg.org/ebooks/1535" },
+  { text: "Thou sodden-witted lord",                                         play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "Thou art essentially a natural coward without instinct",          play: "Henry IV Part 2",             url: "https://www.gutenberg.org/ebooks/1530" },
+  { text: "You are a fishmonger",                                            play: "Hamlet",                      url: "https://www.gutenberg.org/ebooks/1524" },
+  { text: "Thou art like a toad — ugly and venomous",                        play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "Away, you three-inch fool",                                       play: "Taming of the Shrew",         url: "https://www.gutenberg.org/ebooks/1511" },
+  { text: "Villain, I have done thy mother",                                 play: "Titus Andronicus",            url: "https://www.gutenberg.org/ebooks/1508" },
+  { text: "Thou art a flesh-monger, a fool and a coward",                    play: "Measure for Measure",         url: "https://www.gutenberg.org/ebooks/1526" },
+  { text: "Your brain is as dry as the remainder biscuit after voyage",      play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "Thou art a most notable coward, an infinite and endless liar",    play: "All's Well That Ends Well",   url: "https://www.gutenberg.org/ebooks/1551" },
+  { text: "I do desire we may be better strangers",                          play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "Thou hast no more brain than I have in mine elbows",              play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "Would thou wert clean enough to spit upon",                       play: "Timon of Athens",             url: "https://www.gutenberg.org/ebooks/1534" },
+  { text: "You are a saucy boy",                                             play: "Romeo and Juliet",            url: "https://www.gutenberg.org/ebooks/1513" },
+  { text: "Methink'st thou art a general offence and every man should beat thee", play: "All's Well That Ends Well", url: "https://www.gutenberg.org/ebooks/1551" },
 ];
 
 const FREE_PLAYS = [
-  { label: "Hamlet",           url: "https://www.gutenberg.org/ebooks/1524" },
-  { label: "Macbeth",          url: "https://www.gutenberg.org/ebooks/1533" },
-  { label: "Romeo & Juliet",   url: "https://www.gutenberg.org/ebooks/1513" },
+  { label: "Hamlet",                    url: "https://www.gutenberg.org/ebooks/1524" },
+  { label: "Macbeth",                   url: "https://www.gutenberg.org/ebooks/1533" },
+  { label: "Romeo & Juliet",            url: "https://www.gutenberg.org/ebooks/1513" },
   { label: "A Midsummer Night's Dream", url: "https://www.gutenberg.org/ebooks/1514" },
-  { label: "Othello",          url: "https://www.gutenberg.org/ebooks/1531" },
-  { label: "King Lear",        url: "https://www.gutenberg.org/ebooks/1532" },
-  { label: "The Tempest",      url: "https://www.gutenberg.org/ebooks/1540" },
-  { label: "Twelfth Night",    url: "https://www.gutenberg.org/ebooks/1523" },
-  { label: "Much Ado About Nothing", url: "https://www.gutenberg.org/ebooks/1519" },
-  { label: "All plays (Gutenberg)", url: "https://www.gutenberg.org/ebooks/author/65" },
+  { label: "Othello",                   url: "https://www.gutenberg.org/ebooks/1531" },
+  { label: "King Lear",                 url: "https://www.gutenberg.org/ebooks/1532" },
+  { label: "The Tempest",               url: "https://www.gutenberg.org/ebooks/1540" },
+  { label: "Twelfth Night",             url: "https://www.gutenberg.org/ebooks/1523" },
+  { label: "Much Ado About Nothing",    url: "https://www.gutenberg.org/ebooks/1519" },
+  { label: "As You Like It",            url: "https://www.gutenberg.org/ebooks/1522" },
+  { label: "Richard III",               url: "https://www.gutenberg.org/ebooks/1503" },
+  { label: "All plays →",               url: "https://www.gutenberg.org/ebooks/author/65" },
 ];
 
 function InsultsBackground() {
-  const items = useMemo(() => {
-    // Stable pseudo-random positions seeded by index
-    return INSULTS.map((text, i) => {
-      const seed = (i * 137.508) % 1;
-      const x = (i * 43 + 7) % 90;
-      const y = (i * 61 + 13) % 92;
-      const rot = ((i * 23) % 30) - 15;
-      const size = 9 + (i % 3);
-      return { text, x, y, rot, size };
-    });
-  }, []);
+  const items = useMemo(() => INSULTS.map((insult, i) => {
+    const x = (i * 43 + 7) % 88;
+    const y = (i * 61 + 13) % 90;
+    const rot = ((i * 23) % 22) - 11;
+    const size = 15 + (i % 5) * 3;
+    return { ...insult, x, y, rot, size };
+  }), []);
 
   return (
-    <div style={{ position: "fixed", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
+    <div style={{ position: "fixed", inset: 0, overflow: "hidden", zIndex: 0, pointerEvents: "none" }}>
       {items.map((item, i) => (
-        <span key={i} style={{
-          position: "absolute",
-          left: `${item.x}%`,
-          top: `${item.y}%`,
-          transform: `rotate(${item.rot}deg)`,
-          fontSize: item.size,
-          color: "var(--color-text-secondary, #aaa)",
-          opacity: 0.13,
-          whiteSpace: "nowrap",
-          fontStyle: "italic",
-          fontFamily: "Arial, sans-serif",
-          userSelect: "none",
-        }}>
+        <a
+          key={i}
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`From ${item.play} — click to read free`}
+          style={{
+            position: "absolute",
+            left: `${item.x}%`,
+            top: `${item.y}%`,
+            transform: `rotate(${item.rot}deg)`,
+            fontSize: item.size,
+            color: "#8B0000",
+            opacity: 0.38,
+            whiteSpace: "nowrap",
+            fontStyle: "italic",
+            fontWeight: "bold",
+            fontFamily: "Arial, sans-serif",
+            textDecoration: "none",
+            pointerEvents: "auto",
+            cursor: "pointer",
+            transition: "opacity 0.15s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = "0.38"; }}
+        >
           "{item.text}"
-        </span>
+        </a>
       ))}
     </div>
   );
@@ -324,19 +335,44 @@ function extractJSON(text) {
   }
 }
 
+// ─── Search cache (localStorage, keyed by params + date) ─────────────────────
+function cacheKey(params) {
+  return `lta_${new Date().toISOString().slice(0, 10)}_${JSON.stringify(params)}`;
+}
+function cacheGet(key) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; }
+}
+function cacheSet(key, data) {
+  try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+}
+
 async function callClaude(messages, system) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
     body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
+      model: "claude-sonnet-4-6",
       max_tokens: 2000,
+      tools: [{ type: "web_search_20250305", name: "web_search" }],
       system,
       messages,
     }),
   });
   if (!res.ok) throw new Error(`API error ${res.status}`);
-  return res.json();
+  let data = await res.json();
+  let msgs = [...messages];
+  // Allow up to 2 tool turns (web search is 1 turn usually)
+  for (let i = 0; i < 2 && data.stop_reason === "tool_use"; i++) {
+    msgs = [...msgs, { role: "assistant", content: data.content }];
+    const r2 = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, tools: [{ type: "web_search_20250305", name: "web_search" }], system, messages: msgs }),
+    });
+    if (!r2.ok) throw new Error(`API error ${r2.status}`);
+    data = await r2.json();
+  }
+  return data;
 }
 
 function isLottery(show) {
@@ -407,10 +443,16 @@ export default function App() {
       "Up to 15 shows. Return [] if nothing found.",
     ].join("\n");
 
-    setLoadingMsg("Finding shows…");
+    const ck = cacheKey({ source, keyword, category, seatType, dateFrom, dateTo, priceMin, priceMax });
+    const cached = cacheGet(ck);
+    if (cached) {
+      setShows(cached); setLoading(false); setLoadingMsg(""); return;
+    }
+
+    setLoadingMsg("Searching listings…");
     try {
       const data = await callClaude([{ role: "user", content: prompt }],
-        "You are a London theatre expert. Use your knowledge of currently running London shows to return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.");
+        "You are a London theatre search assistant. Search the web for current London theatre shows, then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.");
       setLoadingMsg("Loading sightline data…");
 
       const allText = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
@@ -431,6 +473,7 @@ export default function App() {
       }
       if (sortBy === "Date (soonest)") sorted.sort((a,b) => (a.rawDate||"9999") < (b.rawDate||"9999") ? -1 : 1);
 
+      cacheSet(ck, sorted);
       setShows(sorted);
     } catch (err) { setError(`Search failed: ${err.message}`); }
     setLoading(false);
@@ -498,9 +541,9 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   return (
     <div style={{ fontFamily: "Arial, sans-serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
       <InsultsBackground />
-      <div style={{ marginBottom: "1.25rem" }}>
-        <h2 style={{ margin: "0 0 2px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
-        <p style={{ margin: 0, fontSize: 13, color: "var(--color-text-secondary)" }}>Live web search · Seat type · Discounts · Sightlines for 40+ London venues</p>
+      <div style={{ marginBottom: "1.75rem" }}>
+        <h2 style={{ margin: "0 0 6px", fontSize: 32, fontWeight: 900, color: "var(--color-text-primary)", letterSpacing: "-0.5px" }}>🎭 London Theatre Finder</h2>
+        <p style={{ margin: 0, fontSize: 15, color: "var(--color-text-secondary)", fontWeight: 500 }}>Live web search · Seat type · Discounts · Sightlines for 40+ venues</p>
       </div>
 
       {/* AI assistant */}
