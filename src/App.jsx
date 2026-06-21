@@ -112,9 +112,11 @@ const HAS_PASS = Boolean(PASSWORD);
 // ─── Discount inference ──────────────────────────────────────────────────────
 const WEST_END   = ["lyceum","adelphi","novello","phoenix","gillian lynne","savoy","prince edward","duke of york","cambridge","palace","her majesty","apollo victoria","dominion","shaftesbury","garrick","gielgud","harold pinter","noel coward","vaudeville","wyndham"];
 const SUBSIDISED = ["national theatre","barbican","almeida","royal court","young vic","donmar","menier","soho theatre","bush theatre","hampstead"];
+const HAS_LOTTERY = ["hamilton","hamilton (musical)","hamilton the musical","les misérables","les miserables","the phantom of the opera","phantom of the opera","the lion king","lion king","mamma mia","back to the future","operation mincemeat","hadestown","next to normal"];
 
-function inferDiscounts(venueName, minPrice, eventDate) {
+function inferDiscounts(venueName, minPrice, eventDate, showTitle) {
   const v = (venueName || "").toLowerCase();
+  const t = (showTitle || "").toLowerCase();
   const daysUntil = eventDate ? (new Date(eventDate) - new Date()) / 86400000 : 30;
   const out = [];
   if (WEST_END.some(x => v.includes(x)))   out.push({ type: "TKTS",        tip: "TKTS booth in Leicester Square sells same-day tickets up to 50% off. Open Mon–Sat 10am–6pm, Sun 11am–4:30pm." });
@@ -123,7 +125,9 @@ function inferDiscounts(venueName, minPrice, eventDate) {
   out.push({ type: "Student",     tip: "Most London theatres offer student standby. Show valid student ID at the box office 45 min before curtain — often £10–18." });
   out.push({ type: "Group",       tip: "Groups of 8+ usually get 10–25% off. Call the box office directly for the best deal." });
   if (daysUntil >= 0 && daysUntil < 3) out.push({ type: "Last-minute", tip: "Check TodayTix, Official London Theatre today's tickets, and the venue's own site for unsold releases." });
-  return out.slice(0, 4);
+  if (HAS_LOTTERY.some(x => t.includes(x) || v.includes(x)))
+    out.push({ type: "Lottery", tip: "This show runs a ticket lottery — enter via TodayTix or the show's own app for a chance to win front-row or premium seats at heavily discounted prices (often £10–25). Results usually announced 2 days before the performance." });
+  return out.slice(0, 5);
 }
 
 // ─── Constants ───────────────────────────────────────────────────────────────
@@ -146,6 +150,7 @@ const DISCOUNT_COLORS = {
   "Student":     { bg: "#EEEDFE", color: "#3C3489" },
   "Group":       { bg: "#E1F5EE", color: "#085041" },
   "Last-minute": { bg: "#FCEBEB", color: "#A32D2D" },
+  "Lottery":     { bg: "#FEF3C7", color: "#92400E" },
 };
 
 const SOURCE_COLORS = {
@@ -239,7 +244,7 @@ function ShowCard({ show, seatType }) {
         {show.description && <p style={{ margin: "10px 0 0", fontSize: 14, color: W, lineHeight: 1.6 }}>{show.description}</p>}
       </div>
       <SightlineSection venue={show.venue} seatType={seatType} />
-      <DiscountSection venueName={show.venue} minPrice={show.priceFrom} eventDate={show.rawDate} />
+      <DiscountSection venueName={show.venue} showTitle={show.title} minPrice={show.priceFrom} eventDate={show.rawDate} />
       {show.bookUrl && (
         <div style={{ padding: "10px 16px", borderTop: DIV }}>
           <button style={{ fontSize: 13, padding: "7px 18px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, fontWeight: 700, cursor: "pointer" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
@@ -292,9 +297,9 @@ function SightlineSection({ venue, seatType }) {
   );
 }
 
-function DiscountSection({ venueName, minPrice, eventDate }) {
+function DiscountSection({ venueName, showTitle, minPrice, eventDate }) {
   const [open, setOpen] = useState(false);
-  const discounts = inferDiscounts(venueName, minPrice, eventDate);
+  const discounts = inferDiscounts(venueName, minPrice, eventDate, showTitle);
   return (
     <div style={{ padding: "10px 16px", borderTop: DIV }}>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
