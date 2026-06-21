@@ -154,10 +154,10 @@ const DISCOUNT_COLORS = {
 };
 
 const SOURCE_COLORS = {
-  "olt":      { bg: "#FBEAF0", color: "#72243E" },
-  "tkts":     { bg: "#E6F1FB", color: "#0C447C" },
-  "todaytix": { bg: "#EEEDFE", color: "#3C3489" },
-  "timeout":  { bg: "#EAF3DE", color: "#27500A" },
+  "olt":      { bg: "#E8DDD0", color: "#9E2B3A" },
+  "tkts":     { bg: "#E8DDD0", color: "#9E2B3A" },
+  "todaytix": { bg: "#E8DDD0", color: "#9E2B3A" },
+  "timeout":  { bg: "#E8DDD0", color: "#9E2B3A" },
 };
 
 const DEMO_SHOWS = [
@@ -532,20 +532,53 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   // ── Password gate ────────────────────────────────────────────────────────
   if (!unlocked) {
     return (
-      <div style={{ fontFamily: "'Cinzel', serif", padding: "3rem 0", position: "relative", zIndex: 1 }}>
-      <InsultsBackground />
-        <h2 style={{ margin: "0 0 6px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
-        <p style={{ margin: "0 0 24px", fontSize: 13, color: "var(--color-text-secondary)" }}>Enter the access password to search.</p>
-        <div style={{ display: "flex", gap: 8 }}>
-          <input
-            type="password" value={pwInput} onChange={e => { setPwInput(e.target.value); setPwError(false); }}
-            onKeyDown={e => e.key === "Enter" && tryUnlock()}
-            placeholder="Password" autoFocus
-            style={{ flex: 1, fontSize: 13, borderColor: pwError ? "var(--color-border-danger)" : undefined }}
-          />
-          <button onClick={tryUnlock} style={{ padding: "0 16px", fontSize: 13 }}>Enter</button>
+      <div style={{ fontFamily: "'Cinzel', serif", padding: "3rem 0", position: "relative", zIndex: 1, textAlign: "center" }}>
+        <InsultsBackground />
+        <style>{`
+          @keyframes witchDance {
+            0%   { transform: translateY(0) rotate(-4deg) scaleX(1); }
+            20%  { transform: translateY(-18px) rotate(4deg) scaleX(-1); }
+            40%  { transform: translateY(-6px) rotate(-6deg) scaleX(1); }
+            60%  { transform: translateY(-22px) rotate(6deg) scaleX(-1); }
+            80%  { transform: translateY(-4px) rotate(-3deg) scaleX(1); }
+            100% { transform: translateY(0) rotate(-4deg) scaleX(1); }
+          }
+        `}</style>
+
+        {/* Heading — matches main page */}
+        <div style={{ display: "inline-block", marginBottom: 8 }}>
+          <div style={{ background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 8 }}>
+            <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+          </div>
+          <svg viewBox="0 0 400 56" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+            <rect x="8" y="24" width="300" height="7" rx="3.5" fill="#6B3A1F" />
+            <rect x="306" y="14" width="22" height="28" rx="3" fill="#9E2B3A" />
+            <ellipse cx="310" cy="28" rx="6" ry="13" fill="#F0C060" />
+            {[0,1,2,3,4,5,6,7,8,9].map(i => (
+              <line key={i} x1={328} y1={17 + i * 2.8} x2={390 - (i % 4) * 8} y2={4 + i * 5.5} stroke="#6B3A1F" strokeWidth="2.2" strokeLinecap="round" />
+            ))}
+          </svg>
         </div>
-        {pwError && <p style={{ margin: "8px 0 0", fontSize: 12, color: "var(--color-text-danger)" }}>Incorrect password.</p>}
+
+        {/* Dancing witch */}
+        <div style={{ fontSize: 90, lineHeight: 1, margin: "20px 0 16px", display: "inline-block", animation: "witchDance 1.4s ease-in-out infinite" }}>
+          🧙‍♀️
+        </div>
+
+        {/* Password form */}
+        <div style={{ display: "inline-block", width: "100%", maxWidth: 360 }}>
+          <p style={{ margin: "0 0 16px", fontSize: 14, color: "#9E2B3A", fontWeight: 600, letterSpacing: "0.05em" }}>Enter the password to enter</p>
+          <div style={{ display: "flex", gap: 8 }}>
+            <input
+              type="password" value={pwInput} onChange={e => { setPwInput(e.target.value); setPwError(false); }}
+              onKeyDown={e => e.key === "Enter" && tryUnlock()}
+              placeholder="Password" autoFocus
+              style={{ flex: 1, fontSize: 15, padding: "10px 14px", borderRadius: 8, border: `1.5px solid ${pwError ? "#9E2B3A" : "rgba(158,43,58,0.3)"}`, outline: "none", background: "#fff" }}
+            />
+            <button onClick={tryUnlock} style={{ padding: "0 20px", fontSize: 15, fontWeight: 700, background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer", fontFamily: "'Cinzel', serif" }}>Enter</button>
+          </div>
+          {pwError && <p style={{ margin: "10px 0 0", fontSize: 13, color: "#9E2B3A", fontWeight: 600 }}>Wrong password — try again.</p>}
+        </div>
       </div>
     );
   }
