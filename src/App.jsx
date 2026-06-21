@@ -673,11 +673,11 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <div style={{ marginBottom: 16 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
           {isMobile ? (
-            <select value={source} onChange={e => setSource(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 12px" }}>
+            <select value={source} onChange={e => setSource(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 12px", boxSizing: "border-box" }}>
               {SOURCES.map(s => <option key={s.id} value={s.id}>{s.label}</option>)}
             </select>
           ) : (
-            <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: "hidden" }}>
+            <div style={{ display: "flex", width: "100%", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: "hidden" }}>
               {SOURCES.map(s => <button key={s.id} onClick={() => setSource(s.id)} style={tabStyle(s.id)}>{s.label}</button>)}
             </div>
           )}
