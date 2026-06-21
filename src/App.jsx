@@ -5,7 +5,7 @@ import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 const INSULTS = [
   { text: "You Banbury cheese",                                                           play: "Merry Wives of Windsor", url: "https://www.gutenberg.org/ebooks/1507" },
   { text: "You are a fishmonger",                                                         play: "Hamlet",                 url: "https://www.gutenberg.org/ebooks/1524" },
-  { text: "Thou cream-faced loon",                                                        play: "Macbeth",                url: "https://www.gutenberg.org/ebooks/1533" },
+  { text: "Get you gone, you dwarf, you minimus of hindering knotgrass made, you bead, you acorn!", play: "A Midsummer Night's Dream", url: "https://www.gutenberg.org/ebooks/1514" },
   { text: "Your brain is as dry as the remainder biscuit after voyage",                   play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "I do desire we may be better strangers",                                       play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "Thou hast no more brain than I have in mine elbows",                           play: "Troilus and Cressida",   url: "https://www.gutenberg.org/ebooks/1527" },
