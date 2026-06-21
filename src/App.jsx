@@ -833,9 +833,10 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
       )}
 
       {!loading && searched && shows.length === 0 && !error && (
-        <p style={{ textAlign: "center", padding: "2.5rem 0", color: "var(--color-text-secondary)", fontSize: 14 }}>
-          No shows found. Try broader search terms or a different source.
-        </p>
+        <div style={{ textAlign: "center", padding: "2rem 0" }}>
+          <p style={{ margin: "0 0 16px", fontSize: 22, fontWeight: 700, color: "#9E2B3A", letterSpacing: "0.5px" }}>Not today.</p>
+          <img src="/lucky_picture.png.jpeg" alt="Lucky" style={{ width: "60%", maxWidth: 280, borderRadius: 12, border: "3px solid #9E2B3A", boxShadow: "0 8px 32px rgba(0,0,0,0.15)", display: "block", margin: "0 auto" }} />
+        </div>
       )}
 
       {/* Footer */}
