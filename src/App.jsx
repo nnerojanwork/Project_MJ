@@ -552,7 +552,7 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <div style={{ display: "inline-block", background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 10 }}>
           <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
         </div>
-        <p style={{ margin: 0, fontSize: 15, color: "var(--color-text-secondary)", fontWeight: 500 }}>Live web search · Seat type · Discounts · Sightlines for 40+ venues</p>
+        <p style={{ margin: 0, fontSize: 42, lineHeight: 1 }}>🧹</p>
       </div>
 
       {/* AI assistant */}
