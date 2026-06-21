@@ -68,7 +68,7 @@ function InsultColumn({ insults, side }) {
             fontSize: 22,
             fontWeight: 700,
             fontFamily: "'Dancing Script', cursive",
-            color: "#800020",
+            color: "#9E2B3A",
             opacity: 0.65,
             textDecoration: "none",
             lineHeight: 1.4,
@@ -220,12 +220,12 @@ const DIV = "1px solid rgba(0,0,0,0.12)";
 function ShowCard({ show, seatType }) {
   const sourceLabel = SOURCES.find(s => s.id === show.source)?.label || show.source;
   return (
-    <div style={{ background: "#F5F0E8", borderRadius: 14, overflow: "hidden" }}>
+    <div style={{ background: "#E8DDD0", borderRadius: 14, overflow: "hidden" }}>
       <div style={{ padding: "14px 16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 4 }}>
-          <p style={{ margin: 0, fontWeight: 700, fontSize: 16, color: "#800020", lineHeight: 1.3, fontFamily: "'Cinzel', serif" }}>{show.title}</p>
+          <p style={{ margin: 0, fontWeight: 700, fontSize: 16, color: "#9E2B3A", lineHeight: 1.3, fontFamily: "'Cinzel', serif" }}>{show.title}</p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3, flexShrink: 0 }}>
-            {show.price && <span style={{ fontSize: 15, fontWeight: 700, color: "#FFD700", whiteSpace: "nowrap" }}>{show.price}</span>}
+            {show.price && <span style={{ fontSize: 15, fontWeight: 700, color: "#F0C060", whiteSpace: "nowrap" }}>{show.price}</span>}
             {show.originalPrice && <span style={{ fontSize: 12, color: W2, textDecoration: "line-through" }}>{show.originalPrice}</span>}
             {show.saving && <span style={{ fontSize: 12, color: "#27500A", fontWeight: 600 }}>{show.saving}</span>}
           </div>
@@ -233,8 +233,8 @@ function ShowCard({ show, seatType }) {
         <p style={{ margin: "0 0 8px", fontSize: 13, color: W2, fontWeight: 600 }}>{show.venue}</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
           {show.date && <span style={{ fontSize: 13, color: W }}>{show.date}</span>}
-          {show.category && <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#800020", fontWeight: 600 }}>{show.category}</span>}
-          <span style={{ fontSize: 11, marginLeft: "auto", padding: "2px 8px", borderRadius: 4, background: "#800020", color: "#FFD700", fontWeight: 700 }}>{sourceLabel}</span>
+          {show.category && <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#9E2B3A", fontWeight: 600 }}>{show.category}</span>}
+          <span style={{ fontSize: 11, marginLeft: "auto", padding: "2px 8px", borderRadius: 4, background: "#9E2B3A", color: "#F0C060", fontWeight: 700 }}>{sourceLabel}</span>
         </div>
         {show.description && <p style={{ margin: "10px 0 0", fontSize: 14, color: W, lineHeight: 1.6 }}>{show.description}</p>}
       </div>
@@ -242,7 +242,7 @@ function ShowCard({ show, seatType }) {
       <DiscountSection venueName={show.venue} minPrice={show.priceFrom} eventDate={show.rawDate} />
       {show.bookUrl && (
         <div style={{ padding: "10px 16px", borderTop: DIV }}>
-          <button style={{ fontSize: 13, padding: "7px 18px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, fontWeight: 700, cursor: "pointer" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
+          <button style={{ fontSize: 13, padding: "7px 18px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, fontWeight: 700, cursor: "pointer" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
         </div>
       )}
     </div>
@@ -269,7 +269,7 @@ function SightlineSection({ venue, seatType }) {
       <SightlineBar score={data.overall} />
       {highlightSection && (
         <div style={{ marginTop: 8, padding: "8px 10px", background: "rgba(0,0,0,0.06)", borderRadius: 8 }}>
-          <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: "#FFD700" }}>{highlightSection}</p>
+          <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: "#F0C060" }}>{highlightSection}</p>
           <SightlineBar score={data.sections[highlightSection].score} />
           <p style={{ margin: "5px 0 0", fontSize: 13, color: W, lineHeight: 1.5 }}>{data.sections[highlightSection].notes}</p>
         </div>
@@ -299,14 +299,14 @@ function DiscountSection({ venueName, minPrice, eventDate }) {
     <div style={{ padding: "10px 16px", borderTop: DIV }}>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         {discounts.map(d => (
-          <span key={d.type} style={{ fontSize: 12, fontWeight: 600, padding: "2px 9px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#800020" }}>{d.type}</span>
+          <span key={d.type} style={{ fontSize: 12, fontWeight: 600, padding: "2px 9px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#9E2B3A" }}>{d.type}</span>
         ))}
       </div>
       {open && (
         <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
           {discounts.map(d => (
             <div key={d.type} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-              <span style={{ fontSize: 11, fontWeight: 700, padding: "1px 7px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#800020", whiteSpace: "nowrap" }}>{d.type}</span>
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "1px 7px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#9E2B3A", whiteSpace: "nowrap" }}>{d.type}</span>
               <p style={{ margin: 0, fontSize: 13, color: W, lineHeight: 1.5 }}>{d.tip}</p>
             </div>
           ))}
@@ -517,8 +517,8 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
 
   const tabStyle = (id) => ({
     flex: 1, padding: "10px 4px", fontSize: 13, fontWeight: source === id ? 700 : 500,
-    background: source === id ? "#800020" : "rgba(0,0,0,0.06)",
-    color: source === id ? "#FFD700" : "#800020",
+    background: source === id ? "#9E2B3A" : "rgba(0,0,0,0.06)",
+    color: source === id ? "#F0C060" : "#9E2B3A",
     border: "none", borderLeft: id !== "all" ? "1px solid rgba(0,0,0,0.1)" : "none",
     borderRadius: 0, cursor: "pointer",
   });
@@ -549,30 +549,30 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
     <div style={{ fontFamily: "'Cinzel', serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
       <InsultsBackground />
       <div style={{ marginBottom: "1.75rem", textAlign: "center" }}>
-        <div style={{ display: "inline-block", background: "#800020", borderRadius: 16, padding: "10px 32px", marginBottom: 10 }}>
-          <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#FFD700", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+        <div style={{ display: "inline-block", background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 10 }}>
+          <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
         </div>
         <p style={{ margin: 0, fontSize: 15, color: "var(--color-text-secondary)", fontWeight: 500 }}>Live web search · Seat type · Discounts · Sightlines for 40+ venues</p>
       </div>
 
       {/* AI assistant */}
-      <div style={{ background: "#F5F0E8", borderRadius: 14, padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
-        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#800020" }}>Ask about seats, discounts or venues</p>
+      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
+        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#9E2B3A" }}>Ask about seats, discounts or venues</p>
         <div style={{ display: "flex", gap: 10 }}>
           <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
-          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 700, background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
+          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 700, background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
         </div>
         {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: W, lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: DIV, paddingTop: 12 }}>{aiAnswer}</div>}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
           {["Stalls vs upper circle?", "TKTS tips", "Student discounts tonight", "Best family shows under £40"].map(q => (
-            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20, background: "rgba(0,0,0,0.06)", color: "#800020", border: "1px solid rgba(128,0,32,0.25)", cursor: "pointer" }}>{q}</button>
+            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20, background: "rgba(0,0,0,0.06)", color: "#9E2B3A", border: "1px solid rgba(128,0,32,0.25)", cursor: "pointer" }}>{q}</button>
           ))}
         </div>
       </div>
 
       {/* Search panel */}
-      <div style={{ background: "#F5F0E8", borderRadius: 14, padding: "1.5rem", marginBottom: "1.25rem" }}>
-        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 700, color: "#800020", letterSpacing: "0.5px" }}>Search &amp; filter</p>
+      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: "1.5rem", marginBottom: "1.25rem" }}>
+        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 700, color: "#9E2B3A", letterSpacing: "0.5px" }}>Search &amp; filter</p>
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
@@ -582,50 +582,50 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
           <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
             <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
           </div>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
             <select value={seatType} onChange={e => setSeatType(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SEAT_TYPES.map(s => <option key={s}>{s}</option>)}</select>
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
             <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
           </div>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
             <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
           </div>
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
             Price range (£){priceMin || priceMax ? ` — £${priceMin || "0"} to £${priceMax || "any"}` : ""}
           </label>
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
             <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
-            <span style={{ fontSize: 15, fontWeight: 700, color: "#800020" }}>to</span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: "#9E2B3A" }}>to</span>
             <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
-            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, cursor: "pointer" }}>✕</button>}
+            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>✕</button>}
           </div>
         </div>
 
         <div style={{ marginBottom: 18 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "#800020", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
           <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
         </div>
 
-        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 10, cursor: "pointer" }}>
+        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 10, cursor: "pointer" }}>
           {loading ? (loadingMsg || "Searching…") : "Search shows ↗"}
         </button>
         {!HAS_AI && (
