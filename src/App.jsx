@@ -596,9 +596,9 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         {/* Elizabeth I portrait */}
         <div style={{ marginTop: 32 }}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Elizabeth_I_in_Parliament_Robes.jpg/400px-Elizabeth_I_in_Parliament_Robes.jpg"
-            alt="Elizabeth I"
-            onError={e => { e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Elizabeth_I_of_England_-_Armada_Portrait.jpg/400px-Elizabeth_I_of_England_-_Armada_Portrait.jpg"; }}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Elizabeth_I_%28Armada_Portrait%29.jpg/400px-Elizabeth_I_%28Armada_Portrait%29.jpg"
+            alt="Elizabeth I — Armada Portrait"
+            onError={e => { e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Elizabeth1England.jpg/400px-Elizabeth1England.jpg"; }}
             style={{ width: isMobile ? "85%" : "60%", maxWidth: 340, borderRadius: 12, border: "3px solid #9E2B3A", boxShadow: "0 8px 32px rgba(0,0,0,0.18)", display: "block", margin: "0 auto" }}
           />
           <p style={{ margin: "10px 0 0", fontSize: 11, color: "#9E2B3A", opacity: 0.6, letterSpacing: "0.08em" }}>ELIZABETH I — BY APPOINTMENT</p>
