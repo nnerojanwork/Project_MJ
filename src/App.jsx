@@ -1,33 +1,21 @@
 import { useState, useMemo } from "react";
 import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 
-// ─── Shakespearean insults — each linked to its play ─────────────────────────
+// ─── Funny Shakespearean insults only — each linked to its play ──────────────
 const INSULTS = [
-  { text: "Thou art a boil, a plague sore, an embossed carbuncle",          play: "King Lear",                   url: "https://www.gutenberg.org/ebooks/1532" },
-  { text: "Thou cream-faced loon",                                           play: "Macbeth",                     url: "https://www.gutenberg.org/ebooks/1533" },
-  { text: "Away, you starvelling, you elf-skin",                             play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
-  { text: "Thou art as loathsome as a toad",                                 play: "Richard III",                 url: "https://www.gutenberg.org/ebooks/1503" },
   { text: "You Banbury cheese",                                              play: "Merry Wives of Windsor",      url: "https://www.gutenberg.org/ebooks/1507" },
-  { text: "Thou art unfit for any place but hell",                           play: "Richard III",                 url: "https://www.gutenberg.org/ebooks/1503" },
-  { text: "I scorn you, scurvy companion",                                   play: "Henry V",                     url: "https://www.gutenberg.org/ebooks/1521" },
-  { text: "You are not worth the dust which the rude wind blows in your face", play: "King Lear",                url: "https://www.gutenberg.org/ebooks/1532" },
-  { text: "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
-  { text: "Out of my sight! Thou dost infect mine eyes",                     play: "Richard III",                 url: "https://www.gutenberg.org/ebooks/1503" },
-  { text: "The tartness of his face sours ripe grapes",                      play: "Coriolanus",                  url: "https://www.gutenberg.org/ebooks/1535" },
-  { text: "Thou sodden-witted lord",                                         play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
-  { text: "Thou art essentially a natural coward without instinct",          play: "Henry IV Part 2",             url: "https://www.gutenberg.org/ebooks/1530" },
   { text: "You are a fishmonger",                                            play: "Hamlet",                      url: "https://www.gutenberg.org/ebooks/1524" },
-  { text: "Thou art like a toad — ugly and venomous",                        play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "Thou cream-faced loon",                                           play: "Macbeth",                     url: "https://www.gutenberg.org/ebooks/1533" },
   { text: "Away, you three-inch fool",                                       play: "Taming of the Shrew",         url: "https://www.gutenberg.org/ebooks/1511" },
-  { text: "Villain, I have done thy mother",                                 play: "Titus Andronicus",            url: "https://www.gutenberg.org/ebooks/1508" },
-  { text: "Thou art a flesh-monger, a fool and a coward",                    play: "Measure for Measure",         url: "https://www.gutenberg.org/ebooks/1526" },
   { text: "Your brain is as dry as the remainder biscuit after voyage",      play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
-  { text: "Thou art a most notable coward, an infinite and endless liar",    play: "All's Well That Ends Well",   url: "https://www.gutenberg.org/ebooks/1551" },
   { text: "I do desire we may be better strangers",                          play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "Thou hast no more brain than I have in mine elbows",              play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
-  { text: "Would thou wert clean enough to spit upon",                       play: "Timon of Athens",             url: "https://www.gutenberg.org/ebooks/1534" },
   { text: "You are a saucy boy",                                             play: "Romeo and Juliet",            url: "https://www.gutenberg.org/ebooks/1513" },
-  { text: "Methink'st thou art a general offence and every man should beat thee", play: "All's Well That Ends Well", url: "https://www.gutenberg.org/ebooks/1551" },
+  { text: "The tartness of his face sours ripe grapes",                      play: "Coriolanus",                  url: "https://www.gutenberg.org/ebooks/1535" },
+  { text: "Thou sodden-witted lord",                                         play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "I scorn you, scurvy companion",                                   play: "Henry V",                     url: "https://www.gutenberg.org/ebooks/1521" },
+  { text: "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
+  { text: "Away, you starvelling, you elf-skin",                             play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
 ];
 
 const FREE_PLAYS = [
@@ -46,46 +34,53 @@ const FREE_PLAYS = [
 ];
 
 function InsultsBackground() {
-  const items = useMemo(() => INSULTS.map((insult, i) => {
-    const x = (i * 43 + 7) % 88;
-    const y = (i * 61 + 13) % 90;
-    const rot = ((i * 23) % 22) - 11;
-    const size = 15 + (i % 5) * 3;
-    return { ...insult, x, y, rot, size };
-  }), []);
+  // Split insults into left margin and right margin columns
+  const left  = INSULTS.filter((_, i) => i % 2 === 0);
+  const right = INSULTS.filter((_, i) => i % 2 === 1);
+
+  const renderItem = (insult, i, side) => {
+    const topPct  = 4 + i * (92 / Math.max(left.length, right.length));
+    const rot     = side === "left" ? -8 + (i % 3) * 5 : 5 - (i % 3) * 4;
+    const size    = 13 + (i % 3) * 2;
+    return (
+      <a
+        key={`${side}-${i}`}
+        href={insult.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={`From ${insult.play} — click to read free`}
+        style={{
+          position: "absolute",
+          [side]: "1%",
+          top: `${topPct}%`,
+          transform: `rotate(${rot}deg)`,
+          maxWidth: "14vw",
+          fontSize: size,
+          color: "#8B0000",
+          opacity: 0.42,
+          whiteSpace: "normal",
+          wordBreak: "break-word",
+          fontStyle: "italic",
+          fontWeight: 700,
+          fontFamily: "Arial, sans-serif",
+          textDecoration: "none",
+          pointerEvents: "auto",
+          cursor: "pointer",
+          transition: "opacity 0.15s",
+          lineHeight: 1.3,
+        }}
+        onMouseEnter={e => { e.currentTarget.style.opacity = "0.9"; }}
+        onMouseLeave={e => { e.currentTarget.style.opacity = "0.42"; }}
+      >
+        "{insult.text}"
+      </a>
+    );
+  };
 
   return (
     <div style={{ position: "fixed", inset: 0, overflow: "hidden", zIndex: 0, pointerEvents: "none" }}>
-      {items.map((item, i) => (
-        <a
-          key={i}
-          href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          title={`From ${item.play} — click to read free`}
-          style={{
-            position: "absolute",
-            left: `${item.x}%`,
-            top: `${item.y}%`,
-            transform: `rotate(${item.rot}deg)`,
-            fontSize: item.size,
-            color: "#8B0000",
-            opacity: 0.38,
-            whiteSpace: "nowrap",
-            fontStyle: "italic",
-            fontWeight: "bold",
-            fontFamily: "Arial, sans-serif",
-            textDecoration: "none",
-            pointerEvents: "auto",
-            cursor: "pointer",
-            transition: "opacity 0.15s",
-          }}
-          onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = "0.38"; }}
-        >
-          "{item.text}"
-        </a>
-      ))}
+      {left.map((ins, i)  => renderItem(ins, i, "left"))}
+      {right.map((ins, i) => renderItem(ins, i, "right"))}
     </div>
   );
 }
@@ -509,10 +504,10 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   }
 
   const tabStyle = (id) => ({
-    flex: 1, padding: "7px 4px", fontSize: 12, fontWeight: source === id ? 500 : 400,
+    flex: 1, padding: "10px 4px", fontSize: 13, fontWeight: source === id ? 700 : 500,
     background: source === id ? "var(--color-background-info)" : "var(--color-background-primary)",
     color: source === id ? "var(--color-text-info)" : "var(--color-text-secondary)",
-    border: "none", borderLeft: id !== "all" ? "0.5px solid var(--color-border-tertiary)" : "none",
+    border: "none", borderLeft: id !== "all" ? "1px solid var(--color-border-tertiary)" : "none",
     borderRadius: 0, cursor: "pointer",
   });
 
@@ -547,80 +542,80 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
       </div>
 
       {/* AI assistant */}
-      <div style={{ background: "var(--color-background-secondary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1rem 1.25rem", marginBottom: "1.25rem" }}>
-        <p style={{ margin: "0 0 10px", fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)" }}>Ask about seats, discounts or venues</p>
-        <div style={{ display: "flex", gap: 8 }}>
-          <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 13 }} />
-          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 14px", fontSize: 13 }}>{aiLoading ? "…" : "Ask ↗"}</button>
+      <div style={{ background: "var(--color-background-secondary)", border: "1.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
+        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "var(--color-text-primary)" }}>Ask about seats, discounts or venues</p>
+        <div style={{ display: "flex", gap: 10 }}>
+          <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 15 }} />
+          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 600 }}>{aiLoading ? "…" : "Ask ↗"}</button>
         </div>
-        {aiAnswer && <div style={{ marginTop: 10, fontSize: 13, color: "var(--color-text-primary)", lineHeight: 1.7, whiteSpace: "pre-wrap", borderTop: "0.5px solid var(--color-border-tertiary)", paddingTop: 10 }}>{aiAnswer}</div>}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 10 }}>
+        {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: "var(--color-text-primary)", lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: "1px solid var(--color-border-tertiary)", paddingTop: 12 }}>{aiAnswer}</div>}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
           {["Stalls vs upper circle?", "TKTS tips", "Student discounts tonight", "Best family shows under £40"].map(q => (
-            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 11, padding: "3px 10px", borderRadius: 20 }}>{q}</button>
+            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20 }}>{q}</button>
           ))}
         </div>
       </div>
 
       {/* Search panel */}
-      <div style={{ background: "var(--color-background-primary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1rem 1.25rem", marginBottom: "1rem" }}>
-        <p style={{ margin: "0 0 12px", fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)" }}>Search &amp; filter</p>
+      <div style={{ background: "var(--color-background-primary)", border: "1.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1.5rem", marginBottom: "1.25rem" }}>
+        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 800, color: "var(--color-text-primary)", letterSpacing: "-0.2px" }}>Search &amp; filter</p>
 
-        <div style={{ marginBottom: 12 }}>
-          <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 6 }}>Source</label>
-          <div style={{ display: "flex", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-md)", overflow: "hidden" }}>
+        <div style={{ marginBottom: 16 }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
+          <div style={{ display: "flex", border: "1.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-md)", overflow: "hidden" }}>
             {SOURCES.map(s => <button key={s.id} onClick={() => setSource(s.id)} style={tabStyle(s.id)}>{s.label}</button>)}
           </div>
         </div>
 
-        <div style={{ marginBottom: 10 }}>
-          <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>Show or keyword</label>
-          <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 13, boxSizing: "border-box" }} />
+        <div style={{ marginBottom: 14 }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
+          <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 15, boxSizing: "border-box" }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>Category</label>
-            <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 13 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
+            <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 15 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
           </div>
           <div>
-            <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>Seat type</label>
-            <select value={seatType} onChange={e => setSeatType(e.target.value)} style={{ width: "100%", fontSize: 13 }}>{SEAT_TYPES.map(s => <option key={s}>{s}</option>)}</select>
-          </div>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
-          <div>
-            <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>From date</label>
-            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 13, boxSizing: "border-box" }} />
-          </div>
-          <div>
-            <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>To date</label>
-            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 13, boxSizing: "border-box" }} />
+            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
+            <select value={seatType} onChange={e => setSeatType(e.target.value)} style={{ width: "100%", fontSize: 15 }}>{SEAT_TYPES.map(s => <option key={s}>{s}</option>)}</select>
           </div>
         </div>
 
-        <div style={{ marginBottom: 10 }}>
-          <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>
-            Price range (£){priceMin || priceMax ? ` — £${priceMin || "0"} to £${priceMax || "any"}` : ""}
-          </label>
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 13 }} />
-            <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>to</span>
-            <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 13 }} />
-            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 12, padding: "5px 10px" }}>✕</button>}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+          <div>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
+            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, boxSizing: "border-box" }} />
+          </div>
+          <div>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
+            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, boxSizing: "border-box" }} />
           </div>
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 12, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 }}>Sort by</label>
-          <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 13 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            Price range (£){priceMin || priceMax ? ` — £${priceMin || "0"} to £${priceMax || "any"}` : ""}
+          </label>
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 15 }} />
+            <span style={{ fontSize: 15, fontWeight: 600, color: "var(--color-text-secondary)" }}>to</span>
+            <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 15 }} />
+            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px" }}>✕</button>}
+          </div>
         </div>
 
-        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "10px 0", fontSize: 14, fontWeight: 500 }}>
+        <div style={{ marginBottom: 18 }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
+          <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 15 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
+        </div>
+
+        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px" }}>
           {loading ? (loadingMsg || "Searching…") : "Search shows ↗"}
         </button>
         {!HAS_AI && (
-          <p style={{ marginTop: 10, fontSize: 12, color: "var(--color-text-secondary)" }}>
+          <p style={{ marginTop: 12, fontSize: 14, color: "var(--color-text-secondary)" }}>
             Showing sample results — deploy with VITE_ANTHROPIC_KEY to enable live search.
           </p>
         )}
