@@ -55,7 +55,7 @@ body {
   margin: 0;
 }
 
-body {
+body, input, select, textarea, button {
   font-family: 'Cinzel', serif;
 }
 
