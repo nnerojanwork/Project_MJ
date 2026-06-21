@@ -357,6 +357,24 @@ function extractJSON(text) {
   }
 }
 
+// ─── Date helpers (DD/MM/YYYY ↔ YYYY-MM-DD) ──────────────────────────────────
+function toISO(ddmmyyyy) {
+  const parts = ddmmyyyy.replace(/[^0-9]/g, "");
+  if (parts.length !== 8) return "";
+  return `${parts.slice(4,8)}-${parts.slice(2,4)}-${parts.slice(0,2)}`;
+}
+function toBritish(iso) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${d}/${m}/${y}`;
+}
+function formatDateInput(raw) {
+  const digits = raw.replace(/\D/g, "").slice(0, 8);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 4) return `${digits.slice(0,2)}/${digits.slice(2)}`;
+  return `${digits.slice(0,2)}/${digits.slice(2,4)}/${digits.slice(4)}`;
+}
+
 // ─── Search cache (localStorage, keyed by params + date) ─────────────────────
 function cacheKey(params) {
   return `lta_${new Date().toISOString().slice(0, 10)}_${JSON.stringify(params)}`;
@@ -684,11 +702,11 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
-            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box" }} />
+            <input type="text" value={toBritish(dateFrom)} onChange={e => { const iso = toISO(formatDateInput(e.target.value)); if (iso || !e.target.value) setDateFrom(iso); else setDateFrom(""); }} placeholder="DD/MM/YYYY" inputMode="numeric" maxLength={10} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", padding: "10px 12px" }} />
           </div>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
-            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box" }} />
+            <input type="text" value={toBritish(dateTo)} onChange={e => { const iso = toISO(formatDateInput(e.target.value)); if (iso || !e.target.value) setDateTo(iso); else setDateTo(""); }} placeholder="DD/MM/YYYY" inputMode="numeric" maxLength={10} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", padding: "10px 12px" }} />
           </div>
         </div>
 
