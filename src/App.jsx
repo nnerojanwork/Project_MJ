@@ -558,12 +558,12 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           }
         `}</style>
 
-        {/* Heading */}
-        <div style={{ display: "inline-block", marginBottom: 8, maxWidth: "100%" }}>
+        {/* Heading + broom + witch — all centred in a flex column */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 16 }}>
           <div style={{ background: "#9E2B3A", borderRadius: 16, padding: isMobile ? "8px 20px" : "10px 32px", marginBottom: 8 }}>
-            <h2 style={{ margin: 0, fontSize: isMobile ? 22 : 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+            <h2 style={{ margin: 0, fontSize: isMobile ? 22 : 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif", whiteSpace: "nowrap" }}>London Theatre Finder</h2>
           </div>
-          <svg viewBox="0 0 400 56" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <svg viewBox="0 0 400 56" width={isMobile ? "90vw" : 480} xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             <rect x="8" y="24" width="300" height="7" rx="3.5" fill="#6B3A1F" />
             <rect x="306" y="14" width="22" height="28" rx="3" fill="#9E2B3A" />
             <ellipse cx="310" cy="28" rx="6" ry="13" fill="#F0C060" />
@@ -571,11 +571,10 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
               <line key={i} x1={328} y1={17 + i * 2.8} x2={390 - (i % 4) * 8} y2={4 + i * 5.5} stroke="#6B3A1F" strokeWidth="2.2" strokeLinecap="round" />
             ))}
           </svg>
-        </div>
-
-        {/* Dancing witch */}
-        <div style={{ fontSize: isMobile ? 64 : 90, lineHeight: 1, margin: "16px 0 12px", display: "inline-block", animation: "witchDance 1.4s ease-in-out infinite" }}>
-          🧙‍♀️
+          {/* Dancing witch */}
+          <div style={{ fontSize: isMobile ? 80 : 110, lineHeight: 1, marginTop: 8, animation: "witchDance 1.4s ease-in-out infinite" }}>
+            🧙‍♀️
+          </div>
         </div>
 
         {/* Password form */}
@@ -614,12 +613,12 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   return (
     <div style={{ fontFamily: "'Cinzel', serif", padding: isMobile ? "1rem 0" : "1.25rem 0", position: "relative", zIndex: 1 }}>
       {!isMobile && <InsultsBackground />}
-      <div style={{ marginBottom: isMobile ? "1.25rem" : "1.75rem", textAlign: "center" }}>
-        <div style={{ display: "inline-block", maxWidth: "100%" }}>
+      <div style={{ marginBottom: isMobile ? "1.25rem" : "1.75rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ background: "#9E2B3A", borderRadius: 16, padding: isMobile ? "8px 18px" : "10px 32px", marginBottom: 8 }}>
-            <h2 style={{ margin: 0, fontSize: isMobile ? 22 : 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+            <h2 style={{ margin: 0, fontSize: isMobile ? 22 : 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif", whiteSpace: "nowrap" }}>London Theatre Finder</h2>
           </div>
-          <svg viewBox="0 0 400 56" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <svg viewBox="0 0 400 56" width={isMobile ? "90vw" : 480} xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             {/* Handle */}
             <rect x="8" y="24" width="300" height="7" rx="3.5" fill="#6B3A1F" />
             {/* Bristle base band */}
