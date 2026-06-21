@@ -375,24 +375,30 @@ function formatDateInput(raw) {
   return `${digits.slice(0,2)}/${digits.slice(2,4)}/${digits.slice(4)}`;
 }
 
-function DateInput({ value, onChange, min, placeholder }) {
+function DateInput({ value, onChange, min }) {
+  const [text, setText] = useState(toBritish(value));
   const pickerRef = useRef(null);
+
+  useEffect(() => { setText(toBritish(value)); }, [value]);
+
+  function handleType(e) {
+    const fmt = formatDateInput(e.target.value);
+    setText(fmt);
+    if (fmt.length === 0) { onChange(""); return; }
+    if (fmt.length === 10) { const iso = toISO(fmt); if (iso) onChange(iso); }
+  }
+
   return (
     <div style={{ position: "relative", width: "100%" }}>
       <input
         type="text"
-        value={toBritish(value)}
-        onChange={e => {
-          const fmt = formatDateInput(e.target.value);
-          const iso = toISO(fmt);
-          onChange(iso || (fmt.length < 10 ? "" : ""));
-        }}
-        placeholder={placeholder || "DD/MM/YYYY"}
+        value={text}
+        onChange={handleType}
+        placeholder="DD/MM/YYYY"
         inputMode="numeric"
         maxLength={10}
         style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 40px 10px 12px", boxSizing: "border-box" }}
       />
-      {/* Hidden native date picker — triggered by calendar icon */}
       <input
         ref={pickerRef}
         type="date"
