@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 
-// ─── Funny Shakespearean insults only — each linked to its play ──────────────
+// ─── Funny Shakespearean insults — linked to their plays ─────────────────────
 const INSULTS = [
+  // General absurdity
   { text: "You Banbury cheese",                                              play: "Merry Wives of Windsor",      url: "https://www.gutenberg.org/ebooks/1507" },
   { text: "You are a fishmonger",                                            play: "Hamlet",                      url: "https://www.gutenberg.org/ebooks/1524" },
   { text: "Thou cream-faced loon",                                           play: "Macbeth",                     url: "https://www.gutenberg.org/ebooks/1533" },
-  { text: "Away, you three-inch fool",                                       play: "Taming of the Shrew",         url: "https://www.gutenberg.org/ebooks/1511" },
   { text: "Your brain is as dry as the remainder biscuit after voyage",      play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "I do desire we may be better strangers",                          play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "Thou hast no more brain than I have in mine elbows",              play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
@@ -15,7 +15,24 @@ const INSULTS = [
   { text: "Thou sodden-witted lord",                                         play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
   { text: "I scorn you, scurvy companion",                                   play: "Henry V",                     url: "https://www.gutenberg.org/ebooks/1521" },
   { text: "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
-  { text: "Away, you starvelling, you elf-skin",                             play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
+  // Shortness / dwarfs
+  { text: "Away, you three-inch fool",                                       play: "Taming of the Shrew",         url: "https://www.gutenberg.org/ebooks/1511" },
+  { text: "Away, you starvelling, you elf-skin, you dried neat's-tongue",    play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
+  { text: "You pygmy!",                                                      play: "Comedy of Errors",            url: "https://www.gutenberg.org/ebooks/1504" },
+  { text: "You are a mandrake's groan — short and wretched",                 play: "Henry VI Part 2",             url: "https://www.gutenberg.org/ebooks/1518" },
+  { text: "Thou art as fat as butter — and half the height",                 play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
+  { text: "This great lubber, the world, will prove a cockney",              play: "Twelfth Night",               url: "https://www.gutenberg.org/ebooks/1523" },
+  { text: "Thou wast the prettiest babe that e'er I nursed — pity thou art so little",  play: "Romeo and Juliet", url: "https://www.gutenberg.org/ebooks/1513" },
+  // Old age
+  { text: "Thou art a very ragged Wart",                                     play: "Henry IV Part 2",             url: "https://www.gutenberg.org/ebooks/1530" },
+  { text: "You are old enough to know better, and yet you are not old enough for that", play: "Twelfth Night",   url: "https://www.gutenberg.org/ebooks/1523" },
+  { text: "A good wit will make use of any thing: I will turn diseases to commodity",    play: "Henry IV Part 2", url: "https://www.gutenberg.org/ebooks/1530" },
+  { text: "Thou crusty botch of nature!",                                    play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "Old age, thou hast the defect: thou art too much the figure of decay",       play: "Measure for Measure", url: "https://www.gutenberg.org/ebooks/1526" },
+  { text: "You are not worth the dust which the rude wind blows in your face — and it has blown a great deal", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
+  { text: "For your years, you are as full of envy as a rotten apple",       play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "The wrinkles in thy brow were carved by fools",                   play: "Comedy of Errors",            url: "https://www.gutenberg.org/ebooks/1504" },
+  { text: "Thou art not so young to love a dog, nor so old to dote on him",  play: "King Lear",                   url: "https://www.gutenberg.org/ebooks/1532" },
 ];
 
 const FREE_PLAYS = [
@@ -41,7 +58,7 @@ function InsultsBackground() {
   const renderItem = (insult, i, side) => {
     const topPct  = 4 + i * (92 / Math.max(left.length, right.length));
     const rot     = side === "left" ? -8 + (i % 3) * 5 : 5 - (i % 3) * 4;
-    const size    = 13 + (i % 3) * 2;
+    const size    = 17 + (i % 4) * 3;
     return (
       <a
         key={`${side}-${i}`}
