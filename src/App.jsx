@@ -154,10 +154,10 @@ const DISCOUNT_COLORS = {
 };
 
 const SOURCE_COLORS = {
-  "olt":      { bg: "#FBEAF0", color: "#72243E" },
-  "tkts":     { bg: "#E6F1FB", color: "#0C447C" },
-  "todaytix": { bg: "#EEEDFE", color: "#3C3489" },
-  "timeout":  { bg: "#EAF3DE", color: "#27500A" },
+  "olt":      { bg: "#E8DDD0", color: "#9E2B3A" },
+  "tkts":     { bg: "#E8DDD0", color: "#9E2B3A" },
+  "todaytix": { bg: "#E8DDD0", color: "#9E2B3A" },
+  "timeout":  { bg: "#E8DDD0", color: "#9E2B3A" },
 };
 
 const DEMO_SHOWS = [
