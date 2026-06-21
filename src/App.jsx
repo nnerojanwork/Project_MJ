@@ -1,4 +1,14 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+
+function useWindowWidth() {
+  const [w, setW] = useState(window.innerWidth);
+  useEffect(() => {
+    const fn = () => setW(window.innerWidth);
+    window.addEventListener("resize", fn);
+    return () => window.removeEventListener("resize", fn);
+  }, []);
+  return w;
+}
 import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 
 // ─── Funny Shakespearean insults — linked to their plays ─────────────────────
@@ -393,6 +403,9 @@ const MODELS = [
 
 // ─── Main app ─────────────────────────────────────────────────────────────────
 export default function App() {
+  const vw = useWindowWidth();
+  const isMobile = vw < 700;
+
   const [unlocked,    setUnlocked]   = useState(!HAS_PASS);
   const [pwInput,     setPwInput]    = useState("");
   const [model,       setModel]      = useState(MODELS[0].id);
@@ -532,8 +545,8 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   // ── Password gate ────────────────────────────────────────────────────────
   if (!unlocked) {
     return (
-      <div style={{ fontFamily: "'Cinzel', serif", padding: "3rem 0", position: "relative", zIndex: 1, textAlign: "center" }}>
-        <InsultsBackground />
+      <div style={{ fontFamily: "'Cinzel', serif", padding: isMobile ? "1.5rem 0" : "3rem 0", position: "relative", zIndex: 1, textAlign: "center" }}>
+        {!isMobile && <InsultsBackground />}
         <style>{`
           @keyframes witchDance {
             0%   { transform: translateY(0) rotate(-4deg) scaleX(1); }
@@ -545,10 +558,10 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           }
         `}</style>
 
-        {/* Heading — matches main page */}
-        <div style={{ display: "inline-block", marginBottom: 8 }}>
-          <div style={{ background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 8 }}>
-            <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+        {/* Heading */}
+        <div style={{ display: "inline-block", marginBottom: 8, maxWidth: "100%" }}>
+          <div style={{ background: "#9E2B3A", borderRadius: 16, padding: isMobile ? "8px 20px" : "10px 32px", marginBottom: 8 }}>
+            <h2 style={{ margin: 0, fontSize: isMobile ? 22 : 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
           </div>
           <svg viewBox="0 0 400 56" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             <rect x="8" y="24" width="300" height="7" rx="3.5" fill="#6B3A1F" />
@@ -561,13 +574,13 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         </div>
 
         {/* Dancing witch */}
-        <div style={{ fontSize: 90, lineHeight: 1, margin: "20px 0 16px", display: "inline-block", animation: "witchDance 1.4s ease-in-out infinite" }}>
+        <div style={{ fontSize: isMobile ? 64 : 90, lineHeight: 1, margin: "16px 0 12px", display: "inline-block", animation: "witchDance 1.4s ease-in-out infinite" }}>
           🧙‍♀️
         </div>
 
         {/* Password form */}
-        <div style={{ display: "inline-block", width: "100%", maxWidth: 360 }}>
-          <p style={{ margin: "0 0 16px", fontSize: 14, color: "#9E2B3A", fontWeight: 600, letterSpacing: "0.05em" }}>Enter the password to enter</p>
+        <div style={{ display: "inline-block", width: "100%", maxWidth: 360, padding: "0 4px", boxSizing: "border-box" }}>
+          <p style={{ margin: "0 0 14px", fontSize: 13, color: "#9E2B3A", fontWeight: 600, letterSpacing: "0.05em" }}>Enter the password to enter</p>
           <div style={{ display: "flex", gap: 8 }}>
             <input
               type="password" value={pwInput} onChange={e => { setPwInput(e.target.value); setPwError(false); }}
@@ -579,18 +592,29 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           </div>
           {pwError && <p style={{ margin: "10px 0 0", fontSize: 13, color: "#9E2B3A", fontWeight: 600 }}>Wrong password — try again.</p>}
         </div>
+
+        {/* Elizabeth I portrait */}
+        <div style={{ marginTop: 32 }}>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Elizabeth_I_in_Parliament_Robes.jpg/400px-Elizabeth_I_in_Parliament_Robes.jpg"
+            alt="Elizabeth I"
+            onError={e => { e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Elizabeth_I_of_England_-_Armada_Portrait.jpg/400px-Elizabeth_I_of_England_-_Armada_Portrait.jpg"; }}
+            style={{ width: isMobile ? "85%" : "60%", maxWidth: 340, borderRadius: 12, border: "3px solid #9E2B3A", boxShadow: "0 8px 32px rgba(0,0,0,0.18)", display: "block", margin: "0 auto" }}
+          />
+          <p style={{ margin: "10px 0 0", fontSize: 11, color: "#9E2B3A", opacity: 0.6, letterSpacing: "0.08em" }}>ELIZABETH I — BY APPOINTMENT</p>
+        </div>
       </div>
     );
   }
 
   // ── Main UI ──────────────────────────────────────────────────────────────
   return (
-    <div style={{ fontFamily: "'Cinzel', serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
-      <InsultsBackground />
-      <div style={{ marginBottom: "1.75rem", textAlign: "center" }}>
-        <div style={{ display: "inline-block" }}>
-          <div style={{ background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 8 }}>
-            <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+    <div style={{ fontFamily: "'Cinzel', serif", padding: isMobile ? "1rem 0" : "1.25rem 0", position: "relative", zIndex: 1 }}>
+      {!isMobile && <InsultsBackground />}
+      <div style={{ marginBottom: isMobile ? "1.25rem" : "1.75rem", textAlign: "center" }}>
+        <div style={{ display: "inline-block", maxWidth: "100%" }}>
+          <div style={{ background: "#9E2B3A", borderRadius: 16, padding: isMobile ? "8px 18px" : "10px 32px", marginBottom: 8 }}>
+            <h2 style={{ margin: 0, fontSize: isMobile ? 22 : 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
           </div>
           <svg viewBox="0 0 400 56" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             {/* Handle */}
@@ -608,11 +632,11 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
       </div>
 
       {/* AI assistant */}
-      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
-        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#9E2B3A" }}>Ask about seats, discounts or venues</p>
-        <div style={{ display: "flex", gap: 10 }}>
-          <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
-          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 700, background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
+      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: isMobile ? "1rem" : "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
+        <p style={{ margin: "0 0 12px", fontSize: isMobile ? 14 : 16, fontWeight: 700, color: "#9E2B3A" }}>Ask about seats, discounts or venues</p>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 8 }}>
+          <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the NT?" style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 12px" }} />
+          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: isMobile ? "10px 0" : "0 18px", fontSize: 15, fontWeight: 700, background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
         </div>
         {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: W, lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: DIV, paddingTop: 12 }}>{aiAnswer}</div>}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
@@ -623,13 +647,13 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
       </div>
 
       {/* Search panel */}
-      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: "1.5rem", marginBottom: "1.25rem" }}>
+      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: isMobile ? "1rem" : "1.5rem", marginBottom: "1.25rem" }}>
         <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 700, color: "#9E2B3A", letterSpacing: "0.5px" }}>Search &amp; filter</p>
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
-          <div style={{ display: "flex", border: "1.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-md)", overflow: "hidden" }}>
-            {SOURCES.map(s => <button key={s.id} onClick={() => setSource(s.id)} style={tabStyle(s.id)}>{s.label}</button>)}
+          <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: isMobile ? "auto" : "hidden" }}>
+            {SOURCES.map(s => <button key={s.id} onClick={() => setSource(s.id)} style={{ ...tabStyle(s.id), whiteSpace: "nowrap", minWidth: isMobile ? "auto" : undefined }}>{s.label}</button>)}
           </div>
         </div>
 
@@ -638,7 +662,7 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
             <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
@@ -649,14 +673,14 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
-            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
+            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box" }} />
           </div>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
-            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
+            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box" }} />
           </div>
         </div>
 
