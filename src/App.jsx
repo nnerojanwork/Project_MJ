@@ -431,7 +431,7 @@ async function callClaude(messages, system, model) {
   const useSearch = model === "claude-sonnet-4-6";
   const body = (msgs) => JSON.stringify({
     model,
-    max_tokens: 2000,
+    max_tokens: 1200,
     ...(useSearch ? { tools: [{ type: "web_search_20250305", name: "web_search" }] } : {}),
     system,
     messages: msgs,
@@ -519,13 +519,13 @@ export default function App() {
     ].filter(Boolean).join(" ");
 
     const prompt = [
-      `List current London theatre shows available on ${sites}.`,
-      filters ? `Filters: ${filters}.` : "Return a broad selection of what is currently running.",
-      "IMPORTANT: Do NOT include any lottery tickets, ballot entries, or seats that require winning a draw to purchase.",
-      "Return ONLY a JSON array starting with [ and ending with ]. No markdown, no explanation.",
-      'Each object: title, venue, price (e.g."£25–£85"), priceFrom (number|null), originalPrice (string|null), saving (string|null), date (human-readable|null), rawDate (YYYY-MM-DD|null), category (string|null), description (1 sentence max|null), bookUrl (string|null), source (one of: olt tkts todaytix timeout).',
-      "Up to 15 shows. Return [] if nothing found.",
-    ].join("\n");
+      `London theatre shows on ${sites}.`,
+      filters ? `Filters: ${filters}.` : "Broad current selection.",
+      "No lottery/ballot tickets.",
+      "JSON array only. No markdown.",
+      'Fields: title,venue,price,priceFrom(num|null),originalPrice(str|null),saving(str|null),date,rawDate(YYYY-MM-DD|null),category,description(1 sentence|null),bookUrl,source(olt|tkts|todaytix|timeout).',
+      "Max 8 shows. [] if none.",
+    ].join(" ");
 
     const ck = cacheKey({ source, keyword, category, seatType, dateFrom, dateTo, priceMin, priceMax });
     const cached = cacheGet(ck);
@@ -536,7 +536,7 @@ export default function App() {
     setLoadingMsg("Searching listings…");
     try {
       const data = await callClaude([{ role: "user", content: prompt }],
-        "You are a London theatre search assistant. Search the web for current London theatre shows, then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.",
+        "London theatre search. Return a raw JSON array only. No markdown, no preamble. No lottery or ballot tickets.",
         model);
       setLoadingMsg("Loading sightline data…");
 
@@ -579,11 +579,8 @@ export default function App() {
         headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
         body: JSON.stringify({
           model,
-          max_tokens: 600,
-          system: `You are a London theatre expert. Practical, specific advice about seats, discounts, venues.
-Seat types: stalls (ground level, closest), dress circle (elevated front balcony), upper circle (steep, cheaper), gallery (highest, cheapest), boxes (sides), pit (very front).
-Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10am £10–25, student standby 45 min before curtain, TodayTix app, groups 8+ direct to box office.
-3–4 punchy bullets. Be specific about prices and procedures.`,
+          max_tokens: 400,
+          system: "London theatre expert. Practical advice on seats/discounts/venues. Stalls=ground, dress circle=front balcony, upper circle=steep/cheap, gallery=highest, boxes=sides, pit=very front. TKTS=50% same-day, day seats=10am £10-25, student standby=45min before. 3 short bullets.",
           messages: [{ role: "user", content: aiQ }]
         })
       });
