@@ -377,7 +377,6 @@ function formatDateInput(raw) {
 
 function DateInput({ value, onChange, min }) {
   const [text, setText] = useState(toBritish(value));
-  const pickerRef = useRef(null);
 
   useEffect(() => { setText(toBritish(value)); }, [value]);
 
@@ -399,21 +398,20 @@ function DateInput({ value, onChange, min }) {
         maxLength={10}
         style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 40px 10px 12px", boxSizing: "border-box" }}
       />
+      {/* Native date input sits over the icon — transparent, so clicking the icon opens the real picker */}
       <input
-        ref={pickerRef}
         type="date"
         value={value}
         min={min}
         onChange={e => onChange(e.target.value)}
-        style={{ position: "absolute", opacity: 0, width: 1, height: 1, top: 0, right: 0, pointerEvents: "none" }}
+        style={{
+          position: "absolute", right: 4, top: "50%", transform: "translateY(-50%)",
+          width: 28, height: 28, opacity: 0, cursor: "pointer",
+          fontSize: 0, padding: 0, border: "none",
+        }}
         tabIndex={-1}
       />
-      <button
-        type="button"
-        onClick={() => pickerRef.current?.showPicker?.()}
-        style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 2, color: "#9E2B3A", lineHeight: 1 }}
-        title="Pick a date"
-      >📅</button>
+      <span style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", fontSize: 16, pointerEvents: "none", lineHeight: 1 }}>📅</span>
     </div>
   );
 }
