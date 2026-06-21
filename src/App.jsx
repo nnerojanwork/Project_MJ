@@ -653,10 +653,16 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 700, color: "#9E2B3A", letterSpacing: "0.5px" }}>Search &amp; filter</p>
 
         <div style={{ marginBottom: 16 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
-          <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: isMobile ? "auto" : "hidden" }}>
-            {SOURCES.map(s => <button key={s.id} onClick={() => setSource(s.id)} style={{ ...tabStyle(s.id), whiteSpace: "nowrap", minWidth: isMobile ? "auto" : undefined }}>{s.label}</button>)}
-          </div>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
+          {isMobile ? (
+            <select value={source} onChange={e => setSource(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 12px" }}>
+              {SOURCES.map(s => <option key={s.id} value={s.id}>{s.label}</option>)}
+            </select>
+          ) : (
+            <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: "hidden" }}>
+              {SOURCES.map(s => <button key={s.id} onClick={() => setSource(s.id)} style={tabStyle(s.id)}>{s.label}</button>)}
+            </div>
+          )}
         </div>
 
         <div style={{ marginBottom: 14 }}>
@@ -690,11 +696,11 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
             Price range (£){priceMin || priceMax ? ` — £${priceMin || "0"} to £${priceMax || "any"}` : ""}
           </label>
-          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
-            <span style={{ fontSize: 15, fontWeight: 700, color: "#9E2B3A" }}>to</span>
-            <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
-            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>✕</button>}
+          <div style={{ display: "flex", gap: 8, alignItems: "center", width: "100%", boxSizing: "border-box" }}>
+            <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, minWidth: 0, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
+            <span style={{ fontSize: 15, fontWeight: 700, color: "#9E2B3A", flexShrink: 0 }}>to</span>
+            <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, minWidth: 0, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
+            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 10px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer", flexShrink: 0 }}>✕</button>}
           </div>
         </div>
 
@@ -708,11 +714,12 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
           <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: "hidden" }}>
             {MODELS.map((m, i) => (
               <button key={m.id} onClick={() => setModel(m.id)} style={{
-                flex: 1, padding: "9px 8px", fontSize: 13, fontWeight: model === m.id ? 700 : 400,
+                flex: 1, padding: "9px 8px", fontSize: isMobile ? 12 : 13, fontWeight: model === m.id ? 700 : 400,
                 background: model === m.id ? "#9E2B3A" : "rgba(0,0,0,0.04)",
                 color: model === m.id ? "#F0C060" : "#9E2B3A",
                 border: "none", borderLeft: i > 0 ? "1px solid rgba(158,43,58,0.2)" : "none",
                 cursor: "pointer", fontFamily: "'Cinzel', serif",
+                whiteSpace: isMobile ? "normal" : "nowrap", lineHeight: 1.3,
               }}>
                 {m.label}
               </button>
