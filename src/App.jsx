@@ -3,36 +3,24 @@ import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 
 // ─── Funny Shakespearean insults — linked to their plays ─────────────────────
 const INSULTS = [
-  // General absurdity
-  { text: "You Banbury cheese",                                              play: "Merry Wives of Windsor",      url: "https://www.gutenberg.org/ebooks/1507" },
-  { text: "You are a fishmonger",                                            play: "Hamlet",                      url: "https://www.gutenberg.org/ebooks/1524" },
-  { text: "Thou cream-faced loon",                                           play: "Macbeth",                     url: "https://www.gutenberg.org/ebooks/1533" },
-  { text: "Your brain is as dry as the remainder biscuit after voyage",      play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
-  { text: "I do desire we may be better strangers",                          play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
-  { text: "Thou hast no more brain than I have in mine elbows",              play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
-  { text: "You are a saucy boy",                                             play: "Romeo and Juliet",            url: "https://www.gutenberg.org/ebooks/1513" },
-  { text: "The tartness of his face sours ripe grapes",                      play: "Coriolanus",                  url: "https://www.gutenberg.org/ebooks/1535" },
-  { text: "Thou sodden-witted lord",                                         play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
-  { text: "I scorn you, scurvy companion",                                   play: "Henry V",                     url: "https://www.gutenberg.org/ebooks/1521" },
-  { text: "Thou art a base, proud, shallow, beggarly, three-suited, hundred-pound, filthy, worsted-stocking knave", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
-  // Shortness / dwarfs
-  { text: "Away, you three-inch fool",                                       play: "Taming of the Shrew",         url: "https://www.gutenberg.org/ebooks/1511" },
-  { text: "Away, you starvelling, you elf-skin, you dried neat's-tongue",    play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
-  { text: "You pygmy!",                                                      play: "Comedy of Errors",            url: "https://www.gutenberg.org/ebooks/1504" },
-  { text: "You are a mandrake's groan — short and wretched",                 play: "Henry VI Part 2",             url: "https://www.gutenberg.org/ebooks/1518" },
-  { text: "Thou art as fat as butter — and half the height",                 play: "Henry IV Part 1",             url: "https://www.gutenberg.org/ebooks/1529" },
-  { text: "This great lubber, the world, will prove a cockney",              play: "Twelfth Night",               url: "https://www.gutenberg.org/ebooks/1523" },
-  { text: "Thou wast the prettiest babe that e'er I nursed — pity thou art so little",  play: "Romeo and Juliet", url: "https://www.gutenberg.org/ebooks/1513" },
-  // Old age
-  { text: "Thou art a very ragged Wart",                                     play: "Henry IV Part 2",             url: "https://www.gutenberg.org/ebooks/1530" },
-  { text: "You are old enough to know better, and yet you are not old enough for that", play: "Twelfth Night",   url: "https://www.gutenberg.org/ebooks/1523" },
-  { text: "A good wit will make use of any thing: I will turn diseases to commodity",    play: "Henry IV Part 2", url: "https://www.gutenberg.org/ebooks/1530" },
-  { text: "Thou crusty botch of nature!",                                    play: "Troilus and Cressida",        url: "https://www.gutenberg.org/ebooks/1527" },
-  { text: "Old age, thou hast the defect: thou art too much the figure of decay",       play: "Measure for Measure", url: "https://www.gutenberg.org/ebooks/1526" },
-  { text: "You are not worth the dust which the rude wind blows in your face — and it has blown a great deal", play: "King Lear", url: "https://www.gutenberg.org/ebooks/1532" },
-  { text: "For your years, you are as full of envy as a rotten apple",       play: "As You Like It",              url: "https://www.gutenberg.org/ebooks/1522" },
-  { text: "The wrinkles in thy brow were carved by fools",                   play: "Comedy of Errors",            url: "https://www.gutenberg.org/ebooks/1504" },
-  { text: "Thou art not so young to love a dog, nor so old to dote on him",  play: "King Lear",                   url: "https://www.gutenberg.org/ebooks/1532" },
+  { text: "You Banbury cheese",                                                           play: "Merry Wives of Windsor", url: "https://www.gutenberg.org/ebooks/1507" },
+  { text: "You are a fishmonger",                                                         play: "Hamlet",                 url: "https://www.gutenberg.org/ebooks/1524" },
+  { text: "Thou cream-faced loon",                                                        play: "Macbeth",                url: "https://www.gutenberg.org/ebooks/1533" },
+  { text: "Your brain is as dry as the remainder biscuit after voyage",                   play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "I do desire we may be better strangers",                                       play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "Thou hast no more brain than I have in mine elbows",                           play: "Troilus and Cressida",   url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "You are a saucy boy",                                                          play: "Romeo and Juliet",       url: "https://www.gutenberg.org/ebooks/1513" },
+  { text: "The tartness of his face sours ripe grapes",                                   play: "Coriolanus",             url: "https://www.gutenberg.org/ebooks/1535" },
+  { text: "Thou sodden-witted lord",                                                      play: "Troilus and Cressida",   url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "Away, you three-inch fool",                                                    play: "Taming of the Shrew",    url: "https://www.gutenberg.org/ebooks/1511" },
+  { text: "Away, you starvelling, you elf-skin, you dried neat's-tongue",                 play: "Henry IV Part 1",        url: "https://www.gutenberg.org/ebooks/1529" },
+  { text: "You pygmy!",                                                                   play: "Comedy of Errors",       url: "https://www.gutenberg.org/ebooks/1504" },
+  { text: "Thou wast the prettiest babe that e'er I nursed — pity thou art so little",   play: "Romeo and Juliet",       url: "https://www.gutenberg.org/ebooks/1513" },
+  { text: "Thou art a very ragged Wart",                                                  play: "Henry IV Part 2",        url: "https://www.gutenberg.org/ebooks/1530" },
+  { text: "Thou crusty botch of nature!",                                                 play: "Troilus and Cressida",   url: "https://www.gutenberg.org/ebooks/1527" },
+  { text: "For your years, you are as full of envy as a rotten apple",                   play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
+  { text: "You are old enough to know better, and yet you are not old enough for that",   play: "Twelfth Night",          url: "https://www.gutenberg.org/ebooks/1523" },
+  { text: "Thou art as fat as butter — and half the height",                              play: "Henry IV Part 1",        url: "https://www.gutenberg.org/ebooks/1529" },
 ];
 
 const FREE_PLAYS = [
@@ -50,55 +38,68 @@ const FREE_PLAYS = [
   { label: "All plays →",               url: "https://www.gutenberg.org/ebooks/author/65" },
 ];
 
+const CONTENT_W = 960; // must match #root max-width in index.css
+
+function InsultColumn({ insults, side }) {
+  return (
+    <div style={{
+      position: "fixed",
+      top: 0, bottom: 0,
+      [side]: 0,
+      width: `calc((100vw - ${CONTENT_W}px) / 2)`,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      padding: "12px 8px",
+      boxSizing: "border-box",
+      zIndex: 0,
+      pointerEvents: "none",
+      overflow: "hidden",
+    }}>
+      {insults.map((ins, i) => (
+        <a
+          key={i}
+          href={ins.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`From ${ins.play} — click to read free`}
+          style={{
+            display: "block",
+            fontSize: 18,
+            fontWeight: 800,
+            fontStyle: "italic",
+            fontFamily: "Arial, sans-serif",
+            color: "#800020",
+            opacity: 0.55,
+            textDecoration: "none",
+            lineHeight: 1.35,
+            wordBreak: "break-word",
+            transform: `rotate(${side === "left" ? -3 + (i % 3) * 2 : 3 - (i % 3) * 2}deg)`,
+            pointerEvents: "auto",
+            cursor: "pointer",
+            transition: "opacity 0.15s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = "1"; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = "0.55"; }}
+        >
+          "{ins.text}"
+          <span style={{ display: "block", fontSize: 11, fontStyle: "normal", fontWeight: 600, opacity: 0.7, marginTop: 2 }}>
+            — {ins.play}
+          </span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function InsultsBackground() {
-  // Split insults into left margin and right margin columns
   const left  = INSULTS.filter((_, i) => i % 2 === 0);
   const right = INSULTS.filter((_, i) => i % 2 === 1);
-
-  const renderItem = (insult, i, side) => {
-    const topPct  = 4 + i * (92 / Math.max(left.length, right.length));
-    const rot     = side === "left" ? -8 + (i % 3) * 5 : 5 - (i % 3) * 4;
-    const size    = 17 + (i % 4) * 3;
-    return (
-      <a
-        key={`${side}-${i}`}
-        href={insult.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        title={`From ${insult.play} — click to read free`}
-        style={{
-          position: "absolute",
-          [side]: "1%",
-          top: `${topPct}%`,
-          transform: `rotate(${rot}deg)`,
-          maxWidth: "14vw",
-          fontSize: size,
-          color: "#8B0000",
-          opacity: 0.42,
-          whiteSpace: "normal",
-          wordBreak: "break-word",
-          fontStyle: "italic",
-          fontWeight: 700,
-          fontFamily: "Arial, sans-serif",
-          textDecoration: "none",
-          pointerEvents: "auto",
-          cursor: "pointer",
-          transition: "opacity 0.15s",
-          lineHeight: 1.3,
-        }}
-        onMouseEnter={e => { e.currentTarget.style.opacity = "0.9"; }}
-        onMouseLeave={e => { e.currentTarget.style.opacity = "0.42"; }}
-      >
-        "{insult.text}"
-      </a>
-    );
-  };
-
   return (
-    <div style={{ position: "fixed", inset: 0, overflow: "hidden", zIndex: 0, pointerEvents: "none" }}>
-      {left.map((ins, i)  => renderItem(ins, i, "left"))}
-      {right.map((ins, i) => renderItem(ins, i, "right"))}
-    </div>
+    <>
+      <InsultColumn insults={left}  side="left"  />
+      <InsultColumn insults={right} side="right" />
+    </>
   );
 }
 
@@ -203,7 +204,7 @@ function SightlineBar({ score }) {
   const col = score >= 4.3 ? "#1D9E75" : score >= 3.8 ? "#BA7517" : score >= 3.2 ? "#D85A30" : "#A32D2D";
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-      <div style={{ flex: 1, height: 4, background: "var(--color-border-tertiary)", borderRadius: 2, overflow: "hidden" }}>
+      <div style={{ flex: 1, height: 5, background: "rgba(0,0,0,0.25)", borderRadius: 2, overflow: "hidden" }}>
         <div style={{ width: `${pct}%`, height: "100%", background: col, borderRadius: 2 }} />
       </div>
       <span style={{ fontSize: 12, fontWeight: 500, color: col, minWidth: 32 }}>{score.toFixed(1)}/5</span>
@@ -211,53 +212,77 @@ function SightlineBar({ score }) {
   );
 }
 
+const W = "rgba(255,255,255,0.85)";
+const W2 = "rgba(255,255,255,0.6)";
+const DIV = "1px solid rgba(255,255,255,0.25)";
+
+function ShowCard({ show, seatType }) {
+  const sourceLabel = SOURCES.find(s => s.id === show.source)?.label || show.source;
+  return (
+    <div style={{ background: "#059669", borderRadius: 14, overflow: "hidden" }}>
+      <div style={{ padding: "14px 16px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 4 }}>
+          <p style={{ margin: 0, fontWeight: 800, fontSize: 16, color: "#fff", lineHeight: 1.3 }}>{show.title}</p>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3, flexShrink: 0 }}>
+            {show.price && <span style={{ fontSize: 15, fontWeight: 700, color: "#FFD700", whiteSpace: "nowrap" }}>{show.price}</span>}
+            {show.originalPrice && <span style={{ fontSize: 12, color: W2, textDecoration: "line-through" }}>{show.originalPrice}</span>}
+            {show.saving && <span style={{ fontSize: 12, color: "#d1fae5", fontWeight: 600 }}>{show.saving}</span>}
+          </div>
+        </div>
+        <p style={{ margin: "0 0 8px", fontSize: 13, color: W2, fontWeight: 600 }}>{show.venue}</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+          {show.date && <span style={{ fontSize: 13, color: W }}>{show.date}</span>}
+          {show.category && <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: "rgba(255,255,255,0.2)", color: "#fff", fontWeight: 600 }}>{show.category}</span>}
+          <span style={{ fontSize: 11, marginLeft: "auto", padding: "2px 8px", borderRadius: 4, background: "#800020", color: "#FFD700", fontWeight: 700 }}>{sourceLabel}</span>
+        </div>
+        {show.description && <p style={{ margin: "10px 0 0", fontSize: 14, color: W, lineHeight: 1.6 }}>{show.description}</p>}
+      </div>
+      <SightlineSection venue={show.venue} seatType={seatType} />
+      <DiscountSection venueName={show.venue} minPrice={show.priceFrom} eventDate={show.rawDate} />
+      {show.bookUrl && (
+        <div style={{ padding: "10px 16px", borderTop: DIV }}>
+          <button style={{ fontSize: 13, padding: "7px 18px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, fontWeight: 700, cursor: "pointer" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Pass colour context down to sightline / discount sections
 function SightlineSection({ venue, seatType }) {
   const [expanded, setExpanded] = useState(false);
   const data = getSightlineData(venue);
-  if (!data) {
-    return (
-      <div style={{ padding: "9px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-        <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
-          Sightline data not available for this venue. Check SeatPlan.com for crowd-sourced reviews.
-        </p>
-      </div>
-    );
-  }
-
+  if (!data) return (
+    <div style={{ padding: "10px 16px", borderTop: DIV }}>
+      <p style={{ margin: 0, fontSize: 13, color: W2 }}>Sightline data not available. Check SeatPlan.com.</p>
+    </div>
+  );
   const highlightSection = getSectionForSeatType(data, seatType);
   const label = data.overall >= 4.5 ? "Excellent" : data.overall >= 4.0 ? "Good" : data.overall >= 3.5 ? "Fair" : "Poor";
-
   return (
-    <div style={{ padding: "9px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
-        <span style={{ fontSize: 11, color: "var(--color-text-secondary)", fontWeight: 500 }}>
-          Sightlines · {(venue || "Venue").split(" ").slice(0, 3).join(" ")}
-        </span>
-        <span style={{ fontSize: 11, color: "var(--color-text-secondary)" }}>{label}</span>
+    <div style={{ padding: "10px 16px", borderTop: DIV }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+        <span style={{ fontSize: 12, color: W, fontWeight: 700 }}>Sightlines · {(venue || "").split(" ").slice(0, 3).join(" ")}</span>
+        <span style={{ fontSize: 12, color: W2 }}>{label}</span>
       </div>
       <SightlineBar score={data.overall} />
       {highlightSection && (
-        <div style={{ marginTop: 8, padding: "7px 10px", background: "var(--color-background-info)", borderRadius: 6 }}>
-          <p style={{ margin: "0 0 3px", fontSize: 11, fontWeight: 600, color: "var(--color-text-info)" }}>{highlightSection}</p>
+        <div style={{ marginTop: 8, padding: "8px 10px", background: "rgba(0,0,0,0.2)", borderRadius: 8 }}>
+          <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: "#FFD700" }}>{highlightSection}</p>
           <SightlineBar score={data.sections[highlightSection].score} />
-          <p style={{ margin: "5px 0 0", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.6 }}>{data.sections[highlightSection].notes}</p>
+          <p style={{ margin: "5px 0 0", fontSize: 13, color: W, lineHeight: 1.5 }}>{data.sections[highlightSection].notes}</p>
         </div>
       )}
-      <button
-        style={{ marginTop: 8, background: "none", border: "none", padding: 0, fontSize: 12, color: "var(--color-text-secondary)", cursor: "pointer" }}
-        onClick={() => setExpanded(o => !o)}
-      >
+      <button style={{ marginTop: 8, background: "none", border: "none", padding: 0, fontSize: 13, color: W2, cursor: "pointer" }} onClick={() => setExpanded(o => !o)}>
         {expanded ? "▲ Hide all sections" : `▼ All sections (${Object.keys(data.sections).length})`}
       </button>
       {expanded && (
         <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 10 }}>
           {Object.entries(data.sections).map(([name, sec]) => (
             <div key={name}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-                <span style={{ fontSize: 11, fontWeight: 500, color: "var(--color-text-primary)" }}>{name}</span>
-              </div>
+              <p style={{ margin: "0 0 3px", fontSize: 12, fontWeight: 700, color: W }}>{name}</p>
               <SightlineBar score={sec.score} />
-              <p style={{ margin: "4px 0 0", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>{sec.notes}</p>
+              <p style={{ margin: "4px 0 0", fontSize: 13, color: W2, lineHeight: 1.5 }}>{sec.notes}</p>
             </div>
           ))}
         </div>
@@ -270,56 +295,25 @@ function DiscountSection({ venueName, minPrice, eventDate }) {
   const [open, setOpen] = useState(false);
   const discounts = inferDiscounts(venueName, minPrice, eventDate);
   return (
-    <div style={{ padding: "8px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-        {discounts.map(d => <Badge key={d.type} type={d.type} />)}
+    <div style={{ padding: "10px 16px", borderTop: DIV }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+        {discounts.map(d => (
+          <span key={d.type} style={{ fontSize: 12, fontWeight: 600, padding: "2px 9px", borderRadius: 4, background: "rgba(255,255,255,0.2)", color: "#fff" }}>{d.type}</span>
+        ))}
       </div>
       {open && (
-        <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 7 }}>
+        <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
           {discounts.map(d => (
             <div key={d.type} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-              <Badge type={d.type} small />
-              <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>{d.tip}</p>
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "1px 7px", borderRadius: 4, background: "rgba(255,255,255,0.2)", color: "#fff", whiteSpace: "nowrap" }}>{d.type}</span>
+              <p style={{ margin: 0, fontSize: 13, color: W, lineHeight: 1.5 }}>{d.tip}</p>
             </div>
           ))}
         </div>
       )}
-      <button style={{ marginTop: 8, background: "none", border: "none", padding: 0, fontSize: 12, color: "var(--color-text-secondary)", cursor: "pointer" }} onClick={() => setOpen(o => !o)}>
+      <button style={{ marginTop: 8, background: "none", border: "none", padding: 0, fontSize: 13, color: W2, cursor: "pointer" }} onClick={() => setOpen(o => !o)}>
         {open ? "▲ Hide discount tips" : "▼ Discount tips"}
       </button>
-    </div>
-  );
-}
-
-function ShowCard({ show, seatType }) {
-  const sc = SOURCE_COLORS[show.source] || { bg: "#F1EFE8", color: "#444441" };
-  const sourceLabel = SOURCES.find(s => s.id === show.source)?.label || show.source;
-  return (
-    <div style={{ background: "var(--color-background-primary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", overflow: "hidden" }}>
-      <div style={{ padding: "12px 14px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
-          <p style={{ margin: 0, fontWeight: 500, fontSize: 14, color: "var(--color-text-primary)", lineHeight: 1.3 }}>{show.title}</p>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3, flexShrink: 0 }}>
-            {show.price && <span style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)", whiteSpace: "nowrap" }}>{show.price}</span>}
-            {show.originalPrice && <span style={{ fontSize: 11, color: "var(--color-text-secondary)", textDecoration: "line-through" }}>{show.originalPrice}</span>}
-            {show.saving && <span style={{ fontSize: 11, color: "#0F6E56", fontWeight: 500 }}>{show.saving}</span>}
-          </div>
-        </div>
-        <p style={{ margin: "0 0 6px", fontSize: 12, color: "var(--color-text-secondary)" }}>{show.venue}</p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
-          {show.date && <span style={{ fontSize: 12, color: "var(--color-text-secondary)" }}>{show.date}</span>}
-          {show.category && <Badge type={show.category} small bg="#F1EFE8" color="#444441" />}
-          <span style={{ fontSize: 10, marginLeft: "auto", padding: "1px 7px", borderRadius: 4, background: sc.bg, color: sc.color, fontWeight: 500 }}>{sourceLabel}</span>
-        </div>
-        {show.description && <p style={{ margin: "8px 0 0", fontSize: 13, color: "var(--color-text-secondary)", lineHeight: 1.6 }}>{show.description}</p>}
-      </div>
-      <SightlineSection venue={show.venue} seatType={seatType} />
-      <DiscountSection venueName={show.venue} minPrice={show.priceFrom} eventDate={show.rawDate} />
-      {show.bookUrl && (
-        <div style={{ padding: "8px 14px", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-          <button style={{ fontSize: 12, padding: "5px 14px" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
-        </div>
-      )}
     </div>
   );
 }
@@ -522,9 +516,9 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
 
   const tabStyle = (id) => ({
     flex: 1, padding: "10px 4px", fontSize: 13, fontWeight: source === id ? 700 : 500,
-    background: source === id ? "var(--color-background-info)" : "var(--color-background-primary)",
-    color: source === id ? "var(--color-text-info)" : "var(--color-text-secondary)",
-    border: "none", borderLeft: id !== "all" ? "1px solid var(--color-border-tertiary)" : "none",
+    background: source === id ? "#800020" : "rgba(255,255,255,0.15)",
+    color: source === id ? "#FFD700" : "#fff",
+    border: "none", borderLeft: id !== "all" ? "1px solid rgba(255,255,255,0.2)" : "none",
     borderRadius: 0, cursor: "pointer",
   });
 
@@ -553,29 +547,31 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
   return (
     <div style={{ fontFamily: "Arial, sans-serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
       <InsultsBackground />
-      <div style={{ marginBottom: "1.75rem" }}>
-        <h2 style={{ margin: "0 0 6px", fontSize: 32, fontWeight: 900, color: "var(--color-text-primary)", letterSpacing: "-0.5px" }}>🎭 London Theatre Finder</h2>
+      <div style={{ marginBottom: "1.75rem", textAlign: "center" }}>
+        <div style={{ display: "inline-block", background: "#800020", borderRadius: 16, padding: "10px 32px", marginBottom: 10 }}>
+          <h2 style={{ margin: 0, fontSize: 34, fontWeight: 900, color: "#FFD700", letterSpacing: "-0.5px", fontFamily: "Arial, sans-serif" }}>London Theatre Finder</h2>
+        </div>
         <p style={{ margin: 0, fontSize: 15, color: "var(--color-text-secondary)", fontWeight: 500 }}>Live web search · Seat type · Discounts · Sightlines for 40+ venues</p>
       </div>
 
       {/* AI assistant */}
-      <div style={{ background: "var(--color-background-secondary)", border: "1.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
-        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "var(--color-text-primary)" }}>Ask about seats, discounts or venues</p>
+      <div style={{ background: "#059669", borderRadius: 14, padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
+        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#fff" }}>Ask about seats, discounts or venues</p>
         <div style={{ display: "flex", gap: 10 }}>
-          <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 15 }} />
-          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 600 }}>{aiLoading ? "…" : "Ask ↗"}</button>
+          <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
+          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 700, background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
         </div>
-        {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: "var(--color-text-primary)", lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: "1px solid var(--color-border-tertiary)", paddingTop: 12 }}>{aiAnswer}</div>}
+        {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: "#fff", lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: "1px solid rgba(255,255,255,0.3)", paddingTop: 12 }}>{aiAnswer}</div>}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
           {["Stalls vs upper circle?", "TKTS tips", "Student discounts tonight", "Best family shows under £40"].map(q => (
-            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20 }}>{q}</button>
+            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20, background: "rgba(255,255,255,0.2)", color: "#fff", border: "1px solid rgba(255,255,255,0.4)", cursor: "pointer" }}>{q}</button>
           ))}
         </div>
       </div>
 
       {/* Search panel */}
-      <div style={{ background: "var(--color-background-primary)", border: "1.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1.5rem", marginBottom: "1.25rem" }}>
-        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 800, color: "var(--color-text-primary)", letterSpacing: "-0.2px" }}>Search &amp; filter</p>
+      <div style={{ background: "#059669", borderRadius: 14, padding: "1.5rem", marginBottom: "1.25rem" }}>
+        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 800, color: "#fff", letterSpacing: "-0.2px" }}>Search &amp; filter</p>
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
@@ -585,54 +581,54 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
-          <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 15, boxSizing: "border-box" }} />
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
+          <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
-            <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 15 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
+            <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
           </div>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
-            <select value={seatType} onChange={e => setSeatType(e.target.value)} style={{ width: "100%", fontSize: 15 }}>{SEAT_TYPES.map(s => <option key={s}>{s}</option>)}</select>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
+            <select value={seatType} onChange={e => setSeatType(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SEAT_TYPES.map(s => <option key={s}>{s}</option>)}</select>
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
-            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, boxSizing: "border-box" }} />
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
+            <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
           </div>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
-            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, boxSizing: "border-box" }} />
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
+            <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
           </div>
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
             Price range (£){priceMin || priceMax ? ` — £${priceMin || "0"} to £${priceMax || "any"}` : ""}
           </label>
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 15 }} />
-            <span style={{ fontSize: 15, fontWeight: 600, color: "var(--color-text-secondary)" }}>to</span>
-            <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 15 }} />
-            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px" }}>✕</button>}
+            <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
+            <span style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>to</span>
+            <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
+            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, cursor: "pointer" }}>✕</button>}
           </div>
         </div>
 
         <div style={{ marginBottom: 18 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
-          <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 15 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
+          <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
         </div>
 
-        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px" }}>
+        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 10, cursor: "pointer" }}>
           {loading ? (loadingMsg || "Searching…") : "Search shows ↗"}
         </button>
         {!HAS_AI && (
-          <p style={{ marginTop: 12, fontSize: 14, color: "var(--color-text-secondary)" }}>
+          <p style={{ marginTop: 12, fontSize: 14, color: "rgba(255,255,255,0.8)" }}>
             Showing sample results — deploy with VITE_ANTHROPIC_KEY to enable live search.
           </p>
         )}
