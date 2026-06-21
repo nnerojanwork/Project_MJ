@@ -12,8 +12,8 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
   --cursive: 'Dancing Script', cursive;
-  --sans: Arial, Helvetica, sans-serif;
-  --heading: Arial, Helvetica, sans-serif;
+  --sans: 'Cinzel', serif;
+  --heading: 'Cinzel', serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -56,7 +56,7 @@ body {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Cinzel', serif;
 }
 
 #root {
