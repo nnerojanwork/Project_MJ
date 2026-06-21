@@ -552,7 +552,18 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <div style={{ display: "inline-block", background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 10 }}>
           <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
         </div>
-        <p style={{ margin: 0, fontSize: 42, lineHeight: 1 }}>🧹</p>
+        <svg viewBox="0 0 220 60" width="220" height="60" xmlns="http://www.w3.org/2000/svg" style={{ display: "block", margin: "4px auto 0" }}>
+          {/* Handle */}
+          <rect x="10" y="27" width="140" height="6" rx="3" fill="#6B3A1F" />
+          {/* Bristle base band */}
+          <rect x="148" y="20" width="18" height="20" rx="2" fill="#9E2B3A" />
+          {/* Bristles */}
+          {[0,1,2,3,4,5,6,7].map(i => (
+            <line key={i} x1={166} y1={22 + i * 2.5} x2={210 - (i % 3) * 6} y2={10 + i * 5} stroke="#6B3A1F" strokeWidth="2" strokeLinecap="round" />
+          ))}
+          {/* Knot */}
+          <ellipse cx="151" cy="30" rx="5" ry="10" fill="#F0C060" />
+        </svg>
       </div>
 
       {/* AI assistant */}
