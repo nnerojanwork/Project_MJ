@@ -65,25 +65,26 @@ function InsultColumn({ insults, side }) {
           title={`From ${ins.play} — click to read free`}
           style={{
             display: "block",
-            fontSize: 18,
-            fontWeight: 800,
-            fontStyle: "italic",
-            fontFamily: "Arial, sans-serif",
+            fontSize: 22,
+            fontWeight: 700,
+            fontFamily: "'Dancing Script', cursive",
             color: "#800020",
-            opacity: 0.55,
+            opacity: 0.65,
             textDecoration: "none",
-            lineHeight: 1.35,
+            lineHeight: 1.4,
             wordBreak: "break-word",
-            transform: `rotate(${side === "left" ? -3 + (i % 3) * 2 : 3 - (i % 3) * 2}deg)`,
+            textAlign: "center",
+            transform: `rotate(${side === "left" ? -2 + (i % 3) : 2 - (i % 3)}deg)`,
             pointerEvents: "auto",
             cursor: "pointer",
             transition: "opacity 0.15s",
+            padding: "0 6px",
           }}
           onMouseEnter={e => { e.currentTarget.style.opacity = "1"; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = "0.55"; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = "0.65"; }}
         >
           "{ins.text}"
-          <span style={{ display: "block", fontSize: 11, fontStyle: "normal", fontWeight: 600, opacity: 0.7, marginTop: 2 }}>
+          <span style={{ display: "block", fontSize: 13, fontFamily: "Arial, sans-serif", fontWeight: 600, opacity: 0.7, marginTop: 3 }}>
             — {ins.play}
           </span>
         </a>
