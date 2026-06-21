@@ -358,29 +358,23 @@ function cacheSet(key, data) {
   try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
 }
 
-async function callClaude(messages, system) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-    body: JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 2000,
-      tools: [{ type: "web_search_20250305", name: "web_search" }],
-      system,
-      messages,
-    }),
+async function callClaude(messages, system, model) {
+  const useSearch = model === "claude-sonnet-4-6";
+  const body = (msgs) => JSON.stringify({
+    model,
+    max_tokens: 2000,
+    ...(useSearch ? { tools: [{ type: "web_search_20250305", name: "web_search" }] } : {}),
+    system,
+    messages: msgs,
   });
+  const HEADERS = { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" };
+  const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: HEADERS, body: body(messages) });
   if (!res.ok) throw new Error(`API error ${res.status}`);
   let data = await res.json();
   let msgs = [...messages];
-  // Allow up to 2 tool turns (web search is 1 turn usually)
   for (let i = 0; i < 2 && data.stop_reason === "tool_use"; i++) {
     msgs = [...msgs, { role: "assistant", content: data.content }];
-    const r2 = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, tools: [{ type: "web_search_20250305", name: "web_search" }], system, messages: msgs }),
-    });
+    const r2 = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: HEADERS, body: body(msgs) });
     if (!r2.ok) throw new Error(`API error ${r2.status}`);
     data = await r2.json();
   }
@@ -392,10 +386,16 @@ function isLottery(show) {
   return hay.includes("lottery") || hay.includes("ballot") || hay.includes("lucky dip");
 }
 
+const MODELS = [
+  { id: "claude-haiku-4-5-20251001", label: "Peasant",          desc: "Fast & cheap" },
+  { id: "claude-sonnet-4-6",         label: "Make Nero Poorer", desc: "Smarter & slower" },
+];
+
 // ─── Main app ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [unlocked,    setUnlocked]   = useState(!HAS_PASS);
   const [pwInput,     setPwInput]    = useState("");
+  const [model,       setModel]      = useState(MODELS[0].id);
   const [pwError,     setPwError]    = useState(false);
 
   const [shows,       setShows]      = useState([]);
@@ -464,7 +464,8 @@ export default function App() {
     setLoadingMsg("Searching listings…");
     try {
       const data = await callClaude([{ role: "user", content: prompt }],
-        "You are a London theatre search assistant. Search the web for current London theatre shows, then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.");
+        "You are a London theatre search assistant. Search the web for current London theatre shows, then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.",
+        model);
       setLoadingMsg("Loading sightline data…");
 
       const allText = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
@@ -505,7 +506,7 @@ export default function App() {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-6",
+          model,
           max_tokens: 600,
           system: `You are a London theatre expert. Practical, specific advice about seats, discounts, venues.
 Seat types: stalls (ground level, closest), dress circle (elevated front balcony), upper circle (steep, cheaper), gallery (highest, cheapest), boxes (sides), pit (very front).
@@ -641,6 +642,23 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <div style={{ marginBottom: 18 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
           <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
+        </div>
+
+        <div style={{ marginBottom: 14 }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Model</label>
+          <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: "hidden" }}>
+            {MODELS.map((m, i) => (
+              <button key={m.id} onClick={() => setModel(m.id)} style={{
+                flex: 1, padding: "9px 8px", fontSize: 13, fontWeight: model === m.id ? 700 : 400,
+                background: model === m.id ? "#9E2B3A" : "rgba(0,0,0,0.04)",
+                color: model === m.id ? "#F0C060" : "#9E2B3A",
+                border: "none", borderLeft: i > 0 ? "1px solid rgba(158,43,58,0.2)" : "none",
+                cursor: "pointer", fontFamily: "'Cinzel', serif",
+              }}>
+                {m.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 10, cursor: "pointer" }}>
