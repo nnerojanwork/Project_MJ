@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 
 function useWindowWidth() {
   const [w, setW] = useState(window.innerWidth);
@@ -375,6 +375,43 @@ function formatDateInput(raw) {
   return `${digits.slice(0,2)}/${digits.slice(2,4)}/${digits.slice(4)}`;
 }
 
+function DateInput({ value, onChange, min, placeholder }) {
+  const pickerRef = useRef(null);
+  return (
+    <div style={{ position: "relative", width: "100%" }}>
+      <input
+        type="text"
+        value={toBritish(value)}
+        onChange={e => {
+          const fmt = formatDateInput(e.target.value);
+          const iso = toISO(fmt);
+          onChange(iso || (fmt.length < 10 ? "" : ""));
+        }}
+        placeholder={placeholder || "DD/MM/YYYY"}
+        inputMode="numeric"
+        maxLength={10}
+        style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "10px 40px 10px 12px", boxSizing: "border-box" }}
+      />
+      {/* Hidden native date picker — triggered by calendar icon */}
+      <input
+        ref={pickerRef}
+        type="date"
+        value={value}
+        min={min}
+        onChange={e => onChange(e.target.value)}
+        style={{ position: "absolute", opacity: 0, width: 1, height: 1, top: 0, right: 0, pointerEvents: "none" }}
+        tabIndex={-1}
+      />
+      <button
+        type="button"
+        onClick={() => pickerRef.current?.showPicker?.()}
+        style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 2, color: "#9E2B3A", lineHeight: 1 }}
+        title="Pick a date"
+      >📅</button>
+    </div>
+  );
+}
+
 // ─── Search cache (localStorage, keyed by params + date) ─────────────────────
 function cacheKey(params) {
   return `lta_${new Date().toISOString().slice(0, 10)}_${JSON.stringify(params)}`;
@@ -702,11 +739,11 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
-            <input type="text" value={toBritish(dateFrom)} onChange={e => { const iso = toISO(formatDateInput(e.target.value)); if (iso || !e.target.value) setDateFrom(iso); else setDateFrom(""); }} placeholder="DD/MM/YYYY" inputMode="numeric" maxLength={10} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", padding: "10px 12px" }} />
+            <DateInput value={dateFrom} onChange={setDateFrom} min={today} />
           </div>
           <div>
             <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
-            <input type="text" value={toBritish(dateTo)} onChange={e => { const iso = toISO(formatDateInput(e.target.value)); if (iso || !e.target.value) setDateTo(iso); else setDateTo(""); }} placeholder="DD/MM/YYYY" inputMode="numeric" maxLength={10} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", padding: "10px 12px" }} />
+            <DateInput value={dateTo} onChange={setDateTo} min={dateFrom || today} />
           </div>
         </div>
 
