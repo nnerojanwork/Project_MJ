@@ -5,7 +5,7 @@ import { getSightlineData, getSectionForSeatType } from "./sightlineData";
 const INSULTS = [
   { text: "You Banbury cheese",                                                           play: "Merry Wives of Windsor", url: "https://www.gutenberg.org/ebooks/1507" },
   { text: "You are a fishmonger",                                                         play: "Hamlet",                 url: "https://www.gutenberg.org/ebooks/1524" },
-  { text: "Thou cream-faced loon",                                                        play: "Macbeth",                url: "https://www.gutenberg.org/ebooks/1533" },
+  { text: "Get you gone, you dwarf, you minimus of hindering knotgrass made, you bead, you acorn!", play: "A Midsummer Night's Dream", url: "https://www.gutenberg.org/ebooks/1514" },
   { text: "Your brain is as dry as the remainder biscuit after voyage",                   play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "I do desire we may be better strangers",                                       play: "As You Like It",         url: "https://www.gutenberg.org/ebooks/1522" },
   { text: "Thou hast no more brain than I have in mine elbows",                           play: "Troilus and Cressida",   url: "https://www.gutenberg.org/ebooks/1527" },
@@ -68,7 +68,7 @@ function InsultColumn({ insults, side }) {
             fontSize: 22,
             fontWeight: 700,
             fontFamily: "'Dancing Script', cursive",
-            color: "#800020",
+            color: "#9E2B3A",
             opacity: 0.65,
             textDecoration: "none",
             lineHeight: 1.4,
@@ -84,7 +84,7 @@ function InsultColumn({ insults, side }) {
           onMouseLeave={e => { e.currentTarget.style.opacity = "0.65"; }}
         >
           "{ins.text}"
-          <span style={{ display: "block", fontSize: 13, fontFamily: "Arial, sans-serif", fontWeight: 600, opacity: 0.7, marginTop: 3 }}>
+          <span style={{ display: "block", fontSize: 12, fontFamily: "'Cinzel', serif", fontWeight: 400, opacity: 0.7, marginTop: 3 }}>
             — {ins.play}
           </span>
         </a>
@@ -112,9 +112,11 @@ const HAS_PASS = Boolean(PASSWORD);
 // ─── Discount inference ──────────────────────────────────────────────────────
 const WEST_END   = ["lyceum","adelphi","novello","phoenix","gillian lynne","savoy","prince edward","duke of york","cambridge","palace","her majesty","apollo victoria","dominion","shaftesbury","garrick","gielgud","harold pinter","noel coward","vaudeville","wyndham"];
 const SUBSIDISED = ["national theatre","barbican","almeida","royal court","young vic","donmar","menier","soho theatre","bush theatre","hampstead"];
+const HAS_LOTTERY = ["hamilton","hamilton (musical)","hamilton the musical","les misérables","les miserables","the phantom of the opera","phantom of the opera","the lion king","lion king","mamma mia","back to the future","operation mincemeat","hadestown","next to normal"];
 
-function inferDiscounts(venueName, minPrice, eventDate) {
+function inferDiscounts(venueName, minPrice, eventDate, showTitle) {
   const v = (venueName || "").toLowerCase();
+  const t = (showTitle || "").toLowerCase();
   const daysUntil = eventDate ? (new Date(eventDate) - new Date()) / 86400000 : 30;
   const out = [];
   if (WEST_END.some(x => v.includes(x)))   out.push({ type: "TKTS",        tip: "TKTS booth in Leicester Square sells same-day tickets up to 50% off. Open Mon–Sat 10am–6pm, Sun 11am–4:30pm." });
@@ -123,7 +125,9 @@ function inferDiscounts(venueName, minPrice, eventDate) {
   out.push({ type: "Student",     tip: "Most London theatres offer student standby. Show valid student ID at the box office 45 min before curtain — often £10–18." });
   out.push({ type: "Group",       tip: "Groups of 8+ usually get 10–25% off. Call the box office directly for the best deal." });
   if (daysUntil >= 0 && daysUntil < 3) out.push({ type: "Last-minute", tip: "Check TodayTix, Official London Theatre today's tickets, and the venue's own site for unsold releases." });
-  return out.slice(0, 4);
+  if (HAS_LOTTERY.some(x => t.includes(x) || v.includes(x)))
+    out.push({ type: "Lottery", tip: "This show runs a ticket lottery — enter via TodayTix or the show's own app for a chance to win front-row or premium seats at heavily discounted prices (often £10–25). Results usually announced 2 days before the performance." });
+  return out.slice(0, 5);
 }
 
 // ─── Constants ───────────────────────────────────────────────────────────────
@@ -146,6 +150,7 @@ const DISCOUNT_COLORS = {
   "Student":     { bg: "#EEEDFE", color: "#3C3489" },
   "Group":       { bg: "#E1F5EE", color: "#085041" },
   "Last-minute": { bg: "#FCEBEB", color: "#A32D2D" },
+  "Lottery":     { bg: "#FEF3C7", color: "#92400E" },
 };
 
 const SOURCE_COLORS = {
@@ -213,36 +218,36 @@ function SightlineBar({ score }) {
   );
 }
 
-const W = "rgba(255,255,255,0.85)";
-const W2 = "rgba(255,255,255,0.6)";
-const DIV = "1px solid rgba(255,255,255,0.25)";
+const W = "#3D1A0A";
+const W2 = "rgba(61,26,10,0.6)";
+const DIV = "1px solid rgba(0,0,0,0.12)";
 
 function ShowCard({ show, seatType }) {
   const sourceLabel = SOURCES.find(s => s.id === show.source)?.label || show.source;
   return (
-    <div style={{ background: "#059669", borderRadius: 14, overflow: "hidden" }}>
+    <div style={{ background: "#E8DDD0", borderRadius: 14, overflow: "hidden" }}>
       <div style={{ padding: "14px 16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 4 }}>
-          <p style={{ margin: 0, fontWeight: 800, fontSize: 16, color: "#fff", lineHeight: 1.3 }}>{show.title}</p>
+          <p style={{ margin: 0, fontWeight: 700, fontSize: 16, color: "#9E2B3A", lineHeight: 1.3, fontFamily: "'Cinzel', serif" }}>{show.title}</p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3, flexShrink: 0 }}>
-            {show.price && <span style={{ fontSize: 15, fontWeight: 700, color: "#FFD700", whiteSpace: "nowrap" }}>{show.price}</span>}
+            {show.price && <span style={{ fontSize: 15, fontWeight: 700, color: "#F0C060", whiteSpace: "nowrap" }}>{show.price}</span>}
             {show.originalPrice && <span style={{ fontSize: 12, color: W2, textDecoration: "line-through" }}>{show.originalPrice}</span>}
-            {show.saving && <span style={{ fontSize: 12, color: "#d1fae5", fontWeight: 600 }}>{show.saving}</span>}
+            {show.saving && <span style={{ fontSize: 12, color: "#27500A", fontWeight: 600 }}>{show.saving}</span>}
           </div>
         </div>
         <p style={{ margin: "0 0 8px", fontSize: 13, color: W2, fontWeight: 600 }}>{show.venue}</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
           {show.date && <span style={{ fontSize: 13, color: W }}>{show.date}</span>}
-          {show.category && <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: "rgba(255,255,255,0.2)", color: "#fff", fontWeight: 600 }}>{show.category}</span>}
-          <span style={{ fontSize: 11, marginLeft: "auto", padding: "2px 8px", borderRadius: 4, background: "#800020", color: "#FFD700", fontWeight: 700 }}>{sourceLabel}</span>
+          {show.category && <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#9E2B3A", fontWeight: 600 }}>{show.category}</span>}
+          <span style={{ fontSize: 11, marginLeft: "auto", padding: "2px 8px", borderRadius: 4, background: "#9E2B3A", color: "#F0C060", fontWeight: 700 }}>{sourceLabel}</span>
         </div>
         {show.description && <p style={{ margin: "10px 0 0", fontSize: 14, color: W, lineHeight: 1.6 }}>{show.description}</p>}
       </div>
       <SightlineSection venue={show.venue} seatType={seatType} />
-      <DiscountSection venueName={show.venue} minPrice={show.priceFrom} eventDate={show.rawDate} />
+      <DiscountSection venueName={show.venue} showTitle={show.title} minPrice={show.priceFrom} eventDate={show.rawDate} />
       {show.bookUrl && (
         <div style={{ padding: "10px 16px", borderTop: DIV }}>
-          <button style={{ fontSize: 13, padding: "7px 18px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, fontWeight: 700, cursor: "pointer" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
+          <button style={{ fontSize: 13, padding: "7px 18px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, fontWeight: 700, cursor: "pointer" }} onClick={() => window.open(show.bookUrl, "_blank")}>Book ↗</button>
         </div>
       )}
     </div>
@@ -268,8 +273,8 @@ function SightlineSection({ venue, seatType }) {
       </div>
       <SightlineBar score={data.overall} />
       {highlightSection && (
-        <div style={{ marginTop: 8, padding: "8px 10px", background: "rgba(0,0,0,0.2)", borderRadius: 8 }}>
-          <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: "#FFD700" }}>{highlightSection}</p>
+        <div style={{ marginTop: 8, padding: "8px 10px", background: "rgba(0,0,0,0.06)", borderRadius: 8 }}>
+          <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: "#F0C060" }}>{highlightSection}</p>
           <SightlineBar score={data.sections[highlightSection].score} />
           <p style={{ margin: "5px 0 0", fontSize: 13, color: W, lineHeight: 1.5 }}>{data.sections[highlightSection].notes}</p>
         </div>
@@ -292,21 +297,21 @@ function SightlineSection({ venue, seatType }) {
   );
 }
 
-function DiscountSection({ venueName, minPrice, eventDate }) {
+function DiscountSection({ venueName, showTitle, minPrice, eventDate }) {
   const [open, setOpen] = useState(false);
-  const discounts = inferDiscounts(venueName, minPrice, eventDate);
+  const discounts = inferDiscounts(venueName, minPrice, eventDate, showTitle);
   return (
     <div style={{ padding: "10px 16px", borderTop: DIV }}>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         {discounts.map(d => (
-          <span key={d.type} style={{ fontSize: 12, fontWeight: 600, padding: "2px 9px", borderRadius: 4, background: "rgba(255,255,255,0.2)", color: "#fff" }}>{d.type}</span>
+          <span key={d.type} style={{ fontSize: 12, fontWeight: 600, padding: "2px 9px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#9E2B3A" }}>{d.type}</span>
         ))}
       </div>
       {open && (
         <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
           {discounts.map(d => (
             <div key={d.type} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-              <span style={{ fontSize: 11, fontWeight: 700, padding: "1px 7px", borderRadius: 4, background: "rgba(255,255,255,0.2)", color: "#fff", whiteSpace: "nowrap" }}>{d.type}</span>
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "1px 7px", borderRadius: 4, background: "rgba(0,0,0,0.07)", color: "#9E2B3A", whiteSpace: "nowrap" }}>{d.type}</span>
               <p style={{ margin: 0, fontSize: 13, color: W, lineHeight: 1.5 }}>{d.tip}</p>
             </div>
           ))}
@@ -353,29 +358,23 @@ function cacheSet(key, data) {
   try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
 }
 
-async function callClaude(messages, system) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-    body: JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 2000,
-      tools: [{ type: "web_search_20250305", name: "web_search" }],
-      system,
-      messages,
-    }),
+async function callClaude(messages, system, model) {
+  const useSearch = model === "claude-sonnet-4-6";
+  const body = (msgs) => JSON.stringify({
+    model,
+    max_tokens: 2000,
+    ...(useSearch ? { tools: [{ type: "web_search_20250305", name: "web_search" }] } : {}),
+    system,
+    messages: msgs,
   });
+  const HEADERS = { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" };
+  const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: HEADERS, body: body(messages) });
   if (!res.ok) throw new Error(`API error ${res.status}`);
   let data = await res.json();
   let msgs = [...messages];
-  // Allow up to 2 tool turns (web search is 1 turn usually)
   for (let i = 0; i < 2 && data.stop_reason === "tool_use"; i++) {
     msgs = [...msgs, { role: "assistant", content: data.content }];
-    const r2 = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, tools: [{ type: "web_search_20250305", name: "web_search" }], system, messages: msgs }),
-    });
+    const r2 = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: HEADERS, body: body(msgs) });
     if (!r2.ok) throw new Error(`API error ${r2.status}`);
     data = await r2.json();
   }
@@ -387,10 +386,16 @@ function isLottery(show) {
   return hay.includes("lottery") || hay.includes("ballot") || hay.includes("lucky dip");
 }
 
+const MODELS = [
+  { id: "claude-haiku-4-5-20251001", label: "Peasant",          desc: "Fast & cheap" },
+  { id: "claude-sonnet-4-6",         label: "Make Nero Poorer", desc: "Smarter & slower" },
+];
+
 // ─── Main app ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [unlocked,    setUnlocked]   = useState(!HAS_PASS);
   const [pwInput,     setPwInput]    = useState("");
+  const [model,       setModel]      = useState(MODELS[0].id);
   const [pwError,     setPwError]    = useState(false);
 
   const [shows,       setShows]      = useState([]);
@@ -459,7 +464,8 @@ export default function App() {
     setLoadingMsg("Searching listings…");
     try {
       const data = await callClaude([{ role: "user", content: prompt }],
-        "You are a London theatre search assistant. Search the web for current London theatre shows, then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.");
+        "You are a London theatre search assistant. Search the web for current London theatre shows, then return ONLY a raw JSON array starting with [ and ending with ]. No markdown, no preamble. Never include lottery or ballot tickets.",
+        model);
       setLoadingMsg("Loading sightline data…");
 
       const allText = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
@@ -500,7 +506,7 @@ export default function App() {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-6",
+          model,
           max_tokens: 600,
           system: `You are a London theatre expert. Practical, specific advice about seats, discounts, venues.
 Seat types: stalls (ground level, closest), dress circle (elevated front balcony), upper circle (steep, cheaper), gallery (highest, cheapest), boxes (sides), pit (very front).
@@ -517,16 +523,16 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
 
   const tabStyle = (id) => ({
     flex: 1, padding: "10px 4px", fontSize: 13, fontWeight: source === id ? 700 : 500,
-    background: source === id ? "#800020" : "rgba(255,255,255,0.15)",
-    color: source === id ? "#FFD700" : "#fff",
-    border: "none", borderLeft: id !== "all" ? "1px solid rgba(255,255,255,0.2)" : "none",
+    background: source === id ? "#9E2B3A" : "rgba(0,0,0,0.06)",
+    color: source === id ? "#F0C060" : "#9E2B3A",
+    border: "none", borderLeft: id !== "all" ? "1px solid rgba(0,0,0,0.1)" : "none",
     borderRadius: 0, cursor: "pointer",
   });
 
   // ── Password gate ────────────────────────────────────────────────────────
   if (!unlocked) {
     return (
-      <div style={{ fontFamily: "Arial, sans-serif", padding: "3rem 0", position: "relative", zIndex: 1 }}>
+      <div style={{ fontFamily: "'Cinzel', serif", padding: "3rem 0", position: "relative", zIndex: 1 }}>
       <InsultsBackground />
         <h2 style={{ margin: "0 0 6px", fontSize: 20, fontWeight: 500, color: "var(--color-text-primary)" }}>🎭 London theatre finder</h2>
         <p style={{ margin: "0 0 24px", fontSize: 13, color: "var(--color-text-secondary)" }}>Enter the access password to search.</p>
@@ -546,33 +552,46 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
 
   // ── Main UI ──────────────────────────────────────────────────────────────
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
+    <div style={{ fontFamily: "'Cinzel', serif", padding: "1.25rem 0", position: "relative", zIndex: 1 }}>
       <InsultsBackground />
       <div style={{ marginBottom: "1.75rem", textAlign: "center" }}>
-        <div style={{ display: "inline-block", background: "#800020", borderRadius: 16, padding: "10px 32px", marginBottom: 10 }}>
-          <h2 style={{ margin: 0, fontSize: 34, fontWeight: 900, color: "#FFD700", letterSpacing: "-0.5px", fontFamily: "Arial, sans-serif" }}>London Theatre Finder</h2>
+        <div style={{ display: "inline-block" }}>
+          <div style={{ background: "#9E2B3A", borderRadius: 16, padding: "10px 32px", marginBottom: 8 }}>
+            <h2 style={{ margin: 0, fontSize: 34, fontWeight: 700, color: "#F0C060", letterSpacing: "0.5px", fontFamily: "'Cinzel', serif" }}>London Theatre Finder</h2>
+          </div>
+          <svg viewBox="0 0 400 56" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+            {/* Handle */}
+            <rect x="8" y="24" width="300" height="7" rx="3.5" fill="#6B3A1F" />
+            {/* Bristle base band */}
+            <rect x="306" y="14" width="22" height="28" rx="3" fill="#9E2B3A" />
+            {/* Knot */}
+            <ellipse cx="310" cy="28" rx="6" ry="13" fill="#F0C060" />
+            {/* Bristles */}
+            {[0,1,2,3,4,5,6,7,8,9].map(i => (
+              <line key={i} x1={328} y1={17 + i * 2.8} x2={390 - (i % 4) * 8} y2={4 + i * 5.5} stroke="#6B3A1F" strokeWidth="2.2" strokeLinecap="round" />
+            ))}
+          </svg>
         </div>
-        <p style={{ margin: 0, fontSize: 15, color: "var(--color-text-secondary)", fontWeight: 500 }}>Live web search · Seat type · Discounts · Sightlines for 40+ venues</p>
       </div>
 
       {/* AI assistant */}
-      <div style={{ background: "#059669", borderRadius: 14, padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
-        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#fff" }}>Ask about seats, discounts or venues</p>
+      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
+        <p style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#9E2B3A" }}>Ask about seats, discounts or venues</p>
         <div style={{ display: "flex", gap: 10 }}>
           <input type="text" value={aiQ} onChange={e => setAiQ(e.target.value)} onKeyDown={e => e.key === "Enter" && askAI()} placeholder="e.g. Best cheap seats at the National Theatre? TKTS vs day seats?" style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
-          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 700, background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
+          <button onClick={askAI} disabled={!aiQ.trim() || aiLoading} style={{ padding: "0 18px", fontSize: 15, fontWeight: 700, background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>{aiLoading ? "…" : "Ask ↗"}</button>
         </div>
-        {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: "#fff", lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: "1px solid rgba(255,255,255,0.3)", paddingTop: 12 }}>{aiAnswer}</div>}
+        {aiAnswer && <div style={{ marginTop: 12, fontSize: 15, color: W, lineHeight: 1.75, whiteSpace: "pre-wrap", borderTop: DIV, paddingTop: 12 }}>{aiAnswer}</div>}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
           {["Stalls vs upper circle?", "TKTS tips", "Student discounts tonight", "Best family shows under £40"].map(q => (
-            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20, background: "rgba(255,255,255,0.2)", color: "#fff", border: "1px solid rgba(255,255,255,0.4)", cursor: "pointer" }}>{q}</button>
+            <button key={q} onClick={() => setAiQ(q)} style={{ fontSize: 13, padding: "5px 13px", borderRadius: 20, background: "rgba(0,0,0,0.06)", color: "#9E2B3A", border: "1px solid rgba(128,0,32,0.25)", cursor: "pointer" }}>{q}</button>
           ))}
         </div>
       </div>
 
       {/* Search panel */}
-      <div style={{ background: "#059669", borderRadius: 14, padding: "1.5rem", marginBottom: "1.25rem" }}>
-        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 800, color: "#fff", letterSpacing: "-0.2px" }}>Search &amp; filter</p>
+      <div style={{ background: "#E8DDD0", borderRadius: 14, padding: "1.5rem", marginBottom: "1.25rem" }}>
+        <p style={{ margin: "0 0 18px", fontSize: 18, fontWeight: 700, color: "#9E2B3A", letterSpacing: "0.5px" }}>Search &amp; filter</p>
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-primary)", display: "block", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Source</label>
@@ -582,54 +601,71 @@ Discounts: TKTS Leicester Square up to 50% same-day, day seats at box office 10a
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Show or keyword</label>
           <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={e => e.key === "Enter" && searchShows()} placeholder="e.g. Hamilton, Chekhov, immersive, ballet…" style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</label>
             <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select>
           </div>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Seat type</label>
             <select value={seatType} onChange={e => setSeatType(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SEAT_TYPES.map(s => <option key={s}>{s}</option>)}</select>
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>From date</label>
             <input type="date" value={dateFrom} min={today} onChange={e => setDateFrom(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
           </div>
           <div>
-            <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
+            <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>To date</label>
             <input type="date" value={dateTo} min={dateFrom || today} onChange={e => setDateTo(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, boxSizing: "border-box", background: "#fff", color: "#111", border: "none", borderRadius: 8 }} />
           </div>
         </div>
 
         <div style={{ marginBottom: 14 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
             Price range (£){priceMin || priceMax ? ` — £${priceMin || "0"} to £${priceMax || "any"}` : ""}
           </label>
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
             <input type="number" value={priceMin} onChange={e => setPriceMin(e.target.value)} placeholder="Min" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
-            <span style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>to</span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: "#9E2B3A" }}>to</span>
             <input type="number" value={priceMax} onChange={e => setPriceMax(e.target.value)} placeholder="Max" min={0} style={{ flex: 1, fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8, padding: "8px" }} />
-            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 8, cursor: "pointer" }}>✕</button>}
+            {(priceMin || priceMax) && <button onClick={() => { setPriceMin(""); setPriceMax(""); }} style={{ fontSize: 14, padding: "6px 12px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 8, cursor: "pointer" }}>✕</button>}
           </div>
         </div>
 
         <div style={{ marginBottom: 18 }}>
-          <label style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Sort by</label>
           <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ width: "100%", fontSize: 15, background: "#fff", color: "#111", border: "none", borderRadius: 8 }}>{SORT_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>
         </div>
 
-        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px", background: "#800020", color: "#FFD700", border: "none", borderRadius: 10, cursor: "pointer" }}>
+        <div style={{ marginBottom: 14 }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#9E2B3A", display: "block", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>Model</label>
+          <div style={{ display: "flex", border: "1.5px solid rgba(158,43,58,0.3)", borderRadius: 8, overflow: "hidden" }}>
+            {MODELS.map((m, i) => (
+              <button key={m.id} onClick={() => setModel(m.id)} style={{
+                flex: 1, padding: "9px 8px", fontSize: 13, fontWeight: model === m.id ? 700 : 400,
+                background: model === m.id ? "#9E2B3A" : "rgba(0,0,0,0.04)",
+                color: model === m.id ? "#F0C060" : "#9E2B3A",
+                border: "none", borderLeft: i > 0 ? "1px solid rgba(158,43,58,0.2)" : "none",
+                cursor: "pointer", fontFamily: "'Cinzel', serif",
+              }}>
+                {m.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button onClick={searchShows} disabled={loading} style={{ width: "100%", padding: "14px 0", fontSize: 17, fontWeight: 800, letterSpacing: "-0.2px", background: "#9E2B3A", color: "#F0C060", border: "none", borderRadius: 10, cursor: "pointer" }}>
           {loading ? (loadingMsg || "Searching…") : "Search shows ↗"}
         </button>
         {!HAS_AI && (
-          <p style={{ marginTop: 12, fontSize: 14, color: "rgba(255,255,255,0.8)" }}>
+          <p style={{ marginTop: 12, fontSize: 14, color: W2 }}>
             Showing sample results — deploy with VITE_ANTHROPIC_KEY to enable live search.
           </p>
         )}
