@@ -1206,6 +1206,10 @@ export const SIGHTLINE_DATA = {
 
   "prince edward theatre": {
     overall: 3.6, capacity: 1716,
+    badSeats: [
+      { label: "Dress Circle — Row B, Seat 15", seats: "B15", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Prince+Edward+Theatre/seat/Dress+Circle/B/15/" },
+      { label: "Grand Circle — Row AA, Seat 6", seats: "AA6", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Prince+Edward+Theatre/seat/Grand+Circle/AA/6/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–O)":  { score: 4.2, notes: "Large modern house well-configured for musicals. Rows G–L centre are the prime positions. Refurbished for Hamilton.",
         rows: {
@@ -1268,6 +1272,10 @@ export const SIGHTLINE_DATA = {
 
   "prince of wales theatre": {
     overall: 3.9, capacity: 1160,
+    badSeats: [
+      { label: "Stalls — Row N, Seat 4", seats: "N4", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Prince+of+Wales+Theatre/seat/Stalls/N/4/" },
+      { label: "Loge 1 — Row 1, Seat 3", seats: "1-3", section: "Loge 1", link: "https://aviewfrommyseat.com/venue/Prince+of+Wales+Theatre/seat/Loge+1/1/3/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Well-proportioned house with excellent centre stalls. Good rake and all centre positions within Rows A–L are strong. Rows E–J particularly recommended.",
         rows: {
@@ -1330,6 +1338,13 @@ export const SIGHTLINE_DATA = {
 
   "savoy theatre": {
     overall: 3.9, capacity: 1158,
+    badSeats: [
+      { label: "Grand Circle — Row B, Seat 26", seats: "B26", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Savoy+Theatre/seat/Grand+Circle/B/26/" },
+      { label: "Grand Circle — Row G, Seat 10", seats: "G10", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Savoy+Theatre/seat/Grand+Circle/G/10/" },
+      { label: "Grand Circle — Row G, Seat 27", seats: "G27", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Savoy+Theatre/seat/Grand+Circle/G/27/" },
+      { label: "Grand Circle — Row J, Seat 5", seats: "J5", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Savoy+Theatre/seat/Grand+Circle/J/5/" },
+      { label: "Stalls — Row T, Seat 1", seats: "T1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Savoy+Theatre/seat/Stalls/T/1/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Beautifully restored Edwardian house with excellent centre stalls. Good rake and all centre positions within Rows A–L are strong.",
         rows: {
@@ -1400,6 +1415,15 @@ export const SIGHTLINE_DATA = {
 
   "shaftesbury theatre": {
     overall: 3.8, capacity: 1408,
+    badSeats: [
+      { label: "Grand Circle — Row A, Seat 22", seats: "A22", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Grand+Circle/A/22/" },
+      { label: "Royal Circle — Row B, Seat 27", seats: "B27", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Royal+Circle/B/27/" },
+      { label: "Royal Circle — Row J, Seat 21", seats: "J21", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Royal+Circle/J/21/" },
+      { label: "Stalls — Row A, Seat 11", seats: "A11", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Stalls/A/11/" },
+      { label: "Stalls — Row U, Seat 28", seats: "U28", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Stalls/U/28/" },
+      { label: "Stalls — Row V, Seat 27", seats: "V27", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Stalls/V/27/" },
+      { label: "Stalls — Row W, Seat 17", seats: "W17", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Shaftesbury+Theatre/seat/Stalls/W/17/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–N)":  { score: 4.4, notes: "Good large house. Solid rake and all centre positions are strong. Rows F–L are the prime positions.",
         rows: {
@@ -1470,6 +1494,18 @@ export const SIGHTLINE_DATA = {
 
   "theatre royal drury lane": {
     overall: 3.9, capacity: 2196,
+    badSeats: [
+      { label: "Balcony — Row B, Seat 12", seats: "B12", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Balcony/B/12/" },
+      { label: "Balcony — Row C, Seat 34", seats: "C34", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Balcony/C/34/" },
+      { label: "Balcony — Row C, Seat 40", seats: "C40", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Balcony/C/40/" },
+      { label: "Balcony — Row D, Seat 24", seats: "D24", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Balcony/D/24/" },
+      { label: "Balcony — Row E, Seat 25", seats: "E25", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Balcony/E/25/" },
+      { label: "Balcony — Row E, Seat 40", seats: "E40", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Balcony/E/40/" },
+      { label: "Grand Circle — Row A, Seat 2", seats: "A2", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Grand+Circle/A/2/" },
+      { label: "Royal Circle — Row K, Seat 13", seats: "K13", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Royal+Circle/K/13/" },
+      { label: "Stalls — Row A, Seat 15", seats: "A15", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Stalls/A/15/" },
+      { label: "Stalls — Row N, Seat 15", seats: "N15", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Theatre+Royal+Drury+Lane/seat/Stalls/N/15/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–Q)":  { score: 4.4, notes: "Britain's largest West End theatre with surprisingly good centre stalls. Famous deep auditorium is well-raked. Rows H–N centre are the classic prime positions. Front rows A–E involve neck strain.",
         rows: {
@@ -1548,6 +1584,19 @@ export const SIGHTLINE_DATA = {
 
   "vaudeville theatre": {
     overall: 4.0, capacity: 690,
+    badSeats: [
+      { label: "Grand Circle — Row A, Seat 7", seats: "A7", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/A/7/" },
+      { label: "Grand Circle — Row A, Seat 13", seats: "A13", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/A/13/" },
+      { label: "Grand Circle — Row A, Seat 16", seats: "A16", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/A/16/" },
+      { label: "Grand Circle — Row B, Seat 1", seats: "B1", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/B/1/" },
+      { label: "Grand Circle — Row B, Seat 18", seats: "B18", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/B/18/" },
+      { label: "Grand Circle — Row C, Seat 18", seats: "C18", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/C/18/" },
+      { label: "Grand Circle — Row H, Seat 15", seats: "H15", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/H/15/" },
+      { label: "Grand Circle — Row J, Seat 13", seats: "J13", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Grand+Circle/J/13/" },
+      { label: "Dress Circle — Row H, Seat 15", seats: "H15", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Dress+Circle/H/15/" },
+      { label: "Stalls — Row C, Seat 16", seats: "C16", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Stalls/C/16/" },
+      { label: "Stalls — Row P, Seat 2", seats: "P2", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Vaudeville+Theatre/seat/Stalls/P/2/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–K)":  { score: 4.6, notes: "Intimate Victorian house with excellent centre stalls. Good rake and all centre positions feel close to the stage. Rows D–H are particularly strong.",
         rows: {
@@ -1610,6 +1659,18 @@ export const SIGHTLINE_DATA = {
 
   "victoria palace theatre": {
     overall: 3.9, capacity: 1565,
+    badSeats: [
+      { label: "Royal Circle — Row AA, Seat 7", seats: "AA7", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Royal+Circle/AA/7/" },
+      { label: "Royal Circle — Row AA, Seat 8", seats: "AA8", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Royal+Circle/AA/8/" },
+      { label: "Royal Circle — Row B, Seat 38", seats: "B38", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Royal+Circle/B/38/" },
+      { label: "Royal Circle — Row J, Seat 25", seats: "J25", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Royal+Circle/J/25/" },
+      { label: "Royal Circle — Row L, Seat 4", seats: "L4", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Royal+Circle/L/4/" },
+      { label: "Royal Circle — Row L, Seat 15", seats: "L15", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Royal+Circle/L/15/" },
+      { label: "Stalls — Row A, Seat 16", seats: "A16", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Stalls/A/16/" },
+      { label: "Stalls — Row C, Seat 39", seats: "C39", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Stalls/C/39/" },
+      { label: "Stalls — Row H, Seat 25", seats: "H25", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Stalls/H/25/" },
+      { label: "Stalls — Row Q, Seat 26", seats: "Q26", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Victoria+Palace+Theatre/seat/Stalls/Q/26/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–N)":  { score: 4.5, notes: "Beautifully refurbished house (home of Hamilton). Well-configured with a solid rake. Rows F–L centre are the prime positions. The thrust configuration gives good views from centre positions throughout.",
         rows: {
@@ -1680,6 +1741,15 @@ export const SIGHTLINE_DATA = {
 
   "wyndham's theatre": {
     overall: 4.0, capacity: 759,
+    badSeats: [
+      { label: "Grand Circle — Row A, Seat 3", seats: "A3", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Grand+Circle/A/3/" },
+      { label: "Grand Circle — Row A, Seat 29", seats: "A29", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Grand+Circle/A/29/" },
+      { label: "Grand Circle — Row E, Seat 5", seats: "E5", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Grand+Circle/E/5/" },
+      { label: "Grand Circle — Row G, Seat 1", seats: "G1", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Grand+Circle/G/1/" },
+      { label: "Grand Circle — Row G, Seat 4", seats: "G4", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Grand+Circle/G/4/" },
+      { label: "Royal Circle — Row G, Seat 13", seats: "G13", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Royal+Circle/G/13/" },
+      { label: "Royal Circle — Row G, Seat 15", seats: "G15", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Wyndham's+Theatre/seat/Royal+Circle/G/15/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.6, notes: "Intimate Edwardian house with excellent centre stalls. Good rake and all centre positions feel close and engaged. Rows E–I are the sweet spot.",
         rows: {
