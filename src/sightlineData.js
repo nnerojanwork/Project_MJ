@@ -1885,6 +1885,7 @@ export const SIGHTLINE_DATA = {
 
   "lyttelton theatre": {
     overall: 4.3, capacity: 890,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–K)":  { score: 4.7, notes: "Proscenium stage perfectly configured for the stalls. Excellent rake and all centre positions within Rows A–K are outstanding. The intimate scale creates a close, engaged feeling.",
         rows: {
@@ -1939,6 +1940,7 @@ export const SIGHTLINE_DATA = {
 
   "dorfman theatre": {
     overall: 4.5, capacity: 400,
+    badSeats: [],
     sections: {
       "Flexible Stalls":  { score: 4.6, notes: "Flexible studio space that reconfigures for each production. In standard configurations all positions are within 15 m of the stage. Sightlines are invariably excellent across thrust, traverse, and in-the-round configurations.",
         rows: {
