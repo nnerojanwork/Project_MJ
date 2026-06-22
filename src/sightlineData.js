@@ -838,6 +838,7 @@ export const SIGHTLINE_DATA = {
 
   "lyceum theatre": {
     overall: 3.7, capacity: 2100,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–P)":  { score: 4.4, notes: "Large Victorian house but centre stalls are well-configured. Rows G–M centre are the classic prime seats. Front rows A–D require neck strain for aerial staging. The wide thrust stage (Lion King) is fully visible from centre.",
         rows: {
@@ -908,6 +909,21 @@ export const SIGHTLINE_DATA = {
 
   "noel coward theatre": {
     overall: 4.0, capacity: 902,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 18", seats: "A18", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Balcony/A/18/" },
+      { label: "Balcony — Row AA, Seat 15", seats: "AA15", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Balcony/AA/15/" },
+      { label: "Balcony — Row AA, Seat 16", seats: "AA16", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Balcony/AA/16/" },
+      { label: "Balcony — Row C, Seat 23", seats: "C23", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Balcony/C/23/" },
+      { label: "Balcony — Row C, Seat 24", seats: "C24", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Balcony/C/24/" },
+      { label: "Balcony — Row D, Seat 3", seats: "D3", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Balcony/D/3/" },
+      { label: "Grand Circle — Row AA, Seat 4", seats: "AA4", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Grand+Circle/AA/4/" },
+      { label: "Grand Circle — Row AA, Seat 7", seats: "AA7", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Grand+Circle/AA/7/" },
+      { label: "Grand Circle — Row AA, Seat 21", seats: "AA21", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Grand+Circle/AA/21/" },
+      { label: "Stalls — Row R, Seat 19", seats: "R19", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Stalls/R/19/" },
+      { label: "Stalls — Row S, Seat 22", seats: "S22", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Stalls/S/22/" },
+      { label: "Stalls — Row T, Seat 7", seats: "T7", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Stalls/T/7/" },
+      { label: "Stalls — Row V, Seat 5", seats: "V5", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Noel+Coward+Theatre/seat/Stalls/V/5/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.6, notes: "Excellent intimate house. Lovely rake and all centre positions feel engaged with the stage. Rows E–I are the sweet spot.",
         rows: {
@@ -970,6 +986,19 @@ export const SIGHTLINE_DATA = {
 
   "novello theatre": {
     overall: 3.9, capacity: 1053,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 6", seats: "A6", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Balcony/A/6/" },
+      { label: "Balcony — Row F, Seat 7", seats: "F7", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Balcony/F/7/" },
+      { label: "Dress Circle — Row AA, Seat 3", seats: "AA3", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Dress+Circle/AA/3/" },
+      { label: "Dress Circle — Row AA, Seat 4", seats: "AA4", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Dress+Circle/AA/4/" },
+      { label: "Dress Circle — Row G, Seat 23", seats: "G23", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Dress+Circle/G/23/" },
+      { label: "Grand Circle — Row AA, Seat 5", seats: "AA5", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Grand+Circle/AA/5/" },
+      { label: "Grand Circle — Row AA, Seat 15", seats: "AA15", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Grand+Circle/AA/15/" },
+      { label: "Grand Circle — Row AA, Seat 16", seats: "AA16", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Grand+Circle/AA/16/" },
+      { label: "Grand Circle — Row AA, Seat 22", seats: "AA22", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Grand+Circle/AA/22/" },
+      { label: "Grand Circle — Row C, Seat 26", seats: "C26", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Grand+Circle/C/26/" },
+      { label: "Grand Circle — Row G, Seat 4", seats: "G4", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Novello+Theatre/seat/Grand+Circle/G/4/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Refurbished house with a good rake. All centre positions within Rows A–L are strong. Rows E–J are most popular.",
         rows: {
@@ -1032,6 +1061,7 @@ export const SIGHTLINE_DATA = {
 
   "palace theatre": {
     overall: 3.6, capacity: 1400,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–N)":  { score: 4.3, notes: "Solid rake. Rows G–L centre are the recommended positions. Front rows A–C require looking up for raised staging.",
         rows: {
@@ -1102,6 +1132,18 @@ export const SIGHTLINE_DATA = {
 
   "phoenix theatre": {
     overall: 4.0, capacity: 1012,
+    badSeats: [
+      { label: "Grand Circle — Row A, Seat 4", seats: "A4", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Grand+Circle/A/4/" },
+      { label: "Grand Circle — Row C, Seat 15", seats: "C15", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Grand+Circle/C/15/" },
+      { label: "Grand Circle — Row F, Seat 16", seats: "F16", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Grand+Circle/F/16/" },
+      { label: "Grand Circle — Row F, Seat 28", seats: "F28", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Grand+Circle/F/28/" },
+      { label: "Grand Circle — Row H, Seat 8", seats: "H8", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Grand+Circle/H/8/" },
+      { label: "Stalls — Row A, Seat 1", seats: "A1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Stalls/A/1/" },
+      { label: "Stalls — Row B, Seat 2", seats: "B2", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Stalls/B/2/" },
+      { label: "Stalls — Row B, Seats 17–18", seats: "B17-18", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Stalls/B/17/" },
+      { label: "Stalls — Row B, Seat 21", seats: "B21", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Stalls/B/21/" },
+      { label: "Stalls — Row F, Seat 1", seats: "F1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Phoenix+Theatre/seat/Stalls/F/1/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Good mid-size house with a solid rake. All centre positions within Rows A–L are strong. Rows E–J are most popular.",
         rows: {
