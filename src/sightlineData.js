@@ -2716,6 +2716,7 @@ export const SIGHTLINE_DATA = {
 
   "regent's park open air theatre": {
     overall: 4.3, capacity: 1240,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.7, notes: "Magical setting. Centre stalls are excellent — well-raked with clear sightlines and close proximity to the stage. The outdoor setting and overhanging trees create an unmatchable atmosphere. Rows D–I are the sweet spot.",
         rows: {
@@ -2772,6 +2773,7 @@ export const SIGHTLINE_DATA = {
 
   "richmond theatre": {
     overall: 4.0, capacity: 855,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–K)":  { score: 4.5, notes: "Beautiful Victorian theatre with excellent centre stalls. Good rake and the intimate scale creates an engaging atmosphere. Rows D–H are the prime positions.",
         rows: {
@@ -2826,6 +2828,7 @@ export const SIGHTLINE_DATA = {
 
   "rose theatre kingston": {
     overall: 4.3, capacity: 840,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–J)":  { score: 4.7, notes: "Modern purpose-built theatre with excellent sightlines. The rake is well-designed and all centre positions within Rows A–J are strong. Rows D–H are the sweet spot.",
         rows: {
@@ -2872,6 +2875,12 @@ export const SIGHTLINE_DATA = {
 
   "eventim apollo": {
     overall: 3.0, capacity: 5039,
+    badSeats: [
+      { label: "Circle Block 1 — Row H, Seat 55", seats: "H55", section: "Circle Block 1", link: "https://aviewfrommyseat.com/venue/Eventim+Apollo/seat/Circle+Block+1/H/55/" },
+      { label: "Circle Block 2 — Row X, Seat 62", seats: "X62", section: "Circle Block 2", link: "https://aviewfrommyseat.com/venue/Eventim+Apollo/seat/Circle+Block+2/X/62/" },
+      { label: "Circle Block 3 — Row O, Seat 49", seats: "O49", section: "Circle Block 3", link: "https://aviewfrommyseat.com/venue/Eventim+Apollo/seat/Circle+Block+3/O/49/" },
+      { label: "Circle Block 6 — Row O, Seat 3", seats: "O3", section: "Circle Block 6", link: "https://aviewfrommyseat.com/venue/Eventim+Apollo/seat/Circle+Block+6/O/3/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–N)":  { score: 3.9, notes: "For a large venue the centre stalls are reasonable. The gentle slope keeps rear rows visible, but the low rake means rows behind L can have obstructed views from tall audience members in front.",
         rows: {
