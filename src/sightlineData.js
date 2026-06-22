@@ -1822,6 +1822,7 @@ export const SIGHTLINE_DATA = {
 
   "national theatre": {
     overall: 4.3, capacity: 1160,
+    badSeats: [],
     sections: {
       "Olivier — Stalls Centre (Rows A–L)":  { score: 4.7, notes: "The Olivier's open-stage fan configuration means centre stalls are excellent throughout. Rows D–J feel close and immersed. The fan shape ensures good sightlines from a wide central area with no proscenium to interrupt.",
         rows: {
@@ -1968,6 +1969,12 @@ export const SIGHTLINE_DATA = {
 
   "barbican theatre": {
     overall: 4.0, capacity: 1156,
+    badSeats: [
+      { label: "Gallery — Row A, Seat 4", seats: "A4", section: "Gallery", link: "https://aviewfrommyseat.com/venue/Barbican+Theatre/seat/Gallery/A/4/" },
+      { label: "Gallery — Row A, Seat 62", seats: "A62", section: "Gallery", link: "https://aviewfrommyseat.com/venue/Barbican+Theatre/seat/Gallery/A/62/" },
+      { label: "Circle — Row A, Seat 12", seats: "A12", section: "Circle", link: "https://aviewfrommyseat.com/venue/Barbican+Theatre/seat/Circle/A/12/" },
+      { label: "Circle — Row BB, Seat 1", seats: "BB1", section: "Circle", link: "https://aviewfrommyseat.com/venue/Barbican+Theatre/seat/Circle/BB/1/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Wide proscenium stage well-served by the centre stalls. Excellent rake keeps all positions clear. Rows E–J are the prime positions for drama and opera.",
         rows: {
@@ -2030,6 +2037,9 @@ export const SIGHTLINE_DATA = {
 
   "almeida theatre": {
     overall: 4.6, capacity: 325,
+    badSeats: [
+      { label: "Circle — Row F, Seat 10", seats: "F10", section: "Circle", link: "https://aviewfrommyseat.com/venue/Almeida+Theatre/seat/Circle/F/10/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–I)":  { score: 4.9, notes: "One of London's finest small theatres. The intimate studio space means virtually every stalls seat is outstanding. Rows B–F are the sweet spot — close, centred, and immersive. Excellent rake ensures clear views from all positions.",
         rows: {
@@ -2076,6 +2086,9 @@ export const SIGHTLINE_DATA = {
 
   "donmar warehouse": {
     overall: 4.7, capacity: 251,
+    badSeats: [
+      { label: "Circle — Row C, Seat 12", seats: "C12", section: "Circle", link: "https://aviewfrommyseat.com/venue/Donmar+Warehouse/seat/Circle/C/12/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–G)":  { score: 4.9, notes: "One of the most intimate theatrical experiences in London. Virtually every seat is excellent. Centre stalls feel extremely close to the performers — almost claustrophobically so in intense productions. Row A is outstanding.",
         rows: {
@@ -2114,6 +2127,7 @@ export const SIGHTLINE_DATA = {
 
   "young vic": {
     overall: 4.5, capacity: 420,
+    badSeats: [],
     sections: {
       "Main House Stalls (Thrust)": { score: 4.7, notes: "Thrust stage configuration means audiences on all three sides have an engaged, close experience. Rows A–E are particularly intimate and immersive.",
         rows: {
@@ -2152,6 +2166,7 @@ export const SIGHTLINE_DATA = {
 
   "old vic": {
     overall: 4.2, capacity: 1000,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.7, notes: "One of the finest stalls experiences in London. The Old Vic's horseshoe design with steep rake creates intimate views from centre stalls throughout. Rows D–J are particularly strong.",
         rows: {
@@ -2222,6 +2237,7 @@ export const SIGHTLINE_DATA = {
 
   "royal court theatre": {
     overall: 4.4, capacity: 400,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–J)":  { score: 4.8, notes: "The Royal Court's intimate proscenium stage makes the stalls outstanding. Front rows feel extremely close and immersive. Rows C–G are the prime positions. Excellent rake means clear views from all stalls positions.",
         rows: {
@@ -2268,6 +2284,7 @@ export const SIGHTLINE_DATA = {
 
   "hackney empire": {
     overall: 3.9, capacity: 1280,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Beautifully restored Victorian music hall with excellent centre stalls. Good rake and the ornate auditorium creates a wonderful atmosphere. Rows E–J are the prime positions.",
         rows: {
@@ -2338,6 +2355,7 @@ export const SIGHTLINE_DATA = {
 
   "lyric hammersmith": {
     overall: 4.2, capacity: 550,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–J)":  { score: 4.6, notes: "Good mid-size house with excellent centre stalls. Well-proportioned auditorium with a solid rake. Rows D–H are the prime positions.",
         rows: {
