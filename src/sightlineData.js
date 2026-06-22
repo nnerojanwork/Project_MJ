@@ -436,6 +436,20 @@ export const SIGHTLINE_DATA = {
 
   "garrick theatre": {
     overall: 3.9, capacity: 656,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 1", seats: "A1", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Balcony/A/1/" },
+      { label: "Grand Circle — Row A, Seat 3", seats: "A3", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Grand+Circle/A/3/" },
+      { label: "Grand Circle — Row C, Seat 4", seats: "C4", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Grand+Circle/C/4/" },
+      { label: "Grand Circle — Row C, Seat 24", seats: "C24", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Grand+Circle/C/24/" },
+      { label: "Grand Circle — Row D, Seat 21", seats: "D21", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Grand+Circle/D/21/" },
+      { label: "Stalls — Row R, Seat 1", seats: "R1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/R/1/" },
+      { label: "Stalls — Row S, Seat 7", seats: "S7", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/S/7/" },
+      { label: "Stalls — Row V, Seat 17", seats: "V17", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/V/17/" },
+      { label: "Stalls — Row W, Seat 1", seats: "W1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/W/1/" },
+      { label: "Stalls — Row X, Seat 1", seats: "X1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/X/1/" },
+      { label: "Stalls — Row X, Seat 4", seats: "X4", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/X/4/" },
+      { label: "Stalls — Row X, Seat 13", seats: "X13", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Garrick+Theatre/seat/Stalls/X/13/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–K)":  { score: 4.5, notes: "Charming intimate house. Good rake and all centre positions feel close to the action. Rows E–I are ideal for both drama and comedy.",
         rows: {
@@ -498,6 +512,19 @@ export const SIGHTLINE_DATA = {
 
   "gielgud theatre": {
     overall: 4.0, capacity: 889,
+    badSeats: [
+      { label: "Stalls — Row A, Seat 7", seats: "A7", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Stalls/A/7/" },
+      { label: "Stalls — Row B, Seat 21", seats: "B21", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Stalls/B/21/" },
+      { label: "Stalls — Row W, Seat 7", seats: "W7", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Stalls/W/7/" },
+      { label: "Grand Circle — Row AA, Seat 3", seats: "AA3", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/AA/3/" },
+      { label: "Grand Circle — Row AA, Seat 10", seats: "AA10", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/AA/10/" },
+      { label: "Grand Circle — Row E, Seat 6", seats: "E6", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/E/6/" },
+      { label: "Grand Circle — Row F, Seat 2", seats: "F2", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/F/2/" },
+      { label: "Grand Circle — Row F, Seat 13", seats: "F13", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/F/13/" },
+      { label: "Grand Circle — Row J, Seat 1", seats: "J1", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/J/1/" },
+      { label: "Grand Circle — Row J, Seat 9", seats: "J9", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Grand+Circle/J/9/" },
+      { label: "Box G — Seat 12", seats: "G12", section: "Box G", link: "https://aviewfrommyseat.com/venue/Gielgud+Theatre/seat/Box+G/G/12/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–M)":  { score: 4.6, notes: "Excellent mid-size house. Good rake and all centre positions within Rows A–M are within 20 m of the stage. Rows F–K are outstanding.",
         rows: {
@@ -568,6 +595,16 @@ export const SIGHTLINE_DATA = {
 
   "gillian lynne theatre": {
     overall: 3.5, capacity: 2052,
+    badSeats: [
+      { label: "Circle — Row A, Seat 8", seats: "A8", section: "Circle", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Circle/A/8/" },
+      { label: "Circle — Row A, Seat 73", seats: "A73", section: "Circle", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Circle/A/73/" },
+      { label: "Circle — Row B, Seat 63", seats: "B63", section: "Circle", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Circle/B/63/" },
+      { label: "Circle — Row C, Seat 82", seats: "C82", section: "Circle", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Circle/C/82/" },
+      { label: "Stalls — Row I, Seat 62", seats: "I62", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Stalls/I/62/" },
+      { label: "Stalls — Row K, Seats 55–56", seats: "K55-56", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Stalls/K/55/" },
+      { label: "Stalls — Row L, Seat 17", seats: "L17", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Stalls/L/17/" },
+      { label: "Stalls — Row M, Seat 4", seats: "M4", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Gillian+Lynne+Theatre/seat/Stalls/M/4/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–O)":  { score: 4.3, notes: "Rows G–L centre are the prime positions. Front rows A–D require neck strain for shows with aerial elements. The wide stage is fully seen from the centre.",
         rows: {
@@ -638,6 +675,16 @@ export const SIGHTLINE_DATA = {
 
   "harold pinter theatre": {
     overall: 4.1, capacity: 786,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 14", seats: "A14", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Balcony/A/14/" },
+      { label: "Balcony — Row D, Seat 1", seats: "D1", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Balcony/D/1/" },
+      { label: "Royal Circle — Row C, Seat 6", seats: "C6", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Royal+Circle/C/6/" },
+      { label: "Royal Circle — Row E, Seat 24", seats: "E24", section: "Royal Circle", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Royal+Circle/E/24/" },
+      { label: "Dress Circle — Row F, Seat 11", seats: "F11", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Dress+Circle/F/11/" },
+      { label: "Stalls — Row C, Seat 1", seats: "C1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Stalls/C/1/" },
+      { label: "Stalls — Row Q, Seat 5", seats: "Q5", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Stalls/Q/5/" },
+      { label: "Stalls — Row T, Seat 18", seats: "T18", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Harold+Pinter+Theatre/seat/Stalls/T/18/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.7, notes: "One of the finest stalls in the West End. Intimate house, excellent rake, and every centre position feels close to the action. Rows E–I are outstanding.",
         rows: {
@@ -708,6 +755,11 @@ export const SIGHTLINE_DATA = {
 
   "her majesty's theatre": {
     overall: 3.7, capacity: 1216,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 17", seats: "A17", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Her+Majesty's+Theatre/seat/Balcony/A/17/" },
+      { label: "Grand Circle — Row C, Seat 16", seats: "C16", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Her+Majesty's+Theatre/seat/Grand+Circle/C/16/" },
+      { label: "Stalls — Row P, Seat 7", seats: "P7", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Her+Majesty's+Theatre/seat/Stalls/P/7/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–M)":  { score: 4.4, notes: "Well-configured with a good rake. Rows F–K are the classic prime seats. Centre stalls mid-stalls are the ideal position to see the famous chandelier drop in Phantom.",
         rows: {
