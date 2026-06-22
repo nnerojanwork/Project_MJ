@@ -122,21 +122,174 @@ const HAS_PASS = Boolean(PASSWORD);
 // ─── Discount inference ──────────────────────────────────────────────────────
 const WEST_END   = ["lyceum","adelphi","novello","phoenix","gillian lynne","savoy","prince edward","duke of york","cambridge","palace","her majesty","apollo victoria","dominion","shaftesbury","garrick","gielgud","harold pinter","noel coward","vaudeville","wyndham"];
 const SUBSIDISED = ["national theatre","barbican","almeida","royal court","young vic","donmar","menier","soho theatre","bush theatre","hampstead"];
-const HAS_LOTTERY = ["hamilton","hamilton (musical)","hamilton the musical","les misérables","les miserables","the phantom of the opera","phantom of the opera","the lion king","lion king","mamma mia","back to the future","operation mincemeat","hadestown","next to normal"];
+
+// Show-specific discount programs — matched against show title
+const SHOW_DISCOUNTS = {
+  "hamilton": {
+    lottery: "Hamilton runs a daily digital lottery via the Hamilton app and TodayTix — enter from 11am, two days before the show. Winners get front-row seats for £10.",
+    daySeat: "Hamilton releases a small number of day seats at the Victoria Palace box office from 10am. Arrive early — queues form from 8am.",
+  },
+  "les misérables": {
+    lottery: "Les Mis runs a £25 front-row lottery via TodayTix — enter up to 48 hours before the performance.",
+    daySeat: "Day seats available at the Sondheim Theatre box office from 10am, typically £30–40.",
+  },
+  "les miserables": {
+    lottery: "Les Mis runs a £25 front-row lottery via TodayTix — enter up to 48 hours before the performance.",
+    daySeat: "Day seats available at the Sondheim Theatre box office from 10am, typically £30–40.",
+  },
+  "the lion king": {
+    lottery: "The Lion King has a TodayTix Rush — tickets released at 10am on the day of the show from £25.",
+    student: "Lyceum Theatre offers a £25 student standby scheme — ID required at the box office 45 min before curtain.",
+  },
+  "lion king": {
+    lottery: "The Lion King has a TodayTix Rush — tickets released at 10am on the day of the show from £25.",
+  },
+  "mamma mia": {
+    tkts: "Mamma Mia regularly appears on TKTS in Leicester Square — check from 10am for same-day discounts of 20–40%.",
+  },
+  "the phantom of the opera": {
+    daySeat: "Her Majesty's Theatre releases day seats from 10am — typically £30 for front stalls. Box office opens at 10am.",
+    student: "Student standby available 45 min before curtain — often £25–30.",
+  },
+  "phantom of the opera": {
+    daySeat: "Her Majesty's Theatre releases day seats from 10am — typically £30 for front stalls.",
+  },
+  "back to the future": {
+    lottery: "Back to the Future runs a TodayTix lottery — enter from 11am two days before for a chance at £25 tickets.",
+  },
+  "operation mincemeat": {
+    lottery: "Operation Mincemeat offers a £20 lottery via TodayTix — results 48 hours before the show.",
+  },
+  "hadestown": {
+    lottery: "Hadestown runs a digital lottery via TodayTix and the show's own website — enter 48 hours before for £20 tickets.",
+  },
+  "next to normal": {
+    lottery: "Next to Normal offers a £15 lottery via TodayTix — enter from 11am, two days before.",
+  },
+  "wicked": {
+    lottery: "Wicked runs a TodayTix lottery for £30 premium seats — enter up to 48 hours before the show.",
+    tkts: "Wicked regularly appears at TKTS Leicester Square — check same-day for 20–35% off.",
+  },
+  "the mousetrap": {
+    tkts: "The Mousetrap is a frequent TKTS offering — same-day tickets often available at 25–40% off.",
+    student: "Student standby at St Martin's Theatre — £18–22, ID required 45 min before curtain.",
+  },
+  "chicago": {
+    tkts: "Chicago is reliably available at TKTS Leicester Square — same-day tickets from £25.",
+    lottery: "Chicago runs an occasional TodayTix Rush from 10am on the day.",
+  },
+  "frozen": {
+    lottery: "Frozen the Musical runs a TodayTix digital lottery — enter 48 hours before for £25 tickets.",
+    student: "Theatre Royal Drury Lane offers student standby for £20 — ID at the box office 45 min before.",
+  },
+  "the book of mormon": {
+    lottery: "Book of Mormon runs a daily in-person lottery — arrive at the Prince of Wales Theatre 2.5 hours before the show. 18+ only. Tickets £25.",
+    tkts: "Book of Mormon occasionally appears at TKTS — check for same-day availability.",
+  },
+  "dear evan hansen": {
+    lottery: "Dear Evan Hansen runs a TodayTix lottery — enter from 11am two days before for £20 tickets.",
+  },
+  "six": {
+    lottery: "SIX runs a TodayTix lottery for £20 tickets — enter 48 hours before the performance.",
+    student: "Student standby at the Vaudeville Theatre — £20, ID required 45 min before curtain.",
+  },
+};
+
+// Venue-specific discount programs
+const VENUE_DISCOUNTS = {
+  "national theatre": {
+    daySeat: "NT Day Seats: go online at noon the day before or join the queue at the box office from 9:30am — £20 for most shows. Entry Pass (16–25 year olds) gives £5 tickets to select shows.",
+    student: "NT Entry Pass for 16–25s gives access to £5 tickets. Standard student standby: £20, ID at box office 45 min before.",
+  },
+  "barbican": {
+    daySeat: "Barbican Rush tickets go on sale online at noon on the day of the performance — typically £15–25. Very fast-moving; set a reminder.",
+    student: "Barbican Young Barbican membership (under 26) gives £5 tickets to many shows. Standard standby: £15–20.",
+  },
+  "almeida": {
+    daySeat: "Almeida releases a small allocation of day seats at the box office from 10am — typically £10–20. Under-25s get £10 tickets to every show.",
+    student: "Under-25 tickets: £10 for any seat. Standard student standby also available — ask at the box office.",
+  },
+  "royal court": {
+    daySeat: "Royal Court sells £12 tickets for Monday performances (all seats). Day seats otherwise £10 from 10am. Under-26s: £10 to most shows.",
+    student: "Under-26 scheme gives £10 tickets. Monday shows: £12 for all seats regardless of age.",
+  },
+  "young vic": {
+    daySeat: "Young Vic releases day seats from 10am — typically £10–25. Under-25s get £10 tickets to every production.",
+    student: "Under-25 scheme: £10 tickets for any seat. Also check their Two Boroughs community scheme.",
+  },
+  "donmar warehouse": {
+    daySeat: "Donmar Day Seats: released online at 10am on the day — £10. Very limited (around 10 per show), sell out within minutes.",
+    student: "Under-26: £10 tickets via the Donmar Young+ scheme. Apply online before the performance.",
+  },
+  "soho theatre": {
+    daySeat: "Soho Theatre releases day seats from the box office at 10am — often £15. Fringe-friendly pricing throughout.",
+    student: "£12 student tickets available for most shows — ID required. No standby needed; book online.",
+  },
+  "hampstead theatre": {
+    daySeat: "Hampstead releases day seats from 10am — £10 for the main stage. Under-30s get £12 tickets to every show.",
+  },
+  "menier chocolate factory": {
+    daySeat: "Menier releases a small number of day seats at 10am — typically £20–30. Intimate house so these go fast.",
+  },
+  "lyceum theatre": {
+    student: "Lyceum offers a £25 student standby scheme for The Lion King — ID required at the box office 45 min before curtain.",
+  },
+  "victoria palace": {
+    daySeat: "Victoria Palace box office opens at 10am — day seats for Hamilton occasionally released here. Arrive by 8am to queue.",
+  },
+};
 
 function inferDiscounts(venueName, minPrice, eventDate, showTitle) {
   const v = (venueName || "").toLowerCase();
   const t = (showTitle || "").toLowerCase();
   const daysUntil = eventDate ? (new Date(eventDate) - new Date()) / 86400000 : 30;
   const out = [];
-  if (WEST_END.some(x => v.includes(x)))   out.push({ type: "TKTS",        tip: "TKTS booth in Leicester Square sells same-day tickets up to 50% off. Open Mon–Sat 10am–6pm, Sun 11am–4:30pm." });
-  if (SUBSIDISED.some(x => v.includes(x))) out.push({ type: "Day seats",   tip: "Day seats sold at box office from 10am — often £10–25. Check the venue website the morning of." });
-  if (daysUntil < 30 && daysUntil > 0 && minPrice && minPrice < 30) out.push({ type: "Preview", tip: "This show may be in previews — prices typically lower before press night." });
-  out.push({ type: "Student",     tip: "Most London theatres offer student standby. Show valid student ID at the box office 45 min before curtain — often £10–18." });
-  out.push({ type: "Group",       tip: "Groups of 8+ usually get 10–25% off. Call the box office directly for the best deal." });
-  if (daysUntil >= 0 && daysUntil < 3) out.push({ type: "Last-minute", tip: "Check TodayTix, Official London Theatre today's tickets, and the venue's own site for unsold releases." });
-  if (HAS_LOTTERY.some(x => t.includes(x) || v.includes(x)))
-    out.push({ type: "Lottery", tip: "This show runs a ticket lottery — enter via TodayTix or the show's own app for a chance to win front-row or premium seats at heavily discounted prices (often £10–25). Results usually announced 2 days before the performance." });
+
+  // Show-specific overrides first
+  const showKey = Object.keys(SHOW_DISCOUNTS).find(k => t.includes(k));
+  const showDc  = showKey ? SHOW_DISCOUNTS[showKey] : {};
+  const venueKey = Object.keys(VENUE_DISCOUNTS).find(k => v.includes(k));
+  const venueDc  = venueKey ? VENUE_DISCOUNTS[venueKey] : {};
+
+  // Lottery (show-specific beats generic)
+  if (showDc.lottery)
+    out.push({ type: "Lottery", tip: showDc.lottery });
+  else if (Object.keys(SHOW_DISCOUNTS).some(k => t.includes(k) && !showDc.lottery))
+    {} // no generic lottery fallback if we matched but had none
+
+  // Day seats (venue-specific beats generic)
+  if (venueDc.daySeat)
+    out.push({ type: "Day seats", tip: venueDc.daySeat });
+  else if (showDc.daySeat)
+    out.push({ type: "Day seats", tip: showDc.daySeat });
+  else if (SUBSIDISED.some(x => v.includes(x)))
+    out.push({ type: "Day seats", tip: "Day seats sold at the box office from 10am — often £10–25. Check the venue website the morning of." });
+
+  // TKTS (show-specific or generic West End)
+  if (showDc.tkts)
+    out.push({ type: "TKTS", tip: showDc.tkts });
+  else if (WEST_END.some(x => v.includes(x)))
+    out.push({ type: "TKTS", tip: "TKTS booth in Leicester Square sells same-day tickets up to 50% off. Open Mon–Sat 10am–6pm, Sun 11am–4:30pm." });
+
+  // Student
+  if (venueDc.student)
+    out.push({ type: "Student", tip: venueDc.student });
+  else if (showDc.student)
+    out.push({ type: "Student", tip: showDc.student });
+  else
+    out.push({ type: "Student", tip: "Most London theatres offer student standby. Show valid student ID at the box office 45 min before curtain — often £10–18." });
+
+  // Preview
+  if (daysUntil < 30 && daysUntil > 0 && minPrice && minPrice < 30)
+    out.push({ type: "Preview", tip: "This show may be in previews — prices typically lower before press night." });
+
+  // Last-minute
+  if (daysUntil >= 0 && daysUntil < 3)
+    out.push({ type: "Last-minute", tip: "Check TodayTix Rush, Official London Theatre same-day releases, and the venue box office for unsold tickets." });
+
+  // Groups
+  out.push({ type: "Group", tip: "Groups of 8+ usually get 10–25% off. Call the box office directly — don't book online for groups." });
+
   return out.slice(0, 5);
 }
 
