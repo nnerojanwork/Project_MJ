@@ -8,6 +8,21 @@ export const SIGHTLINE_DATA = {
 
   "adelphi theatre": {
     overall: 3.9, capacity: 1500,
+    badSeats: [
+      { label: "Upper Circle — Row B, Seat 15", seats: "B15", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/B/15/" },
+      { label: "Upper Circle — Row C, Seat 24", seats: "C24", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/C/24/" },
+      { label: "Upper Circle — Row D, Seat 36", seats: "D36", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/D/36/" },
+      { label: "Upper Circle — Row E, Seat 23", seats: "E23", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/E/23/" },
+      { label: "Upper Circle — Row H, Seat 11", seats: "H11", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/H/11/" },
+      { label: "Upper Circle — Row H, Seat 19", seats: "H19", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/H/19/" },
+      { label: "Upper Circle — Row J, Seat 3", seats: "J3", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/J/3/" },
+      { label: "Upper Circle — Row K, Seat 5", seats: "K5", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/K/5/" },
+      { label: "Upper Circle — Row N, Seat 9", seats: "N9", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Upper+Circle/N/9/" },
+      { label: "Stalls — Row A, Seat 29", seats: "A29", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Stalls/A/29/" },
+      { label: "Stalls — Row U, Seat 3", seats: "U3", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Stalls/U/3/" },
+      { label: "Stalls — Row X, Seat 32", seats: "X32", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Stalls/X/32/" },
+      { label: "Dress Circle — Row B, Seat 33", seats: "B33", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Adelphi+Theatre/seat/Dress+Circle/B/33/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–M)":  { score: 4.6, notes: "Rows D–J centre are the sweet spot — close enough for facial expressions, far enough for full staging. Good rake keeps all centre rows clear throughout.",
         rows: {
@@ -78,6 +93,23 @@ export const SIGHTLINE_DATA = {
 
   "apollo theatre": {
     overall: 3.8, capacity: 750,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 2", seats: "A2", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Balcony/A/2/" },
+      { label: "Balcony — Row A, Seat 14", seats: "A14", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Balcony/A/14/" },
+      { label: "Balcony — Row A, Seat 16", seats: "A16", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Balcony/A/16/" },
+      { label: "Balcony — Row A, Seat 18", seats: "A18", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Balcony/A/18/" },
+      { label: "Balcony — Row D, Seat 13", seats: "D13", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Balcony/D/13/" },
+      { label: "Balcony — Row E, Seat 27", seats: "E27", section: "Balcony", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Balcony/E/27/" },
+      { label: "Grand Circle — Row A, Seat 20", seats: "A20", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Grand+Circle/A/20/" },
+      { label: "Grand Circle — Row D, Seat 19", seats: "D19", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Grand+Circle/D/19/" },
+      { label: "Grand Circle — Row D, Seat 24", seats: "D24", section: "Grand Circle", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Grand+Circle/D/24/" },
+      { label: "Dress Circle — Row B, Seat 17", seats: "B17", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Dress+Circle/B/17/" },
+      { label: "Dress Circle — Row F, Seat 17", seats: "F17", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Dress+Circle/F/17/" },
+      { label: "Stalls — Row B, Seat 18", seats: "B18", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Stalls/B/18/" },
+      { label: "Stalls — Row BB, Seat 55", seats: "BB55", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Stalls/BB/55/" },
+      { label: "Stalls — Row P, Seat 22", seats: "P22", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Stalls/P/22/" },
+      { label: "Stalls — Row T, Seat 15", seats: "T15", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Apollo+Theatre/seat/Stalls/T/15/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.5, notes: "Intimate house with an excellent rake. Rows D–H centre feel perfectly placed — close and involving. The slight curve keeps all centre seats facing the stage.",
         rows: {
@@ -148,6 +180,7 @@ export const SIGHTLINE_DATA = {
 
   "apollo victoria": {
     overall: 3.4, capacity: 2500,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–P)":  { score: 4.3, notes: "Rows G–M centre are the prime positions. Front rows A–C can strain the neck for aerial staging. The wide stage is fully visible from centre throughout.",
         rows: {
@@ -210,6 +243,10 @@ export const SIGHTLINE_DATA = {
 
   "cambridge theatre": {
     overall: 4.0, capacity: 1200,
+    badSeats: [
+      { label: "Dress Circle — Row F, Seat 24", seats: "F24", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Cambridge+Theatre/seat/Dress+Circle/F/24/" },
+      { label: "Dress Circle — Row F, Seat 26", seats: "F26", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Cambridge+Theatre/seat/Dress+Circle/F/26/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–L)":  { score: 4.6, notes: "One of the better stalls in the West End. The house narrows elegantly and all centre positions have excellent sightlines. Rows E–J are most coveted.",
         rows: {
@@ -272,6 +309,18 @@ export const SIGHTLINE_DATA = {
 
   "dominion theatre": {
     overall: 3.2, capacity: 2000,
+    badSeats: [
+      { label: "Stalls — Row A, Seat 28", seats: "A28", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/A/28/" },
+      { label: "Stalls — Row F, Seat 5", seats: "F5", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/F/5/" },
+      { label: "Stalls — Row T, Seat 4", seats: "T4", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/T/4/" },
+      { label: "Stalls — Row U, Seat 27", seats: "U27", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/U/27/" },
+      { label: "Stalls — Row VV, Seat 44", seats: "VV44", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/VV/44/" },
+      { label: "Stalls — Row X, Seat 45", seats: "X45", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/X/45/" },
+      { label: "Stalls — Row XX, Seat 32", seats: "XX32", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/XX/32/" },
+      { label: "Stalls — Row YY, Seat 4", seats: "YY4", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Stalls/YY/4/" },
+      { label: "Dress Circle — Row J, Seat 7", seats: "J7", section: "Dress Circle", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Dress+Circle/J/7/" },
+      { label: "Circle — Row C, Seat 3", seats: "C3", section: "Circle", link: "https://aviewfrommyseat.com/venue/Dominion+Theatre/seat/Circle/C/3/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–N)":  { score: 4.0, notes: "Good rake for rows D–L. Front rows involve a craned neck for large-scale staging. Wide staging is well seen from the centre throughout.",
         rows: {
@@ -326,6 +375,13 @@ export const SIGHTLINE_DATA = {
 
   "duke of york's theatre": {
     overall: 3.9, capacity: 650,
+    badSeats: [
+      { label: "Upper Circle — Row B, Seat 2", seats: "B2", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Duke+of+York's+Theatre/seat/Upper+Circle/B/2/" },
+      { label: "Upper Circle — Row B, Seat 20", seats: "B20", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Duke+of+York's+Theatre/seat/Upper+Circle/B/20/" },
+      { label: "Upper Circle — Row C, Seat 2", seats: "C2", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Duke+of+York's+Theatre/seat/Upper+Circle/C/2/" },
+      { label: "Upper Circle — Row C, Seat 23", seats: "C23", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/Duke+of+York's+Theatre/seat/Upper+Circle/C/23/" },
+      { label: "Stalls — Row D, Seat 1", seats: "D1", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Duke+of+York's+Theatre/seat/Stalls/D/1/" },
+    ],
     sections: {
       "Stalls Centre":             { score: 4.5, notes: "Intimate Victorian house with a good rake. Rows D–H are the sweet spot — close and engaged with the stage.",
         rows: {
