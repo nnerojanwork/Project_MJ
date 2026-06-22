@@ -454,6 +454,17 @@ function SightlineSection({ venue, seatType }) {
               <p style={{ margin: "4px 0 0", fontSize: 13, color: W2, lineHeight: 1.5 }}>{sec.notes}</p>
             </div>
           ))}
+          {data.badSeats?.length > 0 && (
+            <div style={{ padding: "8px 10px", background: "rgba(158,43,58,0.08)", borderRadius: 8, borderLeft: "3px solid #9E2B3A" }}>
+              <p style={{ margin: "0 0 6px", fontSize: 12, fontWeight: 700, color: "#9E2B3A" }}>⚠ Seats to avoid (≤2★ on aviewfrommyseat)</p>
+              {data.badSeats.map((s, i) => (
+                <div key={i} style={{ marginBottom: 4 }}>
+                  <span style={{ fontSize: 12, color: W }}>{s.label} — </span>
+                  <a href={s.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#F0C060" }}>view photo ↗</a>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
