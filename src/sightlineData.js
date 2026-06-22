@@ -2404,6 +2404,16 @@ export const SIGHTLINE_DATA = {
 
   "royal opera house": {
     overall: 4.0, capacity: 2256,
+    badSeats: [
+      { label: "Amphitheatre — Row AA, Seat 11", seats: "AA11", section: "Amphitheatre", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Amphitheatre/AA/11/" },
+      { label: "Amphitheatre — Row N, Seat 37", seats: "N37", section: "Amphitheatre", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Amphitheatre/N/37/" },
+      { label: "Amphitheatre — Row U, Seat 65", seats: "U65", section: "Amphitheatre", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Amphitheatre/U/65/" },
+      { label: "Amphitheatre Upper Slips — Row CC, Seat 11", seats: "CC11", section: "Amphitheatre Upper Slips", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Amphitheatre+Upper+Slips/CC/11/" },
+      { label: "Donald Gordon Grand Tier — Row A, Seat 37", seats: "A37", section: "Donald Gordon Grand Tier", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Donald+Gordon+Grand+Tier/A/37/" },
+      { label: "Stalls — Row C, Seat 6", seats: "C6", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Stalls/C/6/" },
+      { label: "Upper Slips — Row CC, Seat 25", seats: "CC25", section: "Upper Slips", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Upper+Slips/CC/25/" },
+      { label: "Upper Side Slips — Row AA, Seat 33", seats: "AA33", section: "Upper Side Slips", link: "https://aviewfrommyseat.com/venue/Royal+Opera+House/seat/Upper+Side+Slips/AA/33/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–P)":  { score: 4.5, notes: "Well-raked with perfect sightlines from the centre. Rows F–N are the classic prime seats. Front rows A–D are close but the orchestra pit means singers are elevated — can cause neck strain.",
         rows: {
@@ -2490,6 +2500,20 @@ export const SIGHTLINE_DATA = {
 
   "london coliseum": {
     overall: 3.9, capacity: 2350,
+    badSeats: [
+      { label: "Balcony — Row A, Seat 28", seats: "A28", section: "Balcony", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Balcony/A/28/" },
+      { label: "Balcony — Row B, Seat 33", seats: "B33", section: "Balcony", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Balcony/B/33/" },
+      { label: "Balcony — Row C, Seat 42", seats: "C42", section: "Balcony", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Balcony/C/42/" },
+      { label: "Balcony — Row E, Seat 33", seats: "E33", section: "Balcony", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Balcony/E/33/" },
+      { label: "Balcony — Row H, Seat 19", seats: "H19", section: "Balcony", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Balcony/H/19/" },
+      { label: "Balcony — Row H, Seat 46", seats: "H46", section: "Balcony", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Balcony/H/46/" },
+      { label: "Upper Circle — Row B, Seat 11", seats: "B11", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Upper+Circle/B/11/" },
+      { label: "Upper Circle — Row G, Seat 8", seats: "G8", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Upper+Circle/G/8/" },
+      { label: "Upper Circle — Row J, Seat 17", seats: "J17", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Upper+Circle/J/17/" },
+      { label: "Upper Circle — Row J, Seat 39", seats: "J39", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Upper+Circle/J/39/" },
+      { label: "Upper Circle — Row K, Seat 47", seats: "K47", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Upper+Circle/K/47/" },
+      { label: "Upper Circle — Row L, Seat 14", seats: "L14", section: "Upper Circle", link: "https://aviewfrommyseat.com/venue/London+Coliseum/seat/Upper+Circle/L/14/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–P)":  { score: 4.4, notes: "One of London's largest theatres. Well-configured centre stalls with a good rake. Rows G–M are the classic prime positions. Front rows A–D have a close view of the orchestra pit.",
         rows: {
@@ -2570,6 +2594,7 @@ export const SIGHTLINE_DATA = {
 
   "sadler's wells": {
     overall: 4.1, capacity: 1571,
+    badSeats: [],
     sections: {
       "Stalls Centre (Rows A–M)":  { score: 4.6, notes: "Purpose-built dance theatre with excellent centre stalls. Dance-optimised sightlines ensure the stage floor is clearly visible from centre — essential for seeing footwork and floor-based choreography. Rows E–J are the prime positions.",
         rows: {
@@ -2632,6 +2657,9 @@ export const SIGHTLINE_DATA = {
 
   "peacock theatre": {
     overall: 3.9, capacity: 1000,
+    badSeats: [
+      { label: "Stalls — Row A, Seat 9", seats: "A9", section: "Stalls", link: "https://aviewfrommyseat.com/venue/Peacock+Theatre/seat/Stalls/A/9/" },
+    ],
     sections: {
       "Stalls Centre (Rows A–K)":  { score: 4.5, notes: "Good mid-size house with excellent centre stalls. Well-raked with clear sightlines. Rows D–I are the prime positions.",
         rows: {
