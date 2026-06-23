@@ -792,9 +792,13 @@ export default function App() {
             ))}
           </svg>
           {/* Dancing witch */}
-          <div style={{ fontSize: isMobile ? 80 : 110, lineHeight: 1, marginTop: 8, animation: "witchDance 1.4s ease-in-out infinite" }}>
-            🧙‍♀️
-          </div>
+          <a href="https://www.wikihow.com/Be-a-Witch" target="_blank" rel="noopener noreferrer" style={{ display: "block", marginTop: 8 }}>
+            <img
+              src="/witches.png"
+              alt="Dancing witch"
+              style={{ height: isMobile ? 80 : 110, width: "auto", display: "block", animation: "witchDance 1.4s ease-in-out infinite" }}
+            />
+          </a>
         </div>
 
         {/* Password form */}
