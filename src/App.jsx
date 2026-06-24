@@ -460,7 +460,7 @@ function SightlineSection({ venue, seatType }) {
               {data.badSeats.map((s, i) => (
                 <div key={i} style={{ marginBottom: 4 }}>
                   <span style={{ fontSize: 12, color: W }}>{s.label} — </span>
-                  <a href={s.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#F0C060" }}>view photo ↗</a>
+                  <a href={s.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#6B1620", fontWeight: 700, textDecoration: "underline" }}>view photo ↗</a>
                 </div>
               ))}
             </div>
