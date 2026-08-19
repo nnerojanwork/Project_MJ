@@ -1,0 +1,162 @@
+{
+  "_methodology": {
+    "currency": "EUR",
+    "pricePerPerson": "sourced: true = found a specific current price/range. sourced: false = estimated from comparable tours, verify before finalizing.",
+    "images": "No image files hosted here - use the wikipediaTitle field with the Wikipedia REST API pattern from the Turkey build (https://en.wikipedia.org/api/rest_v1/page/summary/{title}) for runtime image fetching.",
+    "structuralNote": "Unlike Turkey, Madeira is a single base (Funchal) with day trips radiating out - there is no destination-hopping/flight-between-stops. Activities are grouped by 'zone' (Funchal City, Monte, West Coast, Central Mountains, Sea) rather than by separate destinations.",
+    "lastUpdated": "2026-08-18"
+  },
+  "zones": {
+    "funchal-city": {
+      "name": "Funchal Old Town",
+      "activities": [
+        {
+          "id": "funchal-old-town-walk",
+          "name": "Zona Velha (Old Town) self-guided walk",
+          "description": "Painted door project, Mercado dos Lavradores market, cathedral, harbourfront - Funchal's compact historic core, all walkable.",
+          "pricePerPerson": 0,
+          "durationHours": 3,
+          "category": "self-guided",
+          "defaultSelected": true,
+          "sourced": true,
+          "bookingUrl": null,
+          "wikipediaTitle": "Funchal"
+        }
+      ]
+    },
+    "monte": {
+      "name": "Monte & Gardens",
+      "activities": [
+        {
+          "id": "monte-cable-car-toboggan-garden",
+          "name": "Cable car + Monte toboggan + Botanical Garden (guided combo)",
+          "description": "Scenic cable car up from Funchal seafront to Monte, a walk through Monte Palace Tropical Garden, then the famous wicker toboggan ride back down the hill steered by two 'carreiros' in straw hats - Madeira's signature activity.",
+          "pricePerPerson": 75,
+          "durationHours": 4.5,
+          "category": "guided",
+          "defaultSelected": true,
+          "sourced": true,
+          "bookingUrl": "https://www.viator.com/tours/Funchal/Cable-Car-and-Monte-Toboggan-Ride-with-Visit-to-Botanical-Garden-of-Madeira/d22388-68555P22",
+          "wikipediaTitle": "Monte, Madeira"
+        },
+        {
+          "id": "monte-diy-cable-toboggan",
+          "name": "DIY: cable car + toboggan only (no guide)",
+          "description": "Same core experience without a guide or gardens - cable car return plus toboggan run, booked separately and self-timed.",
+          "pricePerPerson": 44,
+          "priceRange": "cable car return ~€22 + toboggan ~€22",
+          "durationHours": 2.5,
+          "category": "self-guided",
+          "defaultSelected": false,
+          "sourced": true,
+          "bookingUrl": "https://www.zigzagonearth.com/best-cable-car-madeira-teleferico/",
+          "wikipediaTitle": "Monte, Madeira"
+        }
+      ]
+    },
+    "west-coast": {
+      "name": "West Coast",
+      "activities": [
+        {
+          "id": "west-coast-full-day-tour",
+          "name": "West coast guided day tour (Câmara de Lobos, Cabo Girão, Ribeira Brava, Porto Moniz)",
+          "description": "Full loop of the south/west coast highlights in one day - fishing village, Europe's highest sea-cliff skywalk, and the volcanic natural swimming pools at Porto Moniz.",
+          "pricePerPerson": 41,
+          "durationHours": 8,
+          "category": "guided",
+          "defaultSelected": true,
+          "sourced": true,
+          "bookingUrl": "https://redwhiteadventures.com/cabo-girao-skywalk-madeira/",
+          "wikipediaTitle": "Cabo Girão"
+        },
+        {
+          "id": "cabo-girao-skywalk-only",
+          "name": "Cabo Girão Skywalk (self-drive/bus)",
+          "description": "Glass-floored viewing platform 580m above the Atlantic - free most of the year, with an occasional nominal fee in peak season. Reachable by bus 7/142 from Funchal (~30min) or as part of a west coast tour.",
+          "pricePerPerson": 1,
+          "priceRange": "free-€0.50 (peak season only)",
+          "durationHours": 1,
+          "category": "self-guided",
+          "defaultSelected": false,
+          "sourced": true,
+          "bookingUrl": null,
+          "wikipediaTitle": "Cabo Girão"
+        },
+        {
+          "id": "porto-moniz-pools",
+          "name": "Porto Moniz natural volcanic pools",
+          "description": "Seawater pools formed in cooled lava rock, on the island's northwest tip - a swim rather than a sightseeing stop.",
+          "pricePerPerson": 5,
+          "durationHours": 2,
+          "category": "self-guided",
+          "defaultSelected": false,
+          "sourced": false,
+          "sourceNote": "Estimated municipal pool entrance fee - not directly confirmed.",
+          "bookingUrl": null,
+          "wikipediaTitle": "Porto Moniz"
+        }
+      ]
+    },
+    "central-mountains": {
+      "name": "Levadas & Peaks",
+      "activities": [
+        {
+          "id": "levada-guided-walk",
+          "name": "Guided levada walk (25 Fontes or similar)",
+          "description": "Walk alongside one of Madeira's centuries-old irrigation channels through laurel forest to a waterfall - the island's defining hiking experience, easier grade suitable for most fitness levels.",
+          "pricePerPerson": 40,
+          "durationHours": 5,
+          "category": "guided",
+          "defaultSelected": true,
+          "sourced": false,
+          "sourceNote": "Estimated from comparable small-group guided walk pricing - no single confirmed operator/price found.",
+          "bookingUrl": "https://www.getyourguide.com/s/?q=25+fontes+levada+walk",
+          "wikipediaTitle": "Levada"
+        },
+        {
+          "id": "pico-arieiro-ruivo-hike",
+          "name": "Pico do Arieiro to Pico Ruivo ridge hike",
+          "description": "Madeira's headline trail - steep stone paths and tunnels along a dramatic mountain ridge, often done at sunrise. More demanding than the levada walks; transfers usually included.",
+          "pricePerPerson": 50,
+          "durationHours": 8,
+          "category": "guided",
+          "defaultSelected": false,
+          "sourced": false,
+          "sourceNote": "Estimated from comparable full-day guided hike/transfer pricing - not directly confirmed.",
+          "bookingUrl": "https://www.getyourguide.com/funchal-cable-car-l167980/",
+          "wikipediaTitle": "Pico Ruivo"
+        }
+      ]
+    },
+    "sea": {
+      "name": "On the Water",
+      "activities": [
+        {
+          "id": "whale-dolphin-watching",
+          "name": "Whale & dolphin watching catamaran",
+          "description": "Half-day catamaran trip along the south coast - Madeira's waters host around 28 cetacean species including sperm whales and several dolphin species. Most operators offer a free repeat trip if nothing is spotted.",
+          "pricePerPerson": 40,
+          "durationHours": 3.5,
+          "category": "guided",
+          "defaultSelected": true,
+          "sourced": true,
+          "bookingUrl": "https://magic-dolphin.com/eco-catamaran-tours/",
+          "wikipediaTitle": "Cetacea"
+        },
+        {
+          "id": "madeira-wine-tasting",
+          "name": "Madeira wine tasting (Blandy's Wine Lodge or similar)",
+          "description": "Tasting and short tour of a historic Funchal wine lodge - Madeira's fortified wine has been made on the island since the 15th century.",
+          "pricePerPerson": 18,
+          "durationHours": 1.5,
+          "category": "self-guided",
+          "defaultSelected": false,
+          "sourced": false,
+          "sourceNote": "Estimated from typical fortified-wine-lodge tasting pricing - not directly confirmed for a specific Funchal lodge.",
+          "bookingUrl": "https://www.getyourguide.com/s/?q=madeira+wine+lodge+tasting+funchal",
+          "wikipediaTitle": "Madeira wine"
+        }
+      ]
+    }
+  }
+}

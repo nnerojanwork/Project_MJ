@@ -1,0 +1,40 @@
+{
+  "_methodology": {
+    "currency": "EUR",
+    "sourced": false,
+    "sourceNote": "Estimated seasonal pattern based on typical London-Funchal (easyJet/TAP/Ryanair) return fares and Madeira villa/group-Airbnb nightly rates for a group of 8. Not pulled from a live fare or listing search - verify against Skyscanner/Airbnb before finalizing a booking.",
+    "flightFromLondon": "Return flight price per person, London to Funchal (FNC), for the given month.",
+    "airbnbPerNightGroupOf8": "Total nightly rate for an 8-person villa/large apartment in the Funchal area, for the given month.",
+    "lastUpdated": "2026-08-18"
+  },
+  "madeira": {
+    "flightFromLondon": {
+      "jan": 130,
+      "feb": 125,
+      "mar": 140,
+      "apr": 160,
+      "may": 165,
+      "jun": 190,
+      "jul": 235,
+      "aug": 245,
+      "sep": 195,
+      "oct": 155,
+      "nov": 120,
+      "dec": 210
+    },
+    "airbnbPerNightGroupOf8": {
+      "jan": 260,
+      "feb": 260,
+      "mar": 280,
+      "apr": 300,
+      "may": 310,
+      "jun": 340,
+      "jul": 400,
+      "aug": 420,
+      "sep": 370,
+      "oct": 320,
+      "nov": 270,
+      "dec": 350
+    }
+  }
+}
