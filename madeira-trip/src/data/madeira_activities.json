@@ -3,8 +3,8 @@
     "currency": "EUR",
     "pricePerPerson": "sourced: true = found a specific current price/range. sourced: false = estimated from comparable tours, verify before finalizing.",
     "images": "No image files hosted here - use the wikipediaTitle field with the Wikipedia REST API pattern from the Turkey build (https://en.wikipedia.org/api/rest_v1/page/summary/{title}) for runtime image fetching. Every wikipediaTitle below was verified to return a working thumbnail as of lastUpdated.",
-    "structuralNote": "Unlike Turkey, Madeira is a single base (Funchal) with day trips radiating out - there is no destination-hopping/flight-between-stops. Activities are grouped by 'zone' (Funchal City, Monte, West Coast, Levadas & Peaks, On the Water, Madeiran Cuisine, Beaches) rather than by separate destinations.",
-    "lastUpdated": "2026-08-19"
+    "structuralNote": "Unlike Turkey, Madeira is a single base (Funchal) with day trips radiating out - there is no destination-hopping/flight-between-stops. Activities are grouped by 'zone' (Funchal City, Monte, West Coast, Central Mountains, Sea) rather than by separate destinations.",
+    "lastUpdated": "2026-08-18"
   },
   "zones": {
     "funchal-city": {
@@ -155,80 +155,6 @@
           "sourceNote": "Estimated from typical fortified-wine-lodge tasting pricing - not directly confirmed for a specific Funchal lodge.",
           "bookingUrl": "https://www.getyourguide.com/s/?q=madeira+wine+lodge+tasting+funchal",
           "wikipediaTitle": "Madeira wine"
-        }
-      ]
-    },
-    "food": {
-      "name": "Madeiran Cuisine",
-      "activities": [
-        {
-          "id": "madeira-food-poncha-walking-tour",
-          "name": "Guided food & poncha tasting walking tour",
-          "description": "Small-group walk through Funchal's food scene - market stalls, a poncha bar for Madeira's punchy rum-and-honey cocktail, and stops for local snacks along the way.",
-          "pricePerPerson": 65,
-          "durationHours": 3,
-          "category": "guided",
-          "defaultSelected": false,
-          "sourced": false,
-          "sourceNote": "Estimated from comparable small-group food/tasting tour pricing in Funchal - no single confirmed operator/price found.",
-          "bookingUrl": "https://www.getyourguide.com/s/?q=funchal+food+tour+poncha",
-          "wikipediaTitle": "Poncha"
-        },
-        {
-          "id": "espetada-bolo-do-caco-dinner",
-          "name": "Espetada & bolo do caco dinner",
-          "description": "Madeira's signature meal - garlic beef skewers (espetada), traditionally hung from a tabletop hook, served with bolo do caco garlic bread. Pick any adega-style grill house in Funchal; no booking needed for most.",
-          "pricePerPerson": 22,
-          "durationHours": 1.5,
-          "category": "self-guided",
-          "defaultSelected": true,
-          "sourced": false,
-          "sourceNote": "Estimated typical restaurant price for espetada + bolo do caco at a mid-range Funchal grill house - not tied to one specific venue.",
-          "bookingUrl": null,
-          "wikipediaTitle": "Espetada"
-        },
-        {
-          "id": "black-scabbardfish-tasting",
-          "name": "Black scabbardfish with banana tasting",
-          "description": "Peixe-espada com banana - Madeira's other signature dish: the deep-sea black scabbardfish, pan-fried and served with fried banana. Widely available at Funchal restaurants, especially near the Old Town.",
-          "pricePerPerson": 16,
-          "durationHours": 1,
-          "category": "self-guided",
-          "defaultSelected": false,
-          "sourced": false,
-          "sourceNote": "Estimated typical restaurant price for a scabbardfish main course in Funchal - not tied to one specific venue.",
-          "bookingUrl": null,
-          "wikipediaTitle": "Black scabbardfish"
-        }
-      ]
-    },
-    "beaches": {
-      "name": "Beaches",
-      "activities": [
-        {
-          "id": "porto-santo-beach-day-trip",
-          "name": "Porto Santo golden beach day trip (ferry)",
-          "description": "Madeira's volcanic coastline is mostly pebble and cliff - for the classic golden sand beach, take the ~2h15 ferry to Porto Santo, the 'Ilha Dourada' (Golden Island), for a full day on its 9km stretch of sand.",
-          "pricePerPerson": 65,
-          "durationHours": 9,
-          "category": "self-guided",
-          "defaultSelected": false,
-          "sourced": false,
-          "sourceNote": "Porto Santo Line's published fares (~€47 return) are resident-discounted; this figure estimates the standard non-resident return fare - verify current pricing at portosantoline.pt before booking.",
-          "bookingUrl": "https://www.portosantoline.pt/en/",
-          "wikipediaTitle": "Vila Baleira"
-        },
-        {
-          "id": "praia-formosa-beach",
-          "name": "Praia Formosa (Funchal's main beach)",
-          "description": "Funchal's own beach, a short bus or taxi ride west of the centre - dark volcanic sand and pebble rather than golden, but free, easy, and popular with locals for an afternoon swim.",
-          "pricePerPerson": 0,
-          "durationHours": 3,
-          "category": "self-guided",
-          "defaultSelected": true,
-          "sourced": true,
-          "bookingUrl": null,
-          "wikipediaTitle": "Praia Formosa"
         }
       ]
     }
