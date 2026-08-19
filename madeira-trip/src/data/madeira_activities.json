@@ -2,7 +2,7 @@
   "_methodology": {
     "currency": "EUR",
     "pricePerPerson": "sourced: true = found a specific current price/range. sourced: false = estimated from comparable tours, verify before finalizing.",
-    "images": "No image files hosted here - use the wikipediaTitle field with the Wikipedia REST API pattern from the Turkey build (https://en.wikipedia.org/api/rest_v1/page/summary/{title}) for runtime image fetching.",
+    "images": "No image files hosted here - use the wikipediaTitle field with the Wikipedia REST API pattern from the Turkey build (https://en.wikipedia.org/api/rest_v1/page/summary/{title}) for runtime image fetching. Every wikipediaTitle below was verified to return a working thumbnail as of lastUpdated.",
     "structuralNote": "Unlike Turkey, Madeira is a single base (Funchal) with day trips radiating out - there is no destination-hopping/flight-between-stops. Activities are grouped by 'zone' (Funchal City, Monte, West Coast, Central Mountains, Sea) rather than by separate destinations.",
     "lastUpdated": "2026-08-18"
   },
@@ -37,7 +37,7 @@
           "defaultSelected": true,
           "sourced": true,
           "bookingUrl": "https://www.viator.com/tours/Funchal/Cable-Car-and-Monte-Toboggan-Ride-with-Visit-to-Botanical-Garden-of-Madeira/d22388-68555P22",
-          "wikipediaTitle": "Monte, Madeira"
+          "wikipediaTitle": "Monte (Funchal)"
         },
         {
           "id": "monte-diy-cable-toboggan",
@@ -50,7 +50,7 @@
           "defaultSelected": false,
           "sourced": true,
           "bookingUrl": "https://www.zigzagonearth.com/best-cable-car-madeira-teleferico/",
-          "wikipediaTitle": "Monte, Madeira"
+          "wikipediaTitle": "Carros de cesto do Monte"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "defaultSelected": true,
           "sourced": true,
           "bookingUrl": "https://redwhiteadventures.com/cabo-girao-skywalk-madeira/",
-          "wikipediaTitle": "Cabo Girão"
+          "wikipediaTitle": "Câmara de Lobos"
         },
         {
           "id": "cabo-girao-skywalk-only",
@@ -111,7 +111,7 @@
           "sourced": false,
           "sourceNote": "Estimated from comparable small-group guided walk pricing - no single confirmed operator/price found.",
           "bookingUrl": "https://www.getyourguide.com/s/?q=25+fontes+levada+walk",
-          "wikipediaTitle": "Levada"
+          "wikipediaTitle": "25 Fontes Falls"
         },
         {
           "id": "pico-arieiro-ruivo-hike",

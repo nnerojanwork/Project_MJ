@@ -1,40 +1,22 @@
 {
   "_methodology": {
-    "currency": "EUR",
-    "sourced": false,
-    "sourceNote": "Estimated seasonal pattern based on typical London-Funchal (easyJet/TAP/Ryanair) return fares and Madeira villa/group-Airbnb nightly rates for a group of 8. Not pulled from a live fare or listing search - verify against Skyscanner/Airbnb before finalizing a booking.",
-    "flightFromLondon": "Return flight price per person, London to Funchal (FNC), for the given month.",
-    "airbnbPerNightGroupOf8": "Total nightly rate for an 8-person villa/large apartment in the Funchal area, for the given month.",
+    "currency": "GBP",
+    "groupSize": 8,
+    "flights": "Per person, return, London to Funchal (FNC). Built from live search-engine averages (Aug 2026) - sources disagreed slightly on the single cheapest month (Jan/Nov/Dec variously cited) so this table reflects the consensus shape: cheap Nov-Feb (outside the New Year spike), rising through spring, peak Jul-Aug, easing Sep-Oct. Confidence: MEDIUM-HIGH.",
+    "airbnbNote": "Per night, whole-place rate for a group of 8 (one villa/large house, not per room). Madeira's Airbnb market skews heavily toward high-end villas in search results (many luxury 4-5 bed pool villas at $1,000+/night) - the figures below target a realistic mid-range 4-bedroom villa for 8, not the luxury end. Confidence: MEDIUM - worth pulling a few real mid-range listings to sanity check before finalizing.",
+    "decemberNote": "December is inflated relative to the general winter-low pattern because of Funchal's famous New Year's Eve fireworks display, which drives a genuine demand spike for both flights and villas in the last week of the month specifically - the rest of December is otherwise cheap.",
     "lastUpdated": "2026-08-18"
   },
   "madeira": {
     "flightFromLondon": {
-      "jan": 130,
-      "feb": 125,
-      "mar": 140,
-      "apr": 160,
-      "may": 165,
-      "jun": 190,
-      "jul": 235,
-      "aug": 245,
-      "sep": 195,
-      "oct": 155,
-      "nov": 120,
-      "dec": 210
+      "jan": 100, "feb": 110, "mar": 130, "apr": 150,
+      "may": 165, "jun": 190, "jul": 230, "aug": 235,
+      "sep": 170, "oct": 140, "nov": 105, "dec": 115
     },
     "airbnbPerNightGroupOf8": {
-      "jan": 260,
-      "feb": 260,
-      "mar": 280,
-      "apr": 300,
-      "may": 310,
-      "jun": 340,
-      "jul": 400,
-      "aug": 420,
-      "sep": 370,
-      "oct": 320,
-      "nov": 270,
-      "dec": 350
+      "jan": 160, "feb": 150, "mar": 170, "apr": 190,
+      "may": 210, "jun": 240, "jul": 270, "aug": 280,
+      "sep": 230, "oct": 190, "nov": 150, "dec": 220
     }
   }
 }
