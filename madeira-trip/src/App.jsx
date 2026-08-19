@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import activitiesData from './data/madeira_activities.json'
 import seasonalData from './data/madeira_seasonal_costs.json'
+import foodData from './data/madeira_food.json'
+import beachesData from './data/madeira_beaches.json'
 
 const MONTHS = [
   { key: 'jan', label: 'January' },
@@ -163,6 +165,31 @@ function ActivityCard({ activity, selected, onToggle, imageCache }) {
   )
 }
 
+function InfoCard({ item, imageCache }) {
+  return (
+    <div className="flex flex-col overflow-hidden rounded-xl border border-volcanic-100 bg-white dark:border-volcanic-700 dark:bg-volcanic-800">
+      <ActivityImage
+        wikipediaTitle={item.wikipediaTitle}
+        name={item.name}
+        imageCache={imageCache}
+      />
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="text-sm font-semibold leading-snug text-volcanic-900 dark:text-volcanic-50">
+            {item.name}
+          </h3>
+        </div>
+        <span className="w-fit rounded-full bg-portugal-green-100 px-2 py-0.5 text-xs font-medium text-portugal-green-800 dark:bg-portugal-green-800/30 dark:text-portugal-green-100">
+          {item.tag}
+        </span>
+        <p className="flex-1 text-sm text-volcanic-700/90 dark:text-volcanic-100/80">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   const [month, setMonth] = useState('jul')
   const [tripLength, setTripLength] = useState(6)
@@ -305,10 +332,42 @@ export default function App() {
           </section>
         ))}
 
-        <p className="mb-4 text-xs text-volcanic-700/50 dark:text-volcanic-100/40">
+        <p className="mb-10 text-xs text-volcanic-700/50 dark:text-volcanic-100/40">
           Activity prices are sourced in EUR and converted to GBP at an
           approximate rate of €1 = £{EUR_TO_GBP.toFixed(2)} for this summary.
         </p>
+
+        <section className="mb-10">
+          <h2 className="mb-1 text-xl font-bold text-volcanic-900 dark:text-volcanic-50">
+            Food to Try
+          </h2>
+          <p className="mb-4 text-sm text-volcanic-700/60 dark:text-volcanic-100/50">
+            A reference guide, not a bookable extra — these are widely
+            available across Funchal rather than tied to one place, so they
+            don't add to the cost total below.
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {foodData.items.map((item) => (
+              <InfoCard key={item.id} item={item} imageCache={imageCache} />
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="mb-1 text-xl font-bold text-volcanic-900 dark:text-volcanic-50">
+            Best Beaches
+          </h2>
+          <p className="mb-4 text-sm text-volcanic-700/60 dark:text-volcanic-100/50">
+            Madeira's coastline is mostly volcanic cliff and pebble, so
+            here's the honest shortlist. Reference only — not part of the
+            cost total below.
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {beachesData.items.map((item) => (
+              <InfoCard key={item.id} item={item} imageCache={imageCache} />
+            ))}
+          </div>
+        </section>
       </main>
 
       <div className="sticky bottom-0 border-t border-volcanic-900 bg-volcanic-950/95 text-volcanic-50 backdrop-blur">

@@ -1,0 +1,29 @@
+{
+  "_methodology": {
+    "note": "Reference guide, not a bookable activity - Madeira's coastline is mostly volcanic pebble and cliff, so 'best beaches' genuinely means a short list rather than a long one. Every wikipediaTitle was verified to return a working thumbnail.",
+    "lastUpdated": "2026-08-19"
+  },
+  "items": [
+    {
+      "id": "praia-formosa",
+      "name": "Praia Formosa",
+      "tag": "Volcanic sand & pebble - free",
+      "description": "Funchal's own beach, a short bus or taxi ride west of the centre. Dark volcanic sand and pebble rather than golden, but free, easy to reach, and popular with locals for an afternoon swim.",
+      "wikipediaTitle": "Praia Formosa"
+    },
+    {
+      "id": "calheta-beach",
+      "name": "Calheta",
+      "tag": "Imported golden sand - ~45min drive",
+      "description": "A small artificial beach on the south-west coast with sand shipped in from Morocco - the closest thing to a classic golden-sand beach without leaving the main island.",
+      "wikipediaTitle": "Calheta, Madeira"
+    },
+    {
+      "id": "porto-santo-beach",
+      "name": "Porto Santo",
+      "tag": "Golden sand island - ferry required",
+      "description": "The real deal - a 9km stretch of fine golden sand on Madeira's sister island, the 'Ilha Dourada'. Reachable by a ~2h15 ferry from Funchal, so it's a full-day trip rather than an afternoon out.",
+      "wikipediaTitle": "Vila Baleira"
+    }
+  ]
+}

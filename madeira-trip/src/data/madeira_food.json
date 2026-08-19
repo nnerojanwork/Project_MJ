@@ -1,0 +1,50 @@
+{
+  "_methodology": {
+    "note": "Reference guide, not a bookable activity - these dishes/drinks are widely available across Funchal restaurants and bars rather than tied to one venue, so there's no single price or booking link to attach. Every wikipediaTitle was verified to return a working thumbnail.",
+    "lastUpdated": "2026-08-19"
+  },
+  "items": [
+    {
+      "id": "espetada",
+      "name": "Espetada",
+      "tag": "Main",
+      "description": "Madeira's signature dish - chunks of beef marinated in garlic and bay leaf, skewered on a laurel branch and grilled, traditionally served hanging from a hook over the table. Found at almost every adega-style grill house in Funchal.",
+      "wikipediaTitle": "Espetada"
+    },
+    {
+      "id": "bolo-do-caco",
+      "name": "Bolo do caco",
+      "tag": "Bread",
+      "description": "Round, flat sweet-potato bread cooked on a hot stone (caco) and split open with garlic butter - the bread basket staple at every Madeiran table, and the classic side for espetada.",
+      "wikipediaTitle": "Bolo do caco"
+    },
+    {
+      "id": "black-scabbardfish",
+      "name": "Black scabbardfish with banana",
+      "tag": "Main",
+      "description": "Peixe-espada com banana - Madeira's other signature dish. The eel-like black scabbardfish is caught in deep water off the island and pan-fried, classically paired with fried banana.",
+      "wikipediaTitle": "Black scabbardfish"
+    },
+    {
+      "id": "poncha",
+      "name": "Poncha",
+      "tag": "Drink",
+      "description": "The island's traditional drink - sugarcane rum muddled with honey and citrus. Rua de Santa Maria in the Old Town has a strip of poncha bars where it's mixed to order.",
+      "wikipediaTitle": "Poncha"
+    },
+    {
+      "id": "madeira-wine",
+      "name": "Madeira wine",
+      "tag": "Drink",
+      "description": "A fortified wine made on the island since the 15th century, ranging from dry to very sweet. Worth tasting at a Funchal wine lodge, or just ordering a glass with dessert.",
+      "wikipediaTitle": "Madeira wine"
+    },
+    {
+      "id": "bolo-de-mel",
+      "name": "Bolo de mel",
+      "tag": "Dessert",
+      "description": "A dense, spiced honey cake traditionally made for Christmas but sold year-round - it's meant to be broken by hand rather than cut, and keeps for weeks.",
+      "wikipediaTitle": "Bolo de mel"
+    }
+  ]
+}
