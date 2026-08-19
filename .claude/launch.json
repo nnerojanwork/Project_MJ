@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "madeira-trip-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "madeira-trip", "run", "dev"],
+      "port": 5173,
+      "autoPort": true
+    },
+    {
+      "name": "turkiye-itinerary",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "/Users/nerojannavaratnarajah/turkiye-itinerary", "--", "--port", "5183", "--strictPort"],
+      "port": 5183
+    }
+  ]
+}
