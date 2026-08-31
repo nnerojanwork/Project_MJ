@@ -13,6 +13,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "/Users/nerojannavaratnarajah/turkiye-itinerary", "--", "--port", "5183", "--strictPort"],
       "port": 5183
+    },
+    {
+      "name": "tennis-fitness-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "tennis-fitness", "run", "dev"],
+      "port": 5174,
+      "autoPort": true
     }
   ]
 }
