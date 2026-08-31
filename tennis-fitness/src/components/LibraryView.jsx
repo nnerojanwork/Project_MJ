@@ -1,9 +1,18 @@
 import { useState } from 'react'
 import { DEFAULT_PROGRAM } from '../data/defaultProgram.js'
+import { DIAGRAMS } from '../data/diagrams.js'
+import ExerciseDiagram from './ExerciseDiagram.jsx'
 
 function makeId() {
   return `ex-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
 }
+
+const DIAGRAM_LABELS = Object.fromEntries(
+  DEFAULT_PROGRAM.flatMap((day) => day.exercises.map((ex) => [ex.diagramId, ex.name])),
+)
+DIAGRAM_LABELS.generic = 'Generic placeholder'
+
+const DIAGRAM_OPTIONS = Object.keys(DIAGRAMS).map((id) => ({ id, label: DIAGRAM_LABELS[id] ?? id }))
 
 export default function LibraryView({ program, setProgram }) {
   const [confirmReset, setConfirmReset] = useState(false)
@@ -29,7 +38,13 @@ export default function LibraryView({ program, setProgram }) {
       prev.map((day) =>
         day.id !== dayId
           ? day
-          : { ...day, exercises: [...day.exercises, { id: makeId(), name: 'New exercise', prescription: '3 x 10' }] },
+          : {
+              ...day,
+              exercises: [
+                ...day.exercises,
+                { id: makeId(), name: 'New exercise', prescription: '3 x 10', diagramId: 'generic', formCue: '' },
+              ],
+            },
       ),
     )
   }
@@ -44,7 +59,7 @@ export default function LibraryView({ program, setProgram }) {
       <div className="mb-5 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-800">Exercise library</h1>
-          <p className="text-sm text-slate-500">Edit sets/reps or swap exercises.</p>
+          <p className="text-sm text-slate-500">Edit sets/reps, cues, or swap exercises.</p>
         </div>
         {!confirmReset ? (
           <button onClick={() => setConfirmReset(true)} className="text-xs font-semibold text-slate-400 underline">
@@ -74,27 +89,47 @@ export default function LibraryView({ program, setProgram }) {
             />
             <ul className="space-y-2">
               {day.exercises.map((ex) => (
-                <li key={ex.id} className="flex items-start gap-2 rounded-xl bg-slate-50 p-2">
-                  <div className="flex-1 space-y-1">
-                    <input
-                      value={ex.name}
-                      onChange={(e) => updateExercise(day.id, ex.id, { name: e.target.value })}
-                      className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm font-medium text-slate-800 outline-none focus:border-lime-500"
-                    />
-                    <input
-                      value={ex.prescription}
-                      onChange={(e) => updateExercise(day.id, ex.id, { prescription: e.target.value })}
-                      className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm text-slate-500 outline-none focus:border-lime-500"
-                      placeholder="e.g. 3 x 12 each side"
-                    />
+                <li key={ex.id} className="rounded-xl bg-slate-50 p-2">
+                  <div className="flex items-start gap-2">
+                    <ExerciseDiagram diagramId={ex.diagramId ?? 'generic'} name={ex.name} cue={ex.formCue} />
+                    <div className="flex-1 space-y-1">
+                      <input
+                        value={ex.name}
+                        onChange={(e) => updateExercise(day.id, ex.id, { name: e.target.value })}
+                        className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm font-medium text-slate-800 outline-none focus:border-lime-500"
+                      />
+                      <input
+                        value={ex.prescription}
+                        onChange={(e) => updateExercise(day.id, ex.id, { prescription: e.target.value })}
+                        className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm text-slate-500 outline-none focus:border-lime-500"
+                        placeholder="e.g. 3 x 12 each side"
+                      />
+                      <input
+                        value={ex.formCue ?? ''}
+                        onChange={(e) => updateExercise(day.id, ex.id, { formCue: e.target.value })}
+                        className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-500 outline-none focus:border-lime-500"
+                        placeholder="Form cue, e.g. keep hips level"
+                      />
+                      <select
+                        value={ex.diagramId ?? 'generic'}
+                        onChange={(e) => updateExercise(day.id, ex.id, { diagramId: e.target.value })}
+                        className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-500 outline-none focus:border-lime-500"
+                      >
+                        {DIAGRAM_OPTIONS.map((opt) => (
+                          <option key={opt.id} value={opt.id}>
+                            Diagram: {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <button
+                      onClick={() => removeExercise(day.id, ex.id)}
+                      className="mt-1 rounded-full p-1.5 text-slate-300 hover:bg-slate-100 hover:text-red-500"
+                      aria-label={`Remove ${ex.name}`}
+                    >
+                      ✕
+                    </button>
                   </div>
-                  <button
-                    onClick={() => removeExercise(day.id, ex.id)}
-                    className="mt-1 rounded-full p-1.5 text-slate-300 hover:bg-slate-100 hover:text-red-500"
-                    aria-label={`Remove ${ex.name}`}
-                  >
-                    ✕
-                  </button>
                 </li>
               ))}
             </ul>

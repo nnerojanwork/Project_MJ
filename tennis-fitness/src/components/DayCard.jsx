@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ExerciseDiagram from './ExerciseDiagram.jsx'
 
 export default function DayCard({
   day,
@@ -78,11 +79,13 @@ export default function DayCard({
                     >
                       ✓
                     </button>
+                    <ExerciseDiagram diagramId={ex.diagramId} name={ex.name} cue={ex.formCue} />
                     <div className="min-w-0 flex-1">
                       <div className={`text-sm font-medium ${checked ? 'text-slate-400 line-through' : 'text-slate-800'}`}>
                         {ex.name}
                       </div>
                       <div className="text-sm text-slate-500">{ex.prescription}</div>
+                      {ex.formCue && <div className="mt-0.5 text-xs text-slate-400">{ex.formCue}</div>}
                       {note && !openExerciseNote && (
                         <div className="mt-1 rounded-lg bg-slate-50 px-2 py-1 text-xs text-slate-500">📝 {note}</div>
                       )}
