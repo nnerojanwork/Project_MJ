@@ -25,7 +25,7 @@ export default function DayTimeline({ day }) {
         {day.stops.map((s, i) => (
           <div key={i} className="relative pb-[22px] last:pb-1">
             <div
-              className={`absolute -left-[19.5px] top-1 h-[9px] w-[9px] rounded-full border-2 border-base ${dotClasses[s.tag] || dotClasses.default}`}
+              className={`absolute -left-[19.5px] top-1 h-[9px] w-[9px] rounded-full border-2 border-parchment ${dotClasses[s.tag] || dotClasses.default}`}
             />
             <div className="absolute -left-[58px] top-px w-11 text-right text-[12.5px] font-semibold text-ink-soft">
               {s.time}
