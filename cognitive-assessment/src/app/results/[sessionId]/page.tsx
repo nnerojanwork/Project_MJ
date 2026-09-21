@@ -1,27 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { QuestionSet, TestSession } from "@/types";
-import { getSession, getSessionSet } from "@/lib/storage";
+import { getSession, getSessionSets } from "@/lib/storage";
+import { flattenSets } from "@/lib/flatten";
+import { buildReportHtml, downloadTextFile } from "@/lib/report";
 
 export default function ResultsPage() {
   const { sessionId } = useParams<{ sessionId: string }>();
   const [session, setSession] = useState<TestSession | null | undefined>(undefined);
-  const [set, setSet] = useState<QuestionSet | null>(null);
+  const [sets, setSets] = useState<QuestionSet[] | null>(null);
 
   useEffect(() => {
     setSession(getSession(sessionId));
-    setSet(getSessionSet(sessionId));
+    setSets(getSessionSets(sessionId));
   }, [sessionId]);
+
+  const flatQuestions = useMemo(() => (sets ? flattenSets(sets) : []), [sets]);
+  const questionsByKey = useMemo(() => new Map(flatQuestions.map((fq) => [fq.key, fq])), [flatQuestions]);
 
   if (session === undefined) {
     return <p className="text-sm text-ink-700">Loading results…</p>;
   }
 
-  if (!session || !set) {
+  if (!session || !sets) {
     return (
       <div className="space-y-3">
         <p className="text-sm text-red-700">Session not found.</p>
@@ -40,23 +45,21 @@ export default function ResultsPage() {
   const p75Index = Math.floor(times.length * 0.75);
   const p75Threshold = times[Math.min(p75Index, times.length - 1)] ?? 0;
 
-  const questionsById = new Map(set.questions.map((q) => [q.id, q]));
-
   const chartData = session.answers.map((a, i) => {
-    const q = questionsById.get(a.questionId);
+    const fq = questionsByKey.get(a.questionId);
     return {
       label: `Q${i + 1}`,
       seconds: a.timeTakenSeconds,
       slow: a.timeTakenSeconds >= p75Threshold && a.timeTakenSeconds > 0,
       timedOut: a.timedOut,
-      category: q?.category ?? "unknown",
+      category: fq?.question.category ?? "unknown",
     };
   });
 
   const categoryStats = new Map<string, { correct: number; total: number }>();
   for (const a of session.answers) {
-    const q = questionsById.get(a.questionId);
-    const category = q?.category ?? "unknown";
+    const fq = questionsByKey.get(a.questionId);
+    const category = fq?.question.category ?? "unknown";
     const stat = categoryStats.get(category) ?? { correct: 0, total: 0 };
     stat.total += 1;
     if (a.correct) stat.correct += 1;
@@ -65,13 +68,27 @@ export default function ResultsPage() {
 
   const missed = session.answers.filter((a) => !a.correct);
 
+  function handleDownloadReport() {
+    if (!session) return;
+    const html = buildReportHtml(session, flatQuestions);
+    downloadTextFile(`cognitive-assessment-report-${session.id}.html`, html);
+  }
+
   return (
     <main className="space-y-8">
-      <header className="space-y-1">
-        <p className="text-xs uppercase tracking-wide text-ink-700">
-          {session.type} &middot; {session.level} &middot; {set.title}
-        </p>
-        <h1 className="text-2xl font-semibold">Results</h1>
+      <header className="flex items-start justify-between gap-4">
+        <div className="space-y-1">
+          <p className="text-xs uppercase tracking-wide text-ink-700">
+            {session.type} &middot; {session.level} &middot; {total} questions
+          </p>
+          <h1 className="text-2xl font-semibold">Results</h1>
+        </div>
+        <button
+          onClick={handleDownloadReport}
+          className="shrink-0 rounded-lg bg-ink-900 px-4 py-2 text-sm font-medium text-paper hover:bg-ink-800"
+        >
+          Download Report
+        </button>
       </header>
 
       <section className="grid gap-3 sm:grid-cols-2">
@@ -96,7 +113,7 @@ export default function ResultsPage() {
           <ResponsiveContainer>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1c274022" />
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+              <XAxis dataKey="label" tick={{ fontSize: 10 }} interval={0} />
               <YAxis tick={{ fontSize: 12 }} label={{ value: "seconds", angle: -90, position: "insideLeft", fontSize: 12 }} />
               <Tooltip
                 formatter={(value: number, _name, props) => [`${value}s`, props.payload.category]}
@@ -133,17 +150,19 @@ export default function ResultsPage() {
         ) : (
           <ul className="space-y-3">
             {missed.map((a) => {
-              const q = questionsById.get(a.questionId);
-              if (!q) return null;
-              const correctOption = q.options.find((o) => o.id === q.correctOptionId);
-              const selectedOption = q.options.find((o) => o.id === a.selectedOptionId);
+              const fq = questionsByKey.get(a.questionId);
+              if (!fq) return null;
+              const { question } = fq;
+              const correctOption = question.options.find((o) => o.id === question.correctOptionId);
+              const selectedOption = question.options.find((o) => o.id === a.selectedOptionId);
               return (
                 <li key={a.questionId} className="rounded-md border border-ink-700/10 p-3 text-sm">
-                  <p className="font-medium">{q.prompt}</p>
+                  <p className="font-medium">{question.prompt}</p>
                   <p className="mt-1 text-ink-700">
                     {a.timedOut ? "Timed out — no answer given." : `Your answer: ${selectedOption?.text ?? "—"}`}
                   </p>
                   <p className="text-accent">Correct answer: {correctOption?.text}</p>
+                  {question.explanation && <p className="mt-1 text-xs text-ink-700">{question.explanation}</p>}
                 </li>
               );
             })}

@@ -14,7 +14,8 @@ export default function Home() {
       <header className="space-y-1">
         <h1 className="text-2xl font-semibold">Cognitive Assessment Practice</h1>
         <p className="text-sm text-ink-700">
-          Pick a test type and difficulty level. Each question is timed, matching common SHL-style assessments.
+          Pick a test type and difficulty level. Each test has 15 timed questions, matching common SHL-style
+          assessments, and you can download a report explaining every answer afterwards.
         </p>
       </header>
 

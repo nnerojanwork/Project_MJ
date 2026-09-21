@@ -65,10 +65,12 @@ function correctText(q: { options: { id: string; text: string }[]; correctOption
 }
 
 function checkDistinctOptions(setId: string, qId: string, options: { text: string }[]) {
-  const texts = options.map((o) => o.text);
+  // Compare on collapsed whitespace so two options that only differ by an invisible
+  // trailing space (which renders identically in HTML) are still caught as a collision.
+  const texts = options.map((o) => o.text.replace(/\s+/g, " ").trim());
   const unique = new Set(texts);
   if (unique.size !== 4) {
-    fail(`${setId}/${qId}: options not all distinct -> ${JSON.stringify(texts)}`);
+    fail(`${setId}/${qId}: options not visibly distinct -> ${JSON.stringify(options.map((o) => o.text))}`);
   }
 }
 

@@ -3,10 +3,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { LEVEL_TIME_LIMITS, type Level, type QuestionSet, type TestSession, type TestType } from "@/types";
-import { generateRandomMathSet } from "@/lib/math-generators";
-import { getRandomComprehensionSet } from "@/lib/comprehension";
+import { generateMathTestPlan } from "@/lib/math-generators";
+import { getComprehensionTestPlan } from "@/lib/comprehension";
 import { saveSession } from "@/lib/storage";
+import { flattenSets, type FlatQuestion } from "@/lib/flatten";
 import { DataTable } from "@/components/DataTable";
+
+const SETS_PER_TEST = 5; // 5 sets x 3 questions/set = 15 questions
 
 function isValidType(t: string): t is TestType {
   return t === "math" || t === "comprehension";
@@ -27,8 +30,8 @@ export default function TestRunnerPage() {
   const valid = isValidType(type) && isValidLevel(level);
   const timeLimit = valid ? LEVEL_TIME_LIMITS[level as Level] : 0;
 
-  const [set, setSet] = useState<QuestionSet | null>(null);
-  const [questionIndex, setQuestionIndex] = useState(0);
+  const [sets, setSets] = useState<QuestionSet[] | null>(null);
+  const [flatIndex, setFlatIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -36,47 +39,48 @@ export default function TestRunnerPage() {
   const sessionId = useRef<string>(crypto.randomUUID());
   const startedAt = useRef<number>(Date.now());
 
-  // Pick a fresh set once, client-side only (avoids SSR/client randomness mismatch).
+  // Pick a fresh plan once, client-side only (avoids SSR/client randomness mismatch).
   useEffect(() => {
     if (!valid) return;
-    setSet(type === "math" ? generateRandomMathSet() : getRandomComprehensionSet());
+    setSets(type === "math" ? generateMathTestPlan(SETS_PER_TEST) : getComprehensionTestPlan(SETS_PER_TEST));
   }, [valid, type]);
 
-  const currentQuestion = set?.questions[questionIndex] ?? null;
+  const flatQuestions: FlatQuestion[] = useMemo(() => (sets ? flattenSets(sets) : []), [sets]);
+  const current = flatQuestions[flatIndex] ?? null;
 
   const advance = useMemo(
     () => (answer: Answer) => {
-      if (!set) return;
+      if (!current) return;
       const nextAnswers = [...answers, answer];
-      if (questionIndex + 1 >= set.questions.length) {
+      if (flatIndex + 1 >= flatQuestions.length) {
         const session: TestSession = {
           id: sessionId.current,
           type: type as TestType,
           level: level as Level,
-          setId: set.id,
+          setId: (sets ?? []).map((s) => s.id).join(","),
           startedAt: startedAt.current,
           answers: nextAnswers,
         };
-        saveSession(session, set);
+        saveSession(session, sets ?? []);
         router.push(`/results/${session.id}`);
         return;
       }
       setAnswers(nextAnswers);
-      setQuestionIndex((i) => i + 1);
+      setFlatIndex((i) => i + 1);
       setSelectedOptionId(null);
       setLocked(false);
       setTimeLeft(timeLimit);
     },
-    [answers, set, questionIndex, type, level, timeLimit, router]
+    [answers, current, flatIndex, flatQuestions.length, sets, type, level, timeLimit, router]
   );
 
   // Per-question countdown.
   useEffect(() => {
-    if (!currentQuestion || locked) return;
+    if (!current || locked) return;
     if (timeLeft <= 0) {
       setLocked(true);
       advance({
-        questionId: currentQuestion.id,
+        questionId: current.key,
         selectedOptionId: null,
         correct: false,
         timeTakenSeconds: timeLimit,
@@ -87,16 +91,16 @@ export default function TestRunnerPage() {
     const t = setTimeout(() => setTimeLeft((s) => s - 1), 1000);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, currentQuestion, locked]);
+  }, [timeLeft, current, locked]);
 
   function selectOption(optionId: string) {
-    if (!currentQuestion || locked) return;
+    if (!current || locked) return;
     setLocked(true);
     setSelectedOptionId(optionId);
-    const correct = optionId === currentQuestion.correctOptionId;
+    const correct = optionId === current.question.correctOptionId;
     const timeTakenSeconds = timeLimit - timeLeft;
     setTimeout(() => {
-      advance({ questionId: currentQuestion.id, selectedOptionId: optionId, correct, timeTakenSeconds, timedOut: false });
+      advance({ questionId: current.key, selectedOptionId: optionId, correct, timeTakenSeconds, timedOut: false });
     }, 500);
   }
 
@@ -104,7 +108,7 @@ export default function TestRunnerPage() {
     return <p className="text-sm text-red-700">Invalid test type or level.</p>;
   }
 
-  if (!set || !currentQuestion) {
+  if (!sets || !current) {
     return <p className="text-sm text-ink-700">Loading test…</p>;
   }
 
@@ -113,7 +117,7 @@ export default function TestRunnerPage() {
       <header className="flex items-center justify-between">
         <div>
           <p className="text-xs uppercase tracking-wide text-ink-700">
-            {set.title} &middot; {level} &middot; Question {questionIndex + 1} of {set.questions.length}
+            {current.set.title} &middot; {level} &middot; Question {flatIndex + 1} of {flatQuestions.length}
           </p>
         </div>
         <div
@@ -125,29 +129,29 @@ export default function TestRunnerPage() {
         </div>
       </header>
 
-      {set.dataPack && (
+      {current.set.dataPack && (
         <section className="space-y-2 rounded-lg border border-ink-700/20 bg-white p-4">
           <div>
-            <h2 className="font-medium">{set.dataPack.title}</h2>
-            {set.dataPack.description && <p className="text-sm text-ink-700">{set.dataPack.description}</p>}
+            <h2 className="font-medium">{current.set.dataPack.title}</h2>
+            {current.set.dataPack.description && <p className="text-sm text-ink-700">{current.set.dataPack.description}</p>}
           </div>
-          <DataTable markdown={set.dataPack.table} />
+          <DataTable markdown={current.set.dataPack.table} />
         </section>
       )}
 
-      {set.passage && (
+      {current.set.passage && (
         <section className="space-y-2 rounded-lg border border-ink-700/20 bg-white p-4">
-          <h2 className="font-medium">{set.passage.title}</h2>
-          <p className="whitespace-pre-line text-sm leading-relaxed text-ink-800">{set.passage.text}</p>
+          <h2 className="font-medium">{current.set.passage.title}</h2>
+          <p className="whitespace-pre-line text-sm leading-relaxed text-ink-800">{current.set.passage.text}</p>
         </section>
       )}
 
       <section className="space-y-3 rounded-lg border border-ink-700/20 bg-white p-4">
-        <p className="font-medium">{currentQuestion.prompt}</p>
+        <p className="font-medium">{current.question.prompt}</p>
         <div className="grid gap-2">
-          {currentQuestion.options.map((opt) => {
+          {current.question.options.map((opt) => {
             const isSelected = selectedOptionId === opt.id;
-            const isCorrect = opt.id === currentQuestion.correctOptionId;
+            const isCorrect = opt.id === current.question.correctOptionId;
             const showFeedback = locked;
             return (
               <button

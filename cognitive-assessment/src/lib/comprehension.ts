@@ -14,3 +14,9 @@ export function getRandomComprehensionSet(): QuestionSet {
 }
 
 export const COMPREHENSION_SET_IDS = SETS.map((s) => s.id);
+
+/** Picks `count` distinct passages, for a multi-set test run. */
+export function getComprehensionTestPlan(count: number): QuestionSet[] {
+  const shuffled = [...SETS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}

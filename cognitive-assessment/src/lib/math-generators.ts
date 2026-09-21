@@ -73,7 +73,8 @@ function genRetailSales(): QuestionSet {
     "What was the percentage increase in Electronics revenue from Q1 2024 to Q1 2025?",
     "percentages",
     fmtPct(q1Correct),
-    [fmtPct(round(pctChangeWrongBase(eQ1_24, eQ1_25))), fmtPct(q1Correct + 5), fmtPct(round(pctChange(cQ1_24, cQ1_25)))]
+    [fmtPct(round(pctChangeWrongBase(eQ1_24, eQ1_25))), fmtPct(q1Correct + 5), fmtPct(round(pctChange(cQ1_24, cQ1_25)))],
+    `Percentage change = (new − old) ÷ old × 100 = (${eQ1_25} − ${eQ1_24}) ÷ ${eQ1_24} × 100 ≈ ${fmtPct(q1Correct)}.`
   );
 
   const q2Total = eQ2_25 + cQ2_25 + hQ2_25;
@@ -87,7 +88,8 @@ function genRetailSales(): QuestionSet {
       fmtPct(round((cQ2_25 / (q2Total - cQ2_25)) * 100)),
       fmtPct(round((cQ2_24 / q2Total) * 100)),
       fmtPct(round((eQ2_25 / q2Total) * 100)),
-    ]
+    ],
+    `Proportion = Clothing ÷ total of all three categories × 100 = ${cQ2_25} ÷ (${eQ2_25} + ${cQ2_25} + ${hQ2_25}) × 100 ≈ ${fmtPct(q2Correct)}.`
   );
 
   const q3Avg = (eQ1_25 + cQ1_25 + hQ1_25) / 3;
@@ -101,7 +103,8 @@ function genRetailSales(): QuestionSet {
       fmtMoney(Math.round((eQ1_25 + cQ1_25 + hQ1_25) / 2) * 1000),
       fmtMoney(Math.round((eQ1_24 + cQ1_24 + hQ1_24) / 3) * 1000),
       fmtMoney((q3Correct + 5) * 1000),
-    ]
+    ],
+    `Average = (Electronics + Clothing + Homeware) ÷ 3 = (${eQ1_25} + ${cQ1_25} + ${hQ1_25}) ÷ 3 ≈ ${fmtMoney(q3Correct * 1000)}.`
   );
 
   return {
@@ -157,7 +160,8 @@ function genStaffHeadcount(): QuestionSet {
     "Which department had the largest percentage increase in headcount?",
     "percentages",
     winner.name,
-    depts.filter((d) => d.name !== winner.name).map((d) => d.name)
+    depts.filter((d) => d.name !== winner.name).map((d) => d.name),
+    `Percentage change = (This Year − Last Year) ÷ Last Year × 100 for each department. ${winner.name} has the highest at ${fmtPct(round(winner.pct))}.`
   );
 
   const q2Correct = simplifyRatio(salesThis, opsThis);
@@ -166,7 +170,8 @@ function genStaffHeadcount(): QuestionSet {
     "What is the ratio of Sales staff to Operations staff this year, in its simplest form?",
     "ratios",
     q2Correct,
-    [simplifyRatio(opsThis, salesThis), `${salesThis}:${opsThis}`, simplifyRatio(salesThis, supportThis)]
+    [simplifyRatio(opsThis, salesThis), `${salesThis}:${opsThis}`, simplifyRatio(salesThis, supportThis)],
+    `Ratio = Sales : Operations = ${salesThis}:${opsThis}, divided by their greatest common divisor to give ${q2Correct}.`
   );
 
   const totalLast = salesLast + opsLast + supportLast + financeLast;
@@ -181,7 +186,8 @@ function genStaffHeadcount(): QuestionSet {
       fmtSignedCount(-diff, "headcount"),
       fmtSignedCount(supportThis - supportLast, "headcount"),
       fmtSignedCount(diff + (diff >= 0 ? 4 : -4), "headcount"),
-    ]
+    ],
+    `Total change = (sum of This Year) − (sum of Last Year) = ${totalThis} − ${totalLast} = ${fmtSignedCount(diff, "headcount")}.`
   );
 
   return {
@@ -230,7 +236,8 @@ function genMarketingSpend(): QuestionSet {
     "What was the total marketing spend in April?",
     "totals",
     fmtMoney(totalApr),
-    [fmtMoney(totalApr - printApr), fmtMoney(socialMar + searchMar + emailMar + printMar), fmtMoney(totalApr + 400)]
+    [fmtMoney(totalApr - printApr), fmtMoney(socialMar + searchMar + emailMar + printMar), fmtMoney(totalApr + 400)],
+    `Total April spend = Social Media + Search Ads + Email + Print = ${fmtMoney(socialApr)} + ${fmtMoney(searchApr)} + ${fmtMoney(emailApr)} + ${fmtMoney(printApr)} = ${fmtMoney(totalApr)}.`
   );
 
   const q2Correct = round((socialApr / totalApr) * 100);
@@ -243,7 +250,8 @@ function genMarketingSpend(): QuestionSet {
       fmtPct(round((socialApr / (totalApr - socialApr)) * 100)),
       fmtPct(round((socialMar / totalApr) * 100)),
       fmtPct(round((searchApr / totalApr) * 100)),
-    ]
+    ],
+    `Share = Social Media April ÷ total April spend × 100 = ${fmtMoney(socialApr)} ÷ ${fmtMoney(totalApr)} × 100 ≈ ${fmtPct(q2Correct)}.`
   );
 
   const channels = [
@@ -258,7 +266,8 @@ function genMarketingSpend(): QuestionSet {
     "Which channel had the largest percentage decrease in spend from March to April?",
     "percentages",
     biggestDrop.name,
-    channels.filter((c) => c.name !== biggestDrop.name).map((c) => c.name)
+    channels.filter((c) => c.name !== biggestDrop.name).map((c) => c.name),
+    `Percentage change = (April − March) ÷ March × 100 for each channel. ${biggestDrop.name} has the largest decrease at ${fmtPct(round(biggestDrop.pct))}.`
   );
 
   return {
@@ -303,7 +312,8 @@ function genProductionOutput(): QuestionSet {
       fmtNum(lineA.reduce((a, b) => a + b, 0) / 4),
       fmtNum(lineB.reduce((a, b) => a + b, 0) / 5),
       fmtNum(q1Correct + 8),
-    ]
+    ],
+    `Average = sum of Mon–Fri output ÷ 5 = ${lineA.join(" + ")} ÷ 5 ≈ ${fmtNum(q1Correct)}.`
   );
 
   const friIdx = 4;
@@ -318,7 +328,8 @@ function genProductionOutput(): QuestionSet {
       fmtPct(round(pctChangeWrongBase(lineB[friIdx], lineC[friIdx]), 1), 1),
       fmtPct(round(pctChange(lineB[monIdx], lineC[monIdx]), 1), 1),
       fmtPct(round(((lineB[friIdx] - lineC[friIdx]) / lineC[friIdx]) * -100, 1), 1),
-    ]
+    ],
+    `Percentage more = (Line C − Line B) ÷ Line B × 100 on Friday = (${lineC[friIdx]} − ${lineB[friIdx]}) ÷ ${lineB[friIdx]} × 100 ≈ ${fmtPct(q2Correct, 1)}.`
   );
 
   const wedIdx = 2;
@@ -333,7 +344,8 @@ function genProductionOutput(): QuestionSet {
       fmtNum(lineA[wedIdx] + lineB[wedIdx]),
       fmtNum(lineA[thuIdx] + lineB[thuIdx] + lineC[thuIdx]),
       fmtNum(q3Correct + 10),
-    ]
+    ],
+    `Total = Line A + Line B + Line C on Wednesday = ${lineA[wedIdx]} + ${lineB[wedIdx]} + ${lineC[wedIdx]} = ${fmtNum(q3Correct)}.`
   );
 
   return {
@@ -383,7 +395,8 @@ function genEnergyUsage(): QuestionSet {
     "Which site had the largest percentage reduction in usage from January to February?",
     "percentages",
     biggestDrop.name,
-    [...sites.filter((s) => s.name !== biggestDrop.name).map((s) => s.name), "None decreased"].slice(0, 3)
+    [...sites.filter((s) => s.name !== biggestDrop.name).map((s) => s.name), "None decreased"].slice(0, 3),
+    `Percentage change = (Feb − Jan) ÷ Jan × 100 for each site. ${biggestDrop.name} has the largest reduction at ${fmtPct(round(Math.abs(biggestDrop.pct)))}.`
   );
 
   const q2Correct = ratioToOne(cFeb, bFeb, 1);
@@ -392,7 +405,8 @@ function genEnergyUsage(): QuestionSet {
     "What is the ratio of Site C's February usage to Site B's February usage, rounded to one decimal place?",
     "ratios",
     q2Correct,
-    [ratioToOne(bFeb, cFeb, 1), ratioToOne(cFeb, aFeb, 1), ratioToOne(cJan, bJan, 1)]
+    [ratioToOne(bFeb, cFeb, 1), ratioToOne(cFeb, aFeb, 1), ratioToOne(cJan, bJan, 1)],
+    `Ratio = Site C February ÷ Site B February = ${fmtNum(cFeb)} ÷ ${fmtNum(bFeb)} ≈ ${q2Correct}.`
   );
 
   const totalJan = aJan + bJan + cJan;
@@ -407,7 +421,8 @@ function genEnergyUsage(): QuestionSet {
       `${fmtNum((aJan - aFeb) + (cJan - cFeb))} kWh`,
       `${fmtNum(Math.abs((aJan - aFeb) - (bFeb - bJan)))} kWh`,
       `${fmtNum(q3Correct + 200)} kWh`,
-    ]
+    ],
+    `Reduction = (Jan total) − (Feb total) = ${fmtNum(totalJan)} − ${fmtNum(totalFeb)} = ${fmtNum(q3Correct)} kWh.`
   );
 
   return {
@@ -454,7 +469,8 @@ function genSubscriptionRevenue(): QuestionSet {
       fmtMoney(totalRev - premiumRev),
       fmtMoney(basicSubs * basicPrice + standardSubs * premiumPrice + premiumSubs * standardPrice),
       fmtMoney(totalRev + 200),
-    ]
+    ],
+    `Revenue per plan = subscribers × price. Total = ${fmtMoney(basicRev)} + ${fmtMoney(standardRev)} + ${fmtMoney(premiumRev)} = ${fmtMoney(totalRev)}.`
   );
 
   const q2Correct = round((premiumRev / totalRev) * 100);
@@ -467,7 +483,8 @@ function genSubscriptionRevenue(): QuestionSet {
       fmtPct(round((premiumRev / (totalRev - premiumRev)) * 100)),
       fmtPct(round((standardRev / totalRev) * 100)),
       fmtPct(round((premiumSubs / (basicSubs + standardSubs + premiumSubs)) * 100)),
-    ]
+    ],
+    `Share = Premium revenue ÷ total revenue × 100 = ${fmtMoney(premiumRev)} ÷ ${fmtMoney(totalRev)} × 100 ≈ ${fmtPct(q2Correct)}.`
   );
 
   const q3Correct = Math.round(standardSubs * 0.2);
@@ -476,7 +493,8 @@ function genSubscriptionRevenue(): QuestionSet {
     "If Standard plan subscribers grew by 20%, how many additional monthly subscribers would that be?",
     "percentages",
     fmtNum(q3Correct),
-    [fmtNum(Math.round(basicSubs * 0.2)), fmtNum(Math.round(standardSubs * 1.2)), fmtNum(q3Correct + 20)]
+    [fmtNum(Math.round(basicSubs * 0.2)), fmtNum(Math.round(standardSubs * 1.2)), fmtNum(q3Correct + 20)],
+    `Additional subscribers = Standard subscribers × 20% = ${fmtNum(standardSubs)} × 0.2 ≈ ${fmtNum(q3Correct)}.`
   );
 
   return {
@@ -520,7 +538,8 @@ function genProfitMargins(): QuestionSet {
     "What is the profit margin (profit ÷ revenue) for Product Z?",
     "percentages",
     fmtPct(zMarginActual),
-    [fmtPct(round((zCost / zRev) * 100)), fmtPct(round(((zRev - zCost) / zCost) * 100)), fmtPct(zMarginActual + 5)]
+    [fmtPct(round((zCost / zRev) * 100)), fmtPct(round(((zRev - zCost) / zCost) * 100)), fmtPct(zMarginActual + 5)],
+    `Margin = (Revenue − Cost) ÷ Revenue × 100 = (${zRev} − ${zCost}) ÷ ${zRev} × 100 ≈ ${fmtPct(zMarginActual)}.`
   );
 
   const products = [
@@ -534,7 +553,8 @@ function genProfitMargins(): QuestionSet {
     "Which product has the lowest profit margin?",
     "percentages",
     lowest.name,
-    [...products.filter((p) => p.name !== lowest.name).map((p) => p.name), "All are equal"].slice(0, 3)
+    [...products.filter((p) => p.name !== lowest.name).map((p) => p.name), "All are equal"].slice(0, 3),
+    `Margin = (Revenue − Cost) ÷ Revenue for each product. ${lowest.name} has the lowest at ${fmtPct(round(lowest.margin * 100))}.`
   );
 
   const totalProfit = (xRev - xCost) + (yRev - yCost) + (zRev - zCost);
@@ -547,7 +567,8 @@ function genProfitMargins(): QuestionSet {
       fmtMoney((totalProfit - (zRev - zCost)) * 1000),
       fmtMoney((xRev + yRev + zRev) * 1000),
       fmtMoney((totalProfit + 30) * 1000),
-    ]
+    ],
+    `Total profit = sum of (Revenue − Cost) for X, Y, Z = ${xRev - xCost} + ${yRev - yCost} + ${zRev - zCost} = ${fmtMoney(totalProfit * 1000)}.`
   );
 
   return {
@@ -594,7 +615,8 @@ function genWarehouseInventory(): QuestionSet {
       fmtPct(round(pctChangeWrongBase(northApr, northMay), 1), 1),
       fmtPct(round(pctChange(northMay, northJun), 1), 1),
       fmtPct(round(pctChange(southApr, southMay), 1), 1),
-    ]
+    ],
+    `Percentage change = (May − April) ÷ April × 100 = (${northMay} − ${northApr}) ÷ ${northApr} × 100 ≈ ${fmtPct(q1Correct, 1)}.`
   );
 
   const q2Correct = ratioToOne(northJun, southJun, 1);
@@ -603,7 +625,8 @@ function genWarehouseInventory(): QuestionSet {
     "In June, what is the ratio of North stock to South stock, rounded to one decimal place?",
     "ratios",
     q2Correct,
-    [ratioToOne(southJun, northJun, 1), ratioToOne(northApr, southApr, 1), ratioToOne(northJun, southApr, 1)]
+    [ratioToOne(southJun, northJun, 1), ratioToOne(northApr, southApr, 1), ratioToOne(northJun, southApr, 1)],
+    `Ratio = North June ÷ South June = ${fmtNum(northJun)} ÷ ${fmtNum(southJun)} ≈ ${q2Correct}.`
   );
 
   const combinedApr = northApr + southApr;
@@ -619,7 +642,8 @@ function genWarehouseInventory(): QuestionSet {
       fmtNum(Math.round((combinedApr + combinedMay) / 2)),
       fmtNum(Math.round((northApr + northMay + northJun) / 3) * 2),
       fmtNum(q3Correct + 60),
-    ]
+    ],
+    `Average = (combined April + combined May + combined June) ÷ 3 = (${combinedApr} + ${combinedMay} + ${combinedJun}) ÷ 3 ≈ ${fmtNum(q3Correct)}.`
   );
 
   return {
@@ -668,7 +692,8 @@ function genCustomerSatisfaction(): QuestionSet {
     "Which region showed the largest percentage improvement from Round 1 to Round 2?",
     "percentages",
     best.name,
-    regions.filter((r) => r.name !== best.name).map((r) => r.name)
+    regions.filter((r) => r.name !== best.name).map((r) => r.name),
+    `Percentage change = (Round 2 − Round 1) ÷ Round 1 × 100 for each region. ${best.name} has the largest improvement at ${fmtPct(round(best.pct))}.`
   );
 
   const avgR2 = round((northR2 + southR2 + eastR2 + westR2) / 4, 1);
@@ -682,7 +707,8 @@ function genCustomerSatisfaction(): QuestionSet {
       round((northR2 + southR2 + eastR2) / 3, 1).toFixed(1),
       avgR1.toFixed(1),
       round(avgR2 + 0.2, 1).toFixed(1),
-    ]
+    ],
+    `Average = (North + South + East + West) ÷ 4 = (${northR2.toFixed(1)} + ${southR2.toFixed(1)} + ${eastR2.toFixed(1)} + ${westR2.toFixed(1)}) ÷ 4 ≈ ${avgR2.toFixed(1)}.`
   );
 
   const declined = regions.find((r) => r.r2 < r.r1)!;
@@ -691,7 +717,8 @@ function genCustomerSatisfaction(): QuestionSet {
     "Which region is the only one to have scored lower in Round 2 than Round 1?",
     "data-reading",
     declined.name,
-    regions.filter((r) => r.name !== declined.name).map((r) => r.name)
+    regions.filter((r) => r.name !== declined.name).map((r) => r.name),
+    `${declined.name} is the only region where Round 2 (${declined.r2.toFixed(1)}) is lower than Round 1 (${declined.r1.toFixed(1)}); every other region increased.`
   );
 
   return {
@@ -730,7 +757,8 @@ function genDeliveryTimes(): QuestionSet {
     "What is the total number of parcels delivered by all three couriers combined?",
     "totals",
     fmtNum(totalParcels),
-    [fmtNum(totalParcels - c1Parcels), fmtNum(totalParcels - c3Parcels), fmtNum(totalParcels + 500)]
+    [fmtNum(totalParcels - c1Parcels), fmtNum(totalParcels - c3Parcels), fmtNum(totalParcels + 500)],
+    `Total = CourierOne + CourierTwo + CourierThree = ${fmtNum(c1Parcels)} + ${fmtNum(c2Parcels)} + ${fmtNum(c3Parcels)} = ${fmtNum(totalParcels)}.`
   );
 
   const q2Correct = round((c1Parcels / totalParcels) * 100);
@@ -743,7 +771,8 @@ function genDeliveryTimes(): QuestionSet {
       fmtPct(round((c1Parcels / (totalParcels - c1Parcels)) * 100)),
       fmtPct(round((c2Parcels / totalParcels) * 100)),
       fmtPct(round((c3Parcels / totalParcels) * 100)),
-    ]
+    ],
+    `Share = CourierOne ÷ total parcels × 100 = ${fmtNum(c1Parcels)} ÷ ${fmtNum(totalParcels)} × 100 ≈ ${fmtPct(q2Correct)}.`
   );
 
   const q3Correct = round(pctChange(c3Days, c2Days));
@@ -756,7 +785,8 @@ function genDeliveryTimes(): QuestionSet {
       fmtPct(round(pctChangeWrongBase(c3Days, c2Days))),
       fmtPct(round(pctChange(c1Days, c2Days))),
       fmtPct(q3Correct + 8),
-    ]
+    ],
+    `Percentage slower = (CourierTwo − CourierThree) ÷ CourierThree × 100 = (${c2Days} − ${c3Days}) ÷ ${c3Days} × 100 ≈ ${fmtPct(q3Correct)}.`
   );
 
   return {
@@ -797,6 +827,12 @@ export function generateMathSet(id: string): QuestionSet {
 export function generateRandomMathSet(): QuestionSet {
   const id = MATH_SET_IDS[Math.floor(Math.random() * MATH_SET_IDS.length)];
   return generateMathSet(id);
+}
+
+/** Picks `count` distinct topics and generates each fresh, for a multi-set test run. */
+export function generateMathTestPlan(count: number): QuestionSet[] {
+  const shuffled = [...MATH_SET_IDS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).map(generateMathSet);
 }
 
 /** Same as generateMathSet, but also returns every base-variable draw for range verification (used by the sanity check). */

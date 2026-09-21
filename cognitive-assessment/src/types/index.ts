@@ -22,6 +22,7 @@ export interface Question {
   options: MCQOption[];     // always 4 options
   correctOptionId: string;  // must match one option's id
   category: string;         // e.g. 'percentages', 'inference', 'main-idea'
+  explanation?: string;     // plain-English rationale for the correct answer, shown in the downloadable report
 }
 
 // For math sets: one reference table/data pack the user "flicks through"
