@@ -34,6 +34,13 @@
       "runtimeArgs": ["--prefix", "sql-for-finance", "run", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "cognitive-assessment-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "cognitive-assessment", "run", "dev"],
+      "port": 3001,
+      "autoPort": true
     }
   ]
 }
