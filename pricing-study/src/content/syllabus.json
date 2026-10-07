@@ -1,0 +1,1204 @@
+{
+  "meta": {
+    "source": "Pricing_economics.docx",
+    "note": "Verbatim text from the source docx. Do not mix generated content into this file."
+  },
+  "program": {
+    "label": "SELF STUDY PROGRAM",
+    "title": "Pricing Strategy Profitability and Commercial Execution",
+    "subtitle": "A ten week self study syllabus for pricing analysts",
+    "intro": "This program develops the ability to recommend a price, quantify its expected financial return, and turn the recommendation into a workable commercial plan. The syllabus combines economics, profitability analysis, customer value, sales execution, and measurement.",
+    "facts": [
+      {
+        "label": "Duration",
+        "value": "10 weeks"
+      },
+      {
+        "label": "Weekly effort",
+        "value": "6 to 8 hours"
+      },
+      {
+        "label": "Tools",
+        "value": "Excel or Google Sheets required  SQL and Python optional"
+      },
+      {
+        "label": "Final output",
+        "value": "An end to end pricing recommendation with financial case and commercial launch plan"
+      }
+    ],
+    "howToUse": [
+      "Choose one product, service, or anonymized business case and reuse it throughout the program.",
+      "Keep a research log. Record each source, its claim, the evidence used, and how the finding affects a pricing decision.",
+      "Finish the weekly output before moving on. The outputs become sections of the capstone recommendation.",
+      "Use revenue and profit separately. A price that maximizes revenue may not maximize contribution or operating profit."
+    ]
+  },
+  "learningOutcomes": {
+    "intro": "By the end of the program, you should be able to do the following work without relying on a pricing template you do not understand.",
+    "items": [
+      "Build a price and margin waterfall from list price to pocket margin.",
+      "Calculate contribution, break even volume, price volume tradeoffs, and initiative ROI.",
+      "Estimate and interpret own price, cross price, and promotional elasticity.",
+      "Use customer value and willingness to pay research to set price ranges.",
+      "Design tiers, bundles, fences, discount rules, and commercial guardrails.",
+      "Evaluate competitive responses and distinguish useful market evidence from price matching.",
+      "Plan a price change with sales enablement, customer communication, governance, and performance tracking.",
+      "Present a recommendation that links evidence to revenue, margin, customer impact, and execution risk."
+    ]
+  },
+  "programMap": [
+    {
+      "week": 1,
+      "subject": "Pricing economics and the profit model",
+      "output": "Baseline economics model"
+    },
+    {
+      "week": 2,
+      "subject": "Demand and elasticity",
+      "output": "Elasticity brief"
+    },
+    {
+      "week": 3,
+      "subject": "Customer value and willingness to pay",
+      "output": "Value and research plan"
+    },
+    {
+      "week": 4,
+      "subject": "Segmentation and price architecture",
+      "output": "Price architecture"
+    },
+    {
+      "week": 5,
+      "subject": "Competition and market strategy",
+      "output": "Competitive response memo"
+    },
+    {
+      "week": 6,
+      "subject": "Transactional pricing and sales execution",
+      "output": "Price waterfall and guardrails"
+    },
+    {
+      "week": 7,
+      "subject": "Revenue management and dynamic pricing",
+      "output": "Revenue optimization scenario"
+    },
+    {
+      "week": 8,
+      "subject": "Pricing analytics and experimentation",
+      "output": "Measurement design"
+    },
+    {
+      "week": 9,
+      "subject": "Commercial implementation and governance",
+      "output": "Launch and governance plan"
+    },
+    {
+      "week": 10,
+      "subject": "Capstone pricing recommendation",
+      "output": "Executive recommendation"
+    }
+  ],
+  "weeklyRhythm": [
+    {
+      "activity": "Concept study",
+      "time": "90 minutes",
+      "whatToDo": "Read or watch the core material and write a one page summary in your own words."
+    },
+    {
+      "activity": "Independent research",
+      "time": "90 minutes",
+      "whatToDo": "Find two additional sources and test whether they agree on assumptions and limitations."
+    },
+    {
+      "activity": "Analysis practice",
+      "time": "2 to 3 hours",
+      "whatToDo": "Build the weekly model or analysis using a small dataset."
+    },
+    {
+      "activity": "Commercial application",
+      "time": "60 minutes",
+      "whatToDo": "Translate the analysis into a recommendation for sales, finance, product, or leadership."
+    },
+    {
+      "activity": "Review",
+      "time": "30 minutes",
+      "whatToDo": "Complete the self check and note what still needs clarification."
+    }
+  ],
+  "studySetup": [
+    "Create one workbook with tabs for assumptions, transactions, economics, elasticity, scenarios, and the final profit bridge.",
+    "Use an anonymized company case, public data, or a realistic simulated dataset. Keep the same case for all ten weeks.",
+    "Create a folder for weekly outputs and name each file with the week, subject, and version date.",
+    "Schedule one challenge session in week 10 with a colleague, mentor, or study partner who can question the assumptions."
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "id": "w1",
+      "title": "Pricing economics and the profit model",
+      "programMapOutput": "Baseline economics model",
+      "outcome": "Build a baseline model that connects a price decision to volume, revenue, contribution, operating profit, and return on investment.",
+      "coreConcepts": [
+        {
+          "id": "w1-c1",
+          "text": "Revenue, gross profit, contribution margin, operating profit, and cash are different measures and answer different questions."
+        },
+        {
+          "id": "w1-c2",
+          "text": "Margin percentage uses price as the denominator. Markup percentage uses cost as the denominator."
+        },
+        {
+          "id": "w1-c3",
+          "text": "A price change affects profit through both unit economics and the customer volume response."
+        },
+        {
+          "id": "w1-c4",
+          "text": "Relevant costs are the costs that change because of the decision. Fully allocated cost can still matter for reporting and long run viability."
+        },
+        {
+          "id": "w1-c5",
+          "text": "A price and margin waterfall shows how discounts, rebates, freight, service, and other deductions reduce list price to pocket price and pocket margin."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w1-rq1",
+          "text": "How does your chosen business define gross margin and contribution margin?"
+        },
+        {
+          "id": "w1-rq2",
+          "text": "Which costs vary with one additional sale, and which costs stay fixed in the relevant decision period?"
+        },
+        {
+          "id": "w1-rq3",
+          "text": "Where does commercial leakage occur between list price and realized pocket price?"
+        },
+        {
+          "id": "w1-rq4",
+          "text": "Which return measure would finance use to approve a pricing initiative?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Cost and Economics in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-cost-economics",
+          "note": "Focus on margins, cost based pricing, elasticity, channel economics, and customer lifetime value."
+        },
+        {
+          "title": "CVP Analysis for Pricing and Profit Optimization",
+          "url": "https://www.coursera.org/learn/cvp-analysis-pricing-profit-optimization",
+          "note": "Optional practice in contribution margin and break even analysis."
+        }
+      ],
+      "appliedExercise": "Create a one year baseline with units, gross list sales, discounts, net revenue, variable cost, contribution, and fixed cost. Test a 5 percent price increase under volume changes of 0, minus 3, minus 7, and minus 12 percent. Identify the break even volume loss.",
+      "portfolioOutput": "A one page pricing economics model with the baseline, scenarios, and a written recommendation that states the financial measure being optimized.",
+      "selfCheck": [
+        {
+          "id": "w1-sc1",
+          "text": "I can explain the difference between margin and markup using numbers."
+        },
+        {
+          "id": "w1-sc2",
+          "text": "I can calculate the volume change that leaves total contribution unchanged after a price change."
+        },
+        {
+          "id": "w1-sc3",
+          "text": "I can identify which waterfall deductions require a pricing action and which require a process action."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "id": "w2",
+      "title": "Demand and elasticity",
+      "programMapOutput": "Elasticity brief",
+      "outcome": "Explain how customer demand responds to price and use elasticity to evaluate the financial risk of a price change.",
+      "coreConcepts": [
+        {
+          "id": "w2-c1",
+          "text": "The demand curve describes the relationship between price and quantity, holding other material factors constant."
+        },
+        {
+          "id": "w2-c2",
+          "text": "Own price elasticity measures the percentage change in quantity associated with a one percent change in price."
+        },
+        {
+          "id": "w2-c3",
+          "text": "Cross price elasticity helps identify substitutes and complements. Income elasticity helps explain exposure to economic cycles."
+        },
+        {
+          "id": "w2-c4",
+          "text": "Elasticity can differ by segment, channel, product, season, price level, and time horizon."
+        },
+        {
+          "id": "w2-c5",
+          "text": "Observed sales changes are not automatically caused by price because promotions, availability, competitors, and seasonality also move demand."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w2-rq1",
+          "text": "What evidence suggests your product is elastic or inelastic?"
+        },
+        {
+          "id": "w2-rq2",
+          "text": "Which customer segments have meaningful alternatives and switching ability?"
+        },
+        {
+          "id": "w2-rq3",
+          "text": "How quickly can customers change behavior after a price increase?"
+        },
+        {
+          "id": "w2-rq4",
+          "text": "Which historical variables must be controlled before treating a sales change as a price effect?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "MITx Microeconomics",
+          "url": "https://learn.mit.edu/courses/course-v1:MITxT%2B14.100x",
+          "note": "Use the supply and demand, consumer choice, costs, and market structure sections."
+        },
+        {
+          "title": "UVA and BCG Cost and Economics in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-cost-economics",
+          "note": "Use the elasticity and regression module for applied examples."
+        }
+      ],
+      "appliedExercise": "Use a simple historical or simulated dataset with price and quantity. Calculate arc elasticity between price points, then estimate a log log regression if you have suitable data. Compare the elasticity estimate by customer segment or product family. State the assumptions and threats to validity.",
+      "portfolioOutput": "An elasticity brief showing the estimate, confidence level, key limitations, and the implied price volume tradeoff.",
+      "selfCheck": [
+        {
+          "id": "w2-sc1",
+          "text": "I can distinguish an elasticity of minus 0.5 from minus 2.0 in commercial terms."
+        },
+        {
+          "id": "w2-sc2",
+          "text": "I do not claim causality from a simple correlation between price and units."
+        },
+        {
+          "id": "w2-sc3",
+          "text": "I can explain why elasticity may change outside the observed price range."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "id": "w3",
+      "title": "Customer value and willingness to pay",
+      "programMapOutput": "Value and research plan",
+      "outcome": "Estimate a defensible price range using customer value, willingness to pay research, and evidence about alternatives.",
+      "coreConcepts": [
+        {
+          "id": "w3-c1",
+          "text": "Economic value to the customer starts with the price of the next best alternative and adjusts for meaningful differentiation value."
+        },
+        {
+          "id": "w3-c2",
+          "text": "Willingness to pay is a distribution, not a single market number."
+        },
+        {
+          "id": "w3-c3",
+          "text": "Gabor Granger, Van Westendorp, conjoint analysis, and discrete choice methods answer different research questions."
+        },
+        {
+          "id": "w3-c4",
+          "text": "Stated preference can diverge from purchase behavior. Research design should reduce hypothetical bias and strategic responses."
+        },
+        {
+          "id": "w3-c5",
+          "text": "Value communication affects realized willingness to pay, especially when the benefit is unfamiliar or difficult to quantify."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w3-rq1",
+          "text": "What measurable customer outcome changes because of the product?"
+        },
+        {
+          "id": "w3-rq2",
+          "text": "What is the next best alternative for each major segment?"
+        },
+        {
+          "id": "w3-rq3",
+          "text": "Which value claims can be documented with operational or financial evidence?"
+        },
+        {
+          "id": "w3-rq4",
+          "text": "Which research method matches the decision: price point, feature tradeoff, or package design?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Customer Value in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-customer-value",
+          "note": "Covers customer value and behavioral considerations."
+        },
+        {
+          "title": "MIT Sloan Pricing Using Data to Improve Pricing Performance",
+          "url": "https://executive.mit.edu/course/pricing/a056g00000URaaPAAT.html",
+          "note": "Optional employer funded course covering surveys, conjoint analysis, elasticity, and segmentation."
+        }
+      ],
+      "appliedExercise": "Build an economic value estimate for one segment. List the next best alternative, positive differentiation value, negative differentiation value, switching cost, and evidence quality. Then design a short willingness to pay research plan with target respondents, method, sample questions, and bias controls.",
+      "portfolioOutput": "A customer value model and a two page willingness to pay research plan.",
+      "selfCheck": [
+        {
+          "id": "w3-sc1",
+          "text": "I can explain which part of my value estimate is observed, calculated, or assumed."
+        },
+        {
+          "id": "w3-sc2",
+          "text": "I can select a research method based on the pricing decision rather than convenience."
+        },
+        {
+          "id": "w3-sc3",
+          "text": "I can translate product features into customer outcomes without double counting value."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "id": "w4",
+      "title": "Segmentation and price architecture",
+      "programMapOutput": "Price architecture",
+      "outcome": "Design prices, packages, and qualification rules that capture differences in customer value while remaining understandable and operable.",
+      "coreConcepts": [
+        {
+          "id": "w4-c1",
+          "text": "Useful pricing segments differ in willingness to pay, cost to serve, behavior, or value received and can be identified during a transaction."
+        },
+        {
+          "id": "w4-c2",
+          "text": "Price fences define who qualifies for a price or offer and reduce uncontrolled arbitrage."
+        },
+        {
+          "id": "w4-c3",
+          "text": "Good better best tiers, bundles, usage pricing, subscriptions, and two part tariffs suit different value and consumption patterns."
+        },
+        {
+          "id": "w4-c4",
+          "text": "Product and price architecture should guide customers toward a suitable offer without creating unnecessary complexity."
+        },
+        {
+          "id": "w4-c5",
+          "text": "Fairness, transparency, and legal constraints limit how segmentation and personalized pricing should be implemented."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w4-rq1",
+          "text": "Which observable variable can separate customers with different willingness to pay?"
+        },
+        {
+          "id": "w4-rq2",
+          "text": "Could customers easily misrepresent their segment or resell across segments?"
+        },
+        {
+          "id": "w4-rq3",
+          "text": "Which features belong in each tier, and which are merely expensive to serve?"
+        },
+        {
+          "id": "w4-rq4",
+          "text": "How many options can sales and customers understand without confusion?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Pricing Strategy Optimization",
+          "url": "https://www.coursera.org/specializations/uva-darden-bcg-pricing-strategy",
+          "note": "Use the customer value, market, and practice courses for segmentation and price architecture."
+        },
+        {
+          "title": "Columbia Business School Pricing Methodologies",
+          "url": "https://online1.gsb.columbia.edu/pricing-methodologies",
+          "note": "Optional executive course covering segmentation, customized pricing, and dynamic pricing."
+        }
+      ],
+      "appliedExercise": "Create a three tier offer for the chosen case. Specify the target segment, included value, metric, price level, qualification rule, upgrade trigger, and expected unit economics for each tier. Test for cannibalization and arbitrage.",
+      "portfolioOutput": "A one page price architecture with segment definitions, package logic, and commercial rules.",
+      "selfCheck": [
+        {
+          "id": "w4-sc1",
+          "text": "Each segment can be identified using information available at the point of sale."
+        },
+        {
+          "id": "w4-sc2",
+          "text": "The price metric grows with customer value or consumption in a defensible way."
+        },
+        {
+          "id": "w4-sc3",
+          "text": "The architecture protects a clear reason to upgrade and avoids a deliberately unusable entry tier."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "id": "w5",
+      "title": "Competition and market strategy",
+      "programMapOutput": "Competitive response memo",
+      "outcome": "Use competitor evidence without reducing the pricing decision to automatic price matching.",
+      "coreConcepts": [
+        {
+          "id": "w5-c1",
+          "text": "Market structure influences pricing power, likely reactions, and the value of differentiation."
+        },
+        {
+          "id": "w5-c2",
+          "text": "A competitor price is informative only when the offer, customer, transaction terms, and channel are comparable."
+        },
+        {
+          "id": "w5-c3",
+          "text": "Game theory helps frame repeated interaction, credible commitments, entry, retaliation, and price leadership."
+        },
+        {
+          "id": "w5-c4",
+          "text": "Price wars often destroy value when firms react to visible prices without diagnosing the commercial cause of share loss."
+        },
+        {
+          "id": "w5-c5",
+          "text": "Competition law and antitrust rules require caution around communications, signaling, parity, resale pricing, and competitor information."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w5-rq1",
+          "text": "What market role does the business want: premium leader, parity player, disruptor, or focused specialist?"
+        },
+        {
+          "id": "w5-rq2",
+          "text": "Which competitor moves would materially change the recommendation?"
+        },
+        {
+          "id": "w5-rq3",
+          "text": "What evidence distinguishes a price problem from a product, availability, service, or sales problem?"
+        },
+        {
+          "id": "w5-rq4",
+          "text": "Which competitive information can be collected and used lawfully in your jurisdiction and industry?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Market and Competition in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-market-competition",
+          "note": "Covers market structures, competitive dynamics, and strategic pricing."
+        },
+        {
+          "title": "MITx Microeconomics",
+          "url": "https://learn.mit.edu/courses/course-v1:MITxT%2B14.100x",
+          "note": "Use the monopoly, oligopoly, and monopolistic competition sections."
+        }
+      ],
+      "appliedExercise": "Build a competitor comparison that normalizes package size, included features, service levels, contract length, and discount conditions. Write three scenarios: no reaction, targeted reaction, and broad price response. Recommend a response for each scenario.",
+      "portfolioOutput": "A competitive response memo that states what evidence would trigger a change in strategy.",
+      "selfCheck": [
+        {
+          "id": "w5-sc1",
+          "text": "I compare like with like rather than using unadjusted list prices."
+        },
+        {
+          "id": "w5-sc2",
+          "text": "My recommendation reflects the company value proposition and cost position."
+        },
+        {
+          "id": "w5-sc3",
+          "text": "I have identified legal review points instead of giving jurisdiction specific legal advice."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "id": "w6",
+      "title": "Transactional pricing and sales execution",
+      "programMapOutput": "Price waterfall and guardrails",
+      "outcome": "Improve realized price by controlling discounts, rebates, exceptions, and deal economics while supporting effective selling.",
+      "coreConcepts": [
+        {
+          "id": "w6-c1",
+          "text": "List price matters less than pocket price when discounts and off invoice deductions vary widely."
+        },
+        {
+          "id": "w6-c2",
+          "text": "A price waterfall identifies leakage by customer, salesperson, product, channel, and deduction type."
+        },
+        {
+          "id": "w6-c3",
+          "text": "Discount corridors, floors, approval thresholds, and exception codes make pricing policy operational."
+        },
+        {
+          "id": "w6-c4",
+          "text": "Sales incentives can undermine pricing when compensation rewards revenue or volume without regard to contribution."
+        },
+        {
+          "id": "w6-c5",
+          "text": "A strong negotiation process exchanges concessions for customer commitments instead of granting discounts without return."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w6-rq1",
+          "text": "Which deductions are earned by customer behavior and which are habitual leakage?"
+        },
+        {
+          "id": "w6-rq2",
+          "text": "How much margin variance exists within comparable transactions?"
+        },
+        {
+          "id": "w6-rq3",
+          "text": "Which exceptions should sales approve independently and which require a deal desk?"
+        },
+        {
+          "id": "w6-rq4",
+          "text": "What nonprice variables can be traded during negotiation?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Professional Pricing Society Certified Pricing Professional",
+          "url": "https://www.pricingsociety.com/cpp",
+          "note": "Use the course catalog to identify transaction pricing, negotiation, and commercial execution topics."
+        },
+        {
+          "title": "UVA and BCG Pricing Strategy in Practice",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-practice",
+          "note": "Applies pricing frameworks to practical commercial decisions."
+        }
+      ],
+      "appliedExercise": "Create a price waterfall from list price to pocket margin using at least five deduction types. Segment comparable deals, identify avoidable leakage, and propose a discount corridor with green, amber, and approval required ranges. Define what the salesperson must obtain for each concession.",
+      "portfolioOutput": "A transaction pricing dashboard and a one page discount and approval policy.",
+      "selfCheck": [
+        {
+          "id": "w6-sc1",
+          "text": "I can reconcile the waterfall to net revenue and contribution."
+        },
+        {
+          "id": "w6-sc2",
+          "text": "My discount rules account for segment, volume, term, and cost to serve."
+        },
+        {
+          "id": "w6-sc3",
+          "text": "The policy tells sales what to do at the moment of a quote or negotiation."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "id": "w7",
+      "title": "Revenue management and dynamic pricing",
+      "programMapOutput": "Revenue optimization scenario",
+      "outcome": "Use demand forecasts, capacity, inventory, and timing to make prices responsive without losing commercial control.",
+      "coreConcepts": [
+        {
+          "id": "w7-c1",
+          "text": "Revenue management is most useful when capacity is constrained, inventory expires, demand varies, and customers book at different times."
+        },
+        {
+          "id": "w7-c2",
+          "text": "Dynamic pricing changes the offer based on market conditions. Personalized pricing changes the offer based on information about the customer. The risks differ."
+        },
+        {
+          "id": "w7-c3",
+          "text": "Markdown optimization balances margin against sell through and leftover inventory risk."
+        },
+        {
+          "id": "w7-c4",
+          "text": "Forecast error, competitor action, cancellations, and operational constraints can make a mathematically optimal price commercially weak."
+        },
+        {
+          "id": "w7-c5",
+          "text": "Guardrails should address customer fairness, transparency, volatility, brand, and operational feasibility."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w7-rq1",
+          "text": "Does the chosen business have perishable capacity or inventory?"
+        },
+        {
+          "id": "w7-rq2",
+          "text": "Which demand signals arrive early enough to change price or availability?"
+        },
+        {
+          "id": "w7-rq3",
+          "text": "How would customers react to prices changing across time, channel, or device?"
+        },
+        {
+          "id": "w7-rq4",
+          "text": "What minimum margin, maximum change, or rate limit should the system enforce?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Wharton Revenue Analytics Price Optimization",
+          "url": "https://online-execed.wharton.upenn.edu/revenue-analytics",
+          "note": "Optional course covering forecasting, willingness to pay, dynamic pricing, capacity, and revenue optimization."
+        },
+        {
+          "title": "MIT Sloan Pricing Using Data to Improve Pricing Performance",
+          "url": "https://executive.mit.edu/course/pricing/a056g00000URaaPAAT.html",
+          "note": "Optional course connecting analytics, customer value, and pricing decisions."
+        }
+      ],
+      "appliedExercise": "Model a limited capacity or inventory scenario. Compare a single fixed price with two or three price periods or booking classes. Calculate revenue, contribution, utilization, unsold capacity, and customer impact under low, expected, and high demand.",
+      "portfolioOutput": "A revenue optimization scenario with assumptions, guardrails, and a recommendation based on contribution rather than revenue alone.",
+      "selfCheck": [
+        {
+          "id": "w7-sc1",
+          "text": "I can explain when a revenue maximizing decision differs from a profit maximizing decision."
+        },
+        {
+          "id": "w7-sc2",
+          "text": "My forecast scenarios include both demand uncertainty and operational constraints."
+        },
+        {
+          "id": "w7-sc3",
+          "text": "The proposed method includes customer and brand guardrails."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "id": "w8",
+      "title": "Pricing analytics and experimentation",
+      "programMapOutput": "Measurement design",
+      "outcome": "Design analysis that separates the effect of price from other changes and produces evidence suitable for a business decision.",
+      "coreConcepts": [
+        {
+          "id": "w8-c1",
+          "text": "A useful pricing dataset includes realized price, units, product, customer, time, channel, promotions, availability, cost, and relevant market variables."
+        },
+        {
+          "id": "w8-c2",
+          "text": "Regression can control for observed variables, but omitted variables and reverse causality may still bias elasticity estimates."
+        },
+        {
+          "id": "w8-c3",
+          "text": "Randomized tests strengthen causal inference when they are feasible, ethical, and commercially controlled."
+        },
+        {
+          "id": "w8-c4",
+          "text": "Matched markets, difference in differences, synthetic controls, and phased rollouts can help when individual randomization is impractical."
+        },
+        {
+          "id": "w8-c5",
+          "text": "The measurement plan should specify a decision rule, minimum detectable effect, guardrails, and how profit will be calculated."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w8-rq1",
+          "text": "What decision will the analysis support and what evidence would change that decision?"
+        },
+        {
+          "id": "w8-rq2",
+          "text": "Could demand conditions have caused both the observed price and the observed sales result?"
+        },
+        {
+          "id": "w8-rq3",
+          "text": "Which customers or markets can serve as a credible comparison group?"
+        },
+        {
+          "id": "w8-rq4",
+          "text": "What leading indicators and guardrails should be monitored before the final profit outcome is available?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Erasmus University Econometrics Methods and Applications",
+          "url": "https://www.coursera.org/learn/erasmus-econometrics",
+          "note": "Covers multiple regression, specification, endogeneity, binary choice, and time series."
+        },
+        {
+          "title": "UVA and BCG Cost and Economics in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-cost-economics",
+          "note": "Provides an accessible bridge from regression to elasticity and price optimization."
+        }
+      ],
+      "appliedExercise": "Write a test or quasi experiment plan for one pricing change. Define the unit of assignment, treatment, comparison, duration, sample, outcome metric, profit calculation, guardrails, and decision rule. Include a pre analysis checklist for contamination and concurrent commercial changes.",
+      "portfolioOutput": "A measurement design that another analyst could implement and audit.",
+      "selfCheck": [
+        {
+          "id": "w8-sc1",
+          "text": "I can state the identifying assumption behind my method."
+        },
+        {
+          "id": "w8-sc2",
+          "text": "The primary outcome measures incremental contribution or profit, not only conversion or revenue."
+        },
+        {
+          "id": "w8-sc3",
+          "text": "I have defined what result would lead to launch, revision, or rejection."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "id": "w9",
+      "title": "Commercial implementation and governance",
+      "programMapOutput": "Launch and governance plan",
+      "outcome": "Convert a pricing recommendation into a launch plan that sales, finance, operations, product, and leadership can execute and monitor.",
+      "coreConcepts": [
+        {
+          "id": "w9-c1",
+          "text": "Implementation needs a clear effective date, affected customers, transition rules, system changes, owners, and escalation paths."
+        },
+        {
+          "id": "w9-c2",
+          "text": "Customer communication should explain the commercial change accurately and equip teams to discuss value without making unsupported claims."
+        },
+        {
+          "id": "w9-c3",
+          "text": "Sales enablement needs talk tracks, objection handling, approval rules, examples, and practice with realistic deals."
+        },
+        {
+          "id": "w9-c4",
+          "text": "Governance defines decision rights for list prices, discounts, promotions, exceptions, and post launch corrections."
+        },
+        {
+          "id": "w9-c5",
+          "text": "Performance tracking should separate adoption, realized price, volume response, mix, customer retention, and financial return."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w9-rq1",
+          "text": "Which customers need notice, renewal treatment, grandfathering, or contract review?"
+        },
+        {
+          "id": "w9-rq2",
+          "text": "Which systems and data fields must change before the effective date?"
+        },
+        {
+          "id": "w9-rq3",
+          "text": "What will sales need to explain the change confidently and accurately?"
+        },
+        {
+          "id": "w9-rq4",
+          "text": "Who can approve an exception and how will repeated exceptions change policy?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Pricing Strategy in Practice",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-practice",
+          "note": "Useful for applying pricing choices and communicating recommendations."
+        },
+        {
+          "title": "Professional Pricing Society",
+          "url": "https://www.pricingsociety.com/",
+          "note": "Use articles, webinars, and course descriptions to research governance and organizational practice."
+        }
+      ],
+      "appliedExercise": "Create a twelve week implementation plan. Include decision owners, customer cohorts, system changes, sales training, communications, contract review, exception handling, KPI reporting, and a post launch decision cadence. Draft three likely customer objections and commercially sound responses.",
+      "portfolioOutput": "A launch plan, responsibility matrix, and post launch KPI scorecard.",
+      "selfCheck": [
+        {
+          "id": "w9-sc1",
+          "text": "Every implementation task has an owner, date, and dependency."
+        },
+        {
+          "id": "w9-sc2",
+          "text": "The scorecard distinguishes implementation failure from a flawed pricing hypothesis."
+        },
+        {
+          "id": "w9-sc3",
+          "text": "The governance process records why exceptions were approved and when policy should be reviewed."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "id": "w10",
+      "title": "Capstone pricing recommendation",
+      "programMapOutput": "Executive recommendation",
+      "outcome": "Combine the weekly work into a recommendation that a commercial leadership team could approve, reject, or revise.",
+      "coreConcepts": [
+        {
+          "id": "w10-c1",
+          "text": "A decision ready recommendation states the decision, financial effect, customer logic, evidence, operational plan, and material risks."
+        },
+        {
+          "id": "w10-c2",
+          "text": "The base case should be accompanied by downside and upside scenarios and explicit assumptions."
+        },
+        {
+          "id": "w10-c3",
+          "text": "Implementation metrics and learning milestones matter because the initial estimate will be imperfect."
+        },
+        {
+          "id": "w10-c4",
+          "text": "The recommendation should distinguish facts, estimates, assumptions, and management choices."
+        }
+      ],
+      "researchQuestions": [
+        {
+          "id": "w10-rq1",
+          "text": "What exact decision is being requested and by when?"
+        },
+        {
+          "id": "w10-rq2",
+          "text": "Which assumption contributes most to the financial return and how can it be tested?"
+        },
+        {
+          "id": "w10-rq3",
+          "text": "Who gains, who loses, and which customers or channels face the highest risk?"
+        },
+        {
+          "id": "w10-rq4",
+          "text": "What early evidence would cause the team to stop, adjust, or expand the change?"
+        }
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Pricing Strategy Optimization",
+          "url": "https://www.coursera.org/specializations/uva-darden-bcg-pricing-strategy",
+          "note": "Use the cases to compare your reasoning and recommendation structure."
+        },
+        {
+          "title": "Columbia Business School Pricing Methodologies",
+          "url": "https://online1.gsb.columbia.edu/pricing-methodologies",
+          "note": "Optional reference for an integrated analytical and commercial pricing approach."
+        }
+      ],
+      "appliedExercise": "Finalize the capstone using the structure below. Ask a colleague or study partner to challenge the elasticity, cost, customer value, and implementation assumptions. Revise the recommendation after the challenge session.",
+      "portfolioOutput": "An eight to ten slide executive presentation and the supporting financial model. If you do not want to build slides, write a five page decision memo using the same structure.",
+      "selfCheck": [
+        {
+          "id": "w10-sc1",
+          "text": "The requested decision appears on the first page or slide."
+        },
+        {
+          "id": "w10-sc2",
+          "text": "The financial case reconciles from price and volume to contribution or operating profit."
+        },
+        {
+          "id": "w10-sc3",
+          "text": "The commercial plan is specific enough to execute and measure."
+        }
+      ]
+    }
+  ],
+  "capstone": {
+    "structure": [
+      {
+        "number": 1,
+        "section": "Decision",
+        "requiredContent": "State the proposed price, scope, effective date, and approval requested."
+      },
+      {
+        "number": 2,
+        "section": "Business context",
+        "requiredContent": "Explain the customer, product, market, and problem being solved."
+      },
+      {
+        "number": 3,
+        "section": "Baseline economics",
+        "requiredContent": "Show price realization, revenue, contribution, costs, and current leakage."
+      },
+      {
+        "number": 4,
+        "section": "Demand evidence",
+        "requiredContent": "Present elasticity, research, comparable evidence, and limitations."
+      },
+      {
+        "number": 5,
+        "section": "Customer value",
+        "requiredContent": "Explain the next best alternative, differentiation value, and willingness to pay evidence."
+      },
+      {
+        "number": 6,
+        "section": "Price design",
+        "requiredContent": "Show segments, packages, fences, metrics, and transaction rules."
+      },
+      {
+        "number": 7,
+        "section": "Financial return",
+        "requiredContent": "Present base, downside, and upside cases with break even conditions and initiative ROI."
+      },
+      {
+        "number": 8,
+        "section": "Commercial plan",
+        "requiredContent": "Cover sales enablement, communications, systems, contracts, owners, and timeline."
+      },
+      {
+        "number": 9,
+        "section": "Measurement",
+        "requiredContent": "Define test design, KPIs, guardrails, review cadence, and decision rules."
+      },
+      {
+        "number": 10,
+        "section": "Risks",
+        "requiredContent": "Name the largest assumptions and the actions that reduce or monitor each risk."
+      }
+    ],
+    "scoringGuide": {
+      "areas": [
+        {
+          "area": "Pricing economics",
+          "points": 20,
+          "evidence": "Correct unit economics, relevant costs, price volume tradeoff, and break even analysis."
+        },
+        {
+          "area": "Financial return",
+          "points": 20,
+          "evidence": "Clear profit bridge, scenarios, ROI, assumptions, and reconciliation."
+        },
+        {
+          "area": "Customer and market evidence",
+          "points": 20,
+          "evidence": "Credible value, willingness to pay, elasticity, segmentation, and competitive evidence."
+        },
+        {
+          "area": "Commercial design",
+          "points": 20,
+          "evidence": "Operable price architecture, discount rules, customer treatment, and sales logic."
+        },
+        {
+          "area": "Implementation and measurement",
+          "points": 20,
+          "evidence": "Owners, timeline, systems, governance, KPIs, risks, and decision rules."
+        }
+      ],
+      "passingStandard": "Aim for at least 70 points overall and at least 12 points in every area. A low score in one area signals a material weakness even when the total score is high. Revise the capstone until the financial case, customer evidence, commercial design, and implementation plan are mutually consistent."
+    }
+  },
+  "formulaReference": {
+    "intro": "Use consistent definitions and document the source of every input. Replace price with realized net price when discounts and other deductions are material.",
+    "formulas": [
+      {
+        "id": "gross-margin-pct",
+        "measure": "Gross margin percent",
+        "calculation": "Price minus cost of goods sold divided by price",
+        "interpretation": "Measures gross profit as a share of sales."
+      },
+      {
+        "id": "markup-pct",
+        "measure": "Markup percent",
+        "calculation": "Price minus cost divided by cost",
+        "interpretation": "Measures the increase over cost and is not interchangeable with margin."
+      },
+      {
+        "id": "unit-contribution",
+        "measure": "Unit contribution",
+        "calculation": "Net price minus variable cost per unit",
+        "interpretation": "Measures the amount available to cover fixed cost and profit."
+      },
+      {
+        "id": "break-even-volume",
+        "measure": "Break even volume",
+        "calculation": "Fixed cost divided by unit contribution",
+        "interpretation": "Calculates units required to cover fixed costs."
+      },
+      {
+        "id": "price-elasticity",
+        "measure": "Price elasticity",
+        "calculation": "Percentage change in quantity divided by percentage change in price",
+        "interpretation": "Measures demand response. It is normally negative for ordinary goods."
+      },
+      {
+        "id": "required-new-volume",
+        "measure": "Required new volume",
+        "calculation": "Old volume times old unit contribution divided by new unit contribution",
+        "interpretation": "Keeps total contribution unchanged when variable cost per unit is stable."
+      },
+      {
+        "id": "incremental-profit",
+        "measure": "Incremental profit",
+        "calculation": "New contribution minus old contribution minus implementation cost",
+        "interpretation": "Captures the change attributable to the initiative."
+      },
+      {
+        "id": "initiative-roi",
+        "measure": "Pricing initiative ROI",
+        "calculation": "Incremental profit divided by implementation cost",
+        "interpretation": "Use a defined time period and state whether profit is gross, contribution, or operating."
+      }
+    ]
+  },
+  "minimumDataset": {
+    "intro": "For a transaction level analysis, assemble these fields where lawful and available. Use anonymized customer identifiers and follow organizational data policies.",
+    "groups": [
+      {
+        "group": "Transaction",
+        "fields": [
+          "Date",
+          "order identifier",
+          "quantity",
+          "currency"
+        ]
+      },
+      {
+        "group": "Product",
+        "fields": [
+          "SKU",
+          "family",
+          "package",
+          "attributes",
+          "lifecycle stage"
+        ]
+      },
+      {
+        "group": "Customer",
+        "fields": [
+          "Anonymous identifier",
+          "segment",
+          "geography",
+          "channel",
+          "new or existing status"
+        ]
+      },
+      {
+        "group": "Price",
+        "fields": [
+          "List price",
+          "invoice price",
+          "discounts",
+          "rebates",
+          "freight",
+          "service deductions",
+          "pocket price"
+        ]
+      },
+      {
+        "group": "Economics",
+        "fields": [
+          "Variable cost",
+          "cost to serve",
+          "contribution",
+          "payment terms"
+        ]
+      },
+      {
+        "group": "Market",
+        "fields": [
+          "Promotion",
+          "availability",
+          "competitor price",
+          "season",
+          "relevant demand drivers"
+        ]
+      },
+      {
+        "group": "Outcome",
+        "fields": [
+          "Conversion",
+          "units",
+          "revenue",
+          "retention",
+          "returns or cancellations when relevant"
+        ]
+      }
+    ]
+  },
+  "dataQualityChecks": [
+    "Reconcile transaction totals to the finance source before calculating price realization or profit.",
+    "Separate list price, invoice price, and pocket price. Do not mix them within one analysis.",
+    "Flag returns, cancellations, free units, credits, zero prices, and negative quantities instead of silently deleting them.",
+    "Standardize currency, tax treatment, units of measure, and time periods before comparing transactions.",
+    "Control for promotions, stockouts, product changes, and major market events when estimating demand response.",
+    "Protect customer confidentiality and use the minimum personal data required for the decision."
+  ],
+  "researchLogTemplate": {
+    "intro": "Complete one row for each important source. The purpose is to connect research to a decision rather than collect links.",
+    "columns": [
+      "Source",
+      "Main claim",
+      "Evidence",
+      "Limitations",
+      "Decision impact"
+    ]
+  },
+  "reflectionTemplate": {
+    "prompts": [
+      {
+        "id": "refl-1",
+        "prompt": "The most important concept I learned this week was"
+      },
+      {
+        "id": "refl-2",
+        "prompt": "The assumption I am least confident about is"
+      },
+      {
+        "id": "refl-3",
+        "prompt": "The commercial decision this analysis would change is"
+      },
+      {
+        "id": "refl-4",
+        "prompt": "The evidence I still need is"
+      },
+      {
+        "id": "refl-5",
+        "prompt": "The question I would ask a pricing leader is"
+      }
+    ]
+  },
+  "readingList": {
+    "intro": "Do not attempt to read every source in full. Select the resource that matches the weekly decision and compare its assumptions with another source.",
+    "books": [
+      {
+        "text": "The Strategy and Tactics of Pricing by Thomas Nagle and Georg Muller",
+        "title": "The Strategy and Tactics of Pricing",
+        "authors": "Thomas Nagle and Georg Muller"
+      },
+      {
+        "text": "Pricing and Revenue Optimization by Robert Phillips",
+        "title": "Pricing and Revenue Optimization",
+        "authors": "Robert Phillips"
+      },
+      {
+        "text": "The Price Advantage by Michael Marn, Eric Roegner, and Craig Zawada",
+        "title": "The Price Advantage",
+        "authors": "Michael Marn, Eric Roegner, and Craig Zawada"
+      },
+      {
+        "text": "Monetizing Innovation by Madhavan Ramanujam and Georg Tacke",
+        "title": "Monetizing Innovation",
+        "authors": "Madhavan Ramanujam and Georg Tacke"
+      },
+      {
+        "text": "Confessions of the Pricing Man by Hermann Simon",
+        "title": "Confessions of the Pricing Man",
+        "authors": "Hermann Simon"
+      }
+    ],
+    "coursesAndOrganizations": [
+      {
+        "title": "UVA and BCG Pricing Strategy Optimization",
+        "url": "https://www.coursera.org/specializations/uva-darden-bcg-pricing-strategy",
+        "note": "Broad practical foundation across economics, customer value, competition, and application."
+      },
+      {
+        "title": "MITx Microeconomics",
+        "url": "https://learn.mit.edu/courses/course-v1:MITxT%2B14.100x",
+        "note": "Rigorous economic foundation and available to audit."
+      },
+      {
+        "title": "Erasmus Econometrics Methods and Applications",
+        "url": "https://www.coursera.org/learn/erasmus-econometrics",
+        "note": "Analytical depth in regression, endogeneity, specification, and time series."
+      },
+      {
+        "title": "Columbia Pricing Methodologies",
+        "url": "https://online1.gsb.columbia.edu/pricing-methodologies",
+        "note": "Integrated analytical and commercial executive course."
+      },
+      {
+        "title": "MIT Sloan Pricing Using Data",
+        "url": "https://executive.mit.edu/course/pricing/a056g00000URaaPAAT.html",
+        "note": "Data driven pricing, surveys, conjoint analysis, segmentation, and customer value."
+      },
+      {
+        "title": "Wharton Revenue Analytics Price Optimization",
+        "url": "https://online-execed.wharton.upenn.edu/revenue-analytics",
+        "note": "Revenue management, forecasting, demand estimation, and dynamic pricing."
+      },
+      {
+        "title": "Professional Pricing Society",
+        "url": "https://www.pricingsociety.com/",
+        "note": "Professional courses, certification, articles, events, and pricing community."
+      }
+    ]
+  },
+  "completionStandard": "The program is complete when the capstone recommendation is internally consistent, uses evidence appropriate to the decision, reconciles to a financial return, and includes a commercial plan that another team could execute. A certificate is optional. The durable proof of learning is the model, research log, and decision quality shown in the capstone."
+}

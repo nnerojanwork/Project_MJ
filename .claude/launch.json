@@ -77,6 +77,18 @@
       "autoPort": true
     },
     {
+      "name": "pricing-study-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "pricing-study", "run", "dev", "--", "--port", "5191", "--strictPort"],
+      "port": 5191
+    },
+    {
+      "name": "pricing-study-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "pricing-study", "run", "preview", "--", "--port", "5192", "--strictPort"],
+      "port": 5192
+    },
+    {
       "name": "energy-log",
       "runtimeExecutable": "python3",
       "runtimeArgs": [

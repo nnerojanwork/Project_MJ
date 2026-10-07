@@ -1,0 +1,2373 @@
+{
+  "meta": {
+    "label": "AI-generated, verify",
+    "note": "Generated study content keyed by IDs in syllabus.json. Not part of the original syllabus. Verify numbers and claims before relying on them.",
+    "priceConvention": "In the running case, 'price' means the fee per deal: advance x (factor rate - 1). Elasticities and % price changes are measured on the fee, not on the factor rate, unless a question says otherwise."
+  },
+  "case": {
+    "name": "Harbour Lane Capital (fictional)",
+    "summary": "A UK merchant cash advance (MCA) provider. Merchants receive a lump sum and repay a fixed total (advance x factor rate) through a holdback: a fixed % of their daily card takings. Most deals come through brokers; about a third of volume is renewals.",
+    "assumptions": [
+      "Average advance: £20,000",
+      "List factor rate 1.30, so list fee £6,000 per deal",
+      "Average net factor rate after discounts, rebates and waivers: 1.25, so net fee (the 'price') £5,000 per deal",
+      "Holdback 10% of daily card takings; typical repayment in about 8 months",
+      "Variable cost per deal £3,500: broker commission £1,600 (8% of advance), cost of funds £600, expected credit loss £1,000, servicing and collections £300",
+      "Unit contribution: £5,000 - £3,500 = £1,500",
+      "1,000 deals per year; fixed costs £1,000,000 per year",
+      "Annual baseline: gross list fees £6.0m, discounts and deductions £1.0m, net revenue £5.0m, variable cost £3.5m, contribution £1.5m, operating profit £0.5m",
+      "A 5% price increase means net fee £5,000 to £5,250 (net factor rate 1.25 to 1.2625)"
+    ]
+  },
+  "concepts": {
+    "w1-c1": {
+      "explainer": "Each measure answers a different question. Revenue: what did customers pay? Gross profit: revenue minus the direct cost of the product. Contribution: revenue minus every cost that rises with one more sale, so it shows what each extra deal adds towards fixed costs. Operating profit: contribution minus fixed operating costs, the bottom line of the business. Cash: when money actually moves, which can lag profit by months. A price change can lift revenue while cutting contribution, or lift profit while straining cash. Always say which one you are optimising.",
+      "example": {
+        "setup": "Harbour Lane, per deal: net fee £5,000, cost of funds £600, expected loss £1,000, broker commission £1,600, servicing £300. Fixed costs £1.0m on 1,000 deals.",
+        "steps": [
+          "Gross profit (lender-style: fee minus funding cost and credit loss) = 5,000 - 600 - 1,000 = £3,400 per deal",
+          "Contribution (minus all variable costs) = 5,000 - 3,500 = £1,500 per deal, £1.5m a year",
+          "Operating profit = 1.5m - 1.0m = £0.5m",
+          "Cash: the £20,000 advance leaves on day 1 and the fee arrives over about 8 months, so a fast-growing book can be profitable and cash-negative at the same time"
+        ],
+        "result": "Same deal, four different numbers: £5,000 revenue, £3,400 gross profit, £1,500 contribution, and a cash outflow in month one."
+      }
+    },
+    "w1-c2": {
+      "explainer": "Margin and markup use the same profit but divide by different things. Margin % = (price - cost) / price. Markup % = (price - cost) / cost. Because cost is smaller than price, markup is always the bigger number. Mixing them up is a classic error: a team that 'needs a 30% margin' but applies a 30% markup to cost will under-price. Convert with markup = margin / (1 - margin) and margin = markup / (1 + markup).",
+      "example": {
+        "setup": "Net fee £5,000, variable cost £3,500.",
+        "steps": [
+          "Profit per deal = 5,000 - 3,500 = £1,500",
+          "Margin = 1,500 / 5,000 = 30.0%",
+          "Markup = 1,500 / 3,500 = 42.9%",
+          "Check: 0.30 / (1 - 0.30) = 0.429"
+        ],
+        "result": "30% margin and 42.9% markup describe the same deal. Pricing at cost + 30% would give a fee of £4,550 and only a 23.1% margin."
+      }
+    },
+    "w1-c3": {
+      "explainer": "A price change moves profit through two levers. Unit economics: every deal you still win earns more (or less). Volume response: some customers leave (or arrive). Because fixed and variable costs do not move with price, a small price rise produces a much bigger percentage rise in unit contribution when margins are thin. That is why the question is never 'will we lose deals?' but 'will we lose more deals than the break-even volume loss?'",
+      "example": {
+        "setup": "5% price increase: net fee £5,000 to £5,250. Variable cost stays £3,500. Baseline 1,000 deals.",
+        "steps": [
+          "Unit contribution £1,500 to £1,750: +16.7% from a 5% price rise",
+          "Volume that keeps total contribution at £1.5m = 1,000 x 1,500 / 1,750 = 857 deals",
+          "Break-even volume loss = 1 - 1,500 / 1,750 = 14.3%"
+        ],
+        "result": "The increase pays off unless Harbour Lane loses more than about 14% of deals."
+      }
+    },
+    "w1-c4": {
+      "explainer": "Relevant costs are the ones that change because of the decision you are making. For a single deal, that means costs that would not be incurred if you said no. Allocated overheads (rent, the underwriting team, the platform) do not change with one deal, so they should not decide whether that deal is worth doing. But the whole book must still cover them over time, so fully allocated cost matters for reporting, list-price setting and long-run viability.",
+      "example": {
+        "setup": "A broker asks for factor rate 1.22 on a £20,000 renewal. Variable cost £3,500. Fixed costs £1.0m over 1,000 deals = £1,000 allocated per deal.",
+        "steps": [
+          "Fee = 20,000 x 0.22 = £4,400",
+          "Contribution = 4,400 - 3,500 = +£900, so the deal adds profit this year",
+          "Fully allocated cost = 3,500 + 1,000 = £4,500, so it 'loses' £100 on a fully loaded view"
+        ],
+        "result": "Worth doing if capital is not constrained and it will not reset every broker's expectations. As a standard price it would not cover fixed costs."
+      }
+    },
+    "w1-c5": {
+      "explainer": "A price waterfall starts at list price and subtracts every deduction until you reach what you actually keep. On-invoice discounts give the invoice price. Off-invoice items (rebates, waivers, free services, freight) give the pocket price. Subtract variable costs to get pocket margin. Most leakage hides below the invoice line, where no one owns it. The waterfall shows where to act: some steps need a price policy change, others a process fix.",
+      "example": {
+        "setup": "One £20,000 advance at list factor rate 1.30.",
+        "steps": [
+          "List fee: £6,000",
+          "Negotiated rate discount to 1.275: -£500, invoice fee £5,500",
+          "Early-repayment rebate: -£300",
+          "Renewal fee waiver: -£200, pocket price £5,000",
+          "Variable costs: -£3,500, pocket margin £1,500"
+        ],
+        "result": "The merchant was quoted £6,000 but Harbour Lane pockets £5,000 and keeps £1,500, which is 25% of the list fee."
+      }
+    },
+    "w2-c1": {
+      "explainer": "A demand curve shows how many customers buy at each price when everything else that matters stays fixed: competitor prices, marketing, the economy, product quality, season. A price change moves you along the curve. A change in any of those other factors shifts the whole curve. Real data mixes both, so a fall in sales after a price rise is not automatically a movement along the curve.",
+      "example": {
+        "setup": "Harbour Lane funds 1,000 deals at a £5,000 fee.",
+        "steps": [
+          "Along the curve: at a £6,000 fee, with everything else unchanged, demand might be 900 deals",
+          "Shift of the curve: a competitor launches 24-hour funding and demand at £5,000 drops to 920"
+        ],
+        "result": "If both happen in the same quarter, observed volume might fall to about 830, and you cannot read the price effect straight off the data."
+      }
+    },
+    "w2-c2": {
+      "explainer": "Own-price elasticity = % change in quantity / % change in price. It is usually negative. Between 0 and -1 (inelastic), a price rise increases revenue. Below -1 (elastic), revenue falls. Use the arc (midpoint) method between two observed points so the answer is the same in either direction. Always state what 'price' means. An MCA factor rate going from 1.25 to 1.30 is a +4% change in the rate but a +20% change in the fee.",
+      "example": {
+        "setup": "Fee £5,000 to £6,000, deals 1,000 to 900. Arc method uses midpoints.",
+        "steps": [
+          "%ΔQ = (900 - 1,000) / 950 = -10.5%",
+          "%ΔP = (6,000 - 5,000) / 5,500 = +18.2%",
+          "Elasticity = -10.5 / 18.2 = -0.58"
+        ],
+        "result": "Inelastic on fee: revenue rises from £5.0m to £5.4m. Measured on the factor rate, the same data would give about -2.7."
+      }
+    },
+    "w2-c3": {
+      "explainer": "Cross-price elasticity = % change in your volume / % change in another product's price. Positive means substitutes (their price cut takes your customers). Negative means complements (they are bought together). Income elasticity = % change in volume / % change in customer income. It shows how exposed you are to the economic cycle. For small-business finance, demand can rise when trading is tough, but so does default risk.",
+      "example": {
+        "setup": "A competitor cuts its fee on £20,000 from £5,600 (1.28) to £4,800 (1.24). Harbour Lane deals fall from 1,000 to 950. Arc method.",
+        "steps": [
+          "Competitor %ΔP = -800 / 5,200 = -15.4%",
+          "Our %ΔQ = -50 / 975 = -5.1%",
+          "Cross elasticity = -5.1 / -15.4 = +0.33"
+        ],
+        "result": "Positive, so the products are substitutes, but only weakly. A large competitor cut moved a small share of volume."
+      }
+    },
+    "w2-c4": {
+      "explainer": "One elasticity number for the whole business is an average that can hide very different behaviour. Customers with more alternatives, lower switching costs or a broker shopping for them respond more. Elasticity also changes with channel, season, price level (customers react more once you pass a competitor's price) and time horizon (customers take time to find alternatives, so long-run elasticity is usually larger).",
+      "example": {
+        "setup": "Harbour Lane estimates elasticity of -1.5 for broker deals (700 a year) and -0.3 for direct renewals (300 a year). Consider a 5% price rise.",
+        "steps": [
+          "Broker deals: -1.5 x 5% = -7.5%, about 52-53 deals lost",
+          "Renewals: -0.3 x 5% = -1.5%, about 4-5 deals lost",
+          "Blended loss: about 57 of 1,000 = -5.7%"
+        ],
+        "result": "The blended view says 'mildly elastic'. The segment view says the rise is very safe on renewals and riskier on broker deals."
+      }
+    },
+    "w2-c5": {
+      "explainer": "Sales move for many reasons: promotions, stock or capacity limits, competitor moves, seasonality, marketing, broker behaviour. If any of these changed at the same time as price, a simple before-and-after comparison credits or blames price for their effect. Before calling a change a price effect, list what else moved and either control for it or compare against a group that did not get the price change.",
+      "example": {
+        "setup": "Harbour Lane raised rates in March and deals fell 15% month on month. In the same March, a major broker paused submissions, and last year March volume fell 10% with no price change.",
+        "steps": [
+          "Seasonal pattern alone explains about -10%",
+          "The broker pause explains part of the rest",
+          "The remaining 'price effect' is at most about -5%, and possibly close to zero"
+        ],
+        "result": "Reading -15% as the price effect would overstate elasticity about threefold."
+      }
+    },
+    "w3-c1": {
+      "explainer": "Economic value to the customer (EVC) is the most a fully informed customer should rationally pay. Start with the price of their next best alternative (reference value). Add the value of everything you do better (positive differentiation value). Subtract the value of anything you do worse (negative differentiation value). Price below EVC so the customer has a reason to switch. Pricing above it relies on customers being uninformed.",
+      "example": {
+        "setup": "Next best alternative for a £20,000 need: an online term loan with total cost £4,000. Holdback flexibility (repayments fall in slow weeks, avoiding overdraft fees) is worth £900. Funding in 24 hours instead of 7 days lets the merchant take a £800 supplier discount. Daily remittance admin costs them £200.",
+        "steps": [
+          "Reference value: £4,000",
+          "Positive differentiation: +£900 + £800 = +£1,700",
+          "Negative differentiation: -£200",
+          "EVC = 4,000 + 1,700 - 200 = £5,500 (factor rate 1.275)"
+        ],
+        "result": "The £5,000 net fee leaves the merchant £500 of value for switching. The £6,000 list fee is above EVC."
+      }
+    },
+    "w3-c2": {
+      "explainer": "Different customers will pay different amounts, so willingness to pay (WTP) is a distribution, not one number. Each price point captures the share of customers whose WTP is above it. Raising price loses the customers near the bottom and earns more from everyone else. The shape of the distribution, not its average, tells you how much volume a price change puts at risk, and whether tiers or segment prices could capture more value.",
+      "example": {
+        "setup": "From past offers on £20,000: 80% of merchants accept at 1.22 (fee £4,400), 50% at 1.28 (£5,600), 20% at 1.35 (£7,000). Variable cost £3,500. Per 100 quotes:",
+        "steps": [
+          "1.22: 80 x (4,400 - 3,500) = £72,000",
+          "1.28: 50 x (5,600 - 3,500) = £105,000",
+          "1.35: 20 x (7,000 - 3,500) = £70,000"
+        ],
+        "result": "The middle price wins on contribution. The 'average WTP' alone would not tell you that."
+      }
+    },
+    "w3-c3": {
+      "explainer": "Pick the research method by the decision. Gabor-Granger asks 'would you buy at £X?' across a series of prices, giving a demand curve for one defined offer. Van Westendorp asks when the price feels too cheap, a bargain, getting expensive and too expensive, giving an acceptable range but not purchase likelihood. Conjoint and discrete choice show trade-offs among several attributes and prices, so they suit package and feature design.",
+      "example": {
+        "setup": "Decision: should the standard MCA offer have a 10% or a 15% holdback, and how much should the factor rate differ between them?",
+        "steps": [
+          "Gabor-Granger: no, it tests price for one fixed package",
+          "Van Westendorp: no, it gives a price range without the trade-off",
+          "Choice-based conjoint: yes. Suppose it shows merchants treat a 15% holdback as worth about 0.03 of factor rate (£600 on £20,000)"
+        ],
+        "result": "A Fast offer at 15% holdback would need to be priced about 0.03 below Standard to be equally attractive."
+      }
+    },
+    "w3-c4": {
+      "explainer": "What people say they would pay often differs from what they do. Hypothetical bias: no real money is at stake, so stated WTP tends to be inflated. Strategic bias: buyers (and brokers) may lowball to push prices down. Reduce both with realistic choice tasks, clear budget reminders, questions about the last real purchase, incentive-compatible designs where possible, and by checking survey results against actual acceptance data.",
+      "example": {
+        "setup": "A merchant survey says 60% would accept a 1.30 factor rate. In the past, real offers at 1.30 were accepted 35% of the time.",
+        "steps": [
+          "Calibration ratio = 35 / 60 = 0.58",
+          "Apply it to a new stated result: 50% stated at 1.32 gives about 29% expected actual acceptance"
+        ],
+        "result": "Using raw stated intent would overstate volume by about 70%."
+      }
+    },
+    "w3-c5": {
+      "explainer": "Customers only pay for value they understand and believe. When a benefit is new, indirect or hard to quantify, realised WTP falls well below true value unless you translate it into the customer's own terms and support it with evidence. Good value communication uses the customer's frame (cash flow, time, risk), compares honestly with the alternative, and avoids claims you cannot back up.",
+      "example": {
+        "setup": "A merchant compares a 1.25 factor rate with an online loan 'at 18% APR' and assumes the MCA is the costlier option.",
+        "steps": [
+          "Show total cost in pounds: MCA £5,000 vs loan £4,000",
+          "Show the cash-flow difference: in a slow month with card takings down 40%, the holdback falls 40%; the loan payment does not",
+          "Quantify it with their data: avoided overdraft fees of about £900"
+        ],
+        "result": "An honest comparison in pounds and cash flow supports the £1,000 premium better than a headline rate that looks bad on its own."
+      }
+    },
+    "w4-c1": {
+      "explainer": "A pricing segment is only useful if it meets two tests. It differs in something that matters for price: willingness to pay, cost to serve, behaviour or value received. And you can tell which segment a customer is in at the moment you quote, using information they cannot easily fake. 'Price-insensitive customers' fails the second test. 'Renewing merchants with more than £30,000 monthly card turnover' passes it.",
+      "example": {
+        "setup": "Candidate segment variables for Harbour Lane.",
+        "steps": [
+          "New vs renewal: known at quote, differs in WTP and risk. Usable",
+          "Monthly card turnover (from processor data): known, linked to risk and cost to serve. Usable",
+          "How urgently the merchant needs cash: matters for WTP but is not observable. Not usable directly",
+          "Broker vs direct: known, differs in cost (commission) and price sensitivity. Usable"
+        ],
+        "result": "Three of the four can drive price. Urgency can only be captured indirectly, for example through a paid fast-funding option."
+      }
+    },
+    "w4-c2": {
+      "explainer": "A price fence is the rule that decides who qualifies for a price. Good fences rely on facts the customer cannot easily fake or work around: purchase history, timing, volume, contract terms. Weak fences ('ask and you get the discount') leak. Low prices spread to customers who would have paid more, which is arbitrage. Every discounted offer needs a fence, or it becomes the real price.",
+      "example": {
+        "setup": "Harbour Lane offers a renewal factor rate of 1.22 (vs 1.25 standard). Fence: at least 50% of the current advance repaid and no missed remittances in the last 90 days.",
+        "steps": [
+          "Without a fence, assume 40% of 700 broker deals claim 'renewal-like' terms: 280 x £600 = £168,000 of fee given away",
+          "With the fence, only qualifying renewals (about 300 a year) get it, and they also carry lower risk"
+        ],
+        "result": "A precise fence keeps the renewal discount targeted at the merchants it is meant for."
+      }
+    },
+    "w4-c3": {
+      "explainer": "Different structures match different value patterns. Good-better-best tiers let customers self-select by need. Bundles combine items to raise average spend or simplify buying. Usage pricing ties price to consumption. Subscriptions suit ongoing value. Two-part tariffs combine a fixed fee with a usage charge, so the fixed part covers set-up cost and the variable part tracks value. Choose the structure whose metric grows with the value the customer receives.",
+      "example": {
+        "setup": "Two-part tariff: £300 origination fee plus factor rate 1.235, compared with flat 1.25.",
+        "steps": [
+          "£20,000 advance: 300 + 20,000 x 0.235 = £5,000, the same as flat 1.25",
+          "£10,000 advance: 300 + 2,350 = £2,650 vs flat £2,500",
+          "£40,000 advance: 300 + 9,400 = £9,700 vs flat £10,000"
+        ],
+        "result": "Same price at the average deal, but underwriting cost is recovered on small deals and large deals become more competitive."
+      }
+    },
+    "w4-c4": {
+      "explainer": "Price architecture is the set of options and how they relate. Good architecture makes the right choice obvious for each customer type, gives a clear reason to trade up, and stays simple enough for sales and customers to understand. Too many options cause confusion and slow decisions. An entry tier that is deliberately unusable damages trust. Each tier should be a real choice someone would rationally make.",
+      "example": {
+        "setup": "Three MCA offers on £20,000.",
+        "steps": [
+          "Flex: factor 1.30, 8% holdback. Lowest daily burden, for seasonal or tight-cash merchants",
+          "Standard: factor 1.25, 10% holdback",
+          "Fast: factor 1.22, 15% holdback. Cheapest total cost and quickest repayment, for high-turnover merchants",
+          "Compare the alternative: 5 rates x 4 holdbacks = 20 combinations brokers cannot explain"
+        ],
+        "result": "Three clear trade-offs (total cost vs daily cash burden) are easier to sell and still let merchants self-select."
+      }
+    },
+    "w4-c5": {
+      "explainer": "Segmented and personalised prices must stay fair, explainable and lawful. Many jurisdictions prohibit price differences based on protected characteristics, including indirect effects through proxies such as postcode. Hidden or unexplainable price differences erode trust even when legal. Some customer types (for example sole traders) may have extra protection. Before launch, check that every price difference can be justified by cost, risk or value, and get legal review where needed.",
+      "example": {
+        "setup": "A model suggests charging 0.02 more in certain postcodes, where merchants accept higher rates.",
+        "steps": [
+          "Ask why: is it risk (defaults are higher, a cost-based reason) or fewer alternatives (exploiting weaker bargaining power)?",
+          "Check whether postcode is acting as a proxy for a protected characteristic",
+          "If risk is the reason, price on the risk variables directly and document it"
+        ],
+        "result": "Same intended margin, but based on a reason you can explain and defend."
+      }
+    },
+    "w5-c1": {
+      "explainer": "Market structure shapes how much pricing power you have. With many similar sellers, prices converge and differentiation is your main lever. With a few large players (oligopoly), each move invites a reaction, so you must anticipate responses. With a strong position (near-monopoly), you have pricing power but also scrutiny. Structure can differ by channel: the same product can face intense competition in one channel and little in another.",
+      "example": {
+        "setup": "Harbour Lane's market.",
+        "steps": [
+          "Broker channel: each deal is shopped to about 4 lenders, so it is close to competitive and pricing power is low",
+          "Direct renewals: the merchant knows Harbour Lane, switching takes effort, so pricing power is higher",
+          "Implication: differentiate on speed and service in the broker channel, and protect margin on renewals"
+        ],
+        "result": "One company, two different competitive situations, needing two pricing approaches."
+      }
+    },
+    "w5-c2": {
+      "explainer": "A competitor's headline price is only comparable if what's being bought is comparable: the same package, customer type, contract terms, fees and channel. Normalise before you compare. Add hidden fees, adjust for terms and service levels, and compare total cost to the customer. An unadjusted gap often shrinks a lot or even reverses once you compare like with like.",
+      "example": {
+        "setup": "Competitor quotes factor 1.22 with a £400 origination fee and 15% holdback. Harbour Lane quotes 1.25, no fee, 10% holdback. Advance £20,000.",
+        "steps": [
+          "Competitor total cost = 20,000 x 0.22 + 400 = £4,800",
+          "Harbour Lane total cost = £5,000",
+          "Real gap = £200, not the £600 the factor rates suggest",
+          "The competitor's 15% holdback also takes 50% more cash per day from the merchant"
+        ],
+        "result": "On a like-for-like basis the competitor is only slightly cheaper and harder on the merchant's daily cash."
+      }
+    },
+    "w5-c3": {
+      "explainer": "Game theory treats pricing as a series of moves between rivals. In a one-off game, each firm is tempted to cut price even though both are better off holding (the prisoner's dilemma). In repeated games, firms can sustain better outcomes because cuts get punished later. Commitments only work if they are credible. Signalling, entry deterrence and price leadership are all ways of shaping what rivals expect you to do.",
+      "example": {
+        "setup": "Annual contribution for Harbour Lane and one rival, each choosing whether to hold 1.25 or cut to 1.20.",
+        "steps": [
+          "Both hold: £1.5m each",
+          "One cuts: cutter £1.8m, holder £0.7m",
+          "Both cut: £0.9m each",
+          "In a one-shot game, cutting looks best whatever the rival does, so both end up at £0.9m"
+        ],
+        "result": "A credible, publicised policy of 'we match targeted cuts on renewals' makes cutting less attractive for the rival and can keep both at £1.5m."
+      }
+    },
+    "w5-c4": {
+      "explainer": "Price wars usually start when a firm reacts to a visible price, or to losing share, without diagnosing why customers are leaving. If the real cause is product, speed, service or sales coverage, a price cut gives away margin and does not fix the problem. Rivals then match, prices fall across the market, and everyone ends up worse off. Diagnose first: cut price only when price is actually the reason customers are leaving.",
+      "example": {
+        "setup": "Harbour Lane lost 10% of broker deals in a quarter. Lost-deal analysis shows the winning lender funded in 24 hours vs Harbour Lane's 72, at a similar total cost.",
+        "steps": [
+          "Price response: cut 5% across all 1,000 deals: 1,000 x £250 = £250,000 of contribution given up, and rivals may match",
+          "Service response: invest in 24-hour funding for broker deals"
+        ],
+        "result": "The problem was speed, so a price cut would have cost £250,000 without fixing it."
+      }
+    },
+    "w5-c5": {
+      "explainer": "Competition law limits how firms can coordinate on price. Risky areas include discussing future prices or margins with competitors (even informally), public signalling meant to coordinate, agreeing on parity, setting resale prices for distributors, and exchanging competitively sensitive information through third parties such as brokers or trade bodies. Publicly available competitor prices are normally fine to use. When unsure, flag the question for legal review rather than guessing.",
+      "example": null
+    },
+    "w6-c1": {
+      "explainer": "List price is what you publish. Pocket price is what you actually keep after every discount, rebate and off-invoice concession. When concessions vary a lot between customers, two deals at the same list price can end up far apart, and changing list price barely touches the real problem. Managing pocket price, and the variance in it, is often a faster route to profit than any list-price change.",
+      "example": {
+        "setup": "Two £20,000 advances, both at list factor 1.30 (list fee £6,000).",
+        "steps": [
+          "Merchant A: £300 rate discount, no rebate. Pocket £5,700",
+          "Merchant B: £800 rate discount, £400 early-repayment rebate, £200 renewal waiver. Pocket £4,600",
+          "Gap: £1,100 on identical list prices"
+        ],
+        "result": "A 2% list increase (£120) is small next to £1,100 of variance in what is actually realised."
+      }
+    },
+    "w6-c2": {
+      "explainer": "Once you have a waterfall for every deal, slice it: by customer, salesperson, product, channel and deduction type. Leakage is rarely spread evenly. It clusters with particular brokers, reps, regions or concession types. Compare comparable deals (same size, risk, product) to separate justified differences from habit. The biggest gaps among comparable deals are your best targets.",
+      "example": {
+        "setup": "Comparable £20,000 deals, same risk grade. Broker A's average pocket fee is £5,400. Broker B's is £4,700 across 200 deals a year.",
+        "steps": [
+          "Gap per deal = 5,400 - 4,700 = £700",
+          "Annual leakage if B matched A = 200 x 700 = £140,000",
+          "Check: is B's discount buying anything, such as lower risk or faster repayment? If not, it is leakage"
+        ],
+        "result": "One broker relationship holds £140,000 of contribution, almost a tenth of the company's total."
+      }
+    },
+    "w6-c3": {
+      "explainer": "Pricing policy only works if it is clear at the moment of the quote. A discount corridor defines acceptable ranges for each deal type. A floor is the lowest price anyone may approve. Approval thresholds say who can authorise what. Exception codes record why each out-of-policy deal happened, so you can see patterns later. Together they turn 'use judgement' into rules people can follow quickly.",
+      "example": {
+        "setup": "Corridor for standard £20,000 broker deals (variable cost £3,500).",
+        "steps": [
+          "Green, factor 1.27 or more: account manager approves",
+          "Amber, 1.24 to below 1.27: team lead approves, exception code required",
+          "Approval required, below 1.24: deal desk",
+          "Floor 1.20: fee £4,000, contribution £500. Below this only the CFO can approve"
+        ],
+        "result": "A salesperson knows instantly what they can offer and what they must justify."
+      }
+    },
+    "w6-c4": {
+      "explainer": "People do what they are paid to do. If sales or broker pay is based on revenue or volume alone, every discount that helps close a deal is free to the seller and costly to the company. Incentives tied to contribution, realised price or margin align the seller with profit. Changing a pricing policy without changing incentives usually fails quietly as exceptions creep back.",
+      "example": {
+        "setup": "An account manager is paid 1% of funded amount. Two £20,000 deals: one at 1.20, one at 1.30.",
+        "steps": [
+          "Pay on each deal: 1% x 20,000 = £200, the same",
+          "Fees: £4,000 vs £6,000",
+          "Contribution (variable cost £3,500): £500 vs £2,500"
+        ],
+        "result": "The company earns five times more on one deal, but the salesperson is paid the same on both. An extra bonus based on fee above 1.25 would fix that."
+      }
+    },
+    "w6-c5": {
+      "explainer": "In a good negotiation, a concession is traded for something, never given away. Every price concession should be matched by a customer commitment of similar value: volume, term, faster payment, reduced cost to serve, exclusivity, referrals. This protects price discipline and teaches customers that pushing for a lower price has a cost. Prepare the list of things you can ask for before the negotiation starts.",
+      "example": {
+        "setup": "A merchant asks for 1.22 instead of 1.25 on £20,000, a £600 concession.",
+        "steps": [
+          "Ask for a holdback of 13% instead of 10%: repayment about 2 months faster, freeing capital and cutting cost of funds by about £150",
+          "Or ask for direct renewal next time (no broker commission, about £1,600 saved on the renewal)",
+          "Or offer half: 1.235 (£300) with no conditions"
+        ],
+        "result": "A trade that recovers most of the £600 beats a flat discount."
+      }
+    },
+    "w7-c1": {
+      "explainer": "Revenue management sets prices and availability over time to make the best use of limited capacity. It pays off when capacity is fixed in the short run, unused capacity is lost (an empty seat, unspent capital), demand varies, and customers commit at different times. Airlines and hotels are the classic cases. For a lender, the 'capacity' is often the funding line available each month.",
+      "example": {
+        "setup": "Harbour Lane can fund £2m this month (100 deals of £20,000). At 1.25, 120 merchants want funding. Variable cost £3,500.",
+        "steps": [
+          "At 1.25: 100 funded (capacity binds), contribution 100 x 1,500 = £150,000",
+          "At 1.28 (fee £5,600): demand falls to about 100, all funded, contribution 100 x 2,100 = £210,000"
+        ],
+        "result": "When capacity binds, a higher price loses no funded volume and adds £60,000."
+      }
+    },
+    "w7-c2": {
+      "explainer": "Dynamic pricing changes price with market conditions (time, demand, capacity) and everyone sees the same price at the same moment. Personalised pricing changes price based on information about the individual customer. They carry different risks. Dynamic pricing mainly creates volatility and fairness-over-time complaints. Personalised pricing raises discrimination, transparency and data-use questions, and can feel exploitative if it targets customers who are vulnerable or in a hurry.",
+      "example": {
+        "setup": "Two ideas for Harbour Lane.",
+        "steps": [
+          "Dynamic: when the monthly funding line is 90% used, standard rates rise from 1.25 to 1.27 for every new quote",
+          "Personalised: a merchant whose bank data shows a maxed overdraft is quoted 1.32 because they seem desperate"
+        ],
+        "result": "The first is defensible if explained. The second prices on vulnerability rather than risk or cost, and carries serious conduct and reputational risk."
+      }
+    },
+    "w7-c3": {
+      "explainer": "Markdown optimisation decides when and how much to cut price on stock that loses value over time. Holding full price protects margin per unit but risks being left with stock worth little. Discounting earlier sells more but at lower margin. Compare total profit across options, including the salvage value of anything left over, rather than the margin on each sale.",
+      "example": {
+        "setup": "A retailer has 200 winter jackets, 4 weeks left. At £80, 100 sell. At £60, 180 sell. Leftovers are cleared at £10.",
+        "steps": [
+          "Hold £80: 100 x 80 + 100 x 10 = £9,000",
+          "Mark down to £60: 180 x 60 + 20 x 10 = £11,000"
+        ],
+        "result": "The markdown earns £2,000 more even though each sale earns £20 less."
+      }
+    },
+    "w7-c4": {
+      "explainer": "An optimisation model is only as good as its inputs. Forecast error, competitor reactions, cancellations, adverse selection and operational limits can turn a 'mathematically optimal' price into a poor commercial one. Stress-test the recommendation: re-run it under low and high demand, a competitor response and changed customer mix. Prefer prices that perform well across scenarios over one that is optimal only in the base case.",
+      "example": {
+        "setup": "Capacity case: 1.28 beats 1.25 by £60,000 (see the revenue management concept). Now suppose the higher rate drives away the best merchants, so expected loss rises from £1,000 to £1,400 per deal.",
+        "steps": [
+          "At 1.28: contribution per deal = 5,600 - 3,900 = £1,700; 100 x 1,700 = £170,000",
+          "At 1.25: still £150,000"
+        ],
+        "result": "1.28 still wins, but by £20,000 rather than £60,000. A slightly worse risk mix would remove the gain entirely."
+      }
+    },
+    "w7-c5": {
+      "explainer": "Automated or frequently changing prices need guardrails: rules the system cannot break whatever the model says. Typical guardrails are minimum margin, maximum change per period, caps on how much prices can differ between customers or channels, price consistency for existing customers, and human approval for large moves. They protect customer trust, brand and operations, and keep the model's errors small.",
+      "example": {
+        "setup": "Guardrails for Harbour Lane's capacity-based pricing.",
+        "steps": [
+          "Standard rate moves no more than 0.02 per month",
+          "Minimum contribution of £500 per deal (factor floor 1.20 on £20,000)",
+          "A renewal is never priced above the merchant's previous deal unless their risk grade has worsened",
+          "Any change of 0.03 or more goes to the pricing committee"
+        ],
+        "result": "The model can still respond to demand, but no merchant sees a sudden or unexplained jump."
+      }
+    },
+    "w8-c1": {
+      "explainer": "To estimate price effects you need transaction-level data that captures the realised price and everything else that could move demand: product, customer, time, channel, promotions, availability, cost, and market variables like competitor price. Missing fields become hidden confounders. Record quotes that were not accepted as well as deals won. Without the losses you cannot see how price affects acceptance.",
+      "example": {
+        "setup": "Minimum fields for an MCA pricing dataset.",
+        "steps": [
+          "Quote: date, advance, factor rate, holdback %, broker, risk grade, new or renewal",
+          "Outcome: accepted?, funded?, days to repay, early repayment, default flag, renewal taken",
+          "Economics: commission paid, cost of funds, realised loss",
+          "Context: competitor rate if known, funding-line utilisation, sector, month"
+        ],
+        "result": "With declined quotes included, you can model acceptance against price. Without them you only see the deals you won."
+      }
+    },
+    "w8-c2": {
+      "explainer": "Regression can hold observed variables constant, but it cannot fix what you did not measure. Omitted variable bias: something unmeasured drives both price and sales. Reverse causality: sales conditions drive the price (you raise prices when demand is strong). Both can produce elasticities that are badly wrong, sometimes with the wrong sign. Always ask why price varied in your data in the first place.",
+      "example": {
+        "setup": "Raw data shows merchants offered higher factor rates accept more often, which would imply positive elasticity.",
+        "steps": [
+          "Why: riskier merchants are priced higher and also have fewer alternatives, so they accept more",
+          "Risk grade drives both price and acceptance",
+          "Adding risk grade to the regression: within each grade, higher rates reduce acceptance as expected"
+        ],
+        "result": "Without the risk control, the model would suggest raising prices increases volume, which is false."
+      }
+    },
+    "w8-c3": {
+      "explainer": "Randomised tests are the strongest evidence of cause and effect: randomly assign price so that nothing else can explain the difference. They work best when assignment is feasible, sample sizes are adequate, customers cannot easily compare across groups, and the test is ethical and commercially controlled (narrow price ranges, a clear time limit, honouring quoted prices). In B2B or regulated settings, randomise at a level that stays fair and explainable.",
+      "example": {
+        "setup": "Within each risk grade, broker quotes are randomly assigned 1.25 or 1.27 for six weeks.",
+        "steps": [
+          "Assignment is random within grade, so risk mix is balanced",
+          "Compare acceptance, funded volume and contribution per quote between the two groups",
+          "Range is narrow (0.02), time-limited, and every quote is honoured"
+        ],
+        "result": "The difference in contribution per quote is a credible estimate of the price effect."
+      }
+    },
+    "w8-c4": {
+      "explainer": "When you cannot randomise individuals, other methods can still estimate the effect. Matched markets compare similar regions or channels. Difference-in-differences compares the change in a treated group with the change in a control group, which removes shared trends. Synthetic control builds a weighted 'twin' from several untreated units. Phased rollouts stagger the start so early groups can be compared with later ones. Each relies on its own assumptions, so state them.",
+      "example": {
+        "setup": "Broker channel moves to 1.27. Direct channel stays at 1.25. Acceptance rates before and after:",
+        "steps": [
+          "Treated (broker): 40% to 36%, change -4 pp",
+          "Control (direct): 42% to 41%, change -1 pp",
+          "Difference-in-differences = -4 - (-1) = -3 pp"
+        ],
+        "result": "The price rise is estimated to cut acceptance by 3 points, assuming both channels would otherwise have moved in parallel."
+      }
+    },
+    "w8-c5": {
+      "explainer": "Write the measurement plan before launch. Set out the decision rule (what result leads to launch, revision or rejection), the minimum detectable effect (the smallest change worth detecting, which sets sample size and duration), guardrail metrics (things that must not get worse), and exactly how profit will be calculated. Committing in advance stops people from choosing a convenient metric after seeing the results.",
+      "example": {
+        "setup": "Test: +5% fee (unit contribution £1,500 to £1,750). Control acceptance 40%, treatment 37%.",
+        "steps": [
+          "Contribution per quote, control = 0.40 x 1,500 = £600",
+          "Contribution per quote, treatment = 0.37 x 1,750 = £647.50",
+          "Difference: +£47.50 per quote",
+          "Decision rule set in advance: launch if at least +£30 per quote and 60-day missed-remittance rate up by no more than 0.5 pp"
+        ],
+        "result": "Acceptance fell, but contribution per quote rose, so the pre-agreed rule says launch if the risk guardrail holds."
+      }
+    },
+    "w9-c1": {
+      "explainer": "A pricing decision becomes real only when it is implemented. A launch plan needs a clear effective date, a defined list of affected customers, transition rules for existing contracts and quotes in progress, system and data changes, a named owner for every task, and an escalation path when something breaks. Vague plans create inconsistent prices on day one and erode trust with customers and sales.",
+      "example": {
+        "setup": "Harbour Lane's rate change.",
+        "steps": [
+          "Effective date: 1 March for new broker quotes. Renewals from 1 April",
+          "Quotes issued before 1 March honoured for 14 days",
+          "Existing advances unchanged",
+          "Owners: pricing engine update (CTO, by 15 Feb), broker pack (Head of Partnerships, by 20 Feb), QA of first 50 deals (Pricing lead)"
+        ],
+        "result": "Everyone knows what changes, for whom, from when, and who to call if it goes wrong."
+      }
+    },
+    "w9-c2": {
+      "explainer": "Customer communication should say clearly what is changing, when, and why, in terms the customer cares about. It should be accurate: no overstated benefits, no hiding the change in small print. Customer-facing teams need the same facts and enough understanding of the value story to answer questions honestly. An unsupported claim, such as 'the best rates in the market', creates risk and loses credibility.",
+      "example": {
+        "setup": "Broker notice for a move from 1.25 to 1.27.",
+        "steps": [
+          "Clear: 'From 1 March, standard factor rates for new advances move from 1.25 to 1.27. On £20,000, total cost changes from £5,000 to £5,400.'",
+          "Value: 'Funding within 24 hours and holdbacks that fall automatically in slow weeks are unchanged.'",
+          "Avoid: 'Still the cheapest MCA in the UK' (unless proven)"
+        ],
+        "result": "Brokers can repeat the message accurately, and nothing in it is a claim you cannot support."
+      }
+    },
+    "w9-c3": {
+      "explainer": "Salespeople need more than a new price list. Give them a short talk track explaining the change, answers to the most likely objections, the approval rules and what they can offer in return for concessions, worked deal examples, and time to practise on realistic scenarios. Confident, well-prepared salespeople hold price. Unprepared ones discount to end an awkward conversation.",
+      "example": {
+        "setup": "Likely objection: 'Another lender offered 1.24.'",
+        "steps": [
+          "Normalise: 'Does that include an origination fee? What's their holdback?' (1.24 plus a £400 fee = £5,200 total, vs our 1.27 = £5,400)",
+          "Value: 24-hour funding and a holdback that falls in slow weeks",
+          "Give-get: 'I can do 1.255 if you move to a 13% holdback'"
+        ],
+        "result": "The salesperson compares fairly, explains the value, and trades rather than simply discounting."
+      }
+    },
+    "w9-c4": {
+      "explainer": "Governance defines who decides what: who sets list prices, who approves discounts at each level, who can run promotions, who grants exceptions, and who fixes problems after launch. It also defines how decisions are recorded and reviewed. Good governance is fast for routine decisions and strict for big ones. Repeated exceptions are a signal that the policy itself needs changing.",
+      "example": {
+        "setup": "Decision rights at Harbour Lane.",
+        "steps": [
+          "List rates: pricing committee, reviewed quarterly",
+          "Discounts in green and amber: sales, with exception codes",
+          "Below 1.24: deal desk. Below 1.20: CFO",
+          "Trigger: if more than 20% of deals in a month use the same exception code, the policy is reviewed"
+        ],
+        "result": "Routine deals move fast, large concessions get scrutiny, and patterns in exceptions update the policy."
+      }
+    },
+    "w9-c5": {
+      "explainer": "After launch, track the components separately: adoption (is the new price actually being quoted?), realised price (how much of the planned increase stuck?), volume response, mix shift, customer retention and financial return. Without this breakdown you cannot tell whether a disappointing result came from poor execution (the price was never really applied) or a wrong hypothesis (customers responded more than expected). The fixes are completely different.",
+      "example": {
+        "setup": "Plan: +5% fee (£5,000 to £5,250). After 8 weeks contribution is below plan.",
+        "steps": [
+          "Adoption: 92% of quotes at the new rate",
+          "Realised fee: £5,150, so only 60% of the planned +£250 stuck (extra amber discounts)",
+          "Volume: -4%, inside the -3% to -7% planning range"
+        ],
+        "result": "Customers behaved as expected. The shortfall comes from discounting, so this is an execution problem, not a pricing hypothesis problem."
+      }
+    },
+    "w10-c1": {
+      "explainer": "Busy decision-makers need the answer first. A decision-ready recommendation states exactly what is being decided, the financial effect, why customers will accept it, the evidence behind it, how it will be implemented, and the material risks. Someone who reads only the first page should be able to approve, reject or revise it. Supporting analysis belongs behind that page, not in front of it.",
+      "example": {
+        "setup": "First line of the Harbour Lane recommendation.",
+        "steps": [
+          "Decision: 'Approve a 5% increase in the standard net fee (factor rate 1.25 to 1.2625) for new broker and direct deals from 1 March.'",
+          "Effect: 'Base case +£137,500 incremental profit in year one, after £60,000 implementation cost.'",
+          "Risk: 'Loss-making if volume falls more than 10.9%. Planning range -3% to -7%.'"
+        ],
+        "result": "Decision, value and main risk in three sentences."
+      }
+    },
+    "w10-c2": {
+      "explainer": "A single forecast suggests more certainty than you have. Show a base case alongside downside and upside scenarios, each built from explicit assumptions such as volume response, realised price and cost changes. Add the break-even condition: the assumption value at which the decision stops paying. Decision-makers can then judge whether the downside is acceptable and which assumption to watch most closely.",
+      "example": {
+        "setup": "+5% fee, unit contribution £1,750, baseline contribution £1.5m, implementation cost £60,000.",
+        "steps": [
+          "Upside (0% volume): 1,000 x 1,750 = £1.75m. Incremental profit 250,000 - 60,000 = +£190,000",
+          "Base (-3%): 970 x 1,750 = £1,697,500. Incremental profit +£137,500",
+          "Downside (-12%): 880 x 1,750 = £1,540,000. Incremental profit -£20,000",
+          "Break-even: (1,500,000 + 60,000) / 1,750 = 891 deals, a volume loss of 10.9%"
+        ],
+        "result": "The case works unless volume falls by more than about 11%. That is the assumption to test first."
+      }
+    },
+    "w10-c3": {
+      "explainer": "Your initial estimate will be wrong to some degree, so plan to learn after launch. Define early indicators you can see in weeks (quote acceptance, realised price, early missed payments), not just the final profit you will only see in months. Set checkpoints where you will decide to continue, adjust or reverse, and the thresholds that trigger each. This turns a one-off bet into a managed experiment.",
+      "example": {
+        "setup": "Checkpoints for the Harbour Lane change.",
+        "steps": [
+          "Week 4: realised fee at least £5,200, acceptance down no more than 5 pp, 30-day missed-remittance rate not up",
+          "Week 8: funded volume within -7% of baseline",
+          "Week 12: contribution per quote at or above plan. Decide to expand to renewals or hold"
+        ],
+        "result": "If week 4 shows realised fee at £5,100, you fix discount control before volume data is even in."
+      }
+    },
+    "w10-c4": {
+      "explainer": "A credible recommendation labels its inputs. Facts are observed and verifiable. Estimates come from analysis and have uncertainty. Assumptions are beliefs you have not tested. Management choices are deliberate decisions that could reasonably go another way. Mixing them hides where the real uncertainty sits and invites challenge on the wrong points. Labelling them shows reviewers exactly what to question.",
+      "example": {
+        "setup": "Inputs to the Harbour Lane case.",
+        "steps": [
+          "Fact: 1,000 deals funded last year at an average net fee of £5,000",
+          "Estimate: elasticity of about -0.6 (range -0.3 to -1.0)",
+          "Assumption: competitors will not follow within 6 months",
+          "Management choice: exempt renewals for the first quarter"
+        ],
+        "result": "Reviewers can see that the competitor-response assumption deserves the most challenge."
+      }
+    }
+  },
+  "quiz": {
+    "w1": [
+      {
+        "id": "w1-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w1-c2"
+        ],
+        "question": "Net fee £5,000, variable cost £3,500. What is the margin %?",
+        "answer": 30,
+        "unit": "%",
+        "decimals": 1,
+        "options": [
+          "30.0%",
+          "42.9%",
+          "70.0%",
+          "23.1%"
+        ],
+        "answerIndex": 0,
+        "explanation": "Margin = (5,000 - 3,500) / 5,000 = 1,500 / 5,000 = 30.0%. Dividing by cost instead gives 42.9%, which is the markup."
+      },
+      {
+        "id": "w1-q2",
+        "type": "calc",
+        "conceptIds": [
+          "w1-c2"
+        ],
+        "question": "Same deal: net fee £5,000, variable cost £3,500. What is the markup %?",
+        "answer": 42.857,
+        "unit": "%",
+        "decimals": 1,
+        "options": [
+          "30.0%",
+          "35.0%",
+          "42.9%",
+          "70.0%"
+        ],
+        "answerIndex": 2,
+        "explanation": "Markup = (5,000 - 3,500) / 3,500 = 1,500 / 3,500 = 42.9%. Markup is always larger than margin because cost is smaller than price."
+      },
+      {
+        "id": "w1-q3",
+        "type": "calc",
+        "conceptIds": [
+          "w1-c3"
+        ],
+        "question": "Fee rises 5% from £5,000 to £5,250. Variable cost stays £3,500. What volume loss leaves total contribution unchanged?",
+        "answer": 14.286,
+        "unit": "%",
+        "decimals": 1,
+        "options": [
+          "5.0%",
+          "4.8%",
+          "16.7%",
+          "14.3%"
+        ],
+        "answerIndex": 3,
+        "explanation": "Unit contribution goes from £1,500 to £1,750. Break-even volume loss = 1 - 1,500 / 1,750 = 14.3%. Equivalent shortcut: price change / new unit contribution = 250 / 1,750."
+      },
+      {
+        "id": "w1-q4",
+        "type": "calc",
+        "conceptIds": [
+          "w1-c3"
+        ],
+        "question": "Baseline 1,000 deals. After a 5% fee rise, unit contribution is £1,750. What is total contribution if volume falls 7%?",
+        "answer": 1627500,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£1,395,000",
+          "£1,627,500",
+          "£1,750,000",
+          "£1,522,500"
+        ],
+        "answerIndex": 1,
+        "explanation": "Volume = 1,000 x 0.93 = 930 deals. Contribution = 930 x 1,750 = £1,627,500, which is £127,500 above the £1.5m baseline."
+      },
+      {
+        "id": "w1-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w1-c5"
+        ],
+        "question": "Which leakage item is best fixed by a process action rather than a pricing action?",
+        "options": [
+          "The standard factor rate sits below customers' economic value",
+          "Operations applies early-repayment rebates automatically, even when the contract does not entitle the merchant",
+          "The renewal discount is larger than the risk difference justifies",
+          "A competitor has cut its headline rate"
+        ],
+        "answerIndex": 1,
+        "explanation": "The rebate is leaking because of how it is applied, not because of the price policy. Fix the system rule or approval step. The other three are pricing or strategy questions."
+      },
+      {
+        "id": "w1-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w1-c4"
+        ],
+        "question": "You are deciding whether to accept one extra renewal at a discounted rate. Which cost is NOT relevant to that decision?",
+        "options": [
+          "Cost of funds on the advance",
+          "Expected credit loss",
+          "Office rent",
+          "Servicing and collections cost"
+        ],
+        "answerIndex": 2,
+        "explanation": "Rent does not change whether you do this deal or not, so it is not a relevant cost for this decision. The other three are incurred only if the advance is made."
+      },
+      {
+        "id": "w1-q7",
+        "type": "calc",
+        "conceptIds": [
+          "w1-c3",
+          "w1-c4"
+        ],
+        "question": "A 5% fee rise (£5,000 to £5,250) also attracts riskier merchants, so expected loss rises from £1,000 to £1,100 per deal. Other variable costs unchanged. What is the break-even volume loss now?",
+        "answer": 9.091,
+        "unit": "%",
+        "decimals": 1,
+        "options": [
+          "14.3%",
+          "9.1%",
+          "5.0%",
+          "11.8%"
+        ],
+        "answerIndex": 1,
+        "explanation": "Variable cost becomes £3,600, so new unit contribution = 5,250 - 3,600 = £1,650. Break-even loss = 1 - 1,500 / 1,650 = 9.1%. Adverse selection cuts the safety margin from 14.3% to 9.1%."
+      }
+    ],
+    "w2": [
+      {
+        "id": "w2-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w2-c2"
+        ],
+        "question": "Fee rises from £5,000 to £6,000 and deals fall from 1,000 to 900. What is the arc (midpoint) elasticity?",
+        "answer": -0.579,
+        "unit": "",
+        "decimals": 2,
+        "options": [
+          "-0.50",
+          "-0.58",
+          "-1.72",
+          "-2.68"
+        ],
+        "answerIndex": 1,
+        "explanation": "%ΔQ = -100 / 950 = -10.53%. %ΔP = 1,000 / 5,500 = 18.18%. Elasticity = -10.53 / 18.18 = -0.58. The simple (non-midpoint) method would give -10% / 20% = -0.50."
+      },
+      {
+        "id": "w2-q2",
+        "type": "mcq",
+        "conceptIds": [
+          "w2-c2"
+        ],
+        "question": "Product A has elasticity -0.5 and product B has -2.0. You raise both prices by 4%. What happens to revenue?",
+        "options": [
+          "Both rise",
+          "A rises, B falls",
+          "A falls, B rises",
+          "Both fall"
+        ],
+        "answerIndex": 1,
+        "explanation": "A: volume -2%, price +4%, so revenue rises about 2%. B: volume -8%, price +4%, so revenue falls about 4%. Note that contribution can still rise for B if margins are thin. Revenue is not profit."
+      },
+      {
+        "id": "w2-q3",
+        "type": "mcq",
+        "conceptIds": [
+          "w2-c3"
+        ],
+        "question": "The cross-price elasticity between your MCA and a competitor's loan is +0.33. What does this tell you?",
+        "options": [
+          "The products are complements",
+          "The products are weak substitutes",
+          "Your product is price-inelastic",
+          "The competitor's product is elastic"
+        ],
+        "answerIndex": 1,
+        "explanation": "Positive cross elasticity means that when their price falls, your volume falls: substitutes. 0.33 is small, so a 10% competitor cut costs you only about 3% of volume. It says nothing about your own-price elasticity."
+      },
+      {
+        "id": "w2-q4",
+        "type": "calc",
+        "conceptIds": [
+          "w2-c2"
+        ],
+        "question": "Elasticity is -1.5. You raise the fee by 4%. What volume change do you expect (simple approximation)?",
+        "answer": -6,
+        "unit": "%",
+        "decimals": 1,
+        "options": [
+          "-1.5%",
+          "-2.7%",
+          "-6.0%",
+          "-4.0%"
+        ],
+        "answerIndex": 2,
+        "explanation": "%ΔQ ≈ elasticity x %ΔP = -1.5 x 4% = -6.0%. This approximation holds for small changes within the observed price range."
+      },
+      {
+        "id": "w2-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w2-c5"
+        ],
+        "question": "Deals fell 15% the month after a rate rise. The same month a large broker paused submissions, and that month always dips about 10%. What is the most defensible conclusion?",
+        "options": [
+          "Elasticity is high: the price rise cut volume 15%",
+          "The price effect is at most about 5%, and could be smaller",
+          "The price rise had no effect at all",
+          "The broker pause caused the whole fall"
+        ],
+        "answerIndex": 1,
+        "explanation": "Seasonality explains about 10 points, and the broker pause explains some of the rest. The price effect is whatever is left, at most about 5%. You cannot claim zero or the full 15% without a comparison group."
+      },
+      {
+        "id": "w2-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w2-c2"
+        ],
+        "question": "Deals fall 10% when the factor rate goes from 1.25 to 1.30. Which statement is correct (simple % changes)?",
+        "options": [
+          "Elasticity is -2.5 whichever way you measure price",
+          "Elasticity is about -2.5 on the factor rate and -0.5 on the fee; you must state which you use",
+          "Elasticity is -0.5 on the factor rate and -2.5 on the fee",
+          "Elasticity cannot be calculated for an MCA"
+        ],
+        "answerIndex": 1,
+        "explanation": "Factor rate: +4% (0.05 / 1.25), so -10 / 4 = -2.5. Fee: £5,000 to £6,000 is +20%, so -10 / 20 = -0.5. Same data, five times the number. Define price before quoting an elasticity."
+      },
+      {
+        "id": "w2-q7",
+        "type": "mcq",
+        "conceptIds": [
+          "w2-c4"
+        ],
+        "question": "Why might elasticity measured between 1.22 and 1.28 be misleading for a move to 1.35?",
+        "options": [
+          "Elasticity is always constant along a demand curve",
+          "Above some price, cheaper alternatives such as term loans become attractive, so the response can get much stronger",
+          "Higher prices always reduce elasticity",
+          "Merchants never notice prices above 1.30"
+        ],
+        "answerIndex": 1,
+        "explanation": "Demand responds to thresholds. Once your price passes a competitor's or an alternative's total cost, many customers switch at once. Data from one range does not tell you about behaviour outside it."
+      }
+    ],
+    "w3": [
+      {
+        "id": "w3-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w3-c1"
+        ],
+        "question": "Next best alternative costs £4,000. Positive differentiation is worth £1,700 and negative differentiation £200. What is EVC?",
+        "answer": 5500,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£5,700",
+          "£5,500",
+          "£5,900",
+          "£4,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "EVC = reference value + positive differentiation - negative differentiation = 4,000 + 1,700 - 200 = £5,500."
+      },
+      {
+        "id": "w3-q2",
+        "type": "mcq",
+        "conceptIds": [
+          "w3-c3"
+        ],
+        "question": "You need to decide how factor rate should trade off against holdback % and funding speed in a new package. Which method fits best?",
+        "options": [
+          "Gabor-Granger",
+          "Van Westendorp",
+          "Choice-based conjoint",
+          "Competitor price survey"
+        ],
+        "answerIndex": 2,
+        "explanation": "Conjoint and discrete choice measure trade-offs among several attributes and price. Gabor-Granger and Van Westendorp test price for a single fixed offer."
+      },
+      {
+        "id": "w3-q3",
+        "type": "mcq",
+        "conceptIds": [
+          "w3-c3"
+        ],
+        "question": "What does a Van Westendorp study give you?",
+        "options": [
+          "Purchase probability at each price",
+          "A range of prices customers find acceptable",
+          "The value of each product feature",
+          "Your own-price elasticity"
+        ],
+        "answerIndex": 1,
+        "explanation": "The four questions (too cheap, bargain, expensive, too expensive) give an acceptable price range. They do not measure how many people would actually buy at each price."
+      },
+      {
+        "id": "w3-q4",
+        "type": "calc",
+        "conceptIds": [
+          "w3-c4"
+        ],
+        "question": "Historically, actual acceptance runs at 0.6 times stated intent. A survey says 60% would accept 1.30. What acceptance should you plan for?",
+        "answer": 36,
+        "unit": "%",
+        "decimals": 0,
+        "options": [
+          "60%",
+          "36%",
+          "24%",
+          "100%"
+        ],
+        "answerIndex": 1,
+        "explanation": "Planned acceptance = 60% x 0.6 = 36%. Stated intent overstates real behaviour (hypothetical bias), so calibrate against past results."
+      },
+      {
+        "id": "w3-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w3-c2"
+        ],
+        "question": "Willingness to pay is a distribution. What is the most useful practical consequence?",
+        "options": [
+          "Set price at the average WTP",
+          "Every price captures a different share of customers, so compare contribution across price points and consider tiers or segment prices",
+          "Survey more customers until WTP becomes one number",
+          "Price at the highest WTP observed"
+        ],
+        "answerIndex": 1,
+        "explanation": "Because WTP varies, each price trades volume against unit contribution. The best single price depends on the distribution's shape, and differences between segments can be captured with structure."
+      },
+      {
+        "id": "w3-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w3-c1"
+        ],
+        "question": "A value model lists 'funded in 24 hours: £800' and 'can buy discounted stock from supplier: £800'. The discount is only possible because of the fast funding. What is wrong?",
+        "options": [
+          "Nothing. Both are real benefits",
+          "Double counting. Speed is the feature and the stock discount is its outcome, so count £800 once",
+          "Speed should be negative differentiation",
+          "Supplier discounts should not appear in EVC"
+        ],
+        "answerIndex": 1,
+        "explanation": "Translate features into outcomes and count each outcome once. Here the supplier discount is the measurable value of speed, so including both double counts it."
+      }
+    ],
+    "w4": [
+      {
+        "id": "w4-q1",
+        "type": "mcq",
+        "conceptIds": [
+          "w4-c2"
+        ],
+        "question": "Which is the strongest price fence for a renewal discount?",
+        "options": [
+          "The merchant says they intend to stay loyal",
+          "At least 50% of the current advance repaid and no missed remittances in 90 days",
+          "The broker asks for renewal pricing",
+          "The merchant has heard of Harbour Lane before"
+        ],
+        "answerIndex": 1,
+        "explanation": "Good fences use observable facts the customer cannot fake. Repayment history is verified in your own data. The others are claims anyone can make, so they leak."
+      },
+      {
+        "id": "w4-q2",
+        "type": "calc",
+        "conceptIds": [
+          "w4-c3"
+        ],
+        "question": "Two-part tariff: £300 origination fee plus factor rate 1.235. What is the total fee on a £10,000 advance?",
+        "answer": 2650,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£2,500",
+          "£2,350",
+          "£2,650",
+          "£2,800"
+        ],
+        "answerIndex": 2,
+        "explanation": "Fee = 300 + 10,000 x 0.235 = 300 + 2,350 = £2,650, which is more than £2,500 at a flat 1.25. The fixed part recovers underwriting cost on small deals."
+      },
+      {
+        "id": "w4-q3",
+        "type": "calc",
+        "conceptIds": [
+          "w4-c4"
+        ],
+        "question": "A new Fast tier (fee £4,400) attracts 200 merchants who would otherwise have taken Standard (fee £5,000). Ignoring capital effects, how much fee is cannibalised?",
+        "answer": 120000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£88,000",
+          "£120,000",
+          "£100,000",
+          "£600"
+        ],
+        "answerIndex": 1,
+        "explanation": "200 x (5,000 - 4,400) = £120,000. Test whether the faster repayment (capital recycled sooner) or new merchants won by the tier offset this."
+      },
+      {
+        "id": "w4-q4",
+        "type": "mcq",
+        "conceptIds": [
+          "w4-c1"
+        ],
+        "question": "Which segmentation variable can actually be used to set price at the point of sale?",
+        "options": [
+          "How urgently the merchant needs cash",
+          "Whether the merchant will default",
+          "Average monthly card turnover over the last 6 months",
+          "The merchant's true willingness to pay"
+        ],
+        "answerIndex": 2,
+        "explanation": "Card turnover is observable from processor data when you quote. Urgency, future default and true WTP matter but cannot be directly observed. You can only proxy or estimate them."
+      },
+      {
+        "id": "w4-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w4-c4"
+        ],
+        "question": "A Basic tier is deliberately made so restrictive that nobody chooses it, purely to make Standard look good. What is the problem?",
+        "options": [
+          "None. It is a standard decoy tactic",
+          "It breaks trust and the 'real choice' test. Each tier should be one someone would rationally pick",
+          "Basic should be priced higher",
+          "It reduces the number of tiers"
+        ],
+        "answerIndex": 1,
+        "explanation": "The self-check asks for an architecture that 'avoids a deliberately unusable entry tier'. Fake options damage credibility with customers and brokers."
+      },
+      {
+        "id": "w4-q6",
+        "type": "calc",
+        "conceptIds": [
+          "w4-c2"
+        ],
+        "question": "Without a fence, 280 broker deals claim a renewal rate worth £600 off each. How much fee leaks per year?",
+        "answer": 168000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£168,000",
+          "£16,800",
+          "£280,000",
+          "£60,000"
+        ],
+        "answerIndex": 0,
+        "explanation": "280 x £600 = £168,000. That is more than 10% of annual contribution, lost to a weak fence."
+      }
+    ],
+    "w5": [
+      {
+        "id": "w5-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w5-c2"
+        ],
+        "question": "On £20,000, a competitor quotes 1.22 plus a £400 origination fee. You quote 1.25 with no fee. How much cheaper is the competitor in total cost?",
+        "answer": 200,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£600",
+          "£400",
+          "£200",
+          "£1,000"
+        ],
+        "answerIndex": 2,
+        "explanation": "Competitor: 20,000 x 0.22 + 400 = £4,800. You: £5,000. Gap £200, not the £600 the factor rates suggest."
+      },
+      {
+        "id": "w5-q2",
+        "type": "mcq",
+        "conceptIds": [
+          "w5-c3"
+        ],
+        "question": "Payoffs: both hold £1.5m each; if one cuts, it gets £1.8m and the other £0.7m; both cut £0.9m each. In a one-shot game, what happens?",
+        "options": [
+          "Both hold",
+          "Both cut, because cutting pays more whatever the rival does",
+          "Only the larger firm cuts",
+          "Nobody can predict it"
+        ],
+        "answerIndex": 1,
+        "explanation": "If the rival holds, cutting earns £1.8m vs £1.5m. If the rival cuts, cutting earns £0.9m vs £0.7m. Cutting is dominant, so both end up at £0.9m (the prisoner's dilemma). Repetition and credible responses are what can sustain holding."
+      },
+      {
+        "id": "w5-q3",
+        "type": "mcq",
+        "conceptIds": [
+          "w5-c4"
+        ],
+        "question": "You lost 10% of broker deals. Winning lenders funded in 24 hours vs your 72, at a similar total cost. What is the best response?",
+        "options": [
+          "Cut the factor rate across all deals",
+          "Match the lowest competitor rate on every broker deal",
+          "Treat it as a speed problem and invest in faster funding",
+          "Raise prices to compensate for lower volume"
+        ],
+        "answerIndex": 2,
+        "explanation": "Price was not the reason customers left. A cut gives away margin and invites a price war without fixing the cause."
+      },
+      {
+        "id": "w5-q4",
+        "type": "mcq",
+        "conceptIds": [
+          "w5-c5"
+        ],
+        "question": "Which activity carries the highest competition-law risk?",
+        "options": [
+          "Recording competitor rates from their public websites",
+          "Discussing your planned Q3 rate rise with a competitor at an industry dinner",
+          "Asking a merchant what other offers they received",
+          "Benchmarking against published industry reports"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sharing future pricing intentions with a competitor is the classic risk area. Public information and customer-volunteered quotes are generally lower risk. Flag anything uncertain for legal review."
+      },
+      {
+        "id": "w5-q5",
+        "type": "calc",
+        "conceptIds": [
+          "w5-c4"
+        ],
+        "question": "Matching a competitor's 0.03 factor-rate cut on all 1,000 deals of £20,000 costs how much fee per year?",
+        "answer": 600000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£60,000",
+          "£600,000",
+          "£300,000",
+          "£30,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "0.03 x 20,000 = £600 per deal. x 1,000 = £600,000, which is 40% of the £1.5m contribution."
+      },
+      {
+        "id": "w5-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w5-c1"
+        ],
+        "question": "Broker deals are shopped to about 4 lenders. Direct renewals are not. What does this imply?",
+        "options": [
+          "Price both channels the same",
+          "Pricing power is lower in the broker channel and higher on direct renewals, so the strategies should differ",
+          "Brokers should get the highest rates",
+          "Renewals should always get the lowest rates"
+        ],
+        "answerIndex": 1,
+        "explanation": "Market structure can differ by channel. Compete on speed and service where deals are shopped, and protect margin where customers face switching effort."
+      }
+    ],
+    "w6": [
+      {
+        "id": "w6-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w6-c1"
+        ],
+        "question": "List fee £6,000. Rate discount £500, early-repayment rebate £300, renewal waiver £200. Variable cost £3,500. What is the pocket margin?",
+        "answer": 1500,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£2,500",
+          "£1,500",
+          "£5,000",
+          "£2,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "Pocket price = 6,000 - 500 - 300 - 200 = £5,000. Pocket margin = 5,000 - 3,500 = £1,500."
+      },
+      {
+        "id": "w6-q2",
+        "type": "calc",
+        "conceptIds": [
+          "w6-c2"
+        ],
+        "question": "On comparable deals, Broker A averages a £5,400 pocket fee and Broker B £4,700. B sends 200 deals a year. How much would you gain if B matched A?",
+        "answer": 140000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£70,000",
+          "£700",
+          "£140,000",
+          "£1,080,000"
+        ],
+        "answerIndex": 2,
+        "explanation": "200 x (5,400 - 4,700) = 200 x 700 = £140,000. Check first that B's deals really are comparable (risk, size, repayment speed)."
+      },
+      {
+        "id": "w6-q3",
+        "type": "calc",
+        "conceptIds": [
+          "w6-c3"
+        ],
+        "question": "You want a floor that leaves at least £500 contribution on a £20,000 advance with £3,500 variable cost. What factor rate is the floor?",
+        "answer": 1.2,
+        "unit": "",
+        "decimals": 2,
+        "options": [
+          "1.18",
+          "1.20",
+          "1.22",
+          "1.25"
+        ],
+        "answerIndex": 1,
+        "explanation": "Required fee = 3,500 + 500 = £4,000. Factor rate = 1 + 4,000 / 20,000 = 1.20."
+      },
+      {
+        "id": "w6-q4",
+        "type": "mcq",
+        "conceptIds": [
+          "w6-c4"
+        ],
+        "question": "An account manager is paid 1% of the funded amount. What is the pricing problem?",
+        "options": [
+          "They are paid too little",
+          "They earn the same on a 1.20 deal as on a 1.30 deal, so discounting costs them nothing",
+          "They will push for larger advances only",
+          "There is no problem"
+        ],
+        "answerIndex": 1,
+        "explanation": "On £20,000 both deals pay £200, but contribution is £500 vs £2,500. Link part of the pay to realised fee or contribution."
+      },
+      {
+        "id": "w6-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w6-c5"
+        ],
+        "question": "A merchant asks for 1.22 instead of 1.25. Which response best follows give-get principles?",
+        "options": [
+          "Agree to keep the relationship",
+          "Refuse outright",
+          "Offer 1.22 in return for a 13% holdback, which speeds repayment and frees capital",
+          "Offer 1.20 to make sure you win"
+        ],
+        "answerIndex": 2,
+        "explanation": "Trade the concession for a commitment of similar value. A faster holdback reduces cost of funds and recycles capital sooner."
+      },
+      {
+        "id": "w6-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w6-c3"
+        ],
+        "question": "What is the purpose of exception codes?",
+        "options": [
+          "To slow down sales",
+          "To record why each out-of-policy deal happened, so you can spot patterns and fix the policy",
+          "To hide discounts from finance",
+          "To replace approval thresholds"
+        ],
+        "answerIndex": 1,
+        "explanation": "Codes turn individual exceptions into data. If one code keeps recurring, the policy, not the salesperson, may be what needs fixing."
+      }
+    ],
+    "w7": [
+      {
+        "id": "w7-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w7-c1"
+        ],
+        "question": "Capacity: 100 deals this month. At 1.25 (unit contribution £1,500), 120 merchants want funding. At 1.28 (unit contribution £2,100), demand is exactly 100. How much extra contribution does 1.28 earn?",
+        "answer": 60000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£30,000",
+          "£60,000",
+          "£72,000",
+          "£0"
+        ],
+        "answerIndex": 1,
+        "explanation": "At 1.25 only 100 deals fund (capacity binds): 100 x 1,500 = £150,000. At 1.28: 100 x 2,100 = £210,000. Difference £60,000."
+      },
+      {
+        "id": "w7-q2",
+        "type": "mcq",
+        "conceptIds": [
+          "w7-c2"
+        ],
+        "question": "Which is personalised pricing rather than dynamic pricing?",
+        "options": [
+          "Raising every new quote when the funding line is 90% used",
+          "Lower rates for all merchants in a slow month",
+          "Quoting a higher rate to one merchant because their bank data shows they are desperate for cash",
+          "Changing the standard rate each quarter"
+        ],
+        "answerIndex": 2,
+        "explanation": "Dynamic pricing reacts to market conditions and is the same for everyone at that moment. Personalised pricing reacts to information about the individual, here their vulnerability, which carries the highest conduct risk."
+      },
+      {
+        "id": "w7-q3",
+        "type": "calc",
+        "conceptIds": [
+          "w7-c3"
+        ],
+        "question": "200 jackets. At £80, 100 sell. At £60, 180 sell. Leftovers clear at £10. What is total revenue under the £60 markdown?",
+        "answer": 11000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£10,800",
+          "£9,000",
+          "£11,000",
+          "£12,000"
+        ],
+        "answerIndex": 2,
+        "explanation": "180 x 60 + 20 x 10 = 10,800 + 200 = £11,000. Holding £80 gives 100 x 80 + 100 x 10 = £9,000."
+      },
+      {
+        "id": "w7-q4",
+        "type": "calc",
+        "conceptIds": [
+          "w7-c4"
+        ],
+        "question": "Price A: fee £4,500, 1,200 deals. Price B: fee £5,500, 900 deals. Variable cost £3,500 per deal. How much more contribution does B earn than A?",
+        "answer": 600000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "-£450,000",
+          "£600,000",
+          "£450,000",
+          "£1,800,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "Revenue: A £5.4m, B £4.95m, so A maximises revenue. Contribution: A 1,200 x 1,000 = £1.2m, B 900 x 2,000 = £1.8m. B earns £600,000 more despite lower revenue."
+      },
+      {
+        "id": "w7-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w7-c5"
+        ],
+        "question": "Which is a guardrail rather than a pricing rule?",
+        "options": [
+          "Standard rate is 1.25",
+          "The model may not move the standard rate more than 0.02 in a month",
+          "Renewals get 1.22",
+          "Broker deals use the broker rate card"
+        ],
+        "answerIndex": 1,
+        "explanation": "A guardrail limits what a pricing system can do whatever the model recommends: maximum change, floors, consistency rules."
+      },
+      {
+        "id": "w7-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w7-c1"
+        ],
+        "question": "When is revenue management least useful?",
+        "options": [
+          "Capacity is fixed and unused capacity expires",
+          "Demand varies a lot over time",
+          "Capacity is unlimited and demand is steady",
+          "Customers commit at different times"
+        ],
+        "answerIndex": 2,
+        "explanation": "Revenue management creates value by allocating scarce, perishable capacity. With unlimited capacity and steady demand there is nothing to allocate."
+      }
+    ],
+    "w8": [
+      {
+        "id": "w8-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w8-c4"
+        ],
+        "question": "Treated channel acceptance: 40% to 36%. Control channel: 42% to 41%. What is the difference-in-differences estimate (percentage points)?",
+        "answer": -3,
+        "unit": "pp",
+        "decimals": 0,
+        "options": [
+          "-4 pp",
+          "-1 pp",
+          "-3 pp",
+          "-5 pp"
+        ],
+        "answerIndex": 2,
+        "explanation": "Treated change -4 pp. Control change -1 pp. DiD = -4 - (-1) = -3 pp."
+      },
+      {
+        "id": "w8-q2",
+        "type": "mcq",
+        "conceptIds": [
+          "w8-c2"
+        ],
+        "question": "Raw data shows higher factor rates are linked to higher acceptance. What is the most likely explanation?",
+        "options": [
+          "Merchants prefer paying more",
+          "An omitted variable: riskier merchants get higher rates and have fewer alternatives, so they accept more",
+          "Elasticity really is positive for MCAs",
+          "A data entry error"
+        ],
+        "answerIndex": 1,
+        "explanation": "Risk grade drives both price and acceptance. Controlling for it reveals the expected negative relationship within each grade."
+      },
+      {
+        "id": "w8-q3",
+        "type": "mcq",
+        "conceptIds": [
+          "w8-c4"
+        ],
+        "question": "What is the identifying assumption of difference-in-differences?",
+        "options": [
+          "Treatment was randomly assigned",
+          "Without treatment, both groups would have followed parallel trends",
+          "Both groups have the same level of the outcome",
+          "The sample is large"
+        ],
+        "answerIndex": 1,
+        "explanation": "DiD allows the two groups to have different levels but assumes their trends would have matched. Check pre-period trends to support it."
+      },
+      {
+        "id": "w8-q4",
+        "type": "calc",
+        "conceptIds": [
+          "w8-c5"
+        ],
+        "question": "Control: 40% acceptance, £1,500 unit contribution. Treatment: 37% acceptance, £1,750 unit contribution. What is the change in contribution per quote?",
+        "answer": 47.5,
+        "unit": "£",
+        "decimals": 2,
+        "options": [
+          "-£45.00",
+          "+£47.50",
+          "+£250.00",
+          "+£100.00"
+        ],
+        "answerIndex": 1,
+        "explanation": "Control: 0.40 x 1,500 = £600. Treatment: 0.37 x 1,750 = £647.50. Change +£47.50 per quote, even though acceptance fell 3 points."
+      },
+      {
+        "id": "w8-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w8-c5"
+        ],
+        "question": "What should be the primary outcome of a pricing test?",
+        "options": [
+          "Conversion rate",
+          "Revenue",
+          "Incremental contribution or profit, with conversion and risk as guardrails",
+          "Number of quotes issued"
+        ],
+        "answerIndex": 2,
+        "explanation": "Higher prices usually lower conversion. Only a profit measure tells you if the trade-off is worth it. That is the week 8 self-check."
+      },
+      {
+        "id": "w8-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w8-c3"
+        ],
+        "question": "You randomise rates by quote, but the same broker sees both 1.25 and 1.27 for similar merchants. What is the main risk?",
+        "options": [
+          "Sample too small",
+          "Contamination: the broker steers merchants or demands the lower rate, so the groups are no longer independent",
+          "The test becomes illegal automatically",
+          "Nothing, because randomisation fixes everything"
+        ],
+        "answerIndex": 1,
+        "explanation": "When participants can see and react to both arms, the comparison breaks down. Randomise at the broker level, or use a quasi-experimental design."
+      }
+    ],
+    "w9": [
+      {
+        "id": "w9-q1",
+        "type": "mcq",
+        "conceptIds": [
+          "w9-c1"
+        ],
+        "question": "What does 'grandfathering' mean in a price change?",
+        "options": [
+          "Charging older customers more",
+          "Letting existing customers or contracts keep the old price for a set period",
+          "Applying the new price retroactively",
+          "Discounting renewals permanently"
+        ],
+        "answerIndex": 1,
+        "explanation": "Grandfathering protects existing customers for a defined time. It reduces churn and complaints but delays the financial benefit, so set an end date."
+      },
+      {
+        "id": "w9-q2",
+        "type": "calc",
+        "conceptIds": [
+          "w9-c5"
+        ],
+        "question": "Planned fee rise: £5,000 to £5,250. Realised average after launch: £5,150. What share of the planned increase was realised?",
+        "answer": 60,
+        "unit": "%",
+        "decimals": 0,
+        "options": [
+          "3%",
+          "60%",
+          "98%",
+          "40%"
+        ],
+        "answerIndex": 1,
+        "explanation": "Realised increase £150 / planned £250 = 60%. The other 40% leaked, typically through extra discounts. This is an execution problem."
+      },
+      {
+        "id": "w9-q3",
+        "type": "mcq",
+        "conceptIds": [
+          "w9-c5"
+        ],
+        "question": "After launch, volume is within plan but contribution is below target because the realised price is well under plan. What kind of problem is this?",
+        "options": [
+          "A flawed pricing hypothesis",
+          "An implementation failure",
+          "A demand shock",
+          "A cost problem"
+        ],
+        "answerIndex": 1,
+        "explanation": "Customers responded as predicted, but the price was not applied as planned. Fix discount control rather than revisiting the strategy."
+      },
+      {
+        "id": "w9-q4",
+        "type": "mcq",
+        "conceptIds": [
+          "w9-c4"
+        ],
+        "question": "30% of deals last month used the same exception code. What should governance do?",
+        "options": [
+          "Discipline the salespeople",
+          "Review whether the policy itself needs to change",
+          "Remove the exception code",
+          "Nothing, because exceptions are normal"
+        ],
+        "answerIndex": 1,
+        "explanation": "Frequent exceptions with the same code signal that the rule does not fit reality, or that controls are weak. Either way, it is a policy question."
+      },
+      {
+        "id": "w9-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w9-c2"
+        ],
+        "question": "Which broker message line is accurate and supportable?",
+        "options": [
+          "'Still the cheapest MCA in the UK'",
+          "'On £20,000, total cost moves from £5,000 to £5,400; funding speed and flexible holdback are unchanged'",
+          "'Rates are rising because of the market'",
+          "'Nothing is really changing'"
+        ],
+        "answerIndex": 1,
+        "explanation": "It states the change in the customer's terms (pounds), keeps the value story, and makes no claim you cannot prove."
+      },
+      {
+        "id": "w9-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w9-c3"
+        ],
+        "question": "What is the most important thing to include in sales enablement for a price rise?",
+        "options": [
+          "Only the new rate card",
+          "Talk tracks, answers to likely objections, approval rules and practice on realistic deals",
+          "A bigger discount allowance",
+          "A memo from the CEO"
+        ],
+        "answerIndex": 1,
+        "explanation": "Unprepared sellers discount to end awkward conversations. Practice and prepared answers help them hold price."
+      }
+    ],
+    "w10": [
+      {
+        "id": "w10-q1",
+        "type": "calc",
+        "conceptIds": [
+          "w10-c2"
+        ],
+        "question": "Baseline contribution £1.5m. After +5% fee with -3% volume, contribution is £1,697,500. Implementation cost £60,000. What is the incremental profit?",
+        "answer": 137500,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "£197,500",
+          "£137,500",
+          "£257,500",
+          "£60,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "Incremental profit = new contribution - old contribution - implementation cost = 1,697,500 - 1,500,000 - 60,000 = £137,500."
+      },
+      {
+        "id": "w10-q2",
+        "type": "calc",
+        "conceptIds": [
+          "w10-c2"
+        ],
+        "question": "Incremental profit £137,500 on implementation cost £60,000. What is the initiative ROI?",
+        "answer": 229.17,
+        "unit": "%",
+        "decimals": 0,
+        "options": [
+          "329%",
+          "229%",
+          "44%",
+          "129%"
+        ],
+        "answerIndex": 1,
+        "explanation": "ROI = incremental profit / implementation cost = 137,500 / 60,000 = 229%. Because incremental profit already subtracts the cost, this is a net return. 329% would count the cost twice."
+      },
+      {
+        "id": "w10-q3",
+        "type": "calc",
+        "conceptIds": [
+          "w10-c2"
+        ],
+        "question": "Unit contribution £1,750 after the rise, baseline contribution £1.5m on 1,000 deals, implementation cost £60,000. What volume loss makes incremental profit exactly zero?",
+        "answer": 10.857,
+        "unit": "%",
+        "decimals": 1,
+        "options": [
+          "14.3%",
+          "10.9%",
+          "3.4%",
+          "12.0%"
+        ],
+        "answerIndex": 1,
+        "explanation": "Required deals = (1,500,000 + 60,000) / 1,750 = 891.4. Loss = 1 - 891.4 / 1,000 = 10.9%. Without the implementation cost it would be 14.3%."
+      },
+      {
+        "id": "w10-q4",
+        "type": "calc",
+        "conceptIds": [
+          "w10-c2"
+        ],
+        "question": "Downside case: volume -12% (880 deals at £1,750 unit contribution). Baseline £1.5m, implementation cost £60,000. What is the incremental profit?",
+        "answer": -20000,
+        "unit": "£",
+        "decimals": 0,
+        "options": [
+          "+£40,000",
+          "-£20,000",
+          "-£60,000",
+          "+£100,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "880 x 1,750 = £1,540,000. 1,540,000 - 1,500,000 - 60,000 = -£20,000. Contribution rises, but not enough to cover the implementation cost."
+      },
+      {
+        "id": "w10-q5",
+        "type": "mcq",
+        "conceptIds": [
+          "w10-c4"
+        ],
+        "question": "'Competitors will not follow our increase within 6 months.' Which category is this?",
+        "options": [
+          "Fact",
+          "Estimate",
+          "Assumption",
+          "Management choice"
+        ],
+        "answerIndex": 2,
+        "explanation": "It is an untested belief about the future, so it is an assumption. Label it and say how you would monitor it."
+      },
+      {
+        "id": "w10-q6",
+        "type": "mcq",
+        "conceptIds": [
+          "w10-c1"
+        ],
+        "question": "Where should the requested decision appear in the capstone?",
+        "options": [
+          "After the analysis, as a conclusion",
+          "On the first page or slide",
+          "In the appendix",
+          "In the risks section"
+        ],
+        "answerIndex": 1,
+        "explanation": "Week 10 self-check: 'The requested decision appears on the first page or slide.' Leaders should be able to act after reading one page."
+      }
+    ]
+  },
+  "flashcards": [
+    {
+      "id": "fc-f-gross-margin",
+      "kind": "formula",
+      "week": 1,
+      "formulaId": "gross-margin-pct",
+      "front": "Gross margin %: formula?",
+      "back": "(Price - cost of goods sold) / price.\nFee £5,000, cost £3,500 gives 30%."
+    },
+    {
+      "id": "fc-f-markup",
+      "kind": "formula",
+      "week": 1,
+      "formulaId": "markup-pct",
+      "front": "Markup %: formula?",
+      "back": "(Price - cost) / cost.\nFee £5,000, cost £3,500 gives 42.9%."
+    },
+    {
+      "id": "fc-f-unit-contribution",
+      "kind": "formula",
+      "week": 1,
+      "formulaId": "unit-contribution",
+      "front": "Unit contribution: formula?",
+      "back": "Net price - variable cost per unit.\n£5,000 - £3,500 = £1,500."
+    },
+    {
+      "id": "fc-f-break-even-volume",
+      "kind": "formula",
+      "week": 1,
+      "formulaId": "break-even-volume",
+      "front": "Break-even volume: formula?",
+      "back": "Fixed cost / unit contribution.\n£1,000,000 / £1,500 = 667 deals."
+    },
+    {
+      "id": "fc-f-elasticity",
+      "kind": "formula",
+      "week": 2,
+      "formulaId": "price-elasticity",
+      "front": "Price elasticity: formula?",
+      "back": "% change in quantity / % change in price.\nUsually negative. Beyond -1 means elastic."
+    },
+    {
+      "id": "fc-f-required-volume",
+      "kind": "formula",
+      "week": 1,
+      "formulaId": "required-new-volume",
+      "front": "Required new volume after a price change: formula?",
+      "back": "Old volume x old unit contribution / new unit contribution.\n1,000 x 1,500 / 1,750 = 857."
+    },
+    {
+      "id": "fc-f-incremental-profit",
+      "kind": "formula",
+      "week": 10,
+      "formulaId": "incremental-profit",
+      "front": "Incremental profit: formula?",
+      "back": "New contribution - old contribution - implementation cost."
+    },
+    {
+      "id": "fc-f-roi",
+      "kind": "formula",
+      "week": 10,
+      "formulaId": "initiative-roi",
+      "front": "Pricing initiative ROI: formula?",
+      "back": "Incremental profit / implementation cost.\nState the period and which profit measure you use."
+    },
+    {
+      "id": "fc-f-be-loss",
+      "kind": "formula",
+      "week": 1,
+      "front": "Break-even volume loss for a price increase: shortcut?",
+      "back": "Price change / (old unit contribution + price change).\n+£250 on £1,500 gives 250 / 1,750 = 14.3%."
+    },
+    {
+      "id": "fc-f-arc",
+      "kind": "formula",
+      "week": 2,
+      "front": "Arc (midpoint) % change: how is it calculated?",
+      "back": "(New - old) / ((new + old) / 2).\nGives the same elasticity whichever direction you move."
+    },
+    {
+      "id": "fc-f-mca-fee",
+      "kind": "formula",
+      "week": 1,
+      "front": "MCA fee from factor rate?",
+      "back": "Advance x (factor rate - 1).\n£20,000 at 1.25 = £5,000. Total repayable £25,000."
+    },
+    {
+      "id": "fc-f-did",
+      "kind": "formula",
+      "week": 8,
+      "front": "Difference-in-differences estimate?",
+      "back": "(Treated after - treated before) - (control after - control before).\n(-4 pp) - (-1 pp) = -3 pp."
+    },
+    {
+      "id": "fc-f-evc",
+      "kind": "formula",
+      "week": 3,
+      "front": "EVC: formula?",
+      "back": "Next best alternative price + positive differentiation value - negative differentiation value.\n4,000 + 1,700 - 200 = £5,500."
+    },
+    {
+      "id": "fc-t-margin-vs-markup",
+      "kind": "term",
+      "week": 1,
+      "front": "Margin vs markup: the key difference?",
+      "back": "Same profit, different denominator. Margin divides by price, markup by cost.\n30% margin = 42.9% markup."
+    },
+    {
+      "id": "fc-t-contribution",
+      "kind": "term",
+      "week": 1,
+      "front": "Contribution margin",
+      "back": "Revenue minus all variable costs. What each sale adds towards fixed costs and profit."
+    },
+    {
+      "id": "fc-t-relevant-cost",
+      "kind": "term",
+      "week": 1,
+      "front": "Relevant cost",
+      "back": "A cost that changes because of the decision being made. Allocated overhead usually is not one."
+    },
+    {
+      "id": "fc-t-pocket-price",
+      "kind": "term",
+      "week": 1,
+      "front": "Pocket price",
+      "back": "What you actually keep after on-invoice discounts and off-invoice deductions (rebates, waivers, freight, free service)."
+    },
+    {
+      "id": "fc-t-pocket-margin",
+      "kind": "term",
+      "week": 1,
+      "front": "Pocket margin",
+      "back": "Pocket price minus variable cost to serve the deal."
+    },
+    {
+      "id": "fc-t-waterfall",
+      "kind": "term",
+      "week": 6,
+      "front": "Price waterfall",
+      "back": "Step-by-step view from list price to pocket price and pocket margin, showing every deduction."
+    },
+    {
+      "id": "fc-t-invoice-price",
+      "kind": "term",
+      "week": 6,
+      "front": "Invoice price",
+      "back": "List price minus on-invoice discounts. Off-invoice items still have to come off it to reach pocket price."
+    },
+    {
+      "id": "fc-t-demand-curve",
+      "kind": "term",
+      "week": 2,
+      "front": "Movement along vs shift of the demand curve",
+      "back": "Along: your own price changes. Shift: something else changes (competitors, economy, marketing)."
+    },
+    {
+      "id": "fc-t-inelastic",
+      "kind": "term",
+      "week": 2,
+      "front": "Inelastic demand (|E| < 1)",
+      "back": "Volume changes less than price in % terms, so a price rise increases revenue."
+    },
+    {
+      "id": "fc-t-arc-elasticity",
+      "kind": "term",
+      "week": 2,
+      "front": "Arc elasticity",
+      "back": "Elasticity between two price points using midpoint % changes. Symmetric in either direction."
+    },
+    {
+      "id": "fc-t-cross-elasticity",
+      "kind": "term",
+      "week": 2,
+      "front": "Cross-price elasticity",
+      "back": "% change in your volume / % change in another product's price. Positive = substitutes, negative = complements."
+    },
+    {
+      "id": "fc-t-income-elasticity",
+      "kind": "term",
+      "week": 2,
+      "front": "Income elasticity",
+      "back": "% change in volume / % change in customer income. Shows exposure to the economic cycle."
+    },
+    {
+      "id": "fc-t-evc",
+      "kind": "term",
+      "week": 3,
+      "front": "EVC (economic value to the customer)",
+      "back": "The most an informed customer should pay: next best alternative, adjusted for differentiation value."
+    },
+    {
+      "id": "fc-t-nba",
+      "kind": "term",
+      "week": 3,
+      "front": "Next best alternative",
+      "back": "What the customer would realistically do instead. Its cost is the reference value in EVC."
+    },
+    {
+      "id": "fc-t-wtp",
+      "kind": "term",
+      "week": 3,
+      "front": "Willingness to pay (WTP)",
+      "back": "The maximum a customer would pay. A distribution across customers, not one number."
+    },
+    {
+      "id": "fc-t-gabor-granger",
+      "kind": "term",
+      "week": 3,
+      "front": "Gabor-Granger",
+      "back": "Asks 'would you buy at £X?' at several prices. Gives a demand curve for one fixed offer."
+    },
+    {
+      "id": "fc-t-van-westendorp",
+      "kind": "term",
+      "week": 3,
+      "front": "Van Westendorp",
+      "back": "Four questions: too cheap, bargain, expensive, too expensive. Gives an acceptable price range, not purchase likelihood."
+    },
+    {
+      "id": "fc-t-conjoint",
+      "kind": "term",
+      "week": 3,
+      "front": "Conjoint / discrete choice",
+      "back": "Respondents choose between packages with varied attributes and prices. Reveals trade-offs and feature values."
+    },
+    {
+      "id": "fc-t-hypothetical-bias",
+      "kind": "term",
+      "week": 3,
+      "front": "Hypothetical bias",
+      "back": "Stated WTP exceeds real behaviour because no money is at stake. Calibrate against actual purchases."
+    },
+    {
+      "id": "fc-t-price-fence",
+      "kind": "term",
+      "week": 4,
+      "front": "Price fence",
+      "back": "A rule deciding who qualifies for a price, based on facts customers cannot easily fake. Prevents leakage and arbitrage."
+    },
+    {
+      "id": "fc-t-arbitrage",
+      "kind": "term",
+      "week": 4,
+      "front": "Arbitrage (in pricing)",
+      "back": "Customers obtaining a lower price meant for another segment, or reselling across segments."
+    },
+    {
+      "id": "fc-t-gbb",
+      "kind": "term",
+      "week": 4,
+      "front": "Good-better-best",
+      "back": "Tiered offers so customers self-select by need. Each tier should be a real, rational choice."
+    },
+    {
+      "id": "fc-t-two-part-tariff",
+      "kind": "term",
+      "week": 4,
+      "front": "Two-part tariff",
+      "back": "Fixed fee plus usage price, e.g. £300 origination + factor 1.235."
+    },
+    {
+      "id": "fc-t-cannibalisation",
+      "kind": "term",
+      "week": 4,
+      "front": "Cannibalisation",
+      "back": "A new or cheaper option takes sales from your own higher-margin option rather than winning new customers."
+    },
+    {
+      "id": "fc-t-price-leadership",
+      "kind": "term",
+      "week": 5,
+      "front": "Price leadership",
+      "back": "One firm moves price first and others tend to follow. Lawful only without coordination."
+    },
+    {
+      "id": "fc-t-price-war",
+      "kind": "term",
+      "week": 5,
+      "front": "Price war",
+      "back": "Rounds of cuts and matching that lower prices for the whole market. Often triggered by misdiagnosed share loss."
+    },
+    {
+      "id": "fc-t-normalise",
+      "kind": "term",
+      "week": 5,
+      "front": "Normalising competitor prices",
+      "back": "Adjust for package, fees, terms, service and channel so you compare total cost like for like."
+    },
+    {
+      "id": "fc-t-corridor",
+      "kind": "term",
+      "week": 6,
+      "front": "Discount corridor",
+      "back": "Allowed price range by deal type, often green / amber / approval-required bands above a hard floor."
+    },
+    {
+      "id": "fc-t-deal-desk",
+      "kind": "term",
+      "week": 6,
+      "front": "Deal desk",
+      "back": "Central team that approves out-of-policy deals and keeps exception discipline."
+    },
+    {
+      "id": "fc-t-give-get",
+      "kind": "term",
+      "week": 6,
+      "front": "Give-get",
+      "back": "Every concession is traded for a customer commitment of similar value."
+    },
+    {
+      "id": "fc-t-revenue-management",
+      "kind": "term",
+      "week": 7,
+      "front": "Revenue management",
+      "back": "Pricing and allocating fixed, perishable capacity across time and customer types to maximise contribution."
+    },
+    {
+      "id": "fc-t-dynamic-vs-personal",
+      "kind": "term",
+      "week": 7,
+      "front": "Dynamic vs personalised pricing",
+      "back": "Dynamic: reacts to market conditions, the same for everyone at that moment. Personalised: reacts to information about the individual."
+    },
+    {
+      "id": "fc-t-markdown",
+      "kind": "term",
+      "week": 7,
+      "front": "Markdown optimisation",
+      "back": "Timing and depth of price cuts on perishable stock, trading margin against sell-through and leftover value."
+    },
+    {
+      "id": "fc-t-guardrail",
+      "kind": "term",
+      "week": 7,
+      "front": "Pricing guardrail",
+      "back": "A hard limit the pricing system cannot break: floor, maximum change, consistency rule, approval trigger."
+    },
+    {
+      "id": "fc-t-omitted-variable",
+      "kind": "term",
+      "week": 8,
+      "front": "Omitted variable bias",
+      "back": "An unmeasured factor drives both price and sales, distorting the estimated price effect."
+    },
+    {
+      "id": "fc-t-reverse-causality",
+      "kind": "term",
+      "week": 8,
+      "front": "Reverse causality (endogeneity)",
+      "back": "Demand conditions set the price, rather than price driving demand, e.g. raising rates when demand is strong."
+    },
+    {
+      "id": "fc-t-did",
+      "kind": "term",
+      "week": 8,
+      "front": "Difference-in-differences",
+      "back": "Compares the change in a treated group with the change in a control group. Assumes parallel trends."
+    },
+    {
+      "id": "fc-t-synthetic-control",
+      "kind": "term",
+      "week": 8,
+      "front": "Synthetic control",
+      "back": "A weighted combination of untreated units built to mimic the treated unit before the change."
+    },
+    {
+      "id": "fc-t-mde",
+      "kind": "term",
+      "week": 8,
+      "front": "Minimum detectable effect (MDE)",
+      "back": "The smallest true effect a test is designed to detect reliably. Drives sample size and duration."
+    },
+    {
+      "id": "fc-t-grandfathering",
+      "kind": "term",
+      "week": 9,
+      "front": "Grandfathering",
+      "back": "Existing customers or contracts keep the old price for a defined period after a change."
+    },
+    {
+      "id": "fc-t-raci",
+      "kind": "term",
+      "week": 9,
+      "front": "Responsibility matrix (RACI)",
+      "back": "Who is Responsible, Accountable, Consulted and Informed for each implementation task."
+    },
+    {
+      "id": "fc-t-impl-vs-hypothesis",
+      "kind": "term",
+      "week": 9,
+      "front": "Implementation failure vs flawed hypothesis",
+      "back": "Implementation: the price was not applied as planned. Hypothesis: it was applied, but customers responded differently than predicted."
+    },
+    {
+      "id": "fc-t-fact-assumption",
+      "kind": "term",
+      "week": 10,
+      "front": "Fact / estimate / assumption / choice",
+      "back": "Observed / modelled with uncertainty / untested belief / deliberate decision. Label each in a recommendation."
+    },
+    {
+      "id": "fc-t-factor-rate",
+      "kind": "term",
+      "week": 1,
+      "front": "Factor rate (MCA)",
+      "back": "Multiplier on the advance giving total repayable. 1.25 on £20,000 = £25,000. Fixed regardless of how quickly it is repaid."
+    },
+    {
+      "id": "fc-t-holdback",
+      "kind": "term",
+      "week": 4,
+      "front": "Holdback % (MCA)",
+      "back": "Share of daily card takings remitted. A higher holdback means faster repayment and a higher effective annual cost."
+    },
+    {
+      "id": "fc-t-adverse-selection",
+      "kind": "term",
+      "week": 1,
+      "front": "Adverse selection (in lending prices)",
+      "back": "Raising price drives away the lower-risk customers first, so expected loss per deal rises."
+    },
+    {
+      "id": "fc-t-renewal",
+      "kind": "term",
+      "week": 4,
+      "front": "MCA renewal",
+      "back": "A new advance to an existing merchant, often once 50%+ is repaid. Lower acquisition cost and better data, so often priced lower."
+    }
+  ],
+  "explainCards": [
+    {
+      "id": "ex-w1-1",
+      "week": 1,
+      "conceptIds": [
+        "w1-c1"
+      ],
+      "prompt": "Why can a revenue-maximising price fail to maximise contribution?",
+      "answer": "Revenue ignores costs. A lower price can win enough extra volume to raise revenue, but each extra deal carries variable cost, so the margin per unit falls faster than volume grows. Example: fee £4,500 x 1,200 = £5.4m revenue but £1.2m contribution, vs £5,500 x 900 = £4.95m revenue and £1.8m contribution."
+    },
+    {
+      "id": "ex-w1-2",
+      "week": 1,
+      "conceptIds": [
+        "w1-c3"
+      ],
+      "prompt": "Why does a 5% price rise increase unit contribution by much more than 5%?",
+      "answer": "Costs do not move, so the whole price rise drops into contribution. With a thin margin, £250 on a £1,500 contribution is +16.7%. The thinner the margin, the bigger the leverage, and the more volume you can afford to lose."
+    },
+    {
+      "id": "ex-w1-3",
+      "week": 1,
+      "conceptIds": [
+        "w1-c5"
+      ],
+      "prompt": "Why can list price changes miss most of the profit opportunity?",
+      "answer": "Real money is lost between list and pocket price through discounts, rebates and waivers that vary deal by deal. If leakage is large and uneven, controlling it moves profit more than a list change, which also gets discounted away."
+    },
+    {
+      "id": "ex-w2-1",
+      "week": 2,
+      "conceptIds": [
+        "w2-c5"
+      ],
+      "prompt": "Why can't you read elasticity straight off a before-and-after sales chart?",
+      "answer": "Other things change at the same time: seasonality, competitors, broker behaviour, marketing, capacity. A before-and-after comparison credits all of them to price. You need controls or a comparison group."
+    },
+    {
+      "id": "ex-w2-2",
+      "week": 2,
+      "conceptIds": [
+        "w2-c2"
+      ],
+      "prompt": "For an MCA, why does the elasticity number depend on whether you measure the factor rate or the fee?",
+      "answer": "The same move (1.25 to 1.30) is +4% on the rate but +20% on the fee, so the elasticity differs five-fold. The fee is what the merchant actually pays for capital, so it is usually the better 'price'. Always state which one you use."
+    },
+    {
+      "id": "ex-w2-3",
+      "week": 2,
+      "conceptIds": [
+        "w2-c4"
+      ],
+      "prompt": "Why is long-run elasticity usually larger than short-run?",
+      "answer": "Customers need time to find alternatives, renegotiate, or change behaviour. A price rise may look harmless for a month while the real volume loss builds as contracts end and brokers redirect deals."
+    },
+    {
+      "id": "ex-w3-1",
+      "week": 3,
+      "conceptIds": [
+        "w3-c1"
+      ],
+      "prompt": "Why should price normally sit below EVC rather than at it?",
+      "answer": "At EVC a fully informed customer is indifferent, so they have no reason to switch, and real customers are not fully informed and doubt your claims. Leaving some value on the table gives them a reason to choose you."
+    },
+    {
+      "id": "ex-w3-2",
+      "week": 3,
+      "conceptIds": [
+        "w3-c4"
+      ],
+      "prompt": "Why do survey answers about price often overstate what customers will actually pay?",
+      "answer": "No money is at stake (hypothetical bias), people want to seem reasonable, and some answer strategically. Real acceptance data shows the gap. Calibrate stated intent against past behaviour."
+    },
+    {
+      "id": "ex-w4-1",
+      "week": 4,
+      "conceptIds": [
+        "w4-c2"
+      ],
+      "prompt": "What makes a price fence strong rather than leaky?",
+      "answer": "It relies on facts you can verify and the customer cannot fake or easily change: repayment history, turnover data, contract term, timing. Fences based on what customers say, or available on request, spread the discount to everyone."
+    },
+    {
+      "id": "ex-w4-2",
+      "week": 4,
+      "conceptIds": [
+        "w4-c4"
+      ],
+      "prompt": "Why can adding more price options reduce sales?",
+      "answer": "Too many options slow decisions, confuse sales and brokers, and make the right choice unclear. Customers delay or default to the cheapest option. A few clear trade-offs usually beat many combinations."
+    },
+    {
+      "id": "ex-w5-1",
+      "week": 5,
+      "conceptIds": [
+        "w5-c4"
+      ],
+      "prompt": "Why can matching a competitor's price cut destroy value even if you keep share?",
+      "answer": "You give the cut to every customer, including those who were not leaving. If the real cause of share loss was speed or service, the cut does not fix it, and rivals may cut again."
+    },
+    {
+      "id": "ex-w5-2",
+      "week": 5,
+      "conceptIds": [
+        "w5-c2"
+      ],
+      "prompt": "Why is a competitor's headline rate a poor benchmark on its own?",
+      "answer": "Fees, holdback, term, service and eligibility differ. Normalising to total cost on the same deal often shrinks the gap. A £600 headline difference became £200 once the origination fee was added."
+    },
+    {
+      "id": "ex-w6-1",
+      "week": 6,
+      "conceptIds": [
+        "w6-c4"
+      ],
+      "prompt": "Why do pricing policies fail if sales incentives stay volume-based?",
+      "answer": "Each discount helps the seller close and costs them nothing. Exceptions creep back, approvals become routine and realised price drifts down. Incentives tied to realised price or contribution align sellers with the policy."
+    },
+    {
+      "id": "ex-w6-2",
+      "week": 6,
+      "conceptIds": [
+        "w6-c5"
+      ],
+      "prompt": "Why trade concessions instead of simply granting them?",
+      "answer": "A free discount teaches customers that pushing works and sets the next negotiation's starting point. Trading it for a commitment (faster holdback, renewal, volume) recovers value and makes asking for a discount costly."
+    },
+    {
+      "id": "ex-w7-1",
+      "week": 7,
+      "conceptIds": [
+        "w7-c1"
+      ],
+      "prompt": "Why can raising price when capacity is full add profit without losing any funded volume?",
+      "answer": "If demand exceeds capacity, you turn customers away anyway. A higher price only removes customers you could not serve, so every funded deal earns more and volume does not fall."
+    },
+    {
+      "id": "ex-w7-2",
+      "week": 7,
+      "conceptIds": [
+        "w7-c2"
+      ],
+      "prompt": "Why is personalised pricing riskier than dynamic pricing?",
+      "answer": "Dynamic prices are the same for everyone at a given moment and respond to observable conditions. Personalised prices depend on who you are, which raises discrimination, data-use and fairness concerns, especially if they target urgency or vulnerability."
+    },
+    {
+      "id": "ex-w8-1",
+      "week": 8,
+      "conceptIds": [
+        "w8-c2"
+      ],
+      "prompt": "How can historical data show higher prices linked to more sales?",
+      "answer": "An omitted variable or reverse causality: riskier merchants get higher rates and have fewer alternatives, or prices are raised when demand is strong. The correlation reflects why price varied, not how customers respond to it."
+    },
+    {
+      "id": "ex-w8-2",
+      "week": 8,
+      "conceptIds": [
+        "w8-c5"
+      ],
+      "prompt": "Why must the decision rule be written before the test starts?",
+      "answer": "Otherwise people pick whichever metric looks good after the fact. Pre-committing to the profit measure, MDE, guardrails and launch threshold keeps the test honest."
+    },
+    {
+      "id": "ex-w9-1",
+      "week": 9,
+      "conceptIds": [
+        "w9-c5"
+      ],
+      "prompt": "Why separate implementation failure from a flawed pricing hypothesis?",
+      "answer": "They need opposite fixes. If the price was not applied, tighten execution. If it was applied and customers reacted more than expected, revisit the price. Without the breakdown you might reverse a good decision."
+    },
+    {
+      "id": "ex-w9-2",
+      "week": 9,
+      "conceptIds": [
+        "w9-c4"
+      ],
+      "prompt": "What should repeated exceptions tell governance?",
+      "answer": "That the policy does not fit reality, or that controls are weak. Either way, review the policy rather than approving the same exception again and again."
+    },
+    {
+      "id": "ex-w10-1",
+      "week": 10,
+      "conceptIds": [
+        "w10-c2"
+      ],
+      "prompt": "Why show a break-even condition alongside the scenarios?",
+      "answer": "It tells leaders the assumption value at which the decision stops paying, e.g. 'loss-making if volume falls more than 10.9%'. They can judge plausibility directly and know what to monitor."
+    },
+    {
+      "id": "ex-w10-2",
+      "week": 10,
+      "conceptIds": [
+        "w10-c4"
+      ],
+      "prompt": "Why label facts, estimates, assumptions and choices separately?",
+      "answer": "It shows where the uncertainty really is, so challenge focuses on the right inputs and nobody mistakes a belief for a measured fact."
+    }
+  ],
+  "formulaNotes": {
+    "gross-margin-pct": {
+      "interpretation": "Price is the realised net price per unit. Cost is the direct cost per unit. Result as % of price.",
+      "example": "Fee £5,000, direct cost £3,500: (5,000 - 3,500) / 5,000 = 30%."
+    },
+    "markup-pct": {
+      "interpretation": "Same price and cost inputs as margin, so the two are directly comparable. Result as % of cost.",
+      "example": "(5,000 - 3,500) / 3,500 = 42.9%."
+    },
+    "unit-contribution": {
+      "interpretation": "Net price minus every cost that varies with one more unit.",
+      "example": "5,000 - (1,600 + 600 + 1,000 + 300) = £1,500."
+    },
+    "break-even-volume": {
+      "interpretation": "Fixed cost for the period divided by unit contribution. Rounded up to whole units when used as a target.",
+      "example": "1,000,000 / 1,500 = 666.7, so 667 deals."
+    },
+    "price-elasticity": {
+      "interpretation": "Two methods. Arc (midpoint), as used in the Week 2 exercise: %Δ = change / average of old and new. Simple: %Δ = change / old value. The arc method gives the same answer in both directions.",
+      "example": "Fee 5,000 to 6,000, deals 1,000 to 900: arc -0.58, simple -0.50."
+    },
+    "required-new-volume": {
+      "interpretation": "Assumes variable cost per unit is unchanged, as the syllabus states. Break-even volume change = required new volume / old volume - 1.",
+      "example": "1,000 x 1,500 / 1,750 = 857.1 deals, a 14.3% loss."
+    },
+    "incremental-profit": {
+      "interpretation": "Total contribution after minus total contribution before, minus one-off implementation cost, over the same stated period.",
+      "example": "1,697,500 - 1,500,000 - 60,000 = £137,500."
+    },
+    "initiative-roi": {
+      "interpretation": "Net ROI: incremental profit already has implementation cost subtracted, so the cost is not subtracted again.",
+      "example": "137,500 / 60,000 = 229%."
+    }
+  }
+}
