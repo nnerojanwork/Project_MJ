@@ -1,0 +1,472 @@
+[
+  {
+    "id": "comp-01",
+    "type": "comprehension",
+    "title": "Remote Work Policy Change",
+    "passage": {
+      "title": "Company Announces Hybrid Working Update",
+      "text": "Starting next quarter, the company will move from a fully remote policy to a hybrid model requiring staff to attend the office at least two days per week. Management cited concerns over declining collaboration on cross-team projects and a noticeable drop in informal mentoring between junior and senior staff. Employees who live more than 90 minutes from the office by public transport may apply for an exemption, subject to manager approval. The company will also renovate one floor of the office into dedicated collaboration space, with the work expected to finish within two months. A staff survey conducted before the announcement found that 55% of employees preferred to keep the fully remote arrangement, while 30% supported a hybrid model and the remainder were undecided."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the main reason given for the policy change?",
+        "options": [
+          { "id": "a", "text": "Office renovation costs needed to be justified" },
+          { "id": "b", "text": "Concerns about collaboration and mentoring" },
+          { "id": "c", "text": "A majority of staff requested it" },
+          { "id": "d", "text": "Public transport links had improved" }
+        ],
+        "correctOptionId": "b",
+        "category": "main-idea"
+      },
+      {
+        "id": "q2",
+        "prompt": "According to the passage, how many days per week must staff attend the office under the new policy?",
+        "options": [
+          { "id": "a", "text": "One" },
+          { "id": "b", "text": "Two" },
+          { "id": "c", "text": "Three" },
+          { "id": "d", "text": "Five" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "Based on the survey results described, which statement is best supported?",
+        "options": [
+          { "id": "a", "text": "Most employees supported the hybrid model before it was announced" },
+          { "id": "b", "text": "The majority of employees preferred to remain fully remote" },
+          { "id": "c", "text": "All employees were undecided about the policy" },
+          { "id": "d", "text": "No employees opposed the change" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-02",
+    "type": "comprehension",
+    "title": "Renewable Energy Adoption in Manufacturing",
+    "passage": {
+      "title": "Factory Switches to Solar Power",
+      "text": "A manufacturing plant has completed installation of a solar panel array covering its entire roof, expected to supply around 40% of the site's annual electricity needs. The remaining electricity will still be drawn from the national grid, though the company has signed a separate contract guaranteeing that this portion comes from certified renewable sources. The upfront cost of the installation was significant, but the company projects it will recover the investment within seven years through reduced energy bills. Executives noted that the decision was driven partly by rising energy costs and partly by pressure from large retail customers who have set their own targets for reducing supply chain emissions. The plant's operations manager stated that production schedules were not affected during installation, as the work was carried out in sections over several weekends."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What proportion of the plant's total electricity needs will the solar panels supply?",
+        "options": [
+          { "id": "a", "text": "All of it" },
+          { "id": "b", "text": "Around 40%" },
+          { "id": "c", "text": "Around 60%" },
+          { "id": "d", "text": "The passage does not say" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q2",
+        "prompt": "Which of the following is given as a reason for the decision to install solar panels?",
+        "options": [
+          { "id": "a", "text": "A government mandate required it" },
+          { "id": "b", "text": "Pressure from retail customers over emissions targets" },
+          { "id": "c", "text": "The national grid could no longer supply the plant" },
+          { "id": "d", "text": "Staff demanded the change" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "What can be inferred about the installation process?",
+        "options": [
+          { "id": "a", "text": "It caused significant delays to production" },
+          { "id": "b", "text": "It was planned to minimise disruption to operations" },
+          { "id": "c", "text": "It was completed in a single day" },
+          { "id": "d", "text": "It was postponed due to cost concerns" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-03",
+    "type": "comprehension",
+    "title": "Customer Loyalty Program Overhaul",
+    "passage": {
+      "title": "Retailer Redesigns Rewards Scheme",
+      "text": "A national retail chain has redesigned its customer loyalty program after internal analysis showed that fewer than 15% of members were redeeming points before they expired. Under the new scheme, points no longer expire, and members can redeem smaller amounts of points for discounts rather than needing to save up for larger rewards. The company also introduced a tiered structure, granting additional perks such as free delivery to customers who spend above a certain threshold each year. Early feedback from a pilot group of 10,000 customers suggested that redemption rates rose sharply within the first two months, although the company has not yet confirmed whether this translated into increased overall spending. A spokesperson said the full rollout to all members would be completed by the end of the year."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What problem prompted the redesign of the loyalty program?",
+        "options": [
+          { "id": "a", "text": "Too many customers were complaining about the tiered structure" },
+          { "id": "b", "text": "Most members were not redeeming their points before expiry" },
+          { "id": "c", "text": "The company was losing money on free delivery" },
+          { "id": "d", "text": "Competitors had launched similar schemes" }
+        ],
+        "correctOptionId": "b",
+        "category": "main-idea"
+      },
+      {
+        "id": "q2",
+        "prompt": "According to the passage, what happened to redemption rates in the pilot group?",
+        "options": [
+          { "id": "a", "text": "They stayed the same" },
+          { "id": "b", "text": "They decreased" },
+          { "id": "c", "text": "They rose sharply" },
+          { "id": "d", "text": "They were not measured" }
+        ],
+        "correctOptionId": "c",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "Which statement is best supported by the passage?",
+        "options": [
+          { "id": "a", "text": "The company has confirmed the changes increased overall sales" },
+          { "id": "b", "text": "It remains unclear whether the changes increased overall spending" },
+          { "id": "c", "text": "The pilot group was larger than the full customer base" },
+          { "id": "d", "text": "Free delivery is now available to all customers regardless of spend" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-04",
+    "type": "comprehension",
+    "title": "Supply Chain Disruption",
+    "passage": {
+      "title": "Shipping Delays Affect Product Availability",
+      "text": "A prolonged disruption at a major shipping port has delayed the delivery of components used in several consumer electronics products. The manufacturer affected has stated that certain items may be unavailable for purchase for up to six weeks, though it expects to prioritise restocking its best-selling models first. To manage customer expectations, the company has updated its website to display estimated restock dates rather than simply marking items as out of stock. Analysts have noted that similar disruptions in the past led to temporary price increases from resellers on secondary marketplaces, though the manufacturer itself has committed to keeping its own prices unchanged. The company's supply chain director noted that the firm is now exploring dual-sourcing components from a second supplier in a different region to reduce reliance on any single shipping route in the future."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What action has the manufacturer taken to manage customer expectations?",
+        "options": [
+          { "id": "a", "text": "Raising prices to reflect scarcity" },
+          { "id": "b", "text": "Displaying estimated restock dates on its website" },
+          { "id": "c", "text": "Removing affected products from sale entirely" },
+          { "id": "d", "text": "Offering refunds to all customers" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q2",
+        "prompt": "What long-term change is the company considering as a result of the disruption?",
+        "options": [
+          { "id": "a", "text": "Ending production of the affected products" },
+          { "id": "b", "text": "Sourcing components from a second supplier in a different region" },
+          { "id": "c", "text": "Moving all shipping to air freight" },
+          { "id": "d", "text": "Increasing its own prices permanently" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "What can be inferred about prices on secondary marketplaces during past disruptions?",
+        "options": [
+          { "id": "a", "text": "They typically fell due to reduced demand" },
+          { "id": "b", "text": "They sometimes rose temporarily" },
+          { "id": "c", "text": "They were fixed by the manufacturer" },
+          { "id": "d", "text": "They were unaffected by shortages" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-05",
+    "type": "comprehension",
+    "title": "New Product Launch Strategy",
+    "passage": {
+      "title": "Company Opts for Staggered Launch",
+      "text": "Rather than releasing its new product line simultaneously worldwide, a consumer goods company has chosen a staggered launch strategy, beginning in three test markets before expanding further. Executives explained that this approach allows the company to gather feedback and adjust packaging, pricing, or marketing before committing to a full-scale rollout. The test markets were selected based on a combination of factors, including historical sales performance and demographic similarity to the company's largest overall markets. Early data from the first test market showed stronger than expected demand among younger consumers, prompting the marketing team to shift a larger portion of its advertising budget toward social media platforms rather than television. The company has not yet announced a firm date for the global rollout, stating only that it will depend on the results from the remaining test markets."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why did the company choose a staggered launch rather than a simultaneous global release?",
+        "options": [
+          { "id": "a", "text": "To reduce manufacturing costs" },
+          { "id": "b", "text": "To gather feedback and make adjustments before a full rollout" },
+          { "id": "c", "text": "Because of a shortage of raw materials" },
+          { "id": "d", "text": "To comply with a regulatory requirement" }
+        ],
+        "correctOptionId": "b",
+        "category": "main-idea"
+      },
+      {
+        "id": "q2",
+        "prompt": "What change did the marketing team make in response to early test market data?",
+        "options": [
+          { "id": "a", "text": "They cancelled the launch in that market" },
+          { "id": "b", "text": "They shifted more advertising budget toward social media" },
+          { "id": "c", "text": "They lowered the product's price" },
+          { "id": "d", "text": "They increased television advertising" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "Which statement is best supported by the passage?",
+        "options": [
+          { "id": "a", "text": "The global rollout date has already been confirmed" },
+          { "id": "b", "text": "The remaining test markets will influence the timing of a wider launch" },
+          { "id": "c", "text": "Younger consumers showed less interest than expected" },
+          { "id": "d", "text": "The test markets were chosen at random" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-06",
+    "type": "comprehension",
+    "title": "Employee Wellbeing Initiative",
+    "passage": {
+      "title": "Company Introduces Wellbeing Programme",
+      "text": "Following a rise in reported stress-related absences, a company has launched a wellbeing programme that includes access to a confidential counselling service, additional paid leave for mental health reasons, and mandatory manager training on recognising signs of burnout. The programme was developed after consultation with an external occupational health advisor and a review of anonymised absence data over the previous two years. Initial uptake of the counselling service has been higher among employees in customer-facing roles than those in back-office positions, which the company attributes to the more variable and high-pressure nature of those roles. Management has committed to reviewing the programme's effectiveness after twelve months, using both absence figures and a follow-up staff survey to assess impact. The company has not disclosed the overall cost of the programme."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What prompted the company to launch the wellbeing programme?",
+        "options": [
+          { "id": "a", "text": "A rise in reported stress-related absences" },
+          { "id": "b", "text": "A request from a major client" },
+          { "id": "c", "text": "A new government regulation" },
+          { "id": "d", "text": "A decline in overall company profits" }
+        ],
+        "correctOptionId": "a",
+        "category": "main-idea"
+      },
+      {
+        "id": "q2",
+        "prompt": "How will the company assess the programme's effectiveness after twelve months?",
+        "options": [
+          { "id": "a", "text": "Using absence figures and a staff survey" },
+          { "id": "b", "text": "Through an external audit only" },
+          { "id": "c", "text": "By comparing costs to competitors" },
+          { "id": "d", "text": "By counting the number of counselling sessions booked" }
+        ],
+        "correctOptionId": "a",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "What is suggested as the likely reason for higher counselling uptake among customer-facing staff?",
+        "options": [
+          { "id": "a", "text": "Those roles are more variable and high-pressure" },
+          { "id": "b", "text": "Back-office staff were not eligible for the service" },
+          { "id": "c", "text": "Customer-facing staff were required to attend" },
+          { "id": "d", "text": "Back-office staff already had access to a similar service" }
+        ],
+        "correctOptionId": "a",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-07",
+    "type": "comprehension",
+    "title": "Data Privacy Regulation Update",
+    "passage": {
+      "title": "New Data Handling Rules Take Effect",
+      "text": "A revised set of data protection regulations has come into force, requiring companies to obtain more explicit consent before sharing customer data with third parties and to respond to data access requests within a shorter timeframe than before. Businesses that fail to comply may face fines calculated as a percentage of their annual global revenue, rather than a fixed penalty as under the previous rules. Legal experts have suggested that smaller companies may find compliance more challenging, since they often lack dedicated data protection staff, whereas larger organisations have generally already invested in the systems needed to meet similar requirements in other regions. A trade body representing small businesses has called for a longer transition period, arguing that six months is insufficient time to update internal systems and staff training. Regulators have not yet indicated whether any extension will be granted."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "How has the penalty structure changed under the new regulations?",
+        "options": [
+          { "id": "a", "text": "Fines are now a fixed amount rather than a percentage" },
+          { "id": "b", "text": "Fines are now calculated as a percentage of annual global revenue" },
+          { "id": "c", "text": "Fines have been abolished" },
+          { "id": "d", "text": "Fines now only apply to repeat offenders" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q2",
+        "prompt": "Why do legal experts suggest smaller companies may struggle more with compliance?",
+        "options": [
+          { "id": "a", "text": "They are based in fewer regions" },
+          { "id": "b", "text": "They often lack dedicated data protection staff" },
+          { "id": "c", "text": "They handle more customer data than larger firms" },
+          { "id": "d", "text": "They are exempt from some of the new rules" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      },
+      {
+        "id": "q3",
+        "prompt": "What is the current status of the transition period requested by the trade body?",
+        "options": [
+          { "id": "a", "text": "It has been granted in full" },
+          { "id": "b", "text": "It has been rejected" },
+          { "id": "c", "text": "Regulators have not yet decided" },
+          { "id": "d", "text": "It was withdrawn by the trade body" }
+        ],
+        "correctOptionId": "c",
+        "category": "detail"
+      }
+    ]
+  },
+  {
+    "id": "comp-08",
+    "type": "comprehension",
+    "title": "Sustainable Packaging Switch",
+    "passage": {
+      "title": "Brand Moves to Recyclable Packaging",
+      "text": "A food and beverage brand has announced it will replace its current plastic packaging with a fully recyclable alternative across all product lines by next year. The switch follows years of criticism from environmental campaigners and a decline in sales among younger consumers who cited packaging as a factor in their purchasing decisions. The new packaging is expected to cost slightly more to produce, and the company has confirmed that a small portion of this cost will be passed on to consumers through a modest price increase. Trials of the new packaging in two regions found that it performed similarly to the original in terms of shelf life and product freshness, though some retailers noted that it required different storage conditions during transport. The company stated that further trials would continue in additional markets before the global switch is finalised."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is given as one reason for the packaging switch?",
+        "options": [
+          { "id": "a", "text": "A decline in sales among younger consumers concerned about packaging" },
+          { "id": "b", "text": "A government ban on plastic packaging" },
+          { "id": "c", "text": "A shortage of plastic materials" },
+          { "id": "d", "text": "A request from retailers" }
+        ],
+        "correctOptionId": "a",
+        "category": "main-idea"
+      },
+      {
+        "id": "q2",
+        "prompt": "According to the passage, how will the increased production cost be handled?",
+        "options": [
+          { "id": "a", "text": "Entirely absorbed by the company" },
+          { "id": "b", "text": "Partly passed on to consumers through a price increase" },
+          { "id": "c", "text": "Covered by a government subsidy" },
+          { "id": "d", "text": "Offset by reducing product sizes" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "What did retailers note about the new packaging during trials?",
+        "options": [
+          { "id": "a", "text": "It reduced shelf life significantly" },
+          { "id": "b", "text": "It required different storage conditions during transport" },
+          { "id": "c", "text": "It was rejected by customers in taste tests" },
+          { "id": "d", "text": "It was cheaper to transport" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      }
+    ]
+  },
+  {
+    "id": "comp-09",
+    "type": "comprehension",
+    "title": "Company Merger Announcement",
+    "passage": {
+      "title": "Two Firms Announce Planned Merger",
+      "text": "Two mid-sized firms in the logistics sector have announced plans to merge, creating a combined company that executives say will be better positioned to compete with larger international rivals. The deal is subject to approval from competition regulators, who will assess whether the merger would reduce competition in any regional markets where both companies currently operate. If approved, the merger is expected to result in some overlapping roles being consolidated, though the companies have stated that they aim to achieve this primarily through natural staff turnover rather than mandatory redundancies. Analysts have pointed out that similar mergers in the sector have taken between six and eighteen months to receive regulatory clearance, meaning the deal is unlikely to be finalised before the second half of next year. Shareholders of both companies are expected to vote on the proposal in the coming months."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the stated purpose of the merger?",
+        "options": [
+          { "id": "a", "text": "To reduce the number of staff as quickly as possible" },
+          { "id": "b", "text": "To be better positioned to compete with larger international rivals" },
+          { "id": "c", "text": "To exit the logistics sector entirely" },
+          { "id": "d", "text": "To comply with a new industry regulation" }
+        ],
+        "correctOptionId": "b",
+        "category": "main-idea"
+      },
+      {
+        "id": "q2",
+        "prompt": "How do the companies plan to handle overlapping roles?",
+        "options": [
+          { "id": "a", "text": "Through immediate mandatory redundancies" },
+          { "id": "b", "text": "Primarily through natural staff turnover" },
+          { "id": "c", "text": "By creating entirely new roles for all staff" },
+          { "id": "d", "text": "By outsourcing overlapping functions" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "Based on the passage, when is the merger most likely to be finalised?",
+        "options": [
+          { "id": "a", "text": "Within the next few weeks" },
+          { "id": "b", "text": "Before the end of this year" },
+          { "id": "c", "text": "Not before the second half of next year" },
+          { "id": "d", "text": "It has already been finalised" }
+        ],
+        "correctOptionId": "c",
+        "category": "inference"
+      }
+    ]
+  },
+  {
+    "id": "comp-10",
+    "type": "comprehension",
+    "title": "AI Adoption in Customer Service",
+    "passage": {
+      "title": "Company Expands Use of AI Chat Support",
+      "text": "A telecommunications provider has expanded its use of AI-powered chat support to handle a wider range of customer queries, including billing disputes and technical troubleshooting, which were previously handled exclusively by human agents. The company reports that average response times have fallen significantly since the expansion, though customer satisfaction scores for AI-handled queries remain slightly lower than those for queries resolved by human staff. To address this gap, the company has introduced a rule allowing customers to request a human agent at any point during an AI-assisted conversation without needing to repeat information already provided. Internally, some customer service staff have expressed concern about the long-term impact on job security, while management has stated that no redundancies are currently planned and that staff will instead be redeployed to handle more complex cases. The company plans to publish updated satisfaction figures within six months."
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What change was introduced to address lower satisfaction scores for AI-handled queries?",
+        "options": [
+          { "id": "a", "text": "AI support was withdrawn from billing disputes" },
+          { "id": "b", "text": "Customers can request a human agent without repeating information" },
+          { "id": "c", "text": "All customers were given a discount" },
+          { "id": "d", "text": "Response times were deliberately slowed down" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q2",
+        "prompt": "What has management said about the impact on staff jobs?",
+        "options": [
+          { "id": "a", "text": "Redundancies are planned within six months" },
+          { "id": "b", "text": "No redundancies are currently planned; staff will be redeployed" },
+          { "id": "c", "text": "All customer service roles will be automated" },
+          { "id": "d", "text": "Staff will be moved to a different department entirely" }
+        ],
+        "correctOptionId": "b",
+        "category": "detail"
+      },
+      {
+        "id": "q3",
+        "prompt": "Which statement is best supported by the passage?",
+        "options": [
+          { "id": "a", "text": "AI-handled queries are currently rated as highly as human-handled ones" },
+          { "id": "b", "text": "Faster response times have come with a small trade-off in satisfaction" },
+          { "id": "c", "text": "Customer satisfaction has fallen for all types of queries" },
+          { "id": "d", "text": "Human agents are no longer available at any point" }
+        ],
+        "correctOptionId": "b",
+        "category": "inference"
+      }
+    ]
+  }
+]

@@ -1,0 +1,3976 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "title": "Pricing Strategy, Profitability and Commercial Execution - study pack",
+    "built_from": "Pricing_economics.docx (10-week self-study syllabus)",
+    "created": "2026-10-08",
+    "notes": [
+      "Text marked source 'syllabus' is taken from (or closely restates) the original document.",
+      "Everything marked source 'generated' (explainers, examples, lending lens, most flashcards, all quiz items) was written by Claude and should be shown with an 'AI-generated, verify' tag.",
+      "Numeric quiz answers were recomputed in code. Lending/MCA examples use illustrative numbers, not any real lender's economics.",
+      "IDs are stable: keep them when editing so spaced-repetition progress survives updates."
+    ],
+    "counts": {
+      "weeks": 10,
+      "concepts": 49,
+      "flashcards": 184,
+      "quiz_mcq": 49,
+      "quiz_numeric": 16,
+      "formulas": 18,
+      "worked_examples": 10
+    }
+  },
+  "program": {
+    "title": "Pricing Strategy Profitability and Commercial Execution",
+    "subtitle": "A ten week self study syllabus for pricing analysts",
+    "intro": "This program develops the ability to recommend a price, quantify its expected financial return, and turn the recommendation into a workable commercial plan. The syllabus combines economics, profitability analysis, customer value, sales execution, and measurement.",
+    "duration": "10 weeks",
+    "weekly_effort": "6 to 8 hours",
+    "tools": "Excel or Google Sheets required. SQL and Python optional.",
+    "final_output": "An end to end pricing recommendation with financial case and commercial launch plan",
+    "how_to_use": [
+      "Choose one product, service, or anonymized business case and reuse it throughout the program.",
+      "Keep a research log. Record each source, its claim, the evidence used, and how the finding affects a pricing decision.",
+      "Finish the weekly output before moving on. The outputs become sections of the capstone recommendation.",
+      "Use revenue and profit separately. A price that maximizes revenue may not maximize contribution or operating profit."
+    ],
+    "learning_outcomes": [
+      "Build a price and margin waterfall from list price to pocket margin.",
+      "Calculate contribution, break even volume, price volume tradeoffs, and initiative ROI.",
+      "Estimate and interpret own price, cross price, and promotional elasticity.",
+      "Use customer value and willingness to pay research to set price ranges.",
+      "Design tiers, bundles, fences, discount rules, and commercial guardrails.",
+      "Evaluate competitive responses and distinguish useful market evidence from price matching.",
+      "Plan a price change with sales enablement, customer communication, governance, and performance tracking.",
+      "Present a recommendation that links evidence to revenue, margin, customer impact, and execution risk."
+    ],
+    "weekly_rhythm": [
+      {
+        "activity": "Concept study",
+        "time": "90 minutes",
+        "what": "Read or watch the core material and write a one page summary in your own words."
+      },
+      {
+        "activity": "Independent research",
+        "time": "90 minutes",
+        "what": "Find two additional sources and test whether they agree on assumptions and limitations."
+      },
+      {
+        "activity": "Analysis practice",
+        "time": "2 to 3 hours",
+        "what": "Build the weekly model or analysis using a small dataset."
+      },
+      {
+        "activity": "Commercial application",
+        "time": "60 minutes",
+        "what": "Translate the analysis into a recommendation for sales, finance, product, or leadership."
+      },
+      {
+        "activity": "Review",
+        "time": "30 minutes",
+        "what": "Complete the self check and note what still needs clarification."
+      }
+    ],
+    "study_setup": [
+      "Create one workbook with tabs for assumptions, transactions, economics, elasticity, scenarios, and the final profit bridge.",
+      "Use an anonymized company case, public data, or a realistic simulated dataset. Keep the same case for all ten weeks.",
+      "Create a folder for weekly outputs and name each file with the week, subject, and version date.",
+      "Schedule one challenge session in week 10 with a colleague, mentor, or study partner who can question the assumptions."
+    ],
+    "completion_standard": "The program is complete when the capstone recommendation is internally consistent, uses evidence appropriate to the decision, reconciles to a financial return, and includes a commercial plan that another team could execute. A certificate is optional. The durable proof of learning is the model, research log, and decision quality shown in the capstone."
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "title": "Pricing economics and the profit model",
+      "outcome": "Build a baseline model that connects a price decision to volume, revenue, contribution, operating profit, and return on investment.",
+      "summary": "Price is usually the most powerful profit lever, but only if you know which profit measure you're optimising and how much volume you can afford to lose. This week gives you the arithmetic every later week depends on: margin vs markup, contribution, break-even volume change, relevant costs and the price waterfall.",
+      "concepts": [
+        {
+          "id": "w1-c1",
+          "title": "Five different profit measures",
+          "syllabus_text": "Revenue, gross profit, contribution margin, operating profit, and cash are different measures and answer different questions.",
+          "one_liner": "Name the measure you're optimising - revenue, gross profit, contribution, operating profit and cash can disagree.",
+          "explainer": "Revenue is what customers pay. Gross profit subtracts cost of goods sold. Contribution subtracts every cost that moves with volume (including variable selling, servicing and payment costs), so it shows what one more sale adds towards fixed costs. Operating profit also subtracts fixed operating costs. Cash is about timing: a profitable sale on 90-day terms still drains cash today. A pricing recommendation should say which of these it maximises, because they can point in different directions.",
+          "example": "A price cut can raise revenue while lowering contribution, if the extra customers are expensive to serve or the lost margin per unit outweighs the extra units.",
+          "lending_lens": "For a merchant cash advance (MCA), fee income is the revenue line, but the real economics come after partner/broker commission, cost of funds and expected credit loss. Cash timing depends on how fast the holdback repays the advance."
+        },
+        {
+          "id": "w1-c2",
+          "title": "Margin vs markup",
+          "syllabus_text": "Margin percentage uses price as the denominator. Markup percentage uses cost as the denominator.",
+          "one_liner": "Same profit, different denominator: margin divides by price, markup by cost.",
+          "explainer": "If price is 100 and cost is 60, profit is 40. Margin = 40/100 = 40%. Markup = 40/60 = 66.7%. Mixing them up is one of the most common pricing errors: someone told to 'add a 40% margin' who adds 40% to cost (price 84) actually earns a 28.6% margin. Convert with markup = margin / (1 - margin) and margin = markup / (1 + markup).",
+          "example": "Cost 60, target 40% margin: price = 60 / (1 - 0.40) = 100. Cost 60 plus a 40% markup: price = 84, margin 28.6%."
+        },
+        {
+          "id": "w1-c3",
+          "title": "Price changes work through unit economics AND volume",
+          "syllabus_text": "A price change affects profit through both unit economics and the customer volume response.",
+          "one_liner": "A price move changes profit per unit and the number of units - you need both to judge it.",
+          "explainer": "Raising price increases contribution per unit but usually loses some customers. The key question is how much volume you can lose before total contribution falls. With contribution margin CM% and a price change dP (both as fractions of the old price), the break-even volume change is -dP / (CM% + dP). Because the price change lands entirely on contribution, low-margin businesses are very sensitive to price, and price cuts need far more extra volume than price increases can afford to lose.",
+          "example": "Contribution margin 40%. A 5% increase breaks even if you lose up to 11.1% of volume (0.05/0.45). A 5% cut needs 14.3% more volume (0.05/0.35) just to stand still."
+        },
+        {
+          "id": "w1-c4",
+          "title": "Relevant costs",
+          "syllabus_text": "Relevant costs are the costs that change because of the decision. Fully allocated cost can still matter for reporting and long run viability.",
+          "one_liner": "Only costs that change because of the decision belong in the decision.",
+          "explainer": "For a pricing decision, include costs that move with it: materials, transaction costs, servicing, commissions, and any fixed costs that genuinely change (new staff, new systems). Sunk costs and overheads that stay the same whatever you decide are irrelevant to the short-run choice. But allocated cost still matters over the long run: if every product is priced only above variable cost, nothing pays for the building, the tech team or management, and the business shrinks.",
+          "example": "Accepting a one-off order with spare capacity: the relevant cost is the extra materials and labour, not a share of factory depreciation.",
+          "lending_lens": "Per deal, cost of funds, expected loss and commission are relevant. Head-office overhead is not relevant to one deal's price, but the whole book must cover it."
+        },
+        {
+          "id": "w1-c5",
+          "title": "The price and margin waterfall",
+          "syllabus_text": "A price and margin waterfall shows how discounts, rebates, freight, service, and other deductions reduce list price to pocket price and pocket margin.",
+          "one_liner": "Step from list price down through every deduction to what you actually keep: pocket price.",
+          "explainer": "List price is rarely what you earn. On-invoice deductions (standard and negotiated discounts) take you to invoice price. Off-invoice items (rebates, free freight, extended payment terms, co-op marketing, special service) take you to pocket price. Subtract variable cost to get pocket margin. Off-invoice items are often booked in other cost centres, so nobody sees the total leakage until someone draws the waterfall per customer or deal.",
+          "example": "List 100 - discount 8 = invoice 92. Then rebate 3, payment terms 1.50, freight 2, co-op marketing 1.50 = pocket price 84. With cost 60, pocket margin is 24, not the 40 the list price suggests."
+        }
+      ],
+      "research_questions": [
+        "How does your chosen business define gross margin and contribution margin?",
+        "Which costs vary with one additional sale, and which costs stay fixed in the relevant decision period?",
+        "Where does commercial leakage occur between list price and realized pocket price?",
+        "Which return measure would finance use to approve a pricing initiative?"
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Cost and Economics in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-cost-economics",
+          "note": "Focus on margins, cost based pricing, elasticity, channel economics, and customer lifetime value."
+        },
+        {
+          "title": "CVP Analysis for Pricing and Profit Optimization",
+          "url": "https://www.coursera.org/learn/cvp-analysis-pricing-profit-optimization",
+          "note": "Optional practice in contribution margin and break even analysis."
+        }
+      ],
+      "exercise": "Create a one year baseline with units, gross list sales, discounts, net revenue, variable cost, contribution, and fixed cost. Test a 5 percent price increase under volume changes of 0, minus 3, minus 7, and minus 12 percent. Identify the break even volume loss.",
+      "portfolio_output": "A one page pricing economics model with the baseline, scenarios, and a written recommendation that states the financial measure being optimized.",
+      "self_check": [
+        "I can explain the difference between margin and markup using numbers.",
+        "I can calculate the volume change that leaves total contribution unchanged after a price change.",
+        "I can identify which waterfall deductions require a pricing action and which require a process action."
+      ],
+      "worked_example": {
+        "title": "Week 1 exercise, worked",
+        "setup": "Price 100, variable cost 60, 10,000 units, fixed cost 250,000.",
+        "steps": [
+          "Baseline: unit contribution 40, total contribution 400,000, operating profit 150,000.",
+          "+5% price: price 105, unit contribution 45.",
+          "Volume 0%: 10,000 x 45 = 450,000 contribution (+50,000).",
+          "Volume -3%: 9,700 x 45 = 436,500 (+36,500).",
+          "Volume -7%: 9,300 x 45 = 418,500 (+18,500).",
+          "Volume -12%: 8,800 x 45 = 396,000 (-4,000).",
+          "Break-even volume = 10,000 x 40 / 45 = 8,889 units, a loss of 11.1%."
+        ],
+        "takeaway": "The increase pays unless you lose more than about 11% of volume. Fixed costs don't change the answer because they don't change with the decision."
+      },
+      "counts": {
+        "flashcards": 19,
+        "quiz": 9
+      }
+    },
+    {
+      "week": 2,
+      "title": "Demand and elasticity",
+      "outcome": "Explain how customer demand responds to price and use elasticity to evaluate the financial risk of a price change.",
+      "summary": "Elasticity turns 'customers might leave' into a number you can put in a model. This week covers own-price, cross-price and income elasticity, how to estimate them, why estimates differ by segment and time horizon, and why a sales change after a price change is not automatically caused by the price.",
+      "concepts": [
+        {
+          "id": "w2-c1",
+          "title": "The demand curve",
+          "syllabus_text": "The demand curve describes the relationship between price and quantity, holding other material factors constant.",
+          "one_liner": "Price vs quantity, with everything else held still - which real data never does.",
+          "explainer": "A demand curve answers: if only the price changed, how many units would customers buy? 'Holding other factors constant' is the hard part. In real data, income, competitor prices, promotions, seasonality and stock availability all move at the same time as price. Moving along the curve (a price change) is different from the curve shifting (demand itself rising or falling). Confusing the two is the root of most bad elasticity estimates.",
+          "example": "Ice-cream sales rise in summer even if you raise prices. That is the curve shifting out, not customers liking higher prices."
+        },
+        {
+          "id": "w2-c2",
+          "title": "Own-price elasticity",
+          "syllabus_text": "Own price elasticity measures the percentage change in quantity associated with a one percent change in price.",
+          "one_liner": "Elasticity = % change in quantity / % change in price. Usually negative.",
+          "explainer": "An elasticity of -2 means a 1% price rise loses about 2% of volume. If the absolute value is above 1, demand is elastic: volume moves more than price, so raising price cuts revenue. Below 1, demand is inelastic: raising price raises revenue. But revenue is not profit. Even elastic demand can make a price rise profitable if margins are thin, because the units you lose were barely profitable. Compare the elasticity to the break-even elasticity from your margin.",
+          "example": "At elasticity -0.5, a 10% rise loses about 5% of volume and revenue rises about 4.5%. At -2.0, it loses about 20% and revenue falls about 12%."
+        },
+        {
+          "id": "w2-c3",
+          "title": "Cross-price and income elasticity",
+          "syllabus_text": "Cross price elasticity helps identify substitutes and complements. Income elasticity helps explain exposure to economic cycles.",
+          "one_liner": "Cross-price shows which products compete or go together; income elasticity shows recession exposure.",
+          "explainer": "Cross-price elasticity is the % change in demand for A when B's price changes 1%. Positive means substitutes (B gets dearer, people switch to A). Negative means complements (B gets dearer, people buy less of both). Within your own range this tells you about cannibalisation. Income elasticity is the % change in demand per 1% change in customer income. High positive values mean demand rises fast in booms and falls hard in downturns.",
+          "example": "If a competitor's price rises 10% and your volume rises 4%, cross-price elasticity is +0.4: you are substitutes."
+        },
+        {
+          "id": "w2-c4",
+          "title": "Elasticity is not one number",
+          "syllabus_text": "Elasticity can differ by segment, channel, product, season, price level, and time horizon.",
+          "one_liner": "Different customers, channels and horizons respond differently - a single average hides that.",
+          "explainer": "Customers with good alternatives and low switching costs are more elastic. Online channels where comparison is easy tend to be more elastic than relationship-led channels. Elasticity usually rises (in absolute terms) at higher price levels and over longer horizons, because customers take time to notice, search and switch. A blended average can make a price rise look safe overall while it drives away a valuable, price-sensitive segment.",
+          "example": "Short-run elasticity after a petrol price rise is low; over years people buy smaller cars, so the long-run response is much bigger."
+        },
+        {
+          "id": "w2-c5",
+          "title": "Correlation is not price effect",
+          "syllabus_text": "Observed sales changes are not automatically caused by price because promotions, availability, competitors, and seasonality also move demand.",
+          "one_liner": "Before blaming (or crediting) price, rule out promotions, stock-outs, competitors and season.",
+          "explainer": "Firms often set prices in response to demand: raising them when demand is strong, discounting when it's weak. That makes price and volume move together for reasons other than cause and effect, biasing naive estimates towards zero or even making them positive. This is called endogeneity. You need controls for the other drivers, a comparison group, or a controlled test (Week 8) before claiming a causal elasticity.",
+          "example": "A retailer raised prices in December and sales went up. That's Christmas demand, not a positive elasticity.",
+          "lending_lens": "In lending, price also changes who accepts. If riskier merchants are more willing to accept a higher factor rate, a price rise can keep take-up steady while worsening the loss rate of the book. Watch mix and losses, not just volume."
+        }
+      ],
+      "research_questions": [
+        "What evidence suggests your product is elastic or inelastic?",
+        "Which customer segments have meaningful alternatives and switching ability?",
+        "How quickly can customers change behavior after a price increase?",
+        "Which historical variables must be controlled before treating a sales change as a price effect?"
+      ],
+      "resources": [
+        {
+          "title": "MITx Microeconomics",
+          "url": "https://learn.mit.edu/courses/course-v1:MITxT%2B14.100x",
+          "note": "Use the supply and demand, consumer choice, costs, and market structure sections."
+        },
+        {
+          "title": "UVA and BCG Cost and Economics in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-cost-economics",
+          "note": "Use the elasticity and regression module for applied examples."
+        }
+      ],
+      "exercise": "Use a simple historical or simulated dataset with price and quantity. Calculate arc elasticity between price points, then estimate a log log regression if you have suitable data. Compare the elasticity estimate by customer segment or product family. State the assumptions and threats to validity.",
+      "portfolio_output": "An elasticity brief showing the estimate, confidence level, key limitations, and the implied price volume tradeoff.",
+      "self_check": [
+        "I can distinguish an elasticity of minus 0.5 from minus 2.0 in commercial terms.",
+        "I do not claim causality from a simple correlation between price and units.",
+        "I can explain why elasticity may change outside the observed price range."
+      ],
+      "worked_example": {
+        "title": "Arc elasticity and the break-even test",
+        "setup": "Price moves from 10 to 12; volume moves from 1,000 to 850. Contribution margin at the old price is 40%.",
+        "steps": [
+          "% change in quantity (midpoint) = (850 - 1,000) / 925 = -16.2%.",
+          "% change in price (midpoint) = (12 - 10) / 11 = +18.2%.",
+          "Arc elasticity = -16.2 / 18.2 = -0.89.",
+          "Break-even volume loss for a 20% rise at 40% margin = 0.20 / 0.60 = 33.3%.",
+          "Actual loss was 15%, well inside 33.3%, so contribution rose."
+        ],
+        "takeaway": "Compare the volume you actually lose with the volume you can afford to lose. The elasticity only matters relative to your margin."
+      },
+      "counts": {
+        "flashcards": 18,
+        "quiz": 8
+      }
+    },
+    {
+      "week": 3,
+      "title": "Customer value and willingness to pay",
+      "outcome": "Estimate a defensible price range using customer value, willingness to pay research, and evidence about alternatives.",
+      "summary": "Cost sets the floor and value sets the ceiling. This week is about estimating the ceiling: economic value to the customer, how willingness to pay is distributed, which research method answers which question, and why what customers say often differs from what they do.",
+      "concepts": [
+        {
+          "id": "w3-c1",
+          "title": "Economic value to the customer (EVC)",
+          "syllabus_text": "Economic value to the customer starts with the price of the next best alternative and adjusts for meaningful differentiation value.",
+          "one_liner": "EVC = price of the next best alternative + what makes you better - what makes you worse.",
+          "explainer": "Start with what the customer would pay for their best alternative (the reference value). Add positive differentiation value: measurable benefits you deliver that the alternative doesn't (time saved, revenue gained, risk avoided). Subtract negative differentiation value: things that are worse (switching cost, longer setup, missing features). The result is the most a rational, informed customer should pay. Pricing at EVC leaves them indifferent, so you normally price somewhere between the alternative and EVC, sharing the value.",
+          "example": "Competitor costs 10k a year. Your product saves 4k of staff time but needs 1k of extra training. EVC = 10 + 4 - 1 = 13k. A price around 11-12k gives the customer a clear reason to switch.",
+          "lending_lens": "For an SME the alternatives might be an overdraft, a term loan, a card, another revenue-based funder, or not borrowing. Positive differentiation: speed, repayments that flex with sales, no fixed term. Negative: higher total cost."
+        },
+        {
+          "id": "w3-c2",
+          "title": "Willingness to pay is a distribution",
+          "syllabus_text": "Willingness to pay is a distribution, not a single market number.",
+          "one_liner": "Every customer has a different maximum price - think in curves, not single numbers.",
+          "explainer": "Different customers value the same product differently. Lined up from highest to lowest willingness to pay, they form your demand curve. Any single price loses customers below it and leaves money on the table with customers above it. That gap is why segmentation, tiers and fences (Week 4) exist. Research should estimate the shape of the distribution, not just an average.",
+          "example": "If WTP ranges from 50 to 200, pricing at 100 loses everyone below 100 and undercharges everyone who would have paid up to 200."
+        },
+        {
+          "id": "w3-c3",
+          "title": "WTP research methods",
+          "syllabus_text": "Gabor Granger, Van Westendorp, conjoint analysis, and discrete choice methods answer different research questions.",
+          "one_liner": "Pick the method by the decision: price point, acceptable range, or feature trade-off.",
+          "explainer": "Gabor-Granger asks whether you would buy at a series of prices, giving a simple demand curve for a known product. Van Westendorp asks four questions (too cheap, a bargain, getting expensive, too expensive) to find an acceptable range; it says nothing about how many will buy. Conjoint analysis has respondents trade off product profiles so you can estimate the value of each feature, including price. Discrete choice (choice-based conjoint) asks them to pick between realistic options, including 'none', which is closest to a real purchase.",
+          "example": "Setting the price of an existing product: Gabor-Granger. Deciding what goes in a premium tier: conjoint. Sanity-checking a range for a new concept: Van Westendorp."
+        },
+        {
+          "id": "w3-c4",
+          "title": "Stated vs revealed preference",
+          "syllabus_text": "Stated preference can diverge from purchase behavior. Research design should reduce hypothetical bias and strategic responses.",
+          "one_liner": "People say they'd pay more than they do - and buyers sometimes lowball on purpose.",
+          "explainer": "Hypothetical bias: with no money on the line, respondents overstate what they'd pay. Strategic response: savvy buyers (especially B2B procurement) understate WTP to push your price down. Reduce both with realistic choice tasks instead of direct 'what would you pay' questions, including a 'none' option, reminding respondents of their budget, and validating survey results against real purchase data or a small live test.",
+          "example": "A survey says 60% would pay 20. At launch, 15% take it. That gap is typical of hypothetical bias."
+        },
+        {
+          "id": "w3-c5",
+          "title": "Value communication",
+          "syllabus_text": "Value communication affects realized willingness to pay, especially when the benefit is unfamiliar or difficult to quantify.",
+          "one_liner": "Customers pay for value they can see, not value that exists.",
+          "explainer": "EVC is what an informed customer would pay. Real customers often don't know how much time you save or risk you remove, so their perceived value sits below economic value. Quantified case studies, ROI calculators, trials and guarantees close that gap. This matters most for new categories or benefits that are indirect, delayed or hard to measure.",
+          "example": "A tool that cuts invoice errors by 30% is worth more if sales can show the customer what errors currently cost them."
+        }
+      ],
+      "research_questions": [
+        "What measurable customer outcome changes because of the product?",
+        "What is the next best alternative for each major segment?",
+        "Which value claims can be documented with operational or financial evidence?",
+        "Which research method matches the decision: price point, feature tradeoff, or package design?"
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Customer Value in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-customer-value",
+          "note": "Covers customer value and behavioral considerations."
+        },
+        {
+          "title": "MIT Sloan Pricing Using Data to Improve Pricing Performance",
+          "url": "https://executive.mit.edu/course/pricing/a056g00000URaaPAAT.html",
+          "note": "Optional employer funded course covering surveys, conjoint analysis, elasticity, and segmentation."
+        }
+      ],
+      "exercise": "Build an economic value estimate for one segment. List the next best alternative, positive differentiation value, negative differentiation value, switching cost, and evidence quality. Then design a short willingness to pay research plan with target respondents, method, sample questions, and bias controls.",
+      "portfolio_output": "A customer value model and a two page willingness to pay research plan.",
+      "self_check": [
+        "I can explain which part of my value estimate is observed, calculated, or assumed.",
+        "I can select a research method based on the pricing decision rather than convenience.",
+        "I can translate product features into customer outcomes without double counting value."
+      ],
+      "worked_example": {
+        "title": "EVC for one segment",
+        "setup": "Next best alternative costs 10,000 a year. Your product saves 160 staff hours a year at 25/hour and avoids 1,000 of errors. It needs 1,000 of extra training and has 1,000 of one-off switching cost, spread over 2 years.",
+        "steps": [
+          "Reference value: 10,000.",
+          "Positive differentiation: 160 x 25 = 4,000 time saved, plus 1,000 errors avoided = 5,000.",
+          "Negative differentiation: training 1,000, plus switching 1,000 / 2 years = 500. Total 1,500.",
+          "EVC = 10,000 + 5,000 - 1,500 = 13,500 a year.",
+          "Price range: above 10,000 (no reason to cut below the alternative) and well below 13,500 (customer needs an incentive to switch)."
+        ],
+        "takeaway": "Label each line as observed, calculated or assumed. The error-avoidance figure is usually the weakest evidence."
+      },
+      "counts": {
+        "flashcards": 18,
+        "quiz": 6
+      }
+    },
+    {
+      "week": 4,
+      "title": "Segmentation and price architecture",
+      "outcome": "Design prices, packages, and qualification rules that capture differences in customer value while remaining understandable and operable.",
+      "summary": "Because willingness to pay varies, one price leaves money on the table. Price architecture - tiers, bundles, metrics and fences - lets different customers pay different amounts in a way that is fair, understandable and hard to game.",
+      "concepts": [
+        {
+          "id": "w4-c1",
+          "title": "Useful pricing segments",
+          "syllabus_text": "Useful pricing segments differ in willingness to pay, cost to serve, behavior, or value received and can be identified during a transaction.",
+          "one_liner": "A segment is only useful for pricing if it differs AND you can tell who's in it at the point of sale.",
+          "explainer": "Marketing segments based on attitudes ('innovators', 'price-conscious') are hard to use in pricing because you can't see them on a quote. Pricing segments must be observable when the deal happens: company size, industry, channel, order volume, contract length, usage, tenure. They must also differ in something that matters to price - willingness to pay, cost to serve, behaviour or value received. If either test fails, the segment can't support a different price.",
+          "example": "'Values premium service' is not usable. 'Requests same-day delivery' is, because it's on the order."
+        },
+        {
+          "id": "w4-c2",
+          "title": "Price fences",
+          "syllabus_text": "Price fences define who qualifies for a price or offer and reduce uncontrolled arbitrage.",
+          "one_liner": "Fences are the rules that stop high-WTP customers buying at the low price.",
+          "explainer": "Fences come in a few types. Product fences: different versions (basic vs pro). Buyer fences: who you are (student, new customer, small business). Transaction fences: when or how you buy (advance purchase, volume, annual commitment, channel). Controlled availability: limited stock at a price. A good fence is easy to verify, hard to fake and feels fair. A weak fence (self-declared status with no check) leaks revenue through misrepresentation or resale.",
+          "example": "Airline advance-purchase fares fence out business travellers, who book late and won't commit early."
+        },
+        {
+          "id": "w4-c3",
+          "title": "Pricing models",
+          "syllabus_text": "Good better best tiers, bundles, usage pricing, subscriptions, and two part tariffs suit different value and consumption patterns.",
+          "one_liner": "Match the model to how customers get value: tiers, bundles, usage, subscription or fixed + usage.",
+          "explainer": "Good-better-best tiers let customers self-select by WTP. Bundles sell items together; they work best when customers value the parts differently (negatively correlated WTP). Usage pricing charges per unit consumed and scales with value. Subscriptions charge for ongoing access. A two-part tariff combines a fixed fee with a usage price, capturing value from both light and heavy users. The value metric - what you charge per - should grow with the value the customer gets.",
+          "example": "Customer A values X at 8 and Y at 3; B values X at 5 and Y at 6. Best separate prices earn 16; a bundle at 11 earns 22."
+        },
+        {
+          "id": "w4-c4",
+          "title": "Architecture should guide, not confuse",
+          "syllabus_text": "Product and price architecture should guide customers toward a suitable offer without creating unnecessary complexity.",
+          "one_liner": "A good line-up makes the right choice obvious; too many options paralyse buyers and sales.",
+          "explainer": "Tiers should have a clear target customer each and a clear reason to upgrade. Anchoring and the compromise effect mean a premium tier makes the middle look reasonable, and many customers pick the middle. But beyond three or four options, choice overload slows decisions and sales reps start improvising. Avoid a deliberately crippled entry tier - customers feel tricked and it damages trust.",
+          "example": "Three tiers where 60% of customers pick the middle one usually means the architecture is doing its job."
+        },
+        {
+          "id": "w4-c5",
+          "title": "Fairness, transparency and law",
+          "syllabus_text": "Fairness, transparency, and legal constraints limit how segmentation and personalized pricing should be implemented.",
+          "one_liner": "Price differences must be explainable, fair and legal - not based on protected characteristics.",
+          "explainer": "Customers accept price differences tied to something they control or understand (volume, timing, features). They resent differences that feel arbitrary or exploitative. Law restricts discrimination on protected characteristics, and some sectors have rules on fair value and transparency. Even legal personalisation can damage trust if discovered. Test every fence by asking: could we explain this to a customer and a regulator?",
+          "example": "A volume discount is easy to defend. Charging more because a customer's device suggests they're wealthy is not.",
+          "lending_lens": "Risk-based pricing tiers should use data observable at application (trading history, card turnover, sector) and be explainable. Avoid proxies for protected characteristics."
+        }
+      ],
+      "research_questions": [
+        "Which observable variable can separate customers with different willingness to pay?",
+        "Could customers easily misrepresent their segment or resell across segments?",
+        "Which features belong in each tier, and which are merely expensive to serve?",
+        "How many options can sales and customers understand without confusion?"
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Pricing Strategy Optimization",
+          "url": "https://www.coursera.org/specializations/uva-darden-bcg-pricing-strategy",
+          "note": "Use the customer value, market, and practice courses for segmentation and price architecture."
+        },
+        {
+          "title": "Columbia Business School Pricing Methodologies",
+          "url": "https://online1.gsb.columbia.edu/pricing-methodologies",
+          "note": "Optional executive course covering segmentation, customized pricing, and dynamic pricing."
+        }
+      ],
+      "exercise": "Create a three tier offer for the chosen case. Specify the target segment, included value, metric, price level, qualification rule, upgrade trigger, and expected unit economics for each tier. Test for cannibalization and arbitrage.",
+      "portfolio_output": "A one page price architecture with segment definitions, package logic, and commercial rules.",
+      "self_check": [
+        "Each segment can be identified using information available at the point of sale.",
+        "The price metric grows with customer value or consumption in a defensible way.",
+        "The architecture protects a clear reason to upgrade and avoids a deliberately unusable entry tier."
+      ],
+      "worked_example": {
+        "title": "Why bundling works",
+        "setup": "Two customers. A values X at 8 and Y at 3. B values X at 5 and Y at 6.",
+        "steps": [
+          "Price X separately: at 5 both buy (10); at 8 only A buys (8). Best = 10.",
+          "Price Y separately: at 3 both buy (6); at 6 only B buys (6). Best = 6.",
+          "Total from separate pricing = 16.",
+          "Bundle: A values it at 11, B at 11. Price the bundle at 11 and both buy = 22.",
+          "Bundling adds 6 (+37.5%) because the two customers' preferences offset each other."
+        ],
+        "takeaway": "Bundling captures more value when WTPs are negatively correlated. If both customers valued both items similarly, bundling would add little."
+      },
+      "counts": {
+        "flashcards": 18,
+        "quiz": 6
+      }
+    },
+    {
+      "week": 5,
+      "title": "Competition and market strategy",
+      "outcome": "Use competitor evidence without reducing the pricing decision to automatic price matching.",
+      "summary": "Competitor prices are evidence, not instructions. This week covers market structure, comparing offers like-for-like, basic game theory, why price wars destroy value, how to diagnose whether a problem is really about price, and the legal lines around competitor information.",
+      "concepts": [
+        {
+          "id": "w5-c1",
+          "title": "Market structure and pricing power",
+          "syllabus_text": "Market structure influences pricing power, likely reactions, and the value of differentiation.",
+          "one_liner": "How many rivals and how different you are decide how much room you have on price.",
+          "explainer": "Perfect competition: identical products, many sellers, no pricing power. Monopolistic competition: many sellers with differentiated products, so some power from differentiation. Oligopoly: a few big players who watch and react to each other, so every price move invites a response. Monopoly: one seller, maximum power, often regulated. The more differentiated you are and the fewer close rivals, the more your price depends on your value rather than theirs.",
+          "example": "UK grocery is an oligopoly: a price cut by one large chain is quickly matched, so permanent share gains from price are rare."
+        },
+        {
+          "id": "w5-c2",
+          "title": "Comparing like with like",
+          "syllabus_text": "A competitor price is informative only when the offer, customer, transaction terms, and channel are comparable.",
+          "one_liner": "Normalise before you compare - headline prices hide different offers, terms and customers.",
+          "explainer": "A competitor's list price can be cheaper while their total cost to the customer is higher, or their offer smaller. Normalise for package size, included features, service level, contract length, payment terms, discounts and fees, and channel. Also check whether they target the same customers. An unadjusted list-price comparison is one of the most common reasons companies cut prices they didn't need to cut.",
+          "example": "Competitor A is 10% cheaper but excludes onboarding and support and requires a 3-year contract. Normalised, they may be more expensive.",
+          "lending_lens": "A competitor quoting a 1.20 factor vs your 1.28 isn't comparable until you check holdback %, fees, early-settlement discounts, advance size, speed and eligibility."
+        },
+        {
+          "id": "w5-c3",
+          "title": "Game theory in pricing",
+          "syllabus_text": "Game theory helps frame repeated interaction, credible commitments, entry, retaliation, and price leadership.",
+          "one_liner": "Pricing is a repeated game: today's move shapes tomorrow's reaction.",
+          "explainer": "In a one-off 'prisoner's dilemma', each firm is tempted to cut price, and both end up worse off. But competitors meet again and again, so reputations matter: firms that respond predictably to undercutting (tit-for-tat) discourage it. Credible commitments - like capacity or a publicly stated policy - change what rivals expect. Incumbents may price to deter entry. In some markets one firm acts as price leader and others follow. Use these ideas to predict reactions, not to coordinate with rivals.",
+          "example": "If you cut price 10% and your rival always matches within a week, you gain almost no share and both lose margin."
+        },
+        {
+          "id": "w5-c4",
+          "title": "Price wars",
+          "syllabus_text": "Price wars often destroy value when firms react to visible prices without diagnosing the commercial cause of share loss.",
+          "one_liner": "Diagnose why you lost share before cutting price - it's often not price at all.",
+          "explainer": "Share loss can come from product gaps, stock-outs, service problems, a weak sales team, or losing a channel. Cutting price for any of those reasons sacrifices margin without fixing the cause, and invites retaliation. When responding to a competitor cut, compare: lost contribution from matching vs lost contribution from the volume you'd lose by not matching. Often a targeted response (specific segments or accounts) beats a broad one.",
+          "example": "Price 100, cost 60, 10,000 units. Competitor cuts 10%. Matching keeps volume but contribution falls to 300k. Not matching breaks even unless you lose more than 25% of volume."
+        },
+        {
+          "id": "w5-c5",
+          "title": "Competition law",
+          "syllabus_text": "Competition law and antitrust rules require caution around communications, signaling, parity, resale pricing, and competitor information.",
+          "one_liner": "Never discuss future pricing with competitors; be careful with signalling, parity clauses and resale price rules.",
+          "explainer": "Agreeing prices with competitors (cartels) is illegal and can be criminal. Even sharing future pricing intentions, or exchanging competitively sensitive information through a third party, can breach the law. Public 'signalling' of intended price moves can raise concerns. Fixing the price at which resellers must sell (resale price maintenance) is usually prohibited. Price parity / most-favoured-nation clauses get regulatory scrutiny. Public competitor prices are fine to use. When unsure, involve legal - and know where those review points are.",
+          "example": "Chatting to a competitor at a conference about 'where rates are going next quarter' is a red line."
+        }
+      ],
+      "research_questions": [
+        "What market role does the business want: premium leader, parity player, disruptor, or focused specialist?",
+        "Which competitor moves would materially change the recommendation?",
+        "What evidence distinguishes a price problem from a product, availability, service, or sales problem?",
+        "Which competitive information can be collected and used lawfully in your jurisdiction and industry?"
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Market and Competition in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-market-competition",
+          "note": "Covers market structures, competitive dynamics, and strategic pricing."
+        },
+        {
+          "title": "MITx Microeconomics",
+          "url": "https://learn.mit.edu/courses/course-v1:MITxT%2B14.100x",
+          "note": "Use the monopoly, oligopoly, and monopolistic competition sections."
+        }
+      ],
+      "exercise": "Build a competitor comparison that normalizes package size, included features, service levels, contract length, and discount conditions. Write three scenarios: no reaction, targeted reaction, and broad price response. Recommend a response for each scenario.",
+      "portfolio_output": "A competitive response memo that states what evidence would trigger a change in strategy.",
+      "self_check": [
+        "I compare like with like rather than using unadjusted list prices.",
+        "My recommendation reflects the company value proposition and cost position.",
+        "I have identified legal review points instead of giving jurisdiction specific legal advice."
+      ],
+      "worked_example": {
+        "title": "Match or hold?",
+        "setup": "Your price 100, variable cost 60, 10,000 units. A competitor cuts their price 10%.",
+        "steps": [
+          "Baseline contribution: 10,000 x 40 = 400,000.",
+          "Match (price 90): unit contribution 30. Even if volume holds, contribution = 300,000.",
+          "Hold (price 100): contribution = units retained x 40.",
+          "Holding is better unless units fall below 300,000 / 40 = 7,500 - a 25% loss.",
+          "Next step: estimate how many customers actually switch, by segment. If only one segment is at risk, a targeted response protects it without repricing everyone."
+        ],
+        "takeaway": "Matching is expensive. It's only right if you'd otherwise lose more volume than the break-even."
+      },
+      "counts": {
+        "flashcards": 18,
+        "quiz": 6
+      }
+    },
+    {
+      "week": 6,
+      "title": "Transactional pricing and sales execution",
+      "outcome": "Improve realized price by controlling discounts, rebates, exceptions, and deal economics while supporting effective selling.",
+      "summary": "The price you set is not the price you get. This week is about the gap: waterfalls, pocket price bands, discount corridors, approval rules, sales incentives and negotiation. It's often the fastest source of margin improvement because no list price has to change.",
+      "concepts": [
+        {
+          "id": "w6-c1",
+          "title": "Pocket price beats list price",
+          "syllabus_text": "List price matters less than pocket price when discounts and off invoice deductions vary widely.",
+          "one_liner": "When discounts vary deal by deal, the list price tells you little - pocket price is what counts.",
+          "explainer": "If every customer gets a different mix of discounts, rebates and terms, list price becomes a starting point for negotiation rather than the price. Plot pocket price for similar customers buying similar products and you usually see a wide spread - the pocket price band. That spread rarely lines up with deal size or customer value; it often reflects which rep handled the deal or how hard the customer pushed.",
+          "example": "Two customers of similar size buy the same volume. One pays a pocket price of 78, the other 91. The 13-point gap is negotiation, not value."
+        },
+        {
+          "id": "w6-c2",
+          "title": "Finding leakage with the waterfall",
+          "syllabus_text": "A price waterfall identifies leakage by customer, salesperson, product, channel, and deduction type.",
+          "one_liner": "Slice the waterfall by rep, customer, product and channel to see exactly where price leaks.",
+          "explainer": "The Week 1 waterfall becomes a diagnostic tool when you cut it by dimension. By rep: who discounts most for similar deals. By customer: who gets rebates they don't earn. By deduction type: which item (payment terms, freight, promotions) grows fastest. By channel: where partners take more than agreed. The goal is to separate earned deductions (tied to a customer commitment) from habitual leakage.",
+          "example": "Freight is waived on 70% of small orders, though policy says only above 500. That's a process leak worth fixing before any price change.",
+          "lending_lens": "Lending leakage: commission overrides to brokers or partners, fees waived at renewal, unpriced early-settlement discounts, and advances rounded up beyond the approved amount."
+        },
+        {
+          "id": "w6-c3",
+          "title": "Making policy operational",
+          "syllabus_text": "Discount corridors, floors, approval thresholds, and exception codes make pricing policy operational.",
+          "one_liner": "Corridors, floors, approval levels and exception codes turn a pricing policy into rules reps can follow.",
+          "explainer": "A discount corridor sets the normal range for a type of deal (by segment, size, term). Green: rep can approve. Amber: manager approval. Red: deal desk or finance. A floor price is the level below which no deal goes. Exception codes record why an out-of-policy deal was approved ('competitive', 'strategic logo', 'volume commitment'), so you can learn from patterns. Without these, policy lives in a slide deck and nowhere else.",
+          "example": "Corridor: 0-10% green, 10-15% amber, above 15% deal desk. An 18% request goes to the deal desk with a reason code."
+        },
+        {
+          "id": "w6-c4",
+          "title": "Sales incentives",
+          "syllabus_text": "Sales incentives can undermine pricing when compensation rewards revenue or volume without regard to contribution.",
+          "one_liner": "Pay reps on revenue and they'll discount to close; pay on margin and they'll defend price.",
+          "explainer": "If commission is a % of revenue, a 10% discount reduces the rep's pay by only 10% of commission but may cut the company's contribution by 25% or more. Reps rationally trade margin for speed and certainty. Fixes include paying on gross margin or contribution, adding a price-realisation multiplier, or reducing commission on discounted deals. Changing incentives is usually more effective than tightening approvals alone.",
+          "example": "At a 40% margin, a 10% discount needs 33% more volume to break even - but costs the rep only 10% of their commission on that deal."
+        },
+        {
+          "id": "w6-c5",
+          "title": "Give-get negotiation",
+          "syllabus_text": "A strong negotiation process exchanges concessions for customer commitments instead of granting discounts without return.",
+          "one_liner": "Never give a concession without getting something back.",
+          "explainer": "Every discount should buy something of value: higher volume, longer term, upfront payment, faster decision, a case study, auto-renewal, reduced scope or service. Prepare the 'get' list before the negotiation. Trade small concessions for big commitments, concede slowly, and use non-price variables (payment terms, service level, implementation timing) before touching price. This protects margin and teaches customers that pushing on price alone doesn't work.",
+          "example": "'We can do 5% if you commit to 24 months and pay annually upfront.'"
+        }
+      ],
+      "research_questions": [
+        "Which deductions are earned by customer behavior and which are habitual leakage?",
+        "How much margin variance exists within comparable transactions?",
+        "Which exceptions should sales approve independently and which require a deal desk?",
+        "What nonprice variables can be traded during negotiation?"
+      ],
+      "resources": [
+        {
+          "title": "Professional Pricing Society Certified Pricing Professional",
+          "url": "https://www.pricingsociety.com/cpp",
+          "note": "Use the course catalog to identify transaction pricing, negotiation, and commercial execution topics."
+        },
+        {
+          "title": "UVA and BCG Pricing Strategy in Practice",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-practice",
+          "note": "Applies pricing frameworks to practical commercial decisions."
+        }
+      ],
+      "exercise": "Create a price waterfall from list price to pocket margin using at least five deduction types. Segment comparable deals, identify avoidable leakage, and propose a discount corridor with green, amber, and approval required ranges. Define what the salesperson must obtain for each concession.",
+      "portfolio_output": "A transaction pricing dashboard and a one page discount and approval policy.",
+      "self_check": [
+        "I can reconcile the waterfall to net revenue and contribution.",
+        "My discount rules account for segment, volume, term, and cost to serve.",
+        "The policy tells sales what to do at the moment of a quote or negotiation."
+      ],
+      "worked_example": {
+        "title": "An illustrative MCA deal waterfall",
+        "setup": "Advance 50,000 at a 1.30 factor rate (illustrative numbers, not any lender's actual economics).",
+        "steps": [
+          "Total repayable = 65,000. Gross fee = 15,000.",
+          "Partner/broker commission at 8% of advance: -4,000.",
+          "Expected credit loss at 5% of repayable: -3,250.",
+          "Cost of funds (average balance ~half the advance for ~9 months at 10%/yr): -1,875.",
+          "Underwriting and servicing: -500.",
+          "'Pocket fee' = 15,000 - 4,000 - 3,250 - 1,875 - 500 = 5,375."
+        ],
+        "takeaway": "A third of the headline fee survives to contribution. Commission and loss assumptions move the answer far more than small factor-rate changes."
+      },
+      "counts": {
+        "flashcards": 18,
+        "quiz": 6
+      }
+    },
+    {
+      "week": 7,
+      "title": "Revenue management and dynamic pricing",
+      "outcome": "Use demand forecasts, capacity, inventory, and timing to make prices responsive without losing commercial control.",
+      "summary": "When capacity is fixed and perishable, the question changes from 'what price?' to 'which customers get the capacity, at what price, and when?'. This week covers revenue management, dynamic vs personalised pricing, markdowns, and the guardrails that stop an optimiser damaging trust.",
+      "concepts": [
+        {
+          "id": "w7-c1",
+          "title": "When revenue management works",
+          "syllabus_text": "Revenue management is most useful when capacity is constrained, inventory expires, demand varies, and customers book at different times.",
+          "one_liner": "Fixed, perishable capacity + variable demand + customers booking at different times = revenue management territory.",
+          "explainer": "Airlines and hotels are the classic cases: an empty seat or room tonight is worth nothing tomorrow, adding capacity is slow and expensive, demand swings, and price-sensitive leisure customers book early while less sensitive business customers book late. Revenue management sells the same capacity at different prices through booking classes, and decides how much capacity to protect for later, higher-paying demand. Without those conditions, simpler pricing usually works better.",
+          "example": "A hotel holds back rooms from the discount channel on weekdays near a conference, expecting late corporate bookings at higher rates.",
+          "lending_lens": "Funding capacity works a bit like perishable inventory. When capital is constrained, each advance has an opportunity cost: allocate it to deals with the best risk-adjusted return per pound, not the most volume."
+        },
+        {
+          "id": "w7-c2",
+          "title": "Dynamic vs personalised pricing",
+          "syllabus_text": "Dynamic pricing changes the offer based on market conditions. Personalized pricing changes the offer based on information about the customer. The risks differ.",
+          "one_liner": "Dynamic = price moves with market conditions. Personalised = price moves with who you are. Different risks.",
+          "explainer": "Dynamic pricing reacts to demand, time, inventory or competitors; everyone sees the same price at the same moment. Customers broadly accept it when the logic is visible (peak vs off-peak). Personalised pricing uses data about the individual (history, location, device) so two people see different prices at the same time. It carries bigger fairness, transparency and legal risk, and can destroy trust if discovered, even when it's legal.",
+          "example": "Surge pricing during a storm is dynamic. Showing a higher price to someone whose browsing suggests urgency is personalised."
+        },
+        {
+          "id": "w7-c3",
+          "title": "Markdown optimisation",
+          "syllabus_text": "Markdown optimization balances margin against sell through and leftover inventory risk.",
+          "one_liner": "Mark down too early and you give away margin; too late and you're left with unsold stock.",
+          "explainer": "For seasonal or perishable stock, the question is when and how deep to discount. Holding price protects margin on what sells but risks leftover stock that's worth little. Discounting earlier sells more but at lower margin. Compare expected total contribution, including salvage value of leftovers, across markdown paths. Sell-through (% of stock sold) is the key leading indicator.",
+          "example": "100 units left, two weeks to go. Holding at 50 sells 60 (3,000; 40 units scrapped). Marking down to 35 sells 95 (3,325). The markdown wins if leftovers are worth less than the difference."
+        },
+        {
+          "id": "w7-c4",
+          "title": "Optimal on paper vs in practice",
+          "syllabus_text": "Forecast error, competitor action, cancellations, and operational constraints can make a mathematically optimal price commercially weak.",
+          "one_liner": "The model's optimum assumes its forecast is right - real-world error, rivals and operations can break it.",
+          "explainer": "An optimiser is only as good as its demand forecast. Forecasts are wrong, competitors react, customers cancel or no-show, and operations can't always deliver what the model assumes. Test recommendations under low, expected and high demand. Prefer prices that are robust across scenarios over ones that are optimal only in the base case. Also check that revenue-maximising and profit-maximising answers agree; they differ when variable costs matter.",
+          "example": "Price 8 sells 1,500 (revenue 12,000). Price 12 sells 900 (revenue 10,800). With variable cost 5, contribution is 4,500 vs 6,300 - the 'lower revenue' price is better."
+        },
+        {
+          "id": "w7-c5",
+          "title": "Guardrails",
+          "syllabus_text": "Guardrails should address customer fairness, transparency, volatility, brand, and operational feasibility.",
+          "one_liner": "Set limits the algorithm can't cross: floors, ceilings, max change per period, fairness rules.",
+          "explainer": "Guardrails keep automated pricing within commercially acceptable bounds. Typical ones: minimum margin or floor price, maximum price, maximum % change per day or week, no price rises during emergencies, consistent prices across channels where customers would notice, and rules against using sensitive data. They trade a little theoretical revenue for trust, brand protection and fewer embarrassing headlines.",
+          "example": "A rule capping daily price changes at 10% and freezing prices during a declared emergency."
+        }
+      ],
+      "research_questions": [
+        "Does the chosen business have perishable capacity or inventory?",
+        "Which demand signals arrive early enough to change price or availability?",
+        "How would customers react to prices changing across time, channel, or device?",
+        "What minimum margin, maximum change, or rate limit should the system enforce?"
+      ],
+      "resources": [
+        {
+          "title": "Wharton Revenue Analytics Price Optimization",
+          "url": "https://online-execed.wharton.upenn.edu/revenue-analytics",
+          "note": "Optional course covering forecasting, willingness to pay, dynamic pricing, capacity, and revenue optimization."
+        },
+        {
+          "title": "MIT Sloan Pricing Using Data to Improve Pricing Performance",
+          "url": "https://executive.mit.edu/course/pricing/a056g00000URaaPAAT.html",
+          "note": "Optional course connecting analytics, customer value, and pricing decisions."
+        }
+      ],
+      "exercise": "Model a limited capacity or inventory scenario. Compare a single fixed price with two or three price periods or booking classes. Calculate revenue, contribution, utilization, unsold capacity, and customer impact under low, expected, and high demand.",
+      "portfolio_output": "A revenue optimization scenario with assumptions, guardrails, and a recommendation based on contribution rather than revenue alone.",
+      "self_check": [
+        "I can explain when a revenue maximizing decision differs from a profit maximizing decision.",
+        "My forecast scenarios include both demand uncertainty and operational constraints.",
+        "The proposed method includes customer and brand guardrails."
+      ],
+      "worked_example": {
+        "title": "Littlewood's rule: how many seats to protect",
+        "setup": "Two fares: full 300, discount 100. Discount customers book first. How many seats should you hold back for full-fare customers?",
+        "steps": [
+          "Selling one more seat at discount earns 100 for certain.",
+          "Holding that seat earns 300 only if full-fare demand exceeds the seats already protected.",
+          "Keep protecting seats while P(full-fare demand > protected seats) x 300 >= 100.",
+          "That means protect while the probability is at least 1/3.",
+          "If there's a 40% chance full-fare demand exceeds 20 seats, protect the 21st too; at 30%, sell it at discount."
+        ],
+        "takeaway": "The protection level depends on the fare ratio and the full-fare demand forecast - not on filling the plane."
+      },
+      "counts": {
+        "flashcards": 17,
+        "quiz": 6
+      }
+    },
+    {
+      "week": 8,
+      "title": "Pricing analytics and experimentation",
+      "outcome": "Design analysis that separates the effect of price from other changes and produces evidence suitable for a business decision.",
+      "summary": "Most pricing data is observational and confounded. This week covers what a usable pricing dataset contains, why regression alone can mislead, how to run tests or quasi-experiments when randomisation is hard, and how to write a measurement plan with a decision rule before you see the results.",
+      "concepts": [
+        {
+          "id": "w8-c1",
+          "title": "A useful pricing dataset",
+          "syllabus_text": "A useful pricing dataset includes realized price, units, product, customer, time, channel, promotions, availability, cost, and relevant market variables.",
+          "one_liner": "Realised price, units, product, customer, time, channel, promos, availability, cost, market - or you can't separate price from everything else.",
+          "explainer": "Elasticity estimates need the realised price customers actually paid, not list price. They also need the other things that move demand, so you can control for them: promotions, stock-outs, seasonality, competitor prices, channel. Cost is needed to translate volume effects into profit. Missing any of these usually means the estimate silently absorbs the effect of the missing variable.",
+          "example": "If stock-out days aren't recorded, a period with high prices and empty shelves looks like extreme price sensitivity."
+        },
+        {
+          "id": "w8-c2",
+          "title": "Limits of regression",
+          "syllabus_text": "Regression can control for observed variables, but omitted variables and reverse causality may still bias elasticity estimates.",
+          "one_liner": "Regression only controls what you measured - omitted variables and reverse causality still bias it.",
+          "explainer": "Omitted variable bias: something you didn't measure (a competitor's promotion, a marketing campaign) affects both price and volume. Reverse causality: you set price because of demand, so demand partly causes price, not just the other way round. Both bias the price coefficient, usually towards zero. Adding more controls helps only for the variables you can observe. For a causal answer you need variation in price that isn't driven by demand - ideally a test.",
+          "example": "Regions with strong demand got price rises first. Regression shows small elasticity, but that's because demand caused the price, not because customers don't care."
+        },
+        {
+          "id": "w8-c3",
+          "title": "Randomised price tests",
+          "syllabus_text": "Randomized tests strengthen causal inference when they are feasible, ethical, and commercially controlled.",
+          "one_liner": "Randomise who gets which price, and differences in outcome are caused by price.",
+          "explainer": "Random assignment makes test and control groups alike on average in everything except price, so the difference in outcomes is the price effect. Decide the unit of assignment (customer, store, region, time period). Watch for contamination: customers seeing both prices, sales reps working both groups. Price tests also raise fairness concerns - customers comparing notes may object - so many firms test on new customers, new products, or across regions rather than individuals.",
+          "example": "Randomly assign new applicants to one of two price points for four weeks and compare conversion and contribution per applicant.",
+          "lending_lens": "Lending tests have slow outcomes: losses and repayment speed take months to appear. Use leading indicators (take-up, early repayment velocity, early arrears) with pre-agreed guardrails, and check fairness and any regulatory rules first."
+        },
+        {
+          "id": "w8-c4",
+          "title": "Quasi-experiments",
+          "syllabus_text": "Matched markets, difference in differences, synthetic controls, and phased rollouts can help when individual randomization is impractical.",
+          "one_liner": "When you can't randomise, build a credible comparison group instead.",
+          "explainer": "Matched markets: change price in some markets and compare to similar unchanged markets. Difference-in-differences: compare the change over time in the treated group with the change in the control group; this removes shared trends but assumes the groups would have moved in parallel without the change. Synthetic control: build a weighted blend of untreated units that tracks the treated unit before the change. Phased (staggered) rollout: introduce the change in waves so later waves act as controls for earlier ones.",
+          "example": "Treatment region conversion 20% to 18%; control 21% to 20%. DiD effect = -2 - (-1) = -1 percentage point."
+        },
+        {
+          "id": "w8-c5",
+          "title": "The measurement plan",
+          "syllabus_text": "The measurement plan should specify a decision rule, minimum detectable effect, guardrails, and how profit will be calculated.",
+          "one_liner": "Write down what result means launch, revise or reject - before you look at the data.",
+          "explainer": "A good plan states the decision it supports, the primary metric (ideally incremental contribution, not conversion alone), the minimum detectable effect (the smallest effect worth detecting, which drives sample size), guardrail metrics that would stop the test (complaints, churn, loss rates), the duration, and the decision rule. Pre-committing stops people moving the goalposts after seeing the numbers.",
+          "example": "Rule of thumb for 80% power at 5% significance: n per group is about 16 x p(1-p) / d^2. Baseline 20% conversion, detect 2 points: about 6,400 per group."
+        }
+      ],
+      "research_questions": [
+        "What decision will the analysis support and what evidence would change that decision?",
+        "Could demand conditions have caused both the observed price and the observed sales result?",
+        "Which customers or markets can serve as a credible comparison group?",
+        "What leading indicators and guardrails should be monitored before the final profit outcome is available?"
+      ],
+      "resources": [
+        {
+          "title": "Erasmus University Econometrics Methods and Applications",
+          "url": "https://www.coursera.org/learn/erasmus-econometrics",
+          "note": "Covers multiple regression, specification, endogeneity, binary choice, and time series."
+        },
+        {
+          "title": "UVA and BCG Cost and Economics in Pricing Strategy",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-cost-economics",
+          "note": "Provides an accessible bridge from regression to elasticity and price optimization."
+        }
+      ],
+      "exercise": "Write a test or quasi experiment plan for one pricing change. Define the unit of assignment, treatment, comparison, duration, sample, outcome metric, profit calculation, guardrails, and decision rule. Include a pre analysis checklist for contamination and concurrent commercial changes.",
+      "portfolio_output": "A measurement design that another analyst could implement and audit.",
+      "self_check": [
+        "I can state the identifying assumption behind my method.",
+        "The primary outcome measures incremental contribution or profit, not only conversion or revenue.",
+        "I have defined what result would lead to launch, revision, or rejection."
+      ],
+      "worked_example": {
+        "title": "Why conversion isn't enough",
+        "setup": "Control: price 100, variable cost 60, 1,000 visitors, 20% convert. Test: price 110, 1,000 visitors, 17% convert.",
+        "steps": [
+          "Conversion fell 3 points - looks like a loss.",
+          "Control contribution: 200 sales x 40 = 8,000.",
+          "Test contribution: 170 sales x 50 = 8,500.",
+          "Incremental contribution per visitor: +0.50 for the test.",
+          "Decision depends on whether that difference is bigger than the noise and whether guardrails (complaints, churn) held."
+        ],
+        "takeaway": "Judge price tests on contribution per eligible customer. Conversion and revenue can point the wrong way."
+      },
+      "counts": {
+        "flashcards": 18,
+        "quiz": 7
+      }
+    },
+    {
+      "week": 9,
+      "title": "Commercial implementation and governance",
+      "outcome": "Convert a pricing recommendation into a launch plan that sales, finance, operations, product, and leadership can execute and monitor.",
+      "summary": "Good pricing decisions fail in execution all the time. This week covers launch logistics, customer communication, sales enablement, decision rights and exception governance, and a scorecard that tells you whether a disappointing result came from the idea or the rollout.",
+      "concepts": [
+        {
+          "id": "w9-c1",
+          "title": "Launch essentials",
+          "syllabus_text": "Implementation needs a clear effective date, affected customers, transition rules, system changes, owners, and escalation paths.",
+          "one_liner": "Effective date, who's affected, transition rules, systems, owners, escalation - or it isn't a plan.",
+          "explainer": "Decide exactly when the new price applies and to whom: new customers, renewals, existing contracts. Set transition rules: grandfathering (existing customers keep old prices for a period), notice periods, and how in-flight quotes are honoured. List every system that must change (quoting, billing, CRM, websites, partner portals) and test before go-live. Every task needs a named owner, and there must be a clear route for problems on day one.",
+          "example": "New prices for new applications from 1 March; existing customers move at their next renewal; quotes issued before 1 March honoured for 30 days.",
+          "lending_lens": "Think in cohorts: new merchants, renewing merchants, and partners who present offers. Each may need different timing, messaging and system changes."
+        },
+        {
+          "id": "w9-c2",
+          "title": "Customer communication",
+          "syllabus_text": "Customer communication should explain the commercial change accurately and equip teams to discuss value without making unsupported claims.",
+          "one_liner": "Explain the change honestly, link it to value, and don't let anyone promise what you can't prove.",
+          "explainer": "Tell customers what changes, when, and why, in plain language. Link it to value delivered, not just your costs. Give enough notice to be fair (and meet any contractual terms). Customer-facing teams need approved messaging so they don't improvise claims ('this is the lowest price in the market') that can't be supported and may create legal or trust problems.",
+          "example": "Better: 'From 1 March, the fee rises 4% to fund faster payouts, now same day.' Worse: 'Costs went up so prices go up.'"
+        },
+        {
+          "id": "w9-c3",
+          "title": "Sales enablement",
+          "syllabus_text": "Sales enablement needs talk tracks, objection handling, approval rules, examples, and practice with realistic deals.",
+          "one_liner": "Reps need words, answers to objections, the rules, examples and practice - not just an email.",
+          "explainer": "A talk track gives reps a short, consistent way to explain the change. Objection handling prepares answers for the predictable pushback ('too expensive', 'competitor is cheaper', 'we've been loyal'). Reps need the updated approval rules and corridors, worked deal examples, and role-play practice before they face customers. Under-prepared reps fall back on discounting, which erases the price change.",
+          "example": "Objection 'too expensive': acknowledge, ask what they're comparing against, reframe on outcomes, and only trade price for a commitment."
+        },
+        {
+          "id": "w9-c4",
+          "title": "Governance and decision rights",
+          "syllabus_text": "Governance defines decision rights for list prices, discounts, promotions, exceptions, and post launch corrections.",
+          "one_liner": "Be clear who decides list prices, discounts, promotions, exceptions and corrections.",
+          "explainer": "Without clear decision rights, pricing drifts: sales grants exceptions, marketing runs promotions, finance pushes back, and nobody owns the outcome. A RACI matrix (Responsible, Accountable, Consulted, Informed) makes it explicit, with exactly one Accountable per decision. Exceptions should be logged with reasons and reviewed regularly; if the same exception keeps being approved, the policy is wrong and should change.",
+          "example": "40% of deals use the 'competitive' exception. That's not an exception any more - it's the real price, and the corridor needs revisiting."
+        },
+        {
+          "id": "w9-c5",
+          "title": "Performance tracking",
+          "syllabus_text": "Performance tracking should separate adoption, realized price, volume response, mix, customer retention, and financial return.",
+          "one_liner": "Track each link in the chain separately, so you know whether the idea or the rollout failed.",
+          "explainer": "If profit disappoints, you need to know why. Adoption: is the new price actually in the systems and on quotes? Realised price: did discounting erode it? Volume response: did customers react as predicted? Mix: did the customer or product mix shift? Retention: are existing customers leaving? Financial return: what's the net effect? If adoption or realisation failed, the hypothesis was never tested - that's implementation failure, not a bad idea.",
+          "example": "List price rose 5% in the system, but realised price rose only 1% because reps offset it with discounts. Fix enablement and incentives before concluding the price rise failed."
+        }
+      ],
+      "research_questions": [
+        "Which customers need notice, renewal treatment, grandfathering, or contract review?",
+        "Which systems and data fields must change before the effective date?",
+        "What will sales need to explain the change confidently and accurately?",
+        "Who can approve an exception and how will repeated exceptions change policy?"
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Pricing Strategy in Practice",
+          "url": "https://www.coursera.org/learn/uva-darden-bcg-pricing-strategy-practice",
+          "note": "Useful for applying pricing choices and communicating recommendations."
+        },
+        {
+          "title": "Professional Pricing Society",
+          "url": "https://www.pricingsociety.com/",
+          "note": "Use articles, webinars, and course descriptions to research governance and organizational practice."
+        }
+      ],
+      "exercise": "Create a twelve week implementation plan. Include decision owners, customer cohorts, system changes, sales training, communications, contract review, exception handling, KPI reporting, and a post launch decision cadence. Draft three likely customer objections and commercially sound responses.",
+      "portfolio_output": "A launch plan, responsibility matrix, and post launch KPI scorecard.",
+      "self_check": [
+        "Every implementation task has an owner, date, and dependency.",
+        "The scorecard distinguishes implementation failure from a flawed pricing hypothesis.",
+        "The governance process records why exceptions were approved and when policy should be reviewed."
+      ],
+      "worked_example": {
+        "title": "Reading a launch scorecard",
+        "setup": "Planned (at a 40% contribution margin): +5% realised price, -4% volume, +8% contribution. Month 2 actuals below.",
+        "steps": [
+          "Adoption: 98% of quotes on new price list. OK.",
+          "Realised price: +1.5% vs +5% plan. Problem.",
+          "Volume: -2% vs -4% plan. Better than expected.",
+          "Exception log: 'competitive' code on 35% of deals, up from 10%.",
+          "Diagnosis: implementation failure (discounting offset), not a flawed hypothesis - customers reacted less than feared."
+        ],
+        "takeaway": "Without separate adoption and realisation lines, this would have looked like 'the price rise didn't work'."
+      },
+      "counts": {
+        "flashcards": 16,
+        "quiz": 5
+      }
+    },
+    {
+      "week": 10,
+      "title": "Capstone pricing recommendation",
+      "outcome": "Combine the weekly work into a recommendation that a commercial leadership team could approve, reject, or revise.",
+      "summary": "The capstone pulls everything together into a decision someone can actually make. This week covers how to structure a decision-ready recommendation, present scenarios and sensitivities honestly, build a profit bridge, separate facts from assumptions, and set triggers to stop, adjust or expand after launch.",
+      "concepts": [
+        {
+          "id": "w10-c1",
+          "title": "What makes a recommendation decision-ready",
+          "syllabus_text": "A decision ready recommendation states the decision, financial effect, customer logic, evidence, operational plan, and material risks.",
+          "one_liner": "Decision, money, customer logic, evidence, plan, risks - in that order, decision first.",
+          "explainer": "Executives read the first page and decide whether to keep going. Lead with the decision you're asking for: the price change, scope, effective date and approval needed. Then the financial effect, why customers will accept it, the evidence behind your numbers, how it will be executed, and what could go wrong. This 'answer first' structure (often called the pyramid principle) respects the reader's time and makes the ask unmissable.",
+          "example": "Slide 1: 'Approve a 4% factor-rate increase for new merchants in tiers B-C from 1 March. Expected +X contribution in year 1; downside break-even if take-up falls more than Y%.'"
+        },
+        {
+          "id": "w10-c2",
+          "title": "Scenarios and assumptions",
+          "syllabus_text": "The base case should be accompanied by downside and upside scenarios and explicit assumptions.",
+          "one_liner": "Show base, downside and upside - and the assumptions that move between them.",
+          "explainer": "A single number hides uncertainty. Show a base case plus downside and upside cases, each driven by stated assumptions (elasticity, competitor reaction, adoption, cost). A sensitivity analysis (often shown as a tornado chart) shows which assumption moves the answer most. Pair it with the break-even condition: how bad must the key assumption be before the decision is wrong? Decision-makers trust honest ranges more than false precision.",
+          "example": "'We break even unless volume falls more than 11%. Our base case is -5%; the downside, assuming a competitor matches, is -9%.'"
+        },
+        {
+          "id": "w10-c3",
+          "title": "Learning after launch",
+          "syllabus_text": "Implementation metrics and learning milestones matter because the initial estimate will be imperfect.",
+          "one_liner": "Your estimate will be wrong - plan when you'll check and what would change your mind.",
+          "explainer": "Build learning milestones into the plan: dates when you'll review leading indicators and pre-agreed triggers for each outcome. Stop if guardrails are breached (e.g. retention drops beyond a threshold). Adjust if a segment responds worse than expected. Expand if results beat the base case. This turns the recommendation from a one-off bet into a managed experiment and makes approval easier.",
+          "example": "Week 4 review: if take-up in tier C falls more than 10%, revert tier C; if under 3%, extend to tier D."
+        },
+        {
+          "id": "w10-c4",
+          "title": "Facts, estimates, assumptions and choices",
+          "syllabus_text": "The recommendation should distinguish facts, estimates, assumptions, and management choices.",
+          "one_liner": "Label each claim: fact, estimate, assumption or choice - so people know what to challenge.",
+          "explainer": "Facts are observed and verifiable (last year's volume). Estimates are derived from data with uncertainty (elasticity of -1.4). Assumptions are judgements without strong data (competitors won't react for 6 months). Management choices are value calls (protecting share in a strategic segment). Mixing them up makes a recommendation look more certain than it is and hides where debate should focus.",
+          "example": "'Volume 10,000 (fact); elasticity -1.4 +/- 0.4 (estimate); no competitor response in Q1 (assumption); prioritise margin over share (choice).'"
+        }
+      ],
+      "research_questions": [
+        "What exact decision is being requested and by when?",
+        "Which assumption contributes most to the financial return and how can it be tested?",
+        "Who gains, who loses, and which customers or channels face the highest risk?",
+        "What early evidence would cause the team to stop, adjust, or expand the change?"
+      ],
+      "resources": [
+        {
+          "title": "UVA and BCG Pricing Strategy Optimization",
+          "url": "https://www.coursera.org/specializations/uva-darden-bcg-pricing-strategy",
+          "note": "Use the cases to compare your reasoning and recommendation structure."
+        },
+        {
+          "title": "Columbia Business School Pricing Methodologies",
+          "url": "https://online1.gsb.columbia.edu/pricing-methodologies",
+          "note": "Optional reference for an integrated analytical and commercial pricing approach."
+        }
+      ],
+      "exercise": "Finalize the capstone using the structure below. Ask a colleague or study partner to challenge the elasticity, cost, customer value, and implementation assumptions. Revise the recommendation after the challenge session.",
+      "portfolio_output": "An eight to ten slide executive presentation and the supporting financial model. If you do not want to build slides, write a five page decision memo using the same structure.",
+      "self_check": [
+        "The requested decision appears on the first page or slide.",
+        "The financial case reconciles from price and volume to contribution or operating profit.",
+        "The commercial plan is specific enough to execute and measure."
+      ],
+      "worked_example": {
+        "title": "A profit bridge from price and volume",
+        "setup": "Baseline: price 100, variable cost 60, 10,000 units, contribution 400,000. New: price 105, volume 9,300.",
+        "steps": [
+          "Price effect = price change x new volume = 5 x 9,300 = +46,500.",
+          "Volume effect = volume change x old unit contribution = -700 x 40 = -28,000.",
+          "Net = +18,500, matching the new contribution of 418,500.",
+          "If there were mix or cost changes, they'd be separate bars."
+        ],
+        "takeaway": "A bridge shows leadership exactly where the money comes from and reconciles back to the model - which is what the scoring guide checks."
+      },
+      "counts": {
+        "flashcards": 16,
+        "quiz": 6
+      }
+    }
+  ],
+  "flashcards": [
+    {
+      "week": 1,
+      "id": "w1-f01",
+      "type": "term",
+      "front": "Unit contribution",
+      "back": "Net price minus variable cost per unit. What each sale adds towards fixed costs and profit.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 1,
+      "id": "w1-f02",
+      "type": "contrast",
+      "front": "Margin vs markup",
+      "back": "Margin = profit / price. Markup = profit / cost. Price 100, cost 60: margin 40%, markup 66.7%.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 1,
+      "id": "w1-f03",
+      "type": "formula",
+      "front": "Convert margin to markup",
+      "back": "Markup = margin / (1 - margin). A 40% margin is a 66.7% markup.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f04",
+      "type": "formula",
+      "front": "Convert markup to margin",
+      "back": "Margin = markup / (1 + markup). A 50% markup is a 33.3% margin.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f05",
+      "type": "formula",
+      "front": "Break-even volume change after a price change",
+      "back": "-dP / (CM% + dP), with dP and CM% as fractions of the old price. The volume you can lose (or must gain) for contribution to stay flat.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f06",
+      "type": "calc",
+      "front": "Contribution margin 40%, price +5%. How much volume can you lose and break even?",
+      "back": "11.1%. 0.05 / (0.40 + 0.05).",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f07",
+      "type": "calc",
+      "front": "Contribution margin 40%, price -5%. How much extra volume do you need to break even?",
+      "back": "14.3%. 0.05 / (0.40 - 0.05). Cuts need more volume than increases can afford to lose.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f08",
+      "type": "explain",
+      "front": "Why do price cuts need disproportionately more volume to pay off?",
+      "back": "The whole cut comes out of unit contribution. At a 40% margin, a 5% cut removes 1/8 of each unit's contribution, so you need about 14% more units just to stand still.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f09",
+      "type": "term",
+      "front": "Relevant cost",
+      "back": "A cost that changes because of the decision. Sunk costs and unaffected fixed costs are irrelevant to a short-run pricing choice.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 1,
+      "id": "w1-f10",
+      "type": "explain",
+      "front": "When does fully allocated cost still matter?",
+      "back": "For reporting and long-run viability. Prices across the business must eventually cover fixed costs, or the business shrinks even if every deal is 'contribution positive'.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f11",
+      "type": "term",
+      "front": "Pocket price",
+      "back": "What you actually keep from a transaction after all on- and off-invoice deductions: discounts, rebates, freight, payment terms, promotions, extra service.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 1,
+      "id": "w1-f12",
+      "type": "term",
+      "front": "Price waterfall",
+      "back": "A chart stepping from list price through every deduction to pocket price and pocket margin. Shows where price leaks.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 1,
+      "id": "w1-f13",
+      "type": "contrast",
+      "front": "On-invoice vs off-invoice deductions",
+      "back": "On-invoice appear on the bill (standard and negotiated discounts). Off-invoice happen later or elsewhere (rebates, free freight, extended terms, co-op marketing) and are often invisible in price reports.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f14",
+      "type": "explain",
+      "front": "Waterfall leakage: pricing action vs process action?",
+      "back": "Policy-driven deductions (discount levels, rebate rates) need a pricing action. Execution failures (unbilled freight, rebates paid when targets weren't hit, payment terms not enforced) need a process fix.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 1,
+      "id": "w1-f15",
+      "type": "term",
+      "front": "The '1% price' finding",
+      "back": "Marn and Rosiello (HBR, 1992): for the average large company, a 1% price rise with no volume loss lifted operating profit by about 11%. Price is usually the biggest profit lever.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f16",
+      "type": "calc",
+      "front": "Price 100, variable cost 60, 10,000 units, fixed cost 250k. Operating profit?",
+      "back": "150k. Contribution 10,000 x 40 = 400k, minus 250k fixed.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 1,
+      "id": "w1-f17",
+      "type": "calc",
+      "front": "Same business (op. profit 150k). Price +1%, volume flat. % change in operating profit?",
+      "back": "+6.7%. An extra 1 x 10,000 = 10k on 150k.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f18",
+      "type": "apply",
+      "front": "MCA: what is the 'price', and what actually drives the return?",
+      "back": "The factor rate sets the total fee, but the annualised return depends on how fast the holdback repays. Same factor, faster repayment = higher IRR.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 1,
+      "id": "w1-f19",
+      "type": "explain",
+      "front": "Why must a pricing recommendation state which measure it optimises?",
+      "back": "The revenue-maximising price is usually lower than the contribution-maximising one, and cash timing can differ again. Without a stated measure, two analysts can 'prove' opposite answers.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f01",
+      "type": "term",
+      "front": "Demand curve",
+      "back": "The relationship between price and quantity demanded, holding other factors constant (income, competitor prices, promotions, season).",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 2,
+      "id": "w2-f02",
+      "type": "term",
+      "front": "Own-price elasticity",
+      "back": "% change in quantity / % change in price. Usually negative. -2 means a 1% price rise loses about 2% of volume.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 2,
+      "id": "w2-f03",
+      "type": "contrast",
+      "front": "Elastic vs inelastic demand",
+      "back": "Elastic (|E| > 1): volume moves more than price, so a price rise cuts revenue. Inelastic (|E| < 1): a price rise raises revenue.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 2,
+      "id": "w2-f04",
+      "type": "explain",
+      "front": "Elasticity -0.5 vs -2.0 in commercial terms (10% price rise)?",
+      "back": "-0.5: lose ~5% of volume, revenue up ~4.5%. -2.0: lose ~20% of volume, revenue down ~12%.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f05",
+      "type": "formula",
+      "front": "Arc (midpoint) elasticity",
+      "back": "[(Q2 - Q1) / average Q] / [(P2 - P1) / average P]. Using midpoints gives the same answer whichever direction you measure.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f06",
+      "type": "calc",
+      "front": "Price 10 to 12, quantity 1,000 to 850. Arc elasticity?",
+      "back": "About -0.89. (-150 / 925) / (2 / 11).",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f07",
+      "type": "formula",
+      "front": "Log-log demand regression",
+      "back": "ln(Q) = a + b ln(P) + controls. The coefficient b is the elasticity, assumed constant across prices.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f08",
+      "type": "term",
+      "front": "Cross-price elasticity",
+      "back": "% change in demand for A / % change in price of B. Positive = substitutes. Negative = complements.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 2,
+      "id": "w2-f09",
+      "type": "term",
+      "front": "Income elasticity",
+      "back": "% change in demand / % change in income. High positive values mean demand swings with the economic cycle.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 2,
+      "id": "w2-f10",
+      "type": "explain",
+      "front": "Why is long-run elasticity usually larger than short-run?",
+      "back": "Customers need time to notice, search, find substitutes and break contracts. The longer the horizon, the more of them switch.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f11",
+      "type": "explain",
+      "front": "Sales fell after a price rise. Why isn't that proof of a price effect?",
+      "back": "Promotions, stock-outs, competitor moves or seasonality may also have changed. Without controls or a comparison group, you can't attribute the drop to price.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f12",
+      "type": "formula",
+      "front": "Break-even elasticity for a price rise",
+      "back": "About break-even volume change / price change. Margin 40%, +5%: -11.1% / 5% = -2.2. If true elasticity is less negative than -2.2, the rise pays.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 2,
+      "id": "w2-f13",
+      "type": "formula",
+      "front": "Profit-maximising margin (Lerner rule)",
+      "back": "(P - MC) / P = -1 / E. At E = -2 the best margin is 50%; at E = -4 it's 25%. More elastic demand means thinner optimal margins.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 2,
+      "id": "w2-f14",
+      "type": "explain",
+      "front": "Why distrust an elasticity outside the observed price range?",
+      "back": "The curve can bend: price thresholds, competitor reactions and new substitutes kick in. Extrapolating assumes a shape you never observed.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f15",
+      "type": "term",
+      "front": "Endogeneity (in pricing data)",
+      "back": "Price is set in response to demand, so price and volume move together for non-causal reasons. Biases elasticity towards zero, or even positive.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 2,
+      "id": "w2-f16",
+      "type": "term",
+      "front": "Promotional elasticity",
+      "back": "Response to a temporary price cut. Inflated by stockpiling and pulling purchases forward, so it overstates the response to a permanent change.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 2,
+      "id": "w2-f17",
+      "type": "apply",
+      "front": "Lending: raise the factor rate and take-up barely moves. Is that a win?",
+      "back": "Not yet. Higher price can change who accepts (adverse selection). Check the risk mix and loss rates of accepted merchants, not just take-up.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 2,
+      "id": "w2-f18",
+      "type": "explain",
+      "front": "Can a price rise be profitable even when demand is elastic?",
+      "back": "Yes. Elastic means revenue falls, but if margins are thin, the lost units were barely profitable while every remaining unit earns more. Compare to break-even elasticity.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 3,
+      "id": "w3-f01",
+      "type": "formula",
+      "front": "Economic value to the customer (EVC)",
+      "back": "Price of the next best alternative + positive differentiation value - negative differentiation value.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 3,
+      "id": "w3-f02",
+      "type": "term",
+      "front": "Reference value",
+      "back": "The price of the customer's next best alternative. The starting point of an EVC estimate.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 3,
+      "id": "w3-f03",
+      "type": "term",
+      "front": "Positive vs negative differentiation value",
+      "back": "Positive: measurable benefits beyond the alternative (time, revenue, risk). Negative: ways you're worse (switching cost, setup time, missing features).",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 3,
+      "id": "w3-f04",
+      "type": "calc",
+      "front": "Alternative costs 10k. You save 4k of labour but need 1k more training. EVC?",
+      "back": "13k. 10 + 4 - 1.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 3,
+      "id": "w3-f05",
+      "type": "explain",
+      "front": "Why price below EVC?",
+      "back": "At EVC the customer is indifferent. You need to share value to give a reason to switch and to cover their uncertainty about your claims.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f06",
+      "type": "explain",
+      "front": "Why is WTP a distribution, not a number?",
+      "back": "Customers value the product differently. Any single price loses those below it and undercharges those above it - which is why segmentation and tiers exist.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 3,
+      "id": "w3-f07",
+      "type": "term",
+      "front": "Gabor-Granger",
+      "back": "Asks 'would you buy at price X?' across a series of prices. Builds a simple demand curve and revenue-maximising price for a known product.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f08",
+      "type": "term",
+      "front": "Van Westendorp",
+      "back": "Four questions: too cheap, a bargain, getting expensive, too expensive. Gives an acceptable price range. Doesn't measure purchase likelihood.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f09",
+      "type": "term",
+      "front": "Conjoint analysis",
+      "back": "Respondents trade off product profiles. Estimates the value of each feature, including price, so you can work out WTP per feature and design packages.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f10",
+      "type": "term",
+      "front": "Discrete choice (choice-based conjoint)",
+      "back": "Respondents choose between realistic options, including 'none'. Closest survey method to a real purchase decision.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f11",
+      "type": "explain",
+      "front": "Match the method: set a price for an existing product / design tiers / early range check",
+      "back": "Existing product price point: Gabor-Granger. Tier and feature design: conjoint. Early range check for a new concept: Van Westendorp.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 3,
+      "id": "w3-f12",
+      "type": "term",
+      "front": "Hypothetical bias",
+      "back": "With no money on the line, people overstate what they'd pay. Reduce with realistic choices, a 'none' option, and validation against real behaviour.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f13",
+      "type": "term",
+      "front": "Strategic response (in WTP research)",
+      "back": "Respondents deliberately understate WTP to keep prices low. Common with B2B buyers.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f14",
+      "type": "explain",
+      "front": "Why does value communication change realised WTP?",
+      "back": "Customers pay for value they perceive. If a benefit is unfamiliar or hard to quantify, perceived value sits below economic value until you prove it.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f15",
+      "type": "explain",
+      "front": "Double counting value - example?",
+      "back": "Counting 'processes invoices 50% faster' and '200 staff hours saved' as separate benefits when they're the same benefit.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f16",
+      "type": "explain",
+      "front": "Observed vs calculated vs assumed value",
+      "back": "Observed: measured from real customers. Calculated: derived from observed inputs. Assumed: a judgement. Your case is only as strong as its biggest assumed line.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f17",
+      "type": "apply",
+      "front": "Lending: next best alternatives and differentiation for an SME advance?",
+      "back": "Alternatives: overdraft, term loan, credit card, other revenue-based funders, not borrowing. Plus: speed, flexible repayment, no fixed term. Minus: higher total cost.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 3,
+      "id": "w3-f18",
+      "type": "explain",
+      "front": "Feature vs outcome",
+      "back": "A feature is what the product does; an outcome is what changes for the customer (hours, revenue, risk). Value and price should be anchored on outcomes.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f01",
+      "type": "term",
+      "front": "Two tests for a useful pricing segment",
+      "back": "1) It differs in WTP, cost to serve, behaviour or value received. 2) You can identify it at the point of sale.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f02",
+      "type": "term",
+      "front": "Price fence",
+      "back": "A rule that decides who qualifies for a price, stopping high-WTP customers from buying at the low price.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f03",
+      "type": "term",
+      "front": "Four types of price fence",
+      "back": "Product (versions), buyer (who you are), transaction (when/how/how much you buy), controlled availability (limited stock at a price).",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 4,
+      "id": "w4-f04",
+      "type": "term",
+      "front": "Arbitrage (in pricing)",
+      "back": "Buying at a low-price segment and reselling or using it in a high-price one. Weak fences invite it.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f05",
+      "type": "term",
+      "front": "Good-better-best",
+      "back": "Three tiers that let customers self-select by WTP. Each needs a target customer and a clear upgrade reason.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f06",
+      "type": "term",
+      "front": "Compromise effect",
+      "back": "When shown three options, many people pick the middle. A premium tier makes the middle look reasonable.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 4,
+      "id": "w4-f07",
+      "type": "contrast",
+      "front": "Pure vs mixed bundling",
+      "back": "Pure: only the bundle is sold. Mixed: bundle and individual items both available, usually with a bundle discount.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 4,
+      "id": "w4-f08",
+      "type": "explain",
+      "front": "When does bundling add the most value?",
+      "back": "When customers' WTPs for the items are negatively correlated - one values X more, another values Y more - so their bundle valuations are similar.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 4,
+      "id": "w4-f09",
+      "type": "calc",
+      "front": "A: X=8, Y=3. B: X=5, Y=6. Best separate revenue vs best bundle revenue?",
+      "back": "Separate: 16 (X at 5, Y at 3 or 6). Bundle at 11: 22.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 4,
+      "id": "w4-f10",
+      "type": "term",
+      "front": "Two-part tariff",
+      "back": "A fixed fee plus a usage price. Captures value from light and heavy users. E.g. membership + per-class fee.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f11",
+      "type": "term",
+      "front": "Value metric",
+      "back": "The unit you charge by (seats, transactions, % of volume). It should grow with the value the customer gets.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 4,
+      "id": "w4-f12",
+      "type": "term",
+      "front": "Cannibalisation",
+      "back": "When a new or cheaper offer takes sales from your own higher-margin offers rather than winning new customers.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f13",
+      "type": "explain",
+      "front": "Why avoid a deliberately unusable entry tier?",
+      "back": "Customers feel tricked, trust falls, and the tier generates support cost without revenue. Entry should be genuinely useful but limited.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 4,
+      "id": "w4-f14",
+      "type": "explain",
+      "front": "Feature that belongs in a tier vs one that's just expensive to serve?",
+      "back": "Tier features should map to value differences customers will pay for. A feature that's costly but not valued should be repriced or dropped, not used to justify a tier.",
+      "source": "syllabus",
+      "difficulty": 3
+    },
+    {
+      "week": 4,
+      "id": "w4-f15",
+      "type": "explain",
+      "front": "Fairness test for a price difference?",
+      "back": "Could you explain it to the customer and a regulator? Differences tied to volume, timing or features pass; differences based on protected characteristics fail.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 4,
+      "id": "w4-f16",
+      "type": "apply",
+      "front": "Lending: what makes a good fence for risk-based pricing tiers?",
+      "back": "Data observable at application and hard to fake (trading history, card turnover, sector), explainable to the merchant, and not a proxy for protected characteristics.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 4,
+      "id": "w4-f17",
+      "type": "explain",
+      "front": "Why limit the number of options?",
+      "back": "Beyond 3-4, choice overload slows buyers and sales reps start improvising - which destroys the discipline the architecture was meant to create.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 4,
+      "id": "w4-f18",
+      "type": "term",
+      "front": "Upgrade trigger",
+      "back": "The specific moment or need that pushes a customer to the next tier (more users, more volume, a feature they hit). Design it in deliberately.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f01",
+      "type": "term",
+      "front": "Four market structures (least to most pricing power)",
+      "back": "Perfect competition, monopolistic competition, oligopoly, monopoly.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 5,
+      "id": "w5-f02",
+      "type": "term",
+      "front": "Oligopoly - pricing implication",
+      "back": "A few big players who watch and react. Every price move invites a response, so predict reactions before moving.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f03",
+      "type": "explain",
+      "front": "When is a competitor's price informative?",
+      "back": "Only when the offer, customer, transaction terms and channel are comparable. Otherwise normalise first.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 5,
+      "id": "w5-f04",
+      "type": "term",
+      "front": "Normalising competitor prices",
+      "back": "Adjusting for package size, features, service, contract length, payment terms, fees and discounts so you compare total value for total cost.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f05",
+      "type": "term",
+      "front": "Prisoner's dilemma (pricing)",
+      "back": "Each firm is tempted to cut price to win share; when both do, both end up worse off than if neither had.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f06",
+      "type": "term",
+      "front": "Repeated game / tit-for-tat",
+      "back": "Because rivals meet repeatedly, predictable responses to undercutting discourage it. Today's move shapes tomorrow's reaction.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f07",
+      "type": "term",
+      "front": "Credible commitment",
+      "back": "An action that makes your future behaviour believable to rivals (e.g. capacity already built, a public guarantee), changing how they respond.",
+      "source": "syllabus",
+      "difficulty": 3
+    },
+    {
+      "week": 5,
+      "id": "w5-f08",
+      "type": "term",
+      "front": "Price leadership",
+      "back": "One firm sets price moves and others tend to follow. Lawful only when it arises without coordination.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f09",
+      "type": "explain",
+      "front": "Why do price wars often destroy value?",
+      "back": "Firms react to visible prices without diagnosing why they're losing share. Margin is sacrificed, rivals match, and nobody gains share.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 5,
+      "id": "w5-f10",
+      "type": "explain",
+      "front": "Non-price causes of share loss to rule out",
+      "back": "Product gaps, stock-outs or capacity limits, service problems, weak sales coverage, losing a channel or partner.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 5,
+      "id": "w5-f11",
+      "type": "calc",
+      "front": "Price 100, cost 60. Competitor cuts 10%. If you match, what volume loss would make holding price equally good?",
+      "back": "25%. Matching gives 30/unit x all units = 75% of 40/unit, so holding wins unless you lose more than 25%.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 5,
+      "id": "w5-f12",
+      "type": "contrast",
+      "front": "Targeted vs broad price response",
+      "back": "Targeted: respond only in the segments or accounts genuinely at risk. Broad: reprice everyone. Targeted usually costs far less margin.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f13",
+      "type": "term",
+      "front": "Four market roles",
+      "back": "Premium leader, parity player, disruptor, focused specialist. Your role should guide how you respond to competitor moves.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 5,
+      "id": "w5-f14",
+      "type": "explain",
+      "front": "Competition law red line",
+      "back": "Never discuss or exchange future pricing or competitively sensitive information with competitors, directly or via third parties.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 5,
+      "id": "w5-f15",
+      "type": "term",
+      "front": "Resale price maintenance",
+      "back": "A supplier fixing the price resellers must charge. Usually prohibited; recommended prices are generally allowed.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f16",
+      "type": "term",
+      "front": "Price parity / MFN clause",
+      "back": "A clause requiring a supplier not to offer a better price elsewhere. Can restrict competition and attracts regulatory scrutiny.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f17",
+      "type": "apply",
+      "front": "Lending: competitor quotes 1.20 factor vs your 1.28. What do you check first?",
+      "back": "Holdback %, extra fees, early-settlement discount, advance size, speed to fund and eligibility. Only then compare total cost and expected duration.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 5,
+      "id": "w5-f18",
+      "type": "term",
+      "front": "Limit (entry-deterrence) pricing",
+      "back": "An incumbent keeps prices low enough that entering the market looks unprofitable to newcomers.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f01",
+      "type": "contrast",
+      "front": "List vs invoice vs pocket price",
+      "back": "List: published. Invoice: after on-invoice discounts. Pocket: after all off-invoice deductions too (rebates, terms, freight, promotions).",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f02",
+      "type": "term",
+      "front": "Pocket price band",
+      "back": "The spread of pocket prices across similar customers buying similar products. A wide band usually signals inconsistent negotiation, not value differences.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f03",
+      "type": "explain",
+      "front": "Five ways to slice a waterfall for leakage",
+      "back": "By customer, salesperson, product, channel and deduction type.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f04",
+      "type": "contrast",
+      "front": "Earned deduction vs habitual leakage",
+      "back": "Earned: tied to a customer commitment (volume, term, prepayment). Habitual: given out of routine, with nothing in return.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f05",
+      "type": "term",
+      "front": "Discount corridor",
+      "back": "The allowed discount range for a type of deal, usually split into green (rep approves), amber (manager) and red (deal desk/finance).",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f06",
+      "type": "term",
+      "front": "Floor price",
+      "back": "The minimum price below which no deal is approved, regardless of circumstances.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f07",
+      "type": "term",
+      "front": "Deal desk",
+      "back": "A central team that reviews and approves non-standard or out-of-corridor deals and keeps pricing consistent.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f08",
+      "type": "term",
+      "front": "Exception code",
+      "back": "A recorded reason for approving an out-of-policy deal. Lets you spot patterns - repeated exceptions mean the policy needs revisiting.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f09",
+      "type": "explain",
+      "front": "Why do revenue-based commissions undermine pricing?",
+      "back": "A discount costs the rep a little commission but the company much more contribution, so reps rationally trade margin for a faster close.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f10",
+      "type": "calc",
+      "front": "Margin 40%. A 10% discount needs how much extra volume to break even?",
+      "back": "33.3%. 0.10 / (0.40 - 0.10).",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f11",
+      "type": "term",
+      "front": "Give-get",
+      "back": "Every concession is exchanged for a customer commitment: volume, term, prepayment, faster decision, reference, scope.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f12",
+      "type": "explain",
+      "front": "Non-price variables to trade in a negotiation",
+      "back": "Contract length, volume commitment, payment terms, prepayment, implementation timing, service level, scope, auto-renewal, being a reference customer.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f13",
+      "type": "term",
+      "front": "Price realisation",
+      "back": "Pocket (or net) price as a % of list price. Tracks how much of the intended price you actually keep.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 6,
+      "id": "w6-f14",
+      "type": "calc",
+      "front": "Comparable deals average 5% more discount than needed on 20m revenue. Profit at stake?",
+      "back": "About 1m - and it drops almost entirely to profit, because no costs change.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f15",
+      "type": "explain",
+      "front": "What should a discount policy tell a rep?",
+      "back": "What they can approve themselves, what needs approval and from whom, what to ask for in return, and the floor - at the moment of quoting.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f16",
+      "type": "apply",
+      "front": "Lending: common sources of price leakage",
+      "back": "Commission overrides, fees waived at renewal, unpriced early-settlement discounts, advances rounded up beyond approval.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f17",
+      "type": "explain",
+      "front": "Why reconcile the waterfall to net revenue?",
+      "back": "If it doesn't tie to finance's numbers, nobody will trust the leakage findings - and you might be missing deductions booked elsewhere.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 6,
+      "id": "w6-f18",
+      "type": "explain",
+      "front": "Better fix for over-discounting: tighter approvals or changed incentives?",
+      "back": "Usually incentives. Approvals catch outliers, but paying on margin or price realisation changes behaviour on every deal.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 7,
+      "id": "w7-f01",
+      "type": "term",
+      "front": "Four conditions where revenue management pays off",
+      "back": "Constrained capacity, perishable inventory, variable demand, and customers booking at different times (with different WTP).",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 7,
+      "id": "w7-f02",
+      "type": "contrast",
+      "front": "Dynamic vs personalised pricing",
+      "back": "Dynamic: price changes with market conditions; everyone sees the same price at a given moment. Personalised: price changes with information about the individual.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 7,
+      "id": "w7-f03",
+      "type": "explain",
+      "front": "Why is personalised pricing riskier than dynamic pricing?",
+      "back": "Two people see different prices at the same moment based on who they are. It raises fairness, transparency and legal concerns and damages trust if discovered.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f04",
+      "type": "term",
+      "front": "Booking (fare) class",
+      "back": "A price level for the same capacity, with its own fences and availability. Revenue management opens and closes classes as demand unfolds.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f05",
+      "type": "formula",
+      "front": "Littlewood's rule",
+      "back": "Keep protecting capacity for the high fare while P(high-fare demand > protected units) x high fare >= low fare.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 7,
+      "id": "w7-f06",
+      "type": "calc",
+      "front": "Full fare 300, discount 100. Protect a seat while P(full-fare demand exceeds it) is at least what?",
+      "back": "1/3. 100 / 300.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 7,
+      "id": "w7-f07",
+      "type": "term",
+      "front": "Markdown optimisation",
+      "back": "Choosing when and how deeply to discount seasonal or perishable stock to balance margin against sell-through and leftover risk.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 7,
+      "id": "w7-f08",
+      "type": "term",
+      "front": "Sell-through",
+      "back": "Units sold as a % of units available. The key leading indicator for markdown decisions.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 7,
+      "id": "w7-f09",
+      "type": "explain",
+      "front": "When do revenue-maximising and profit-maximising prices differ?",
+      "back": "Whenever variable costs matter. Extra units at a lower price add revenue but may add little or negative contribution.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f10",
+      "type": "calc",
+      "front": "Price 8 sells 1,500; price 12 sells 900. Variable cost 5. Which price maximises contribution?",
+      "back": "12. Contribution 6,300 vs 4,500, even though revenue is lower (10,800 vs 12,000).",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f11",
+      "type": "explain",
+      "front": "Why can a mathematically optimal price be commercially weak?",
+      "back": "Forecast error, competitor reactions, cancellations and operational limits. A price that's robust across scenarios often beats one optimal only in the base case.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f12",
+      "type": "term",
+      "front": "Overbooking",
+      "back": "Selling more than capacity because some customers cancel or don't show. Balances empty-seat cost against the cost of denying service.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f13",
+      "type": "term",
+      "front": "Pricing guardrails (examples)",
+      "back": "Floor price or minimum margin, ceiling, max % change per period, freeze in emergencies, channel consistency, no use of sensitive data.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 7,
+      "id": "w7-f14",
+      "type": "explain",
+      "front": "Five things guardrails protect",
+      "back": "Customer fairness, transparency, price volatility, brand, and operational feasibility.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 7,
+      "id": "w7-f15",
+      "type": "apply",
+      "front": "Lending: how is funding capacity like an airline seat?",
+      "back": "When capital is limited, each advance uses up capacity with an opportunity cost. Allocate it by risk-adjusted return per pound, not by volume.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 7,
+      "id": "w7-f16",
+      "type": "explain",
+      "front": "Why test RM decisions under low, expected and high demand?",
+      "back": "The base forecast will be wrong. Scenarios show how much you lose if it is, and whether a different rule is more robust.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 7,
+      "id": "w7-f17",
+      "type": "explain",
+      "front": "Which demand signals matter for dynamic pricing?",
+      "back": "Those that arrive early enough to act on: bookings pace, search or quote volume, competitor moves, inventory levels, events.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f01",
+      "type": "explain",
+      "front": "Ten fields in a useful pricing dataset",
+      "back": "Realised price, units, product, customer, time, channel, promotions, availability, cost, and relevant market variables.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f02",
+      "type": "term",
+      "front": "Omitted variable bias",
+      "back": "An unmeasured factor affects both price and volume, so the price coefficient absorbs its effect.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f03",
+      "type": "term",
+      "front": "Reverse causality (in pricing)",
+      "back": "Demand influences price (prices set high when demand is strong), so price-volume correlation isn't purely price causing volume.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f04",
+      "type": "explain",
+      "front": "Why does randomisation give a causal estimate?",
+      "back": "Random assignment makes groups alike on average in everything except price, so outcome differences are caused by price.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f05",
+      "type": "term",
+      "front": "Unit of assignment",
+      "back": "What gets randomised: customer, account, store, region or time period. Choose one that limits contamination and suits operations.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f06",
+      "type": "term",
+      "front": "Contamination (spillover)",
+      "back": "Control units are exposed to the treatment, or vice versa - e.g. customers seeing both prices, or reps working both groups.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f07",
+      "type": "term",
+      "front": "Matched markets",
+      "back": "Change price in some markets and compare with similar unchanged markets chosen to match on size, trend and mix.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f08",
+      "type": "formula",
+      "front": "Difference-in-differences",
+      "back": "(Treated after - treated before) - (control after - control before). Removes trends shared by both groups.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f09",
+      "type": "term",
+      "front": "Parallel trends assumption",
+      "back": "The identifying assumption of DiD: without the change, treated and control groups would have moved in parallel. Check pre-period trends.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 8,
+      "id": "w8-f10",
+      "type": "term",
+      "front": "Synthetic control",
+      "back": "A weighted blend of untreated units built to track the treated unit before the change; its post-change path is the counterfactual.",
+      "source": "syllabus",
+      "difficulty": 3
+    },
+    {
+      "week": 8,
+      "id": "w8-f11",
+      "type": "term",
+      "front": "Phased (staggered) rollout",
+      "back": "Introduce the change in waves; units not yet switched act as controls for those already switched.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f12",
+      "type": "term",
+      "front": "Minimum detectable effect (MDE)",
+      "back": "The smallest effect the test is designed to reliably detect. Smaller MDE needs a much bigger sample.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f13",
+      "type": "formula",
+      "front": "Sample size rule of thumb (80% power, 5% significance)",
+      "back": "n per group = 16 x p(1-p) / d^2, where p is the baseline rate and d the effect to detect.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 8,
+      "id": "w8-f14",
+      "type": "calc",
+      "front": "Baseline conversion 20%, want to detect 2 points. Sample per group?",
+      "back": "About 6,400. 16 x 0.2 x 0.8 / 0.02^2.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 8,
+      "id": "w8-f15",
+      "type": "explain",
+      "front": "Why make incremental contribution the primary outcome?",
+      "back": "Higher prices usually lower conversion but raise margin. Conversion or revenue alone can reject a profitable price - or accept an unprofitable one.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 8,
+      "id": "w8-f16",
+      "type": "term",
+      "front": "Guardrail metric",
+      "back": "A metric that must not deteriorate beyond a set limit (complaints, churn, loss rate), triggering a stop regardless of the primary result.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 8,
+      "id": "w8-f17",
+      "type": "explain",
+      "front": "Why pre-register the decision rule?",
+      "back": "It stops people moving the goalposts after seeing results. Launch, revise and reject thresholds are fixed in advance.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 8,
+      "id": "w8-f18",
+      "type": "apply",
+      "front": "Lending: leading indicators for a price test (losses take months)",
+      "back": "Take-up rate, mix of risk grades accepted, early repayment velocity, early arrears or missed-collection signals.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 9,
+      "id": "w9-f01",
+      "type": "explain",
+      "front": "Six things every pricing launch needs",
+      "back": "Effective date, affected customers, transition rules, system changes, owners, escalation paths.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f02",
+      "type": "term",
+      "front": "Grandfathering",
+      "back": "Letting existing customers keep the old price for a period or until renewal. Protects retention; delays the revenue benefit.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f03",
+      "type": "term",
+      "front": "Transition rules",
+      "back": "How customers move to the new price: notice periods, renewal timing, grandfathering, honouring in-flight quotes.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f04",
+      "type": "explain",
+      "front": "Good customer communication about a price change",
+      "back": "What changes, when, and why - linked to value delivered, with fair notice and no unsupported claims.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f05",
+      "type": "term",
+      "front": "Talk track",
+      "back": "A short, consistent script for reps to explain the change and its value in their own words.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f06",
+      "type": "explain",
+      "front": "Five parts of sales enablement for a price change",
+      "back": "Talk tracks, objection handling, approval rules, worked examples, and practice on realistic deals.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f07",
+      "type": "explain",
+      "front": "Handling 'it's too expensive'",
+      "back": "Acknowledge, ask what they're comparing against, reframe on outcomes and value, and only trade price for a commitment.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f08",
+      "type": "term",
+      "front": "RACI",
+      "back": "Responsible (does it), Accountable (owns the decision - exactly one), Consulted (gives input), Informed (kept updated).",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f09",
+      "type": "explain",
+      "front": "Five pricing decisions that need clear decision rights",
+      "back": "List prices, discounts, promotions, exceptions, and post-launch corrections.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f10",
+      "type": "explain",
+      "front": "What do repeated exceptions tell you?",
+      "back": "The policy doesn't match reality. Either the corridor is wrong or enablement is failing - review and change one of them.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f11",
+      "type": "explain",
+      "front": "Six things a post-launch scorecard tracks separately",
+      "back": "Adoption, realised price, volume response, mix, customer retention, financial return.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f12",
+      "type": "contrast",
+      "front": "Implementation failure vs flawed hypothesis",
+      "back": "Implementation failure: the price never really reached customers (systems, discounting). Flawed hypothesis: it did, and customers reacted worse than predicted.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f13",
+      "type": "explain",
+      "front": "Why must every launch task have an owner, date and dependency?",
+      "back": "Without them, tasks slip silently and nobody knows which delay blocks the go-live.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 9,
+      "id": "w9-f14",
+      "type": "term",
+      "front": "Post-launch decision cadence",
+      "back": "Scheduled reviews (e.g. weeks 2, 6, 12) with pre-agreed triggers to keep, adjust or roll back the change.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f15",
+      "type": "apply",
+      "front": "Lending: customer cohorts for a pricing change",
+      "back": "New merchants, renewing merchants, and partner channels presenting offers - each may need different timing, messaging and systems.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 9,
+      "id": "w9-f16",
+      "type": "explain",
+      "front": "Why do under-prepared reps undo a price rise?",
+      "back": "Without confidence or answers to objections, they fall back on discounting - which quietly cancels the increase.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f01",
+      "type": "explain",
+      "front": "Six elements of a decision-ready recommendation",
+      "back": "The decision, financial effect, customer logic, evidence, operational plan, and material risks.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 10,
+      "id": "w10-f02",
+      "type": "explain",
+      "front": "What goes on the first slide?",
+      "back": "The decision requested: proposed price, scope, effective date, approval needed - plus the headline financial effect.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 10,
+      "id": "w10-f03",
+      "type": "term",
+      "front": "Pyramid principle",
+      "back": "Lead with the answer, then the supporting arguments, then the detail. Lets busy readers decide after one page.",
+      "source": "generated",
+      "difficulty": 1
+    },
+    {
+      "week": 10,
+      "id": "w10-f04",
+      "type": "explain",
+      "front": "Why show base, downside and upside?",
+      "back": "A single number hides uncertainty. Ranges with stated assumptions show the risk and earn more trust than false precision.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 10,
+      "id": "w10-f05",
+      "type": "term",
+      "front": "Tornado chart",
+      "back": "Sensitivity chart ranking assumptions by how much they move the result when flexed. Shows what to test first.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f06",
+      "type": "contrast",
+      "front": "Fact vs estimate vs assumption vs choice",
+      "back": "Fact: observed. Estimate: derived from data, with uncertainty. Assumption: judgement without strong data. Choice: a management value call.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f07",
+      "type": "term",
+      "front": "Profit bridge",
+      "back": "A chart walking from baseline to new profit through separate effects: price, volume, mix, cost. Must reconcile to the model.",
+      "source": "generated",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f08",
+      "type": "formula",
+      "front": "Price and volume effects in a bridge",
+      "back": "Price effect = price change x new volume. Volume effect = volume change x old unit contribution. They sum to the total change.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 10,
+      "id": "w10-f09",
+      "type": "calc",
+      "front": "Price 100 to 105, volume 10,000 to 9,300, cost 60. Price effect and volume effect?",
+      "back": "Price +46,500 (5 x 9,300). Volume -28,000 (-700 x 40). Net +18,500.",
+      "source": "generated",
+      "difficulty": 3
+    },
+    {
+      "week": 10,
+      "id": "w10-f10",
+      "type": "explain",
+      "front": "Stop, adjust, expand triggers",
+      "back": "Pre-agreed results at set review dates: stop if guardrails break, adjust if a segment underperforms, expand if results beat the base case.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f11",
+      "type": "explain",
+      "front": "Who gains, who loses?",
+      "back": "Every price change redistributes value. Name the customers, channels and teams most exposed, so leadership approves the risk knowingly.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f12",
+      "type": "explain",
+      "front": "Purpose of the challenge session",
+      "back": "Have someone attack your elasticity, cost, value and implementation assumptions before leadership does - then revise.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 10,
+      "id": "w10-f13",
+      "type": "explain",
+      "front": "The 10 capstone sections, in order",
+      "back": "Decision, business context, baseline economics, demand evidence, customer value, price design, financial return, commercial plan, measurement, risks.",
+      "source": "syllabus",
+      "difficulty": 3
+    },
+    {
+      "week": 10,
+      "id": "w10-f14",
+      "type": "explain",
+      "front": "Capstone scoring areas (20 points each)",
+      "back": "Pricing economics, financial return, customer and market evidence, commercial design, implementation and measurement.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": 10,
+      "id": "w10-f15",
+      "type": "explain",
+      "front": "Capstone passing standard",
+      "back": "At least 70 of 100 overall AND at least 12 in every area. A weak area is a material weakness even with a high total.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": 10,
+      "id": "w10-f16",
+      "type": "explain",
+      "front": "Which assumption should you test first?",
+      "back": "The one that contributes most to the financial return and is least certain - usually found with a sensitivity analysis.",
+      "source": "syllabus",
+      "difficulty": 2
+    },
+    {
+      "week": null,
+      "id": "ref-f01",
+      "type": "explain",
+      "front": "First data-quality check before any price realisation analysis?",
+      "back": "Reconcile transaction totals to the finance source.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f02",
+      "type": "explain",
+      "front": "What to do with returns, credits, zero prices and negative quantities",
+      "back": "Flag them - don't silently delete them. They can be real leakage or real behaviour.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f03",
+      "type": "explain",
+      "front": "Four things to standardise before comparing transactions",
+      "back": "Currency, tax treatment, units of measure, and time periods.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f04",
+      "type": "explain",
+      "front": "Can you mix list, invoice and pocket price in one analysis?",
+      "back": "No. Pick one definition and use it consistently, or results won't reconcile.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f05",
+      "type": "formula",
+      "front": "Pricing initiative ROI",
+      "back": "Incremental profit / implementation cost, over a defined period. State whether profit is gross, contribution or operating.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f06",
+      "type": "formula",
+      "front": "Incremental profit (pricing initiative)",
+      "back": "New contribution - old contribution - implementation cost.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f07",
+      "type": "formula",
+      "front": "Break-even volume (fixed costs)",
+      "back": "Fixed cost / unit contribution. Fixed 250k, unit contribution 40: 6,250 units.",
+      "source": "syllabus",
+      "difficulty": 1
+    },
+    {
+      "week": null,
+      "id": "ref-f08",
+      "type": "explain",
+      "front": "Five columns of the research log",
+      "back": "Source, main claim, evidence, limitations, decision impact. The point is linking research to a decision, not collecting links.",
+      "source": "syllabus",
+      "difficulty": 1
+    }
+  ],
+  "quiz": [
+    {
+      "week": 1,
+      "id": "w1-q1",
+      "type": "mcq",
+      "question": "Price 80, cost 60. What is the markup?",
+      "options": [
+        "25%",
+        "33.3%",
+        "75%",
+        "133%"
+      ],
+      "answer_index": 1,
+      "explanation": "Markup = (80 - 60) / 60 = 33.3%. The margin would be 25%.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q2",
+      "type": "mcq",
+      "question": "Contribution margin 40%. You raise price 5%. Which volume change makes total contribution fall?",
+      "options": [
+        "0%",
+        "-3%",
+        "-7%",
+        "-12%"
+      ],
+      "answer_index": 3,
+      "explanation": "Break-even volume loss is 0.05 / 0.45 = 11.1%. Only the 12% loss exceeds it.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q3",
+      "type": "mcq",
+      "question": "You have spare capacity and are offered a one-off discounted order. Which cost is relevant?",
+      "options": [
+        "Allocated factory overhead",
+        "Extra materials and direct labour",
+        "Depreciation on existing machines",
+        "The CEO's salary"
+      ],
+      "answer_index": 1,
+      "explanation": "Only costs that change because you accept the order are relevant. The others are incurred either way.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q4",
+      "type": "mcq",
+      "question": "Unit contribution falls from 40 to 35. How many units keep contribution at the 10,000-unit level?",
+      "options": [
+        "10,500",
+        "11,000",
+        "11,429",
+        "12,000"
+      ],
+      "answer_index": 2,
+      "explanation": "Required volume = 10,000 x 40 / 35 = 11,429, a 14.3% increase.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q5",
+      "type": "mcq",
+      "question": "Two MCAs both have a 1.30 factor rate. A repays in 6 months, B in 12. Ignoring losses, which is true?",
+      "options": [
+        "They earn the same return",
+        "A has the higher annualised return",
+        "B has the higher annualised return",
+        "You can't compare them without the advance size"
+      ],
+      "answer_index": 1,
+      "explanation": "The same fee earned over half the time means a much higher annualised return. The factor rate alone doesn't tell you the yield.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q6",
+      "type": "mcq",
+      "question": "Rebates are being paid to customers who never hit the volume target. What kind of fix does this need?",
+      "options": [
+        "A pricing action: lower list prices",
+        "A process action: enforce rebate eligibility",
+        "A cost action: cut variable cost",
+        "No fix: rebates are off-invoice"
+      ],
+      "answer_index": 1,
+      "explanation": "The policy is fine; execution is leaking. That's a process fix.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q7",
+      "type": "numeric",
+      "question": "Price 100, variable cost 60, 10,000 units. Price +5%, volume -7%. New total contribution, in thousands?",
+      "answer": 418.5,
+      "tolerance": 0.5,
+      "unit": "k",
+      "explanation": "9,300 units x 45 = 418,500.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q8",
+      "type": "numeric",
+      "question": "List 100. On-invoice discount 8, rebate 3, payment terms cost 1.50, freight 2, co-op marketing 1.50. Pocket price?",
+      "answer": 84,
+      "tolerance": 0.01,
+      "unit": "",
+      "explanation": "100 - 8 - 3 - 1.5 - 2 - 1.5 = 84.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 1,
+      "id": "w1-q9",
+      "type": "numeric",
+      "question": "Target margin 35% on a cost of 65. What price?",
+      "answer": 100,
+      "tolerance": 0.01,
+      "unit": "",
+      "explanation": "Price = cost / (1 - margin) = 65 / 0.65 = 100.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q1",
+      "type": "mcq",
+      "question": "Elasticity is -0.5. You raise price 10%. What happens to revenue?",
+      "options": [
+        "Falls about 5%",
+        "Rises about 4.5%",
+        "Rises about 10%",
+        "Unchanged"
+      ],
+      "answer_index": 1,
+      "explanation": "Volume falls about 5%. Revenue = 1.10 x 0.95 = 1.045, up about 4.5%.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q2",
+      "type": "mcq",
+      "question": "Cross-price elasticity between A and B is +0.6. A and B are:",
+      "options": [
+        "Complements",
+        "Substitutes",
+        "Unrelated",
+        "Luxury goods"
+      ],
+      "answer_index": 1,
+      "explanation": "When B's price rises, demand for A rises, so customers treat them as alternatives.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q3",
+      "type": "mcq",
+      "question": "A retailer raised prices in December and sales rose. The best explanation is:",
+      "options": [
+        "Demand is upward sloping",
+        "Seasonal demand shifted the curve, confounding the price effect",
+        "Elasticity is positive for this product",
+        "The price rise signalled quality"
+      ],
+      "answer_index": 1,
+      "explanation": "Christmas demand moved the whole curve. You can't read elasticity from this without controlling for season.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q4",
+      "type": "mcq",
+      "question": "Elasticity is -3. By the Lerner rule, the profit-maximising margin is about:",
+      "options": [
+        "25%",
+        "33%",
+        "50%",
+        "67%"
+      ],
+      "answer_index": 1,
+      "explanation": "(P - MC) / P = -1 / E = 1/3, about 33%.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q5",
+      "type": "mcq",
+      "question": "You raise factor rates 5% and offer take-up barely changes. What should you check before calling it a success?",
+      "options": [
+        "Nothing, take-up is the key metric",
+        "Whether the risk mix and loss rates of accepted merchants changed",
+        "Competitor list prices only",
+        "Website traffic"
+      ],
+      "answer_index": 1,
+      "explanation": "In lending, price can change who accepts. Riskier merchants may be less price-sensitive, so losses can rise even when volume holds.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q6",
+      "type": "mcq",
+      "question": "Prices are typically raised when demand is strong. A naive regression of volume on price will most likely:",
+      "options": [
+        "Overstate how elastic demand is",
+        "Understate how elastic demand is (bias towards zero)",
+        "Be unbiased",
+        "Always show a negative sign"
+      ],
+      "answer_index": 1,
+      "explanation": "High prices coincide with high demand, so the estimated slope is pulled towards zero or even positive.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q7",
+      "type": "numeric",
+      "question": "Price 20 to 22, quantity 500 to 460. Arc elasticity (to 2 decimals)?",
+      "answer": -0.88,
+      "tolerance": 0.01,
+      "unit": "",
+      "explanation": "(-40 / 480) / (2 / 21) = -0.0833 / 0.0952 = -0.875.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 2,
+      "id": "w2-q8",
+      "type": "numeric",
+      "question": "Contribution margin 30%. Price +10%. What is the break-even elasticity?",
+      "answer": -2.5,
+      "tolerance": 0.01,
+      "unit": "",
+      "explanation": "Break-even volume loss = 0.10 / 0.40 = 25%. 25% / 10% = elasticity of -2.5.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 3,
+      "id": "w3-q1",
+      "type": "mcq",
+      "question": "Which method best decides which features go into a premium tier?",
+      "options": [
+        "Van Westendorp",
+        "Gabor-Granger",
+        "Conjoint analysis",
+        "Competitor benchmarking"
+      ],
+      "answer_index": 2,
+      "explanation": "Conjoint estimates the value of each feature via trade-offs, which is exactly the package design question.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 3,
+      "id": "w3-q2",
+      "type": "mcq",
+      "question": "The main limitation of Van Westendorp is that it:",
+      "options": [
+        "Needs a huge sample",
+        "Doesn't measure how many people would buy",
+        "Only works for B2B",
+        "Requires an existing product"
+      ],
+      "answer_index": 1,
+      "explanation": "It gives an acceptable range but no purchase likelihood, so you can't use it to estimate revenue.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 3,
+      "id": "w3-q3",
+      "type": "mcq",
+      "question": "A survey says 60% would pay 20. At launch 15% buy. The most likely cause is:",
+      "options": [
+        "Strategic response",
+        "Hypothetical bias",
+        "Negative differentiation value",
+        "Positive cross-price elasticity"
+      ],
+      "answer_index": 1,
+      "explanation": "With no money at stake, respondents overstate WTP.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 3,
+      "id": "w3-q4",
+      "type": "mcq",
+      "question": "EVC is 13k and the competitor charges 10k. If you price at 13k:",
+      "options": [
+        "You capture maximum profit with no downside",
+        "The customer is roughly indifferent and has little reason to switch",
+        "You are underpricing",
+        "You are below the reference value"
+      ],
+      "answer_index": 1,
+      "explanation": "At EVC the customer gains nothing by switching. Price between 10k and 13k to share value.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 3,
+      "id": "w3-q5",
+      "type": "mcq",
+      "question": "Which is negative differentiation value?",
+      "options": [
+        "Your product is 20% faster",
+        "Your implementation takes 3 months vs the competitor's 1 week",
+        "The competitor charges more",
+        "Your product has better support"
+      ],
+      "answer_index": 1,
+      "explanation": "A longer implementation is a cost the customer bears with you but not the alternative.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 3,
+      "id": "w3-q6",
+      "type": "numeric",
+      "question": "Competitor charges 50/month. Your product saves an extra 20/month but needs 5/month more in setup costs. EVC per month?",
+      "answer": 65,
+      "tolerance": 0.01,
+      "unit": "",
+      "explanation": "50 + 20 - 5 = 65.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 4,
+      "id": "w4-q1",
+      "type": "mcq",
+      "question": "Which is the weakest price fence?",
+      "options": [
+        "Annual commitment required",
+        "Self-declared 'small business' status with no check",
+        "Order volume above 1,000 units",
+        "Advance booking 21 days ahead"
+      ],
+      "answer_index": 1,
+      "explanation": "Self-declared status is easy to misrepresent, so high-WTP customers can claim it.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 4,
+      "id": "w4-q2",
+      "type": "mcq",
+      "question": "A gym charges a monthly membership plus a fee per class. This is:",
+      "options": [
+        "Pure bundling",
+        "A two-part tariff",
+        "Good-better-best",
+        "Dynamic pricing"
+      ],
+      "answer_index": 1,
+      "explanation": "Fixed fee plus a usage price is a two-part tariff.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 4,
+      "id": "w4-q3",
+      "type": "mcq",
+      "question": "A new cheaper tier mostly attracts existing premium customers who downgrade. This is:",
+      "options": [
+        "Arbitrage",
+        "Cannibalisation",
+        "Price discrimination",
+        "Anchoring"
+      ],
+      "answer_index": 1,
+      "explanation": "The new offer takes sales from your own higher-margin offer instead of winning new customers.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 4,
+      "id": "w4-q4",
+      "type": "mcq",
+      "question": "Which is NOT usable as a pricing segment at the point of sale?",
+      "options": [
+        "Company size",
+        "Contract length",
+        "The customer's true maximum willingness to pay",
+        "Sales channel"
+      ],
+      "answer_index": 2,
+      "explanation": "True WTP is unobservable. You need observable proxies to fence on.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 4,
+      "id": "w4-q5",
+      "type": "mcq",
+      "question": "For a payments platform, the value metric most aligned with customer value is usually:",
+      "options": [
+        "Number of user logins",
+        "A percentage of transaction value processed",
+        "A flat annual fee",
+        "Number of support tickets"
+      ],
+      "answer_index": 1,
+      "explanation": "Processed value grows with the benefit the merchant gets from the platform.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 4,
+      "id": "w4-q6",
+      "type": "numeric",
+      "question": "A values X at 10 and Y at 2. B values X at 6 and Y at 7. What is the maximum revenue from selling a pure bundle to both?",
+      "answer": 24,
+      "tolerance": 0.01,
+      "unit": "",
+      "explanation": "A values the bundle at 12, B at 13. Price at 12 so both buy: 24. Best separate pricing earns only 19.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 5,
+      "id": "w5-q1",
+      "type": "mcq",
+      "question": "A competitor's list price is 10% lower but excludes onboarding and support. What should you do first?",
+      "options": [
+        "Match their list price",
+        "Normalise the offers before comparing",
+        "Ignore them",
+        "Cut price 5% as a compromise"
+      ],
+      "answer_index": 1,
+      "explanation": "Without normalising, you can't tell whether they're actually cheaper.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 5,
+      "id": "w5-q2",
+      "type": "mcq",
+      "question": "Which activity is a clear competition-law risk?",
+      "options": [
+        "Checking a rival's public website prices",
+        "Discussing next quarter's rates with a rival at a conference",
+        "Surveying customers on alternatives",
+        "Buying a competitor's product to test it"
+      ],
+      "answer_index": 1,
+      "explanation": "Sharing future pricing intentions with competitors can amount to collusion.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 5,
+      "id": "w5-q3",
+      "type": "mcq",
+      "question": "Share fell in one region, where you had repeated stock-outs. The most likely cause is:",
+      "options": [
+        "Your price is too high",
+        "An availability problem, not a price problem",
+        "Competitor price leadership",
+        "Negative cross-price elasticity"
+      ],
+      "answer_index": 1,
+      "explanation": "Customers can't buy what isn't there. Cutting price wouldn't fix it.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 5,
+      "id": "w5-q4",
+      "type": "mcq",
+      "question": "Two firms both cut prices hoping to win share, and both end up less profitable. This illustrates:",
+      "options": [
+        "Credible commitment",
+        "The prisoner's dilemma",
+        "Price leadership",
+        "Limit pricing"
+      ],
+      "answer_index": 1,
+      "explanation": "Individually rational moves produce a collectively worse outcome.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 5,
+      "id": "w5-q5",
+      "type": "mcq",
+      "question": "A competitor cut prices, but only small, price-sensitive accounts are switching. The best response is usually:",
+      "options": [
+        "Match across the board",
+        "A targeted response for the at-risk segment",
+        "Raise prices for everyone",
+        "Do nothing whatever happens"
+      ],
+      "answer_index": 1,
+      "explanation": "A targeted response protects the vulnerable segment without giving margin away on accounts that weren't leaving.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 5,
+      "id": "w5-q6",
+      "type": "numeric",
+      "question": "Price 50, variable cost 35, 20,000 units. A competitor cuts 10%. If you hold price, what % volume loss would make matching equally good? (1 decimal)",
+      "answer": 33.3,
+      "tolerance": 0.1,
+      "unit": "%",
+      "explanation": "Matching: 20,000 x 10 = 200,000. Holding: units x 15. Break-even units = 13,333, a 33.3% loss.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 6,
+      "id": "w6-q1",
+      "type": "mcq",
+      "question": "Corridor: 0-10% green, 10-15% amber, above 15% deal desk. A rep wants 18%. What happens?",
+      "options": [
+        "Rep approves it",
+        "Manager approves it",
+        "It goes to the deal desk with an exception code",
+        "It's automatically rejected"
+      ],
+      "answer_index": 2,
+      "explanation": "Above 15% is outside the amber band, so it needs deal desk approval and a recorded reason.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 6,
+      "id": "w6-q2",
+      "type": "mcq",
+      "question": "Reps are paid 5% of revenue and discount heavily near quarter-end. The most effective structural fix is:",
+      "options": [
+        "More training on value selling",
+        "Paying commission on margin or price realisation",
+        "Banning discounts",
+        "Raising list prices"
+      ],
+      "answer_index": 1,
+      "explanation": "Aligning pay with contribution changes the incentive on every deal.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 6,
+      "id": "w6-q3",
+      "type": "mcq",
+      "question": "Which is a good give-get trade?",
+      "options": [
+        "5% off because the customer asked",
+        "5% off for a 24-month term and annual upfront payment",
+        "5% off to close before quarter-end",
+        "5% off because a competitor might be cheaper"
+      ],
+      "answer_index": 1,
+      "explanation": "The concession buys commitments that are worth something to the business.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 6,
+      "id": "w6-q4",
+      "type": "mcq",
+      "question": "Similar customers buying similar volumes have pocket prices ranging from 78 to 91. This suggests:",
+      "options": [
+        "Strong value-based segmentation",
+        "Inconsistent negotiation and an opportunity to tighten policy",
+        "Elastic demand",
+        "Accurate cost-to-serve pricing"
+      ],
+      "answer_index": 1,
+      "explanation": "If the customers are comparable, the spread reflects negotiation outcomes, not value.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 6,
+      "id": "w6-q5",
+      "type": "numeric",
+      "question": "Margin 30%. A rep gives a 10% discount. What % volume increase is needed to keep contribution flat?",
+      "answer": 50,
+      "tolerance": 0.1,
+      "unit": "%",
+      "explanation": "0.10 / (0.30 - 0.10) = 50%.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 6,
+      "id": "w6-q6",
+      "type": "numeric",
+      "question": "Advance 50,000 at factor 1.30. Commission 8% of advance, expected loss 5% of repayable, cost of funds 1,875, servicing 500. Pocket fee?",
+      "answer": 5375,
+      "tolerance": 1,
+      "unit": "",
+      "explanation": "Fee 15,000 - 4,000 - 3,250 - 1,875 - 500 = 5,375.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 7,
+      "id": "w7-q1",
+      "type": "mcq",
+      "question": "Which business is the best fit for classic revenue management?",
+      "options": [
+        "A software subscription",
+        "A hotel",
+        "A bakery selling bread by weight",
+        "A consulting firm billing hourly"
+      ],
+      "answer_index": 1,
+      "explanation": "Fixed, perishable rooms; variable demand; guests booking at different times with different WTP.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 7,
+      "id": "w7-q2",
+      "type": "mcq",
+      "question": "Showing a higher price to a user because their device suggests they're wealthy is:",
+      "options": [
+        "Dynamic pricing",
+        "Personalised pricing",
+        "Markdown optimisation",
+        "A two-part tariff"
+      ],
+      "answer_index": 1,
+      "explanation": "The price changes based on information about the individual, not market conditions.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 7,
+      "id": "w7-q3",
+      "type": "mcq",
+      "question": "Price 8 sells 1,500; price 12 sells 900; variable cost 5. Which statement is true?",
+      "options": [
+        "8 maximises both revenue and contribution",
+        "8 maximises revenue, 12 maximises contribution",
+        "12 maximises both",
+        "They're equal on contribution"
+      ],
+      "answer_index": 1,
+      "explanation": "Revenue: 12,000 vs 10,800. Contribution: 4,500 vs 6,300.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 7,
+      "id": "w7-q4",
+      "type": "mcq",
+      "question": "Full fare 200, discount 80. Under Littlewood's rule, accept a discount booking (rather than protect the seat) when the probability that full-fare demand exceeds the protected seats is:",
+      "options": [
+        "Below 0.4",
+        "Above 0.4",
+        "Below 0.6",
+        "Exactly 0.5"
+      ],
+      "answer_index": 0,
+      "explanation": "Protect while P x 200 >= 80, i.e. P >= 0.4. Below that, the certain 80 is worth more.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 7,
+      "id": "w7-q5",
+      "type": "mcq",
+      "question": "Which is a pricing guardrail?",
+      "options": [
+        "Maximising revenue every hour",
+        "A cap of 10% on daily price changes",
+        "Using customer browsing history to set prices",
+        "Matching all competitor prices automatically"
+      ],
+      "answer_index": 1,
+      "explanation": "A rate limit stops prices swinging in ways that damage trust and brand.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 7,
+      "id": "w7-q6",
+      "type": "numeric",
+      "question": "100 units left. Hold at 50: sell 60, leftovers worth 0. Mark down to 35: sell 95. How much more revenue does the markdown earn?",
+      "answer": 325,
+      "tolerance": 0.5,
+      "unit": "",
+      "explanation": "95 x 35 = 3,325 vs 60 x 50 = 3,000.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q1",
+      "type": "mcq",
+      "question": "The identifying assumption of difference-in-differences is:",
+      "options": [
+        "Random assignment",
+        "Parallel trends between treated and control without the change",
+        "No seasonality",
+        "Constant elasticity"
+      ],
+      "answer_index": 1,
+      "explanation": "DiD assumes the control group shows what would have happened to the treated group.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q2",
+      "type": "mcq",
+      "question": "Which is contamination?",
+      "options": [
+        "Test and control regions differ in size",
+        "Reps sell to customers in both test and control territories",
+        "The test runs for 6 weeks",
+        "The MDE is 2 points"
+      ],
+      "answer_index": 1,
+      "explanation": "Reps can carry pricing or behaviour across groups, blurring the comparison.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q3",
+      "type": "mcq",
+      "question": "The best primary metric for a price test is usually:",
+      "options": [
+        "Conversion rate",
+        "Revenue",
+        "Incremental contribution per eligible customer",
+        "Website visits"
+      ],
+      "answer_index": 2,
+      "explanation": "It captures both the margin gain and the volume loss.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q4",
+      "type": "mcq",
+      "question": "Prices were raised first where demand was strongest. A regression of volume on price will likely:",
+      "options": [
+        "Overstate sensitivity",
+        "Understate sensitivity",
+        "Be unbiased if there are enough rows",
+        "Show no relationship"
+      ],
+      "answer_index": 1,
+      "explanation": "Reverse causality pushes the estimate towards zero.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q5",
+      "type": "numeric",
+      "question": "Treatment conversion 20% to 18%. Control 21% to 20%. DiD effect in percentage points?",
+      "answer": -1,
+      "tolerance": 0.01,
+      "unit": "pp",
+      "explanation": "(18 - 20) - (20 - 21) = -2 - (-1) = -1.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q6",
+      "type": "numeric",
+      "question": "Baseline conversion 10%, effect to detect 2 points, 80% power. Rough sample per group?",
+      "answer": 3600,
+      "tolerance": 1,
+      "unit": "",
+      "explanation": "16 x 0.1 x 0.9 / 0.0004 = 3,600.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 8,
+      "id": "w8-q7",
+      "type": "numeric",
+      "question": "Control: 1,000 visitors, 20% convert, contribution 40 each. Test: 1,000 visitors, 17% convert, contribution 50 each. Test minus control contribution?",
+      "answer": 500,
+      "tolerance": 0.5,
+      "unit": "",
+      "explanation": "170 x 50 = 8,500 vs 200 x 40 = 8,000.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 9,
+      "id": "w9-q1",
+      "type": "mcq",
+      "question": "List price changed correctly in all systems, but realised price barely moved. The most likely cause is:",
+      "options": [
+        "Customers are highly elastic",
+        "Offsetting discounts in the field",
+        "A flawed pricing hypothesis",
+        "A data error in volume"
+      ],
+      "answer_index": 1,
+      "explanation": "If adoption is fine but realisation isn't, discounting is eating the change.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 9,
+      "id": "w9-q2",
+      "type": "mcq",
+      "question": "In a RACI matrix, how many people should be Accountable for one decision?",
+      "options": [
+        "None",
+        "Exactly one",
+        "At least two",
+        "Everyone involved"
+      ],
+      "answer_index": 1,
+      "explanation": "One accountable owner avoids ambiguity about who decides.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 9,
+      "id": "w9-q3",
+      "type": "mcq",
+      "question": "Grandfathering existing customers mainly trades:",
+      "options": [
+        "Higher short-term revenue for lower retention",
+        "Slower revenue benefit for better retention and goodwill",
+        "Lower costs for higher prices",
+        "Nothing; it's free"
+      ],
+      "answer_index": 1,
+      "explanation": "You give up some early revenue to reduce churn risk among existing customers.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 9,
+      "id": "w9-q4",
+      "type": "mcq",
+      "question": "40% of deals use the 'competitive' exception code. What should governance do?",
+      "options": [
+        "Nothing; exceptions are normal",
+        "Review the corridor or enablement, since the exception has become the norm",
+        "Ban the code",
+        "Fire the reps using it"
+      ],
+      "answer_index": 1,
+      "explanation": "Repeated exceptions signal that policy and reality have diverged.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 9,
+      "id": "w9-q5",
+      "type": "mcq",
+      "question": "Which customer message is best?",
+      "options": [
+        "'Costs went up so prices go up.'",
+        "'From 1 March the fee rises 4%, funding same-day payouts.'",
+        "'We're still the cheapest in the market.' (unverified)",
+        "No message; just update invoices"
+      ],
+      "answer_index": 1,
+      "explanation": "Clear timing, honest, and linked to value - without unsupported claims.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 10,
+      "id": "w10-q1",
+      "type": "mcq",
+      "question": "What should appear on the first page or slide?",
+      "options": [
+        "Market background",
+        "Methodology",
+        "The decision being requested",
+        "Competitor analysis"
+      ],
+      "answer_index": 2,
+      "explanation": "Lead with the ask so the reader knows what they're deciding.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 10,
+      "id": "w10-q2",
+      "type": "mcq",
+      "question": "'Competitors won't respond for six months' is best labelled as:",
+      "options": [
+        "A fact",
+        "An estimate",
+        "An assumption",
+        "A management choice"
+      ],
+      "answer_index": 2,
+      "explanation": "It's a judgement without strong data - exactly what a challenge session should test.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 10,
+      "id": "w10-q3",
+      "type": "mcq",
+      "question": "A capstone scores 78 overall, with 10 in implementation and measurement. Does it pass?",
+      "options": [
+        "Yes, it's above 70",
+        "No, every area needs at least 12",
+        "Yes, if the financial return is strong",
+        "Only if leadership approves"
+      ],
+      "answer_index": 1,
+      "explanation": "The standard requires 70 overall AND 12 in every area.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 10,
+      "id": "w10-q4",
+      "type": "mcq",
+      "question": "A tornado chart shows elasticity moves the result far more than any other input. You should:",
+      "options": [
+        "Ignore it; it's just a chart",
+        "Prioritise testing or refining the elasticity estimate",
+        "Remove elasticity from the model",
+        "Only present the upside case"
+      ],
+      "answer_index": 1,
+      "explanation": "Spend evidence-gathering effort on the assumption that matters most.",
+      "quick": true,
+      "source": "generated"
+    },
+    {
+      "week": 10,
+      "id": "w10-q5",
+      "type": "numeric",
+      "question": "Price 100 to 105, volume 10,000 to 9,300, variable cost 60. Price effect in the profit bridge?",
+      "answer": 46500,
+      "tolerance": 1,
+      "unit": "",
+      "explanation": "5 x 9,300 = 46,500.",
+      "quick": false,
+      "source": "generated"
+    },
+    {
+      "week": 10,
+      "id": "w10-q6",
+      "type": "numeric",
+      "question": "Same case. Volume effect in the profit bridge?",
+      "answer": -28000,
+      "tolerance": 1,
+      "unit": "",
+      "explanation": "-700 units x 40 old unit contribution = -28,000.",
+      "quick": false,
+      "source": "generated"
+    }
+  ],
+  "reference": {
+    "formulas": [
+      {
+        "id": "fx-01",
+        "name": "Gross margin percent",
+        "formula": "(Price - COGS) / Price",
+        "interpretation": "Measures gross profit as a share of sales.",
+        "example": "Price 100, COGS 60: 40%.",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-02",
+        "name": "Markup percent",
+        "formula": "(Price - Cost) / Cost",
+        "interpretation": "Measures the increase over cost and is not interchangeable with margin.",
+        "example": "Price 100, cost 60: 66.7%.",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-03",
+        "name": "Unit contribution",
+        "formula": "Net price - Variable cost per unit",
+        "interpretation": "Measures the amount available to cover fixed cost and profit.",
+        "example": "Net price 100, variable cost 60: 40.",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-04",
+        "name": "Break even volume",
+        "formula": "Fixed cost / Unit contribution",
+        "interpretation": "Calculates units required to cover fixed costs.",
+        "example": "Fixed 250,000, unit contribution 40: 6,250 units.",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-05",
+        "name": "Price elasticity",
+        "formula": "% change in quantity / % change in price",
+        "interpretation": "Measures demand response. It is normally negative for ordinary goods.",
+        "example": "Price +10%, volume -15%: -1.5.",
+        "source": "syllabus",
+        "week": 2
+      },
+      {
+        "id": "fx-06",
+        "name": "Required new volume",
+        "formula": "Old volume x Old unit contribution / New unit contribution",
+        "interpretation": "Keeps total contribution unchanged when variable cost per unit is stable.",
+        "example": "10,000 x 40 / 45 = 8,889 units.",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-07",
+        "name": "Incremental profit",
+        "formula": "New contribution - Old contribution - Implementation cost",
+        "interpretation": "Captures the change attributable to the initiative.",
+        "example": "418,500 - 400,000 - 5,000 = 13,500.",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-08",
+        "name": "Pricing initiative ROI",
+        "formula": "Incremental profit / Implementation cost",
+        "interpretation": "Use a defined time period and state whether profit is gross, contribution, or operating.",
+        "example": "13,500 / 5,000 = 2.7x (270%).",
+        "source": "syllabus",
+        "week": 1
+      },
+      {
+        "id": "fx-09",
+        "name": "Margin to markup",
+        "formula": "Markup = Margin / (1 - Margin)",
+        "interpretation": "Converts a margin into the equivalent markup on cost.",
+        "example": "40% margin = 66.7% markup.",
+        "source": "generated",
+        "week": 1
+      },
+      {
+        "id": "fx-10",
+        "name": "Markup to margin",
+        "formula": "Margin = Markup / (1 + Markup)",
+        "interpretation": "Converts a markup on cost into the equivalent margin on price.",
+        "example": "50% markup = 33.3% margin.",
+        "source": "generated",
+        "week": 1
+      },
+      {
+        "id": "fx-11",
+        "name": "Break-even volume change",
+        "formula": "-dP / (CM% + dP)",
+        "interpretation": "Volume change that keeps contribution flat after a price change; dP and CM% as fractions of the old price.",
+        "example": "CM 40%, +5%: -11.1%. CM 40%, -5%: +14.3%.",
+        "source": "generated",
+        "week": 1
+      },
+      {
+        "id": "fx-12",
+        "name": "Arc (midpoint) elasticity",
+        "formula": "[(Q2 - Q1) / avg Q] / [(P2 - P1) / avg P]",
+        "interpretation": "Elasticity between two observed points, same in either direction.",
+        "example": "P 10 to 12, Q 1,000 to 850: -0.89.",
+        "source": "generated",
+        "week": 2
+      },
+      {
+        "id": "fx-13",
+        "name": "Lerner rule",
+        "formula": "(P - MC) / P = -1 / E",
+        "interpretation": "Profit-maximising margin given a constant elasticity.",
+        "example": "E = -2: 50% margin. E = -4: 25%.",
+        "source": "generated",
+        "week": 2
+      },
+      {
+        "id": "fx-14",
+        "name": "Economic value to the customer",
+        "formula": "Reference value + Positive differentiation - Negative differentiation",
+        "interpretation": "The most an informed customer should pay; price below it to share value.",
+        "example": "10k + 4k - 1k = 13k.",
+        "source": "generated",
+        "week": 3
+      },
+      {
+        "id": "fx-15",
+        "name": "Littlewood's rule",
+        "formula": "Protect while P(high demand > protected) x High fare >= Low fare",
+        "interpretation": "How much capacity to hold back for higher-paying, later demand.",
+        "example": "Fares 300 / 100: protect while probability >= 1/3.",
+        "source": "generated",
+        "week": 7
+      },
+      {
+        "id": "fx-16",
+        "name": "Difference-in-differences",
+        "formula": "(Treated after - Treated before) - (Control after - Control before)",
+        "interpretation": "Effect of a change, net of trends shared with the control group.",
+        "example": "(18 - 20) - (20 - 21) = -1 point.",
+        "source": "generated",
+        "week": 8
+      },
+      {
+        "id": "fx-17",
+        "name": "Sample size rule of thumb",
+        "formula": "n per group = 16 x p(1 - p) / d^2",
+        "interpretation": "Approximate sample for 80% power at 5% significance when comparing two rates.",
+        "example": "p = 0.20, d = 0.02: 6,400 per group.",
+        "source": "generated",
+        "week": 8
+      },
+      {
+        "id": "fx-18",
+        "name": "Profit bridge: price and volume effects",
+        "formula": "Price effect = dP x New volume. Volume effect = dVolume x Old unit contribution.",
+        "interpretation": "Splits a contribution change into its price and volume drivers.",
+        "example": "+46,500 and -28,000 = +18,500.",
+        "source": "generated",
+        "week": 10
+      }
+    ],
+    "capstone_structure": [
+      {
+        "n": 1,
+        "section": "Decision",
+        "content": "State the proposed price, scope, effective date, and approval requested."
+      },
+      {
+        "n": 2,
+        "section": "Business context",
+        "content": "Explain the customer, product, market, and problem being solved."
+      },
+      {
+        "n": 3,
+        "section": "Baseline economics",
+        "content": "Show price realization, revenue, contribution, costs, and current leakage."
+      },
+      {
+        "n": 4,
+        "section": "Demand evidence",
+        "content": "Present elasticity, research, comparable evidence, and limitations."
+      },
+      {
+        "n": 5,
+        "section": "Customer value",
+        "content": "Explain the next best alternative, differentiation value, and willingness to pay evidence."
+      },
+      {
+        "n": 6,
+        "section": "Price design",
+        "content": "Show segments, packages, fences, metrics, and transaction rules."
+      },
+      {
+        "n": 7,
+        "section": "Financial return",
+        "content": "Present base, downside, and upside cases with break even conditions and initiative ROI."
+      },
+      {
+        "n": 8,
+        "section": "Commercial plan",
+        "content": "Cover sales enablement, communications, systems, contracts, owners, and timeline."
+      },
+      {
+        "n": 9,
+        "section": "Measurement",
+        "content": "Define test design, KPIs, guardrails, review cadence, and decision rules."
+      },
+      {
+        "n": 10,
+        "section": "Risks",
+        "content": "Name the largest assumptions and the actions that reduce or monitor each risk."
+      }
+    ],
+    "scoring_guide": {
+      "areas": [
+        {
+          "area": "Pricing economics",
+          "points": 20,
+          "evidence": "Correct unit economics, relevant costs, price volume tradeoff, and break even analysis."
+        },
+        {
+          "area": "Financial return",
+          "points": 20,
+          "evidence": "Clear profit bridge, scenarios, ROI, assumptions, and reconciliation."
+        },
+        {
+          "area": "Customer and market evidence",
+          "points": 20,
+          "evidence": "Credible value, willingness to pay, elasticity, segmentation, and competitive evidence."
+        },
+        {
+          "area": "Commercial design",
+          "points": 20,
+          "evidence": "Operable price architecture, discount rules, customer treatment, and sales logic."
+        },
+        {
+          "area": "Implementation and measurement",
+          "points": 20,
+          "evidence": "Owners, timeline, systems, governance, KPIs, risks, and decision rules."
+        }
+      ],
+      "passing_standard": "Aim for at least 70 points overall and at least 12 points in every area. A low score in one area signals a material weakness even when the total score is high. Revise the capstone until the financial case, customer evidence, commercial design, and implementation plan are mutually consistent."
+    },
+    "minimum_dataset": [
+      {
+        "group": "Transaction",
+        "fields": "Date, order identifier, quantity, currency"
+      },
+      {
+        "group": "Product",
+        "fields": "SKU, family, package, attributes, lifecycle stage"
+      },
+      {
+        "group": "Customer",
+        "fields": "Anonymous identifier, segment, geography, channel, new or existing status"
+      },
+      {
+        "group": "Price",
+        "fields": "List price, invoice price, discounts, rebates, freight, service deductions, pocket price"
+      },
+      {
+        "group": "Economics",
+        "fields": "Variable cost, cost to serve, contribution, payment terms"
+      },
+      {
+        "group": "Market",
+        "fields": "Promotion, availability, competitor price, season, relevant demand drivers"
+      },
+      {
+        "group": "Outcome",
+        "fields": "Conversion, units, revenue, retention, returns or cancellations when relevant"
+      }
+    ],
+    "data_quality_checks": [
+      "Reconcile transaction totals to the finance source before calculating price realization or profit.",
+      "Separate list price, invoice price, and pocket price. Do not mix them within one analysis.",
+      "Flag returns, cancellations, free units, credits, zero prices, and negative quantities instead of silently deleting them.",
+      "Standardize currency, tax treatment, units of measure, and time periods before comparing transactions.",
+      "Control for promotions, stockouts, product changes, and major market events when estimating demand response.",
+      "Protect customer confidentiality and use the minimum personal data required for the decision."
+    ],
+    "research_log_fields": [
+      "Source",
+      "Main claim",
+      "Evidence",
+      "Limitations",
+      "Decision impact"
+    ],
+    "reflection_prompts": [
+      "The most important concept I learned this week was",
+      "The assumption I am least confident about is",
+      "The commercial decision this analysis would change is",
+      "The evidence I still need is",
+      "The question I would ask a pricing leader is"
+    ],
+    "reading_list": {
+      "note": "Do not attempt to read every source in full. Select the resource that matches the weekly decision and compare its assumptions with another source.",
+      "books": [
+        {
+          "title": "The Strategy and Tactics of Pricing",
+          "author": "Thomas Nagle and Georg Muller"
+        },
+        {
+          "title": "Pricing and Revenue Optimization",
+          "author": "Robert Phillips"
+        },
+        {
+          "title": "The Price Advantage",
+          "author": "Michael Marn, Eric Roegner, and Craig Zawada"
+        },
+        {
+          "title": "Monetizing Innovation",
+          "author": "Madhavan Ramanujam and Georg Tacke"
+        },
+        {
+          "title": "Confessions of the Pricing Man",
+          "author": "Hermann Simon"
+        }
+      ],
+      "courses": [
+        {
+          "title": "UVA and BCG Pricing Strategy Optimization",
+          "url": "https://www.coursera.org/specializations/uva-darden-bcg-pricing-strategy",
+          "note": "Broad practical foundation across economics, customer value, competition, and application."
+        },
+        {
+          "title": "MITx Microeconomics",
+          "url": "https://learn.mit.edu/courses/course-v1:MITxT%2B14.100x",
+          "note": "Rigorous economic foundation and available to audit."
+        },
+        {
+          "title": "Erasmus Econometrics Methods and Applications",
+          "url": "https://www.coursera.org/learn/erasmus-econometrics",
+          "note": "Analytical depth in regression, endogeneity, specification, and time series."
+        },
+        {
+          "title": "Columbia Pricing Methodologies",
+          "url": "https://online1.gsb.columbia.edu/pricing-methodologies",
+          "note": "Integrated analytical and commercial executive course."
+        },
+        {
+          "title": "MIT Sloan Pricing Using Data",
+          "url": "https://executive.mit.edu/course/pricing/a056g00000URaaPAAT.html",
+          "note": "Data driven pricing, surveys, conjoint analysis, segmentation, and customer value."
+        },
+        {
+          "title": "Wharton Revenue Analytics Price Optimization",
+          "url": "https://online-execed.wharton.upenn.edu/revenue-analytics",
+          "note": "Revenue management, forecasting, demand estimation, and dynamic pricing."
+        },
+        {
+          "title": "Professional Pricing Society",
+          "url": "https://www.pricingsociety.com/",
+          "note": "Professional courses, certification, articles, events, and pricing community."
+        }
+      ]
+    }
+  }
+}

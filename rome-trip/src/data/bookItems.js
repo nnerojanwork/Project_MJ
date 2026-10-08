@@ -1,0 +1,42 @@
+export const bookItems = [
+  {
+    id: 'colosseum',
+    title: 'Colosseum + Roman Forum + Palatine ticket',
+    priority: 'p1',
+    priorityLabel: 'Book first',
+    desc: 'Timed entry for Sunday 27th, ~09:00–09:30. Official tickets are €18 and release on a 30-day rolling window — your date is already open, and early slots go first.',
+    meta: 'Book now, not later this week.',
+  },
+  {
+    id: 'dome',
+    title: "St Peter's Dome climb",
+    priority: 'p2',
+    priorityLabel: 'Book ahead',
+    desc: 'Basilica entry itself is free, but the dome is ticketed and walk-up tickets can sell out by mid-morning. A skip-the-line dome slot for Saturday afternoon avoids relying on the on-site queue.',
+    meta: 'Worth locking in before you land.',
+  },
+  {
+    id: 'borghese',
+    title: 'Galleria Borghese — Monday morning',
+    priority: 'p3',
+    priorityLabel: "Don't sleep on this",
+    desc: 'Only 180 people per 2-hour slot, and the official site only opens bookings ~10 days before the visit date — so for the 28th, that opens around 18 September. Set a reminder, or book a guided-tour slot now as a backup since those release earlier and separately.',
+    meta: 'Official window opens ~18 Sept — check daily from then.',
+  },
+  {
+    id: 'dinner-sat',
+    title: 'Saturday dinner in Trastevere',
+    priority: 'p4',
+    priorityLabel: 'Nice to have',
+    desc: 'Tonnarello or Nannarella — both solid, both popular. A reservation avoids the queue that forms outside either on a Saturday night.',
+    meta: 'One booking, not a full restaurant schedule.',
+  },
+  {
+    id: 'dinner-fri',
+    title: 'Friday dinner near Piazza Navona',
+    priority: 'p4',
+    priorityLabel: 'Optional',
+    desc: "Trattoria Antonio al Pantheon is a fine option if you'd rather not wing it after a travel day — or skip booking and save the sit-down trattoria feeling for Trastevere.",
+    meta: 'Only worth it if you want zero decisions after landing.',
+  },
+]
