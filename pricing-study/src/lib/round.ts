@@ -54,7 +54,8 @@ export function quizPriority(s: State, e: QuizEntry, now: number): number {
 }
 
 export function pickQuiz(s: State, now: number, exclude: Set<string>, quiz: QuizEntry[], rand: () => number) {
-  const pool = quiz.filter((e) => e.week <= s.currentWeek && !exclude.has(e.q.id))
+  // Typed-answer questions need a keyboard, so quick rounds only use tap questions.
+  const pool = quiz.filter((e) => e.q.type !== 'numeric' && e.week <= s.currentWeek && !exclude.has(e.q.id))
   if (!pool.length) return undefined
   return pool
     .map((e) => ({ e, p: quizPriority(s, e, now) + rand() * 0.05 }))
@@ -168,7 +169,7 @@ export function answerCurrentQuiz(choice: number) {
     const item = r?.items[r.index]
     if (!r || item?.kind !== 'quiz' || r.phase === 'answered') return s
     const entry = quizEntries.find((e) => e.q.id === item.id)
-    if (!entry) return s
+    if (!entry || entry.q.type === 'numeric') return s
     const correct = choice === entry.q.answerIndex
     const answered = markActive(applyQuizAnswer(s, item.id, entry.q.conceptIds, correct, now), now)
     return {
@@ -200,6 +201,6 @@ export function skipCurrent() {
 
 export function itemExists(item: RoundItem): boolean {
   if (item.kind === 'card') return srsCards.some((c) => c.id === item.id)
-  if (item.kind === 'quiz') return quizEntries.some((e) => e.q.id === item.id)
+  if (item.kind === 'quiz') return quizEntries.some((e) => e.q.id === item.id && e.q.type !== 'numeric')
   return conceptById.has(item.id)
 }

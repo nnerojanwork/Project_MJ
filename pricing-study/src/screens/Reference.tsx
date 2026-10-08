@@ -26,6 +26,23 @@ export default function Reference() {
         </a>
       </Section>
 
+      <Section title="More formulas" badge={<AiTag />}>
+        <p className={`mb-3 ${muted}`}>Extra formulas from the study pack, not in the syllabus table.</p>
+        <div className="flex flex-col gap-2">
+          {generated.extraFormulas.map((f) => (
+            <div key={f.id} className={card}>
+              <div className="flex justify-between gap-2 font-semibold">
+                <span>{f.name}</span>
+                <span className={`text-sm font-normal ${muted}`}>Week {f.week}</span>
+              </div>
+              <div className="mt-1 font-mono text-sm">{f.formula}</div>
+              <div className={`mt-1 ${muted}`}>{f.interpretation}</div>
+              <div className="mt-1 text-sm">e.g. {f.example}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section title="Data quality checks">
         <Bullets items={s.dataQualityChecks} />
       </Section>

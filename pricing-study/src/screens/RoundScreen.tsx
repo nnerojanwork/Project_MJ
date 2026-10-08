@@ -33,7 +33,7 @@ export default function RoundScreen() {
   if (!round) return null
 
   if (round.finishedAt !== null || !item) {
-    const learned = Object.values(srs).filter((c) => c.box >= 1).length
+    const learned = srsCards.filter((c) => (srs[c.id]?.box ?? 0) >= 1).length
     const days = streak(activeDays, Date.now())
     const parts = [
       round.answered ? `${round.correct}/${round.answered} right` : null,
@@ -78,15 +78,16 @@ export default function RoundScreen() {
     )
   } else if (item.kind === 'quiz') {
     const e = quizById.get(item.id)
-    if (!e) return null
+    if (!e || e.q.type === 'numeric') return null
+    const q = e.q
     const answered = round.phase === 'answered' && round.choice !== null
     body = (
       <div className="flex flex-col gap-4">
-        <QuizStem q={e.q} week={e.week} compact={answered} />
-        {answered && <QuizFeedback q={e.q} correct={round.choice === e.q.answerIndex} given={e.q.options[round.choice!]} />}
+        <QuizStem q={q} week={e.week} compact={answered} />
+        {answered && <QuizFeedback q={q} correct={round.choice === q.answerIndex} given={q.options[round.choice!]} />}
       </div>
     )
-    controls = answered ? <NextButton /> : <QuizOptions q={e.q} onPick={answerCurrentQuiz} />
+    controls = answered ? <NextButton /> : <QuizOptions q={q} onPick={answerCurrentQuiz} />
   } else {
     body = <ConceptFace conceptId={item.id} />
     controls = <NextButton label="Got it" />

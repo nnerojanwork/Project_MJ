@@ -76,6 +76,7 @@ export interface WorkedExample {
 
 export interface QuizQuestionBase {
   id: string
+  packId?: string
   conceptIds: string[]
   question: string
   options: string[]
@@ -94,31 +95,68 @@ export interface CalcQuestion extends QuizQuestionBase {
   decimals: number
 }
 
-export type QuizQuestion = McqQuestion | CalcQuestion
+/** Typed-answer question from the study pack. Not used in quick rounds (no tap options). */
+export interface NumericQuestion {
+  type: 'numeric'
+  id: string
+  packId: string
+  conceptIds: string[]
+  question: string
+  explanation: string
+  answer: number
+  tolerance: number
+  unit: string
+}
+
+export type QuizQuestion = McqQuestion | CalcQuestion | NumericQuestion
+
+/** Questions with tap options, usable in quick rounds. */
+export type TapQuestion = McqQuestion | CalcQuestion
+
+export type FlashcardKind = 'term' | 'contrast' | 'formula' | 'calc' | 'explain' | 'apply'
 
 export interface Flashcard {
   id: string
-  kind: 'formula' | 'term'
+  kind: FlashcardKind
+  /** 0 = reference card, available from week 1. */
   week: number
-  formulaId?: string
   front: string
   back: string
+  source: 'syllabus' | 'generated'
+  difficulty: number
 }
 
-export interface ExplainCard {
+export interface GeneratedConcept {
+  title: string
+  oneLiner: string
+  explainer: string
+  quickExample: string | null
+  lendingLens: string | null
+  /** Harbour Lane worked example. */
+  example: WorkedExample | null
+}
+
+export interface WeekGenerated {
+  summary: string
+  workedExample: { title: string; setup: string; steps: string[]; takeaway: string }
+}
+
+export interface ExtraFormula {
   id: string
+  name: string
+  formula: string
+  interpretation: string
+  example: string
   week: number
-  conceptIds: string[]
-  prompt: string
-  answer: string
 }
 
 export interface Generated {
   meta: { label: string; note: string; priceConvention: string }
   case: { name: string; summary: string; assumptions: string[] }
-  concepts: Record<string, { explainer: string; example: WorkedExample | null }>
+  concepts: Record<string, GeneratedConcept>
+  weeks: Record<string, WeekGenerated>
   quiz: Record<string, QuizQuestion[]>
   flashcards: Flashcard[]
-  explainCards: ExplainCard[]
   formulaNotes: Record<string, { interpretation: string; example: string }>
+  extraFormulas: ExtraFormula[]
 }

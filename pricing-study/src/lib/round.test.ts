@@ -109,3 +109,17 @@ describe('export / import', () => {
     expect(normalise({ version: 1, currentWeek: 3 }).journal.researchLog).toEqual([])
   })
 })
+
+describe('typed-answer questions', () => {
+  it('quick rounds and sessions never include numeric (typed) questions', () => {
+    for (let wk = 1; wk <= 10; wk++) {
+      for (let r = 0; r < 4; r++) {
+        const s = { ...initialState(), currentWeek: wk, roundsCompleted: r * 2 }
+        const round = buildRound(s, now, SESSION_SIZE, undefined, Math.random)
+        for (const i of round.items) {
+          if (i.kind === 'quiz') expect(quizEntries.find((e) => e.q.id === i.id)!.q.type).not.toBe('numeric')
+        }
+      }
+    }
+  })
+})

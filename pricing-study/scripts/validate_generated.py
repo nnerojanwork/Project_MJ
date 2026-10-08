@@ -47,6 +47,23 @@ CHECK = {
     'w10-q2': (970 * 1750 - 1500000 - 60000) / 60000 * 100,
     'w10-q3': (1 - (1500000 + 60000) / 1750 / 1000) * 100,
     'w10-q4': 880 * 1750 - 1500000 - 60000,
+    # Study-pack numeric questions (typed answers, checked against their tolerance)
+    'w1-p7': 9300 * 45 / 1000,
+    'w1-p8': 100 - 8 - 3 - 1.5 - 2 - 1.5,
+    'w1-p9': 65 / (1 - 0.35),
+    'w2-p7': (-40 / 480) / (2 / 21),
+    'w2-p8': -(0.10 / (0.30 + 0.10)) / 0.10,
+    'w3-p6': 50 + 20 - 5,
+    'w4-p6': max(p * sum(v >= p for v in (10 + 2, 6 + 7)) for p in (10 + 2, 6 + 7)),
+    'w5-p6': (1 - (20000 * (45 - 35)) / (50 - 35) / 20000) * 100,
+    'w6-p5': 0.10 / (0.30 - 0.10) * 100,
+    'w6-p6': 50000 * 0.30 - 50000 * 0.08 - 0.05 * 65000 - 1875 - 500,
+    'w7-p6': 95 * 35 - 60 * 50,
+    'w8-p5': (18 - 20) - (20 - 21),
+    'w8-p6': 16 * 0.1 * 0.9 / 0.02 ** 2,
+    'w8-p7': 170 * 50 - 200 * 40,
+    'w10-p5': 5 * 9300,
+    'w10-p6': -700 * 40,
 }
 
 
@@ -57,10 +74,17 @@ def num(s):
 all_concepts_used = set()
 for w in syl['weeks']:
     qs = gen['quiz'].get(w['id'], [])
-    if not 5 <= len(qs) <= 8: errors.append(f"{w['id']} has {len(qs)} quiz questions")
+    if len(qs) < 5: errors.append(f"{w['id']} has only {len(qs)} quiz questions")
     for q in qs:
         all_concepts_used |= set(q['conceptIds'])
         if not set(q['conceptIds']) <= concept_ids: errors.append(f"{q['id']} bad conceptIds")
+        if q['type'] == 'numeric':
+            exp = CHECK.get(q['id'])
+            if exp is None:
+                errors.append(f"{q['id']} has no independent check")
+            elif abs(exp - q['answer']) > q['tolerance'] + 1e-9:
+                errors.append(f"{q['id']} answer {q['answer']} != recomputed {exp}")
+            continue
         if not 0 <= q['answerIndex'] < len(q['options']): errors.append(f"{q['id']} answerIndex out of range")
         if len(set(q['options'])) != len(q['options']): errors.append(f"{q['id']} duplicate options")
         if q['type'] == 'calc':
@@ -76,24 +100,25 @@ for w in syl['weeks']:
                 if i != q['answerIndex'] and abs(num(o) - shown) < 1e-9:
                     errors.append(f"{q['id']} distractor equals answer")
 
-ids = [x['id'] for x in gen['flashcards']] + [x['id'] for x in gen['explainCards']] + \
-      [q['id'] for qs in gen['quiz'].values() for q in qs]
+ids = [x['id'] for x in gen['flashcards']] + [q['id'] for qs in gen['quiz'].values() for q in qs]
 dupes = {i for i in ids if ids.count(i) > 1}
 if dupes: errors.append(f'duplicate ids: {dupes}')
+KINDS = {'term', 'contrast', 'formula', 'calc', 'explain', 'apply'}
 for f in gen['flashcards']:
-    if f.get('formulaId') and f['formulaId'] not in formula_ids: errors.append(f"{f['id']} bad formulaId")
+    if f['kind'] not in KINDS: errors.append(f"{f['id']} unknown kind {f['kind']}")
+    if not 0 <= f['week'] <= len(syl['weeks']): errors.append(f"{f['id']} bad week")
 if set(gen['formulaNotes']) != formula_ids: errors.append('formulaNotes do not match formula ids')
-missing_f = formula_ids - {f.get('formulaId') for f in gen['flashcards']}
-if missing_f: errors.append(f'formulas without flashcards: {missing_f}')
-for e in gen['explainCards']:
-    if not set(e['conceptIds']) <= concept_ids: errors.append(f"{e['id']} bad conceptIds")
+week_ids = {w['id'] for w in syl['weeks']}
+if set(gen['weeks']) != week_ids: errors.append('weekly summaries do not cover every week')
 
 wc = [len(c['explainer'].split()) for c in gen['concepts'].values()]
 print(f"concepts: {len(gen['concepts'])}/{len(concept_ids)}, explainer words max {max(wc)} avg {sum(wc)//len(wc)}, "
       f"with examples {sum(1 for c in gen['concepts'].values() if c['example'])}")
 print('quiz per week:', {k: len(v) for k, v in gen['quiz'].items()},
       'calc:', sum(q['type'] == 'calc' for qs in gen['quiz'].values() for q in qs),
+      'numeric:', sum(q['type'] == 'numeric' for qs in gen['quiz'].values() for q in qs),
       'concepts quizzed:', len(all_concepts_used))
-print(f"flashcards: {len(gen['flashcards'])} ({sum(f['kind']=='formula' for f in gen['flashcards'])} formula), explain cards: {len(gen['explainCards'])}")
+from collections import Counter
+print(f"flashcards: {len(gen['flashcards'])} {dict(Counter(f['kind'] for f in gen['flashcards']))}, extra formulas: {len(gen['extraFormulas'])}")
 for e in errors: print('ERROR:', e)
 sys.exit(1 if errors else 0)

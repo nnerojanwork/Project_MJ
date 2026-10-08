@@ -10,7 +10,7 @@ export default function Home() {
   const now = Date.now()
   const week = getWeek(s.currentWeek)
   const checked = allSelfCheckIds.filter((id) => s.selfCheck[id]).length
-  const learned = Object.values(s.srs).filter((c) => c.box >= 1).length
+  const learned = srsCards.filter((c) => (s.srs[c.id]?.box ?? 0) >= 1).length
   const stats = Object.values(s.quizStats.byQuestion)
   const attempts = stats.reduce((n, x) => n + x.a, 0)
   const correct = stats.reduce((n, x) => n + x.c, 0)

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { generated, getWeek, weekCount } from '../content'
-import { Example } from '../components/StudyItems'
+import { ConceptDetail } from '../components/StudyItems'
 import { AiTag, Bullets, card, muted, Page, Section } from '../components/ui'
 import { setCurrentWeek, toggleSelfCheck, useStore } from '../lib/store'
 
@@ -10,11 +10,18 @@ export default function WeekView({ week }: { week: number }) {
   const current = useStore((s) => s.currentWeek)
   if (!w) return <Page title="Not found" back="#/weeks">No week {week}.</Page>
   const done = w.selfCheck.filter((x) => selfCheck[x.id]).length
+  const gw = generated.weeks[w.id]
 
   return (
     <Page title={`Week ${w.week}`} back="#/weeks">
       <h2 className="mb-1 text-2xl leading-tight font-bold">{w.title}</h2>
       {w.programMapOutput && <p className={`mb-3 ${muted}`}>Output: {w.programMapOutput}</p>}
+      {gw && (
+        <div className="mb-3 flex flex-col gap-2 rounded-2xl bg-slate-100 p-3 dark:bg-slate-800/60">
+          <AiTag />
+          <p>{gw.summary}</p>
+        </div>
+      )}
       {week !== current && (
         <button className="mb-3 min-h-11 text-base font-medium text-teal-700 dark:text-teal-400" onClick={() => setCurrentWeek(week)}>
           Make this my current week
@@ -26,7 +33,7 @@ export default function WeekView({ week }: { week: number }) {
       </Section>
 
       <Section title="Core concepts" defaultOpen badge={<span className={`text-sm ${muted}`}>{w.coreConcepts.length}</span>}>
-        <ConceptCarousel conceptIds={w.coreConcepts.map((c) => c.id)} texts={w.coreConcepts.map((c) => c.text)} />
+        <ConceptCarousel conceptIds={w.coreConcepts.map((c) => c.id)} />
       </Section>
 
       <Section title="Research questions">
@@ -54,6 +61,21 @@ export default function WeekView({ week }: { week: number }) {
           </a>
         )}
       </Section>
+
+      {gw && (
+        <Section title="Worked example" badge={<AiTag />}>
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold">{gw.workedExample.title}</p>
+            <p>{gw.workedExample.setup}</p>
+            <ol className="list-decimal space-y-1 pl-5">
+              {gw.workedExample.steps.map((st, i) => (
+                <li key={i}>{st}</li>
+              ))}
+            </ol>
+            <p className="rounded-xl bg-teal-50 p-3 font-medium dark:bg-teal-950/50">{gw.workedExample.takeaway}</p>
+          </div>
+        </Section>
+      )}
 
       <Section title="Portfolio output">
         <p>{w.portfolioOutput}</p>
@@ -86,7 +108,7 @@ export default function WeekView({ week }: { week: number }) {
   )
 }
 
-function ConceptCarousel({ conceptIds, texts }: { conceptIds: string[]; texts: string[] }) {
+function ConceptCarousel({ conceptIds }: { conceptIds: string[] }) {
   const [index, setIndex] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
   const onScroll = () => {
@@ -97,24 +119,11 @@ function ConceptCarousel({ conceptIds, texts }: { conceptIds: string[]; texts: s
   return (
     <div>
       <div ref={ref} onScroll={onScroll} className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4">
-        {conceptIds.map((id, i) => {
-          const g = generated.concepts[id]
-          return (
-            <article key={id} className={`${card} flex w-[85%] shrink-0 snap-center flex-col gap-3`}>
-              <div className={`text-sm ${muted}`}>
-                Concept {i + 1} of {conceptIds.length}
-              </div>
-              <p className="text-lg leading-snug font-semibold">{texts[i]}</p>
-              {g && (
-                <div className="flex flex-col gap-2 border-t border-slate-200 pt-3 dark:border-slate-700">
-                  <AiTag />
-                  <p>{g.explainer}</p>
-                  {g.example && <Example ex={g.example} />}
-                </div>
-              )}
-            </article>
-          )
-        })}
+        {conceptIds.map((id, i) => (
+          <article key={id} className={`${card} w-[85%] shrink-0 snap-center`}>
+            <ConceptDetail conceptId={id} index={i} total={conceptIds.length} />
+          </article>
+        ))}
       </div>
       <div className="mt-3 flex justify-center gap-2" aria-hidden>
         {conceptIds.map((id, i) => (

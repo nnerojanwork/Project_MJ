@@ -76,20 +76,20 @@ export default function Flashcards() {
         </button>
         <div className="mt-2">
           <Section title="Browse all cards" badge={<AiTag />}>
-            {weeks.map((w) => {
-              const list = srsCards.filter((c) => c.week === w.week)
+            {[...weeks.map((w) => w.week), 0].map((wk) => {
+              const list = srsCards.filter((c) => c.week === wk)
               if (!list.length) return null
               return (
-                <div key={w.id} className="mb-4">
-                  <h3 className={`mb-2 text-sm font-semibold ${muted}`}>Week {w.week}</h3>
+                <div key={wk} className="mb-4">
+                  <h3 className={`mb-2 text-sm font-semibold ${muted}`}>{wk ? `Week ${wk}` : 'Reference'}</h3>
                   <div className="flex flex-col gap-2">
                     {list.map((c) => (
                       <details key={c.id} className={card}>
                         <summary className="cursor-pointer font-medium">
-                          {c.type === 'explain' ? c.card.prompt : c.card.front}
+                          {c.card.front}
                           <span className={`ml-2 text-xs ${muted}`}>{s.srs[c.id] ? `box ${s.srs[c.id].box}` : 'new'}</span>
                         </summary>
-                        <p className="mt-2 whitespace-pre-line">{c.type === 'explain' ? c.card.answer : c.card.back}</p>
+                        <p className="mt-2 whitespace-pre-line">{c.card.back}</p>
                       </details>
                     ))}
                   </div>

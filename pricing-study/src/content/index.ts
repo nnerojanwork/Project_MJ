@@ -1,6 +1,6 @@
 import syllabusJson from './syllabus.json'
 import generatedJson from './generated.json'
-import type { ExplainCard, Flashcard, Generated, QuizQuestion, Syllabus, Week } from './types'
+import type { Flashcard, Generated, QuizQuestion, Syllabus, Week } from './types'
 
 export const syllabus = syllabusJson as Syllabus
 export const generated = generatedJson as Generated
@@ -29,25 +29,17 @@ export const quizEntries: QuizEntry[] = weeks.flatMap((w) =>
 )
 export const quizById = new Map(quizEntries.map((e) => [e.q.id, e]))
 
-/** Spaced-repetition cards: flashcards plus "explain it" cards share one pool. */
-export type SrsCard =
-  | { type: 'flash'; id: string; week: number; card: Flashcard }
-  | { type: 'explain'; id: string; week: number; card: ExplainCard }
+/** Spaced-repetition cards. Week 0 cards (reference) are available from week 1 and queued after week-specific ones. */
+export interface SrsCard {
+  id: string
+  week: number
+  card: Flashcard
+}
 
-const flash: SrsCard[] = generated.flashcards.map((card) => ({ type: 'flash' as const, id: card.id, week: card.week, card }))
-const explain: SrsCard[] = generated.explainCards.map((card) => ({ type: 'explain' as const, id: card.id, week: card.week, card }))
-
-/** Within each week, slot an "explain it" card after every two flashcards so new cards arrive mixed. */
-export const srsCards: SrsCard[] = weeks.flatMap((w) => {
-  const f = flash.filter((c) => c.week === w.week)
-  const e = explain.filter((c) => c.week === w.week)
-  const out: SrsCard[] = []
-  while (f.length || e.length) {
-    out.push(...f.splice(0, 2))
-    if (e.length) out.push(e.shift()!)
-  }
-  return out
-})
+const order = (w: number) => (w === 0 ? Number.MAX_SAFE_INTEGER : w)
+export const srsCards: SrsCard[] = generated.flashcards
+  .map((card) => ({ id: card.id, week: card.week, card }))
+  .sort((a, b) => order(a.week) - order(b.week))
 
 export const srsCardById = new Map(srsCards.map((c) => [c.id, c]))
 

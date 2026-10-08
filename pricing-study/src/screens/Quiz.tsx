@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { conceptById, quizById, quizEntries, weekCount, weekOfConcept } from '../content'
-import type { CalcQuestion } from '../content/types'
-import { QuizFeedback, QuizOptions, QuizStem } from '../components/StudyItems'
+import { answerText, QuizFeedback, QuizOptions, QuizStem } from '../components/StudyItems'
 import { btn, card, inputCls, muted, Page } from '../components/ui'
+import { checkTyped } from '../lib/answers'
 import { applyQuizAnswer, markActive, update, useStore, type State } from '../lib/store'
 
 const MIXED_SIZE = 8
@@ -10,16 +10,6 @@ const MIXED_SIZE = 8
 interface Answer {
   given: string
   correct: boolean
-}
-
-/** Accept "1,627,500", "£1627500", "30%", "−3 pp" etc. Tolerance covers rounding to the shown decimals. */
-export function checkCalc(q: CalcQuestion, input: string): boolean | null {
-  const cleaned = input.replace(/[£,%\s]|pp/gi, '').replace(/[−–]/g, '-')
-  if (!cleaned) return null
-  const n = Number(cleaned)
-  if (!Number.isFinite(n)) return null
-  const tol = Math.max(0.5 * 10 ** -q.decimals, Math.abs(q.answer) * 0.005)
-  return Math.abs(n - q.answer) <= tol
 }
 
 export function weakConcepts(s: State) {
@@ -132,7 +122,7 @@ function QuizSession({ session, setSession }: { session: Session; setSession: (s
                   </summary>
                   <div className="mt-2 flex flex-col gap-1 text-base">
                     {!a?.correct && <p className={muted}>You said: {a?.given ?? '—'}</p>}
-                    <p className="font-semibold">Answer: {e.q.options[e.q.answerIndex]}</p>
+                    <p className="font-semibold">Answer: {answerText(e.q)}</p>
                     <p>{e.q.explanation}</p>
                   </div>
                 </details>
@@ -159,7 +149,7 @@ function QuizSession({ session, setSession }: { session: Session; setSession: (s
     setShowOptions(false)
     setSession({ ...session, index: session.index + 1 })
   }
-  const calcResult = q.type === 'calc' ? checkCalc(q, input) : null
+  const typedResult = q.type === 'mcq' ? null : checkTyped(q, input)
 
   return (
     <div className="mx-auto flex h-[calc(100dvh-var(--tabbar))] max-w-xl flex-col px-4 pt-safe">
@@ -184,26 +174,28 @@ function QuizSession({ session, setSession }: { session: Session; setSession: (s
           <button className={btn.primary} onClick={next}>
             {session.index + 1 < session.ids.length ? 'Next →' : 'See score'}
           </button>
-        ) : q.type === 'mcq' || showOptions ? (
+        ) : q.type === 'mcq' || (q.type === 'calc' && showOptions) ? (
           <QuizOptions q={q} onPick={(i) => record(q.options[i], i === q.answerIndex)} />
         ) : (
           <form
             className="flex flex-col gap-2"
             onSubmit={(e) => {
               e.preventDefault()
-              if (calcResult !== null) record(input + (q.unit && !input.includes(q.unit) ? ` ${q.unit}` : ''), calcResult)
+              if (typedResult !== null) record(input + (q.unit && !input.includes(q.unit) ? ` ${q.unit}` : ''), typedResult)
             }}
           >
             <div className="flex items-center gap-2">
               <input className={inputCls} inputMode="decimal" placeholder="Your answer" value={input} onChange={(e) => setInput(e.target.value)} autoFocus />
               {q.unit && <span className={`text-lg ${muted}`}>{q.unit}</span>}
             </div>
-            <button className={btn.primary} disabled={calcResult === null}>
+            <button className={btn.primary} disabled={typedResult === null}>
               Check
             </button>
-            <button type="button" className="min-h-11 text-base text-teal-700 dark:text-teal-400" onClick={() => setShowOptions(true)}>
-              Show options instead
-            </button>
+            {q.type === 'calc' && (
+              <button type="button" className="min-h-11 text-base text-teal-700 dark:text-teal-400" onClick={() => setShowOptions(true)}>
+                Show options instead
+              </button>
+            )}
           </form>
         )}
       </div>

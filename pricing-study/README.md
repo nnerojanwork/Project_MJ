@@ -54,13 +54,16 @@ Content is kept separate from the UI. Edit the JSON and rebuild; no component ch
 | File | What it holds |
 |---|---|
 | `src/content/syllabus.json` | Verbatim text from `Pricing_economics.docx`. Regenerate with `python3 scripts/extract_syllabus.py path/to/Pricing_economics.docx` (this overwrites manual edits). |
-| `src/content/generated.json` | AI-generated explainers, worked examples, quiz, flashcards, "explain it" cards, formula notes. Shown in the app with an "AI-generated, verify" tag. |
+| `src/content/generated.json` | AI-generated content, shown in the app with an "AI-generated, verify" tag: concept titles, one-liners, explainers, short examples and lending lens; weekly summaries and worked examples; Harbour Lane case and worked examples; 184 flashcards; quiz; formula notes and extra formulas. |
+| `content-sources/pricing_course.json` | The study pack that most of `generated.json` comes from. `python3 scripts/import_pack.py` re-merges it (keeping the Harbour Lane case, its worked examples and the `wN-qK` quiz). |
 
-Keep IDs (`w3-c2`, `fc-t-pocket-price`, `w5-q1` …) stable. Saved progress is keyed by them. After editing, run `npm run validate-content` and `npm test`.
+Quiz IDs: `wN-qK` are the Harbour Lane questions, `wN-pK` come from the study pack (renamed from its `wN-qK` so the two sets never collide). Pack questions marked `numeric` need a typed answer, so they only appear in the full Quiz, never in quick rounds.
+
+Keep IDs (`w3-c2`, `w4-f02`, `w5-q1`, `w5-p1` …) stable. Saved progress is keyed by them. After editing, run `npm run validate-content` and `npm test`.
 
 ## How it works
 
-- **Quick round:** due cards first (oldest first), then new cards (up to 4 per round, 15 per day), then one quiz question or concept card, alternating between rounds. At least 3 items per round. Only weeks 1 to your current week are used (set it on Home or in Settings).
+- **Quick round:** due cards first (oldest first), then new cards (up to 4 per round, 15 per day), then one tap-answer quiz question or concept card, alternating between rounds. At least 3 items per round. Only weeks 1 to your current week are used (set it on Home or in Settings).
 - **5-minute session** (Home): 12 items, about three-quarters cards and a quarter quiz/concept.
 - **Spaced repetition:** Leitner boxes. Again → back in 5 minutes. Good → next box. Easy → skip a box. Intervals 1, 3, 7, 16, 35 days.
 - **Weak topics:** any concept with 2 or more attempts and under 60% accuracy. Listed on the Quiz screen, with a "Weak topics" quiz mode.
